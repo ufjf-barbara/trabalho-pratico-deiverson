@@ -13,7 +13,7 @@
 * Github:[@deyvisongdias](https://github.com/deyvisongdias)
 * LinkedIn: Deyvison Gregorio
 
-👤 **Gabriel**
+👤 **Gabriel Duque**
 
 * Github:
 * Linkedin: 
