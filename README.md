@@ -15,7 +15,7 @@
 
 👤 **Gabriel Duque**
 
-* Github:
+* Github:[@gabrielduqueschiffner](https://github.com/gabrielduqueschiffner)
 * Linkedin: 
 
 
