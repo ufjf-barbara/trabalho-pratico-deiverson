@@ -8,7 +8,7 @@
 * Linkedin: 
 
 
-👤 **Deyvison**
+👤 **Deyvison Gregorio Dias**
 
 * Github:[@deyvisongdias](https://github.com/deyvisongdias)
 * LinkedIn: Deyvison Gregorio
