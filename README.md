@@ -20,7 +20,7 @@
 
 
 ## Descriçao
-Trabalho da disciplina de Estruturas de dados 2 relativo a manipulação de arquivos .
+Trabalho da disciplina de Estruturas de dados 2 da professora BARBARA DE MELO QUINTELA relativo ao assunto de manipulação de arquivos .
 
 ## Como compilar
 
