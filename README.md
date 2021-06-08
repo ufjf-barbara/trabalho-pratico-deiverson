@@ -20,6 +20,7 @@
 
 
 ## Descriçao
+Trabalho da disciplina de Estruturas de dados 2 relativo a manipulação de arquivos .
 
 ## Como compilar
 
