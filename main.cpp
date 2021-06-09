@@ -1,13 +1,17 @@
 #include <iostream>
-#include <fstream>
-#include <list>
+#include "list"
+
 
 using namespace std;
 
+int main() {
 
-int main()
-{
 
-    
+
+
+
+
+
+
     return 0;
 }

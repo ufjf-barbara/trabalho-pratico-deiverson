@@ -1,21 +1,13 @@
-#include "list"
 #include "iostream"
+#include "list"
 
-#ifndef UNTITLED_ARQUIVOS_H
-#define UNTITLED_ARQUIVOS_H
+#ifndef TRABALHO_ARQUIVOSTRACKS_H
+#define TRABALHO_ARQUIVOSTRACKS_H
+
+class ArquivosTracks{
 
 
-class Arquivos
-{
 private:
-    //atributos do artists
-    String id;
-    float followers;
-    String genres;
-    String name;
-    int popularity;
-
-    //atributos do tracks
 
     String id2;
     String name2;
@@ -39,16 +31,15 @@ private:
     int time_signature;
 
 public:
-    list <string> listaArtists;
     list <string> listaTracks;
+    ArquivosTracks();
+    ~ArquivosTracks();
 
-    //metodos
+};
 
 
 };
 
 
 
-
-
-#endif //UNTITLED_ARQUIVOS_H
+#endif //TRABALHO_ARQUIVOSTRACKS_H
