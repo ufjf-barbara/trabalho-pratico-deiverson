@@ -5,18 +5,18 @@
 👤 **Deiverson**
 
 * Github:[@DeiversonMAP](https://github.com/DeiversonMAP) 
-* Linkedin: 
+* Matricula: 
 
 
 👤 **Deyvison Gregorio Dias**
 
 * Github:[@deyvisongdias](https://github.com/deyvisongdias)
-* LinkedIn: Deyvison Gregorio
+* Matricula:201825017
 
 👤 **Gabriel Duque**
 
 * Github:[@gabrielduqueschiffner](https://github.com/gabrielduqueschiffner)
-* Linkedin: 
+* Matricula:
 
 
 ## Descriçao
