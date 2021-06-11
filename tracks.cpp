@@ -1,16 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include "Tracks.h"
 
 
 using namespace std;
 
 
 
-Tracks ::Tracks( string id,string name,int popularity,float duration_ms,int explicit,string  artists,,string id_artists,string release_date; float danceability,float energy,
-                 int key,float loudness,int mode,float speechiness,float acousticness,float instrumentalness,float  liveness; float  valence,float tempo,int time_signature))
+Tracks ::Tracks( string id,string name,int popularity,float duration_ms,int explicit_,string  artists,string id_artists,string release_date, float danceability,float energy,
+                 int key,float loudness,int mode,float speechiness,float acousticness,float instrumentalness,float  liveness, float  valence,float tempo,int time_signature)
 {
 
+cout<<"Criando objeto tracks"<<endl;
+/*
     this->tra.id=id;
     this->tra.name=name;
     this->tra.popularity=popularity;
@@ -31,7 +34,7 @@ Tracks ::Tracks( string id,string name,int popularity,float duration_ms,int expl
     this->tra.valence=valence;
     this->tra.tempo=tempo;
     this->tra.time_signature=time_signature;
-
+*/
 }
 
 
@@ -39,6 +42,7 @@ Tracks::~Tracks()
 {
     cout<<"deletando objeto tracks "<<endl;
 
+    /*
     this->tra.id=NULL;
     this->tra.name==NULL;
     this->tra.popularity=NULL;
@@ -59,9 +63,10 @@ Tracks::~Tracks()
     this->tra.valence=NULL;
     this->tra.tempo=NULL;
     this->tra.time_signature=NULL;
-
+*/
 }
 
+//GETTERS E SETTERS
 
 string getId()
 {
@@ -282,18 +287,212 @@ int getTime_signature()
 
 void setTime_signature(int time_signature)
 {
-     this->tra.time_signature+=time_signature;
+    this->tra.time_signature+=time_signature;
 
 }
 
+//METODOS
+
+void Tracks::leArquivo()
+{
+    /*
+        string id;
+        string name;
+        int popularity;
+        float duration_ms;
+        int explicit_;
+        string  artists;
+        string id_artists;
+        // date string release_date;
+        float danceability;
+        float energy;
+        int key;
+        float loudness;
+        int mode;
+        float speechiness;
+        float acousticness;
+        float instrumentalness;
+        float  liveness;
+        float  valence;
+        float tempo;
+        int time_signature;
+    */
+
+    Tracks vet[TAM];//vetor de tracks
+
+    fstream arquivo;
+    string linha;
+    arquivo.open("tracks.csv",ios::in);
+
+    int cont=0;
+
+    if(arquivo.is_open())
+    {
+        while(getline(arquivo,linha))
+        {
+            for(int i=0; i<linha.size(); i++)
+            {
+                if(linha[i]==',')
+                {
+                    cont++;
+                    i++;
+                }
+                if(cont==0)
+                {
+                    id=id+linha[i];
+                    vet[i].setId(linha[i]);
+                }
+                if(cont==1)
+                {
+                    name=name+linha[i];
+                    vet[i].setName(linha[i]);
+                }
+                if(cont==2)
+                {
+                    popularity=popularity+linha[i];
+                    vet[i].setPopularity(linha[i]);
+                }
+                if(cont==3)
+                {
+                    duration_ms+=linha[i];
+                    vet[i].setDuration_ms(linha[i]);
+
+                }
+                if(cont==4)
+                {
+                    explicit_+=linha[i];
+                    vet[i].setExplicit_(linha[i]);
+
+                }
+                if(cont==5)
+                {
+                    artists+=linha[i];
+                    vet[i].setArtists(linha[i]);
+                }
+                if(cont==6)
+                {
+                    id_artists+=linha[i];
+                    vet[i].setId_artists(linha[i]);
+                }
+                if(cont==7)
+                {
+                    release_date+=linha[i];
+                    vet[i].setRelease_date(linha[i]);
+                }
+                if(cont==8)
+                {
+                    danceability+=linha[i];
+                    vet[i].setDanceability(linha[i]);
+
+                }
+                if(cont==9)
+                {
+                    energy+=linha[i];
+                    vet[i].setEnergy(linha[i]);
+                }
+                if(cont==10)
+                {
+                    key+=linha[i];
+                    vet[i].setKey(linha[i]);
+
+                }
+                if(cont==11)
+                {
+                    loudness+=linha[i];
+                    vet[i].setLoudness(linha[i]);
+
+                }
+                if(cont==12)
+                {
+                    mode+=linha[i];
+                    vet[i].setMode(linha[i]);
+
+                }
+                if(cont==13)
+                {
+                    speechiness+=linha[i];
+                    vet[i].setSpeechiness(linha[i]);
+
+                }
+                if(cont==14)
+                {
+
+                    acousticness+=linha[i];
+                    vet[i].setAcousticness(linha[i]);
+
+                }
+                if(cont==15)
+                {
+                    instrumentalness+=linha[i];
+                    vet[i].setInstrumentalness(linha[i]);
+
+                }
+                if(cont==16)
+                {
+                    liveness+=linha[i];
+                    vet[i].setLiveness(linha[i]);
+
+                }
+                if(cont==17)
+                {
+                    valence+=linha[i];
+                    vet[i].setValence(linha[i]);
 
 
+                }
+                if(cont==18)
+                {
+                    tempo+=linha[i];
+                    vet[i].setTempo(linha[i]);
 
 
+                }
+                if(cont==19)
+                {
+                    time_signature+=linha[i];
+                    vet[i].setTime_signature(linha[i]);
 
+                }
 
+                if(cont==20)
+                {
+                    speechiness+=linha[i];
+                    vet[i].setSpeechiness(linha[i]);
+                }
+                if(cont==20)
+                {
+                    cont==0
+                    i=0;
+                    this->tra.id=NULL;
+                    this->tra.name==NULL;
+                    this->tra.popularity=NULL;
+                    this->tra.duration_ms=NULL;
+                    this->tra.explicit_=NULL;
+                    this->tra.artists=NULL;
+                    this->tra.id_artists=NULL;
+                    this->tra.release_dat=NULL;
+                    this->tra.danceability==NULL;
+                    this->tra.energy==NULL;
+                    this->tra.key=NULL;
+                    this->tra.loudness=NULL;
+                    this->tra.mode=NULL;
+                    this->tra.speechiness=NULL;
+                    this->tra.acousticness=NULL;
+                    this->tra.instrumentalness=NULL;
+                    this->tra.liveness=NULL;
+                    this->tra.valence=NULL;
+                    this->tra.tempo=NULL;
+                    this->tra.time_signature=NULL;
+                }
+                arquivo.close();
+            }
+            else
+            {
+                cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)"<<endl;
+            }
 
+        }
 
-
+    }
 
 

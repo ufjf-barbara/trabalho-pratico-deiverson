@@ -41,7 +41,7 @@ public:
 
     string getGenres();
 
-    void SetGenres(string genres);
+    void setGenres(string genres);
 
     string getName();
 
@@ -50,6 +50,8 @@ public:
     int getPopularity();
 
     void setPopularity(int popularity);
+
+    void leArquivo();
 
 };
 

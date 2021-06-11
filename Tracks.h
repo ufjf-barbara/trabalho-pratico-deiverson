@@ -16,7 +16,7 @@ struct tracks
     int explicit_;
     string  artists;
     string id_artists;
-    // date string release_date;
+    string release_date;
     float danceability;
     float energy;
     int key;
@@ -41,12 +41,12 @@ class Tracks
 
 private:
 
-    tracks tra;
+    Tracks *tra;
 
 public:
 
-    Tracks(string id,string name,int popularity,float duration_ms,int explicit,string  artists,string id_artists,string release_date; float danceability,float energy,
-                   int key,float loudness,int mode,float speechiness,float acousticness,float instrumentalness,float  liveness; float  valence,float tempo,int time_signature);
+    Tracks(string id,string name,int popularity,float duration_ms,int explicit_,string  artists,string id_artists,string release_date, float danceability,float energy,
+           int key,float loudness,int mode,float speechiness,float acousticness,float instrumentalness,float  liveness, float  valence,float tempo,int time_signature);
     ~Tracks();
 
     string getId();
@@ -109,11 +109,13 @@ public:
     int getTime_signature();
     void setTime_signature(int time_signature);
 
+    //METODOS
+    void leArquivo();
 
 };
 
 
-};
+
 
 
 
