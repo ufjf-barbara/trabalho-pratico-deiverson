@@ -15,13 +15,8 @@ struct artists
 
 
 
-
-
-
 int main()
 {
-
-//Artists
 
 
 

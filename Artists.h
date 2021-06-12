@@ -22,33 +22,16 @@ class Artists
 {
 
 private:
-    artists art;
-
+   list<artists>lista;
 
 public:
+
     Artists();
 
     ~Artists();
 
-    string getId();
-
-    void setId(string id);
-
-    float getFollowers();
-
-    void setFollowers(float followers);
-
-    string getGenres();
-
-    void setGenres(string genres);
-
-    string getName();
-
-    void setName(string name);
-
-    int getPopularity();
-
-    void setPopularity(int popularity);
+    //metodos
+    list<artists>getList();
 
     void leArquivo();
 
