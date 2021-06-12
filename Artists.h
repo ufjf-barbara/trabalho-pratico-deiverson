@@ -6,7 +6,6 @@
 #define ARTISTS_H_INCLUDED
 
 
-
 using namespace std;
 
 struct artists
@@ -23,37 +22,19 @@ class Artists
 {
 
 private:
-    artists art;
-
+   list<artists>lista;
 
 public:
-    Artists( string id,float followers,string genres,string name,int popularity);
+
+    Artists(string path);
 
     ~Artists();
 
-    string getId();
+    //metodos
+    list<artists>getList();
 
-    void setId(string id);
-
-    float getFollowers();
-
-    void setFollowers(float followers);
-
-    string getGenres();
-
-    void setGenres(string genres);
-
-    string getName();
-
-    void setName(string name);
-
-    int getPopularity();
-
-    void setPopularity(int popularity);
-
-    void leArquivo();
-     
-    void transformaArtistsBin();
+    void leArquivo(string path);
+    void TransformaArtistBin();
 };
 
 

@@ -1,18 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include "Artists.h"
+#include "Tracks.h"
 
 using namespace std;
-
-struct artists
-{
-    string id;
-    float followers;
-    string genres;
-    string name;
-    int popularity;
-};
-
 
 
 
@@ -20,13 +12,9 @@ struct artists
 int main()
 {
 
-//Artists
-
-
-
-
-
-return 0;
+    Artists *arti=new Artists("teste.txt");
+    arti->TransformaArtistBin();
+    return 0;
 }
 
 

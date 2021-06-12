@@ -1,475 +1,199 @@
 #include <iostream>
 #include <fstream>
-#include <list>
 #include "Tracks.h"
+#include <list>
 
 using namespace std;
 
-Tracks ::Tracks(string id, string name, int popularity, float duration_ms, int explicit_, string artists, string id_artists, string release_date, float danceability, float energy,
-                int key, float loudness, int mode, float speechiness, float acousticness, float instrumentalness, float liveness, float valence, float tempo, int time_signature)
+Tracks ::Tracks(string path )
 {
 
-    cout << "Criando objeto tracks" << endl;
-    /*
-    this->tra.id=id;
-    this->tra.name=name;
-    this->tra.popularity=popularity;
-    this->tra.duration_ms=duration_ms;
-    this->tra.explicit_=explicit_;
-    this->tra.artists=artists;
-    this->tra.id_artists=id_artists;
-    this->tra.release_dat=release_dat;
-    this->tra.danceability=danceability;
-    this->tra.energy=energy;
-    this->tra.key=key;
-    this->tra.loudness=loudness;
-    this->tra.mode=mode;
-    this->tra.speechiness=speedchiness;
-    this->tra.acousticness=acusticness;
-    this->tra.instrumentalness=instrumentalness;
-    this->tra.liveness=liveness;
-    this->tra.valence=valence;
-    this->tra.tempo=tempo;
-    this->tra.time_signature=time_signature;
-*/
+    cout<<"Criando objeto tracks"<<endl;
+    leArquivo(path);
+
 }
+
 
 Tracks::~Tracks()
 {
-    cout << "deletando objeto tracks " << endl;
+    cout<<"deletando objeto tracks "<<endl;
 
-    /*
-    this->tra.id=NULL;
-    this->tra.name==NULL;
-    this->tra.popularity=NULL;
-    this->tra.duration_ms=NULL;
-    this->tra.explicit_=NULL;
-    this->tra.artists=NULL;
-    this->tra.id_artists=NULL;
-    this->tra.release_dat=NULL;
-    this->tra.danceability==NULL;
-    this->tra.energy==NULL;
-    this->tra.key=NULL;
-    this->tra.loudness=NULL;
-    this->tra.mode=NULL;
-    this->tra.speechiness=NULL;
-    this->tra.acousticness=NULL;
-    this->tra.instrumentalness=NULL;
-    this->tra.liveness=NULL;
-    this->tra.valence=NULL;
-    this->tra.tempo=NULL;
-    this->tra.time_signature=NULL;
-*/
 }
 
 //GETTERS E SETTERS
 
-string getId()
+list<tracks> Tracks:: getList()
 {
-    return this->tra.id;
+    return lista;
 }
 
-void setId(string id)
-{
 
-    this->tra.id += id;
-}
-
-string getName()
-{
-    return this->tra.name;
-}
-
-void setName(string name)
-{
-    this->tra.name += name;
-}
-
-int getPopularity()
-{
-    return this->tra.popularity;
-}
-
-void setPopularity(int popularity)
-{
-    this->tra.popularity += popularity;
-}
-
-float getDuration_ms()
-{
-    return this->tra.duration;
-}
-
-void setDuration_ms(float duration_ms)
-{
-    this->tra.duration_ms += duration_ms;
-}
-
-int getExplicit_()
-{
-    return this->tra.explicit_;
-}
-
-void setExplicit_(int explicit_)
-{
-    this->tra.explicit_ += explicit_;
-}
-
-string getArtists()
-{
-    return this->tra.artists;
-}
-
-void setArtists(string artists)
-{
-    this->tra.artists = artists;
-}
-
-string getId_artists()
-{
-    return this->tra.id_artists;
-}
-
-void setId_artists(string id_artists)
-{
-    this->tra.id_artists += id_artists;
-}
-
-string getRelease_date()
-{
-    return this->tra.release_date;
-}
-
-void setRelease_date(string release_date)
-{
-    this->tra.release_date += release_date;
-}
-
-float getDanceability()
-{
-
-    return this->tra.danceability;
-}
-void setDanceability(float danceability)
-{
-    this->tra.danceability += danceability;
-}
-
-float getEnergy()
-{
-    return this->energy;
-}
-
-void setEnergy(float energy)
-{
-     this->tra.energy += energy;
-}
-
-int getKey()
-{
-
-    return this->tra.getKey;
-}
-
-void setKey(int key)
-{
-    this->tra.key += key;
-}
-
-float getLoudness()
-{
-   return this->tra.loudness;
-
-}
-void setLoudness(float loudness)
-{
-    this->tra.loudness += loudness;
-}
-
-int getMode()
-{
-    return this->tra.mode;
-
-}
-
-void setMode(int mode)
-{
-    this->tra.mode += mode;
-}
-
-float getSpeechiness()
-{
-    return this->tra.speechiness;
-
-}
-
-void setSpeechiness(float speechiness)
-{
-    this->tra.speechiness += speechiness;
-}
-
-float getAcousticness()
-{
-    return this->tra.acousticness;
-
-}
-
-void SetAcousticness(float acousticness)
-{
-    this->tra.acousticness += acousticness;
-
-}
-
-float getInstrumentalness()
-{
-    return this->tra.instrumentalness;
-}
-
-void setInstrumentalness(float instrumentalness)
-{
-    this->tra.instrumentalness = instrumentalness;
-}
-
-float  getLiveness()
-{
-    return this->tra.liveness;
-}
-
-void setLiveness(float liveness)
-{
-    this->tra.liveness += liveness;
-}
-
-float  getValence()
-{
-    return this->tra.valence;
-
-}
-void setValence(float valence)
-{
-    this->tra.valence += valence;
-
-}
-
-float getTempo()
-{
-    return this->tra.tempo;
-
-}
-
-void setTempo(float tempo)
-{
-    this->tra.tempo += tempo;
-}
-
-int getTime_signature()
-{
-    return this->tra.time;
-}
-
-void setTime_signature(int time_signature)
-{
-    this->tra.time_signature += time_signature;
-
-}
 
 //METODOS
 
-void Tracks::leArquivo()
+void Tracks::leArquivo(string path)
 {
-    /*
-        string id;
-        string name;
-        int popularity;
-        float duration_ms;
-        int explicit_;
-        string  artists;
-        string id_artists;
-        // date string release_date;
-        float danceability;
-        float energy;
-        int key;
-        float loudness;
-        int mode;
-        float speechiness;
-        float acousticness;
-        float instrumentalness;
-        float  liveness;
-        float  valence;
-        float tempo;
-        int time_signature;
-    */
 
-    Tracks vet[TAM]; //vetor de tracks
+    tracks tr;
 
     fstream arquivo;
     string linha;
-    arquivo.open("tracks.csv", ios::in);
+    arquivo.open("tracks.csv",ios::in);
 
-    int cont = 0;
-
-    if (arquivo.is_open())
+    int cont=0;
+    bool verifica;
+    if(arquivo.is_open())
     {
-        while (getline(arquivo, linha))
+        getline(arquivo,linha);
+        while(getline(arquivo,linha))
         {
-            for (int i = 0; i < linha.size(); i++)
+
+            for(int i=0; i<linha.size(); i++)
             {
-                if (linha[i] == ',')
+                if(linha[i]=='[')
+                {
+                    verifica=1;
+                }
+                if(linha[i]==']')
+                {
+                    verifica=0;
+                }
+                if(linha[i]==',' && verifica==0)
                 {
                     cont++;
                     i++;
                 }
-                if (cont == 0)
+                if(cont==0)
                 {
-                    id = id + linha[i];
-                    vet[i].setId(linha[i]);
+                    tr.id+=linha[i];
                 }
-                if (cont == 1)
+                if(cont==1)
                 {
-                    name = name + linha[i];
-                    vet[i].setName(linha[i]);
+                    tr.name+=linha[i];
                 }
-                if (cont == 2)
-                {
-                    popularity = popularity + linha[i];
-                    vet[i].setPopularity(linha[i]);
-                }
-                if (cont == 3)
-                {
-                    duration_ms += linha[i];
-                    vet[i].setDuration_ms(linha[i]);
-                }
-                if (cont == 4)
-                {
-                    explicit_ += linha[i];
-                    vet[i].setExplicit_(linha[i]);
-                }
-                if (cont == 5)
-                {
-                    artists += linha[i];
-                    vet[i].setArtists(linha[i]);
-                }
-                if (cont == 6)
-                {
-                    id_artists += linha[i];
-                    vet[i].setId_artists(linha[i]);
-                }
-                if (cont == 7)
-                {
-                    release_date += linha[i];
-                    vet[i].setRelease_date(linha[i]);
-                }
-                if (cont == 8)
-                {
-                    danceability += linha[i];
-                    vet[i].setDanceability(linha[i]);
-                }
-                if (cont == 9)
-                {
-                    energy += linha[i];
-                    vet[i].setEnergy(linha[i]);
-                }
-                if (cont == 10)
-                {
-                    key += linha[i];
-                    vet[i].setKey(linha[i]);
-                }
-                if (cont == 11)
-                {
-                    loudness += linha[i];
-                    vet[i].setLoudness(linha[i]);
-                }
-                if (cont == 12)
-                {
-                    mode += linha[i];
-                    vet[i].setMode(linha[i]);
-                }
-                if (cont == 13)
-                {
-                    speechiness += linha[i];
-                    vet[i].setSpeechiness(linha[i]);
-                }
-                if (cont == 14)
+                if(cont==2)
                 {
 
-                    acousticness += linha[i];
-                    vet[i].setAcousticness(linha[i]);
+                    tr.popularity+=linha[i];
                 }
-                if (cont == 15)
+                if(cont==3)
                 {
-                    instrumentalness += linha[i];
-                    vet[i].setInstrumentalness(linha[i]);
+
+                    tr.duration_ms+=linha[i];
                 }
-                if (cont == 16)
+                if(cont==4)
                 {
-                    liveness += linha[i];
-                    vet[i].setLiveness(linha[i]);
+                    tr. explicit_+=linha[i];
+
+
                 }
-                if (cont == 17)
+                if(cont==5)
                 {
-                    valence += linha[i];
-                    vet[i].setValence(linha[i]);
+                    tr.artists+=linha[i];
+
                 }
-                if (cont == 18)
+                if(cont==6)
                 {
-                    tempo += linha[i];
-                    vet[i].setTempo(linha[i]);
+                    tr.id_artists+=linha[i];
+
                 }
-                if (cont == 19)
+                if(cont==7)
                 {
-                    time_signature += linha[i];
-                    vet[i].setTime_signature(linha[i]);
+                    tr.release_date+=linha[i];
+
+                }
+                if(cont==8)
+                {
+                    tr.danceability+=linha[i];
+
+
+                }
+                if(cont==9)
+                {
+                    tr.energy+=linha[i];
+
+                }
+                if(cont==10)
+                {
+                    tr.key+=linha[i];
+
+                }
+                if(cont==11)
+                {
+                    tr.loudness+=linha[i];
+
+
+                }
+                if(cont==12)
+                {
+                    tr.mode+=linha[i];
+
+
+                }
+                if(cont==13)
+                {
+                    tr.speechiness+=linha[i];
+
+
+                }
+                if(cont==14)
+                {
+
+                    tr.acousticness+=linha[i];
+
+                }
+                if(cont==15)
+                {
+                    tr.instrumentalness+=linha[i];
+
+
+                }
+                if(cont==16)
+                {
+                    tr.liveness+=linha[i];
+
+
+                }
+                if(cont==17)
+                {
+                    tr.valence+=linha[i];
+
+
+                }
+                if(cont==18)
+                {
+                    tr.tempo+=linha[i];
+
+                }
+                if(cont==19)
+                {
+                    tr.time_signature+=linha[i];
+
                 }
 
-                if (cont == 20)
+                if(cont==20)
                 {
-                    speechiness += linha[i];
-                    vet[i].setSpeechiness(linha[i]);
+                    tr.speechiness+=linha[i];
+
                 }
-                if (cont == 20)
-                {
-                    cont == 0 i = 0;
-                    this->tra.id = NULL;
-                    this->tra.name == NULL;
-                    this->tra.popularity = NULL;
-                    this->tra.duration_ms = NULL;
-                    this->tra.explicit_ = NULL;
-                    this->tra.artists = NULL;
-                    this->tra.id_artists = NULL;
-                    this->tra.release_dat = NULL;
-                    this->tra.danceability == NULL;
-                    this->tra.energy == NULL;
-                    this->tra.key = NULL;
-                    this->tra.loudness = NULL;
-                    this->tra.mode = NULL;
-                    this->tra.speechiness = NULL;
-                    this->tra.acousticness = NULL;
-                    this->tra.instrumentalness = NULL;
-                    this->tra.liveness = NULL;
-                    this->tra.valence = NULL;
-                    this->tra.tempo = NULL;
-                    this->tra.time_signature = NULL;
-                }
-                arquivo.close();
+
+
+                cont=0;
+                i=0;
+                lista.push_back(tr);
+                tr = { NULL};
             }
-            else
-            {
-                cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)" << endl;
-            }
+            arquivo.close();
+
         }
     }
-    void transformaTracksBin()    // Função que transforma o arquivo tracks.csv em binário
-    { 
-        ofstream arquivoTracksBin;
-        arquivoTracksBin.open("tracks.csv", ios::binary);
-        tracks tr;
-        if (arquivoTracksBin.is_open())
-        {
-            for (int i = 0; i < sizeof(tr); i++)
-            {
-                arquivoTracksBin.write((char *) &tr[i], sizeof(tr))
-            }
-        }
-        else
-            cout << "N foi possível abrir o arquivo" << endl;
+    else
+    {
+        cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)"<<endl;
     }
+
+}
+
+
+
+
