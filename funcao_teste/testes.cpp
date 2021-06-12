@@ -86,6 +86,7 @@ void func_teste(int tamT, int tamA, ifstream finT, ifstream finA)
                 foutA << vetA[i] << endl; // colocar os parametros a serem impressos
             }
             finA.seekg(0, finA.beg);
+            foutA.close();
             cout << "Registros Tracks" << endl;
             for (int i = 0; i < n; i++)
             {
@@ -94,6 +95,7 @@ void func_teste(int tamT, int tamA, ifstream finT, ifstream finA)
                 foutT << tr.<< endl; // colocar os parametros a serem impressos
             }
             finT.seekg(0, finT.beg);
+            foutT.close();
         }
     }
     return vet[];
@@ -101,8 +103,8 @@ void func_teste(int tamT, int tamA, ifstream finT, ifstream finA)
 
 int main(int argc, char **argv) // MAIN
 {
-//fonte pra mecher com seekg e tellg  
-//https://www.cplusplus.com/reference/istream/istream/seekg/
+    //fonte pra mecher com seekg e tellg
+    //https://www.cplusplus.com/reference/istream/istream/seekg/
     ifstream finT, finA;
     finT.open("", ios::binary);
     finA.open("", ios::binary);
@@ -116,6 +118,7 @@ int main(int argc, char **argv) // MAIN
     finA.seekg(0, finA.beg);
 
     func_teste(tamT, tamA, finT, finA);
-
+    finT.close();
+    finA.close();
     return 0;
 }
