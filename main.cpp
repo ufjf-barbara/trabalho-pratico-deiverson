@@ -12,8 +12,10 @@ using namespace std;
 int main()
 {
 
-    Artists *arti=new Artists("teste.txt");
-    arti->TransformaArtistBin();
+   // Artists *arti=new Artists("artiststeste.txt");
+   // arti->TransformaArtistBin();
+    Tracks *tr=new Tracks("tracksteste.txt");
+    tr->TransformaTrackBin();
     return 0;
 }
 

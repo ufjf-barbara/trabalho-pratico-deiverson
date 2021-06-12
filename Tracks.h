@@ -50,7 +50,7 @@ public:
 
     //METODOS
     void leArquivo(string path);
-
+    void TransformaTrackBin();
 
 };
 
