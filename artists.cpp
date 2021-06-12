@@ -5,9 +5,9 @@
 
 using namespace std;
 
-Artists::Artists()
+Artists::Artists(string path)
 {
-    leArquivo();
+    leArquivo(path);
 }
 
 Artists::~Artists()
@@ -26,12 +26,12 @@ list<artists> Artists::getList()
 
 //METODOS
 
-void Artists::leArquivo()
+void Artists::leArquivo(string path)
 {
 
     fstream arquivo;
     string linha;
-    arquivo.open("artists.csv",ios::in);
+    arquivo.open(path,ios::in);
 
     artists art;
 
@@ -40,8 +40,10 @@ void Artists::leArquivo()
     bool verifica;
     if(arquivo.is_open())
     {
+        getline(arquivo,linha);
         while(getline(arquivo,linha))
         {
+
             for(int i=0; i<linha.size(); i++)
             {
                 if(linha[i]=='[')
@@ -81,18 +83,28 @@ void Artists::leArquivo()
                 {
                     art.popularity+=int(linha[i]);
                 }
-                if(cont==4)
-                {
-                    cont=0;
-                    i=0;
-                    lista.push_back(art);
 
-                }
+
             }
+
+            cont=0;
+            lista.push_back(art);
+            cout<<art.id<<" ---";
+            cout<<art.followers<<"---";
+            cout<<art.genres<<"---";
+            cout<<art.name<<"--- ";
+            cout<<art.popularity<<endl;
+            art.id="";
+            art.followers=NULL;
+            art.genres="";
+            art.name="";
+            art.popularity=NULL;
         }
+
 
         arquivo.close();
     }
+
     else
     {
         cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)"<<endl;

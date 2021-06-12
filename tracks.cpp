@@ -5,11 +5,11 @@
 
 using namespace std;
 
-Tracks ::Tracks( )
+Tracks ::Tracks(string path )
 {
 
     cout<<"Criando objeto tracks"<<endl;
-    leArquivo();
+    leArquivo(path);
 
 }
 
@@ -31,7 +31,7 @@ list<tracks> Tracks:: getList()
 
 //METODOS
 
-void Tracks::leArquivo()
+void Tracks::leArquivo(string path)
 {
 
     tracks tr;
@@ -44,6 +44,7 @@ void Tracks::leArquivo()
     bool verifica;
     if(arquivo.is_open())
     {
+        getline(arquivo,linha);
         while(getline(arquivo,linha))
         {
 
@@ -175,13 +176,12 @@ void Tracks::leArquivo()
                     tr.speechiness+=linha[i];
 
                 }
-                if(cont==20)
-                {
-                    cont=0;
-                    i=0;
-                    tr = { NULL};
-                    lista.push_back();
-                }
+
+
+                cont=0;
+                i=0;
+                lista.push_back(tr);
+                tr = { NULL};
             }
             arquivo.close();
 

@@ -26,14 +26,14 @@ private:
 
 public:
 
-    Artists();
+    Artists(string path);
 
     ~Artists();
 
     //metodos
     list<artists>getList();
 
-    void leArquivo();
+    void leArquivo(string path);
 
 };
 

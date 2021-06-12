@@ -42,14 +42,14 @@ private:
 
 public:
 
-    Tracks();
+    Tracks(string path);
     ~Tracks();
 
     list<tracks> getList();
 
 
     //METODOS
-    void leArquivo();
+    void leArquivo(string path);
 
 
 };

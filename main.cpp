@@ -1,28 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include "Artists.h"
+#include "Tracks.h"
 
 using namespace std;
 
-struct artists
-{
-    string id;
-    float followers;
-    string genres;
-    string name;
-    int popularity;
-};
 
 
 
 int main()
 {
 
+    Artists *arti=new Artists("teste.txt");
 
-
-
-
-return 0;
+    return 0;
 }
 
 
