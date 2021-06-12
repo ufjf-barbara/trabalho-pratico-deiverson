@@ -100,14 +100,14 @@ void Artists::leArquivo(string path)
         cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)" << endl;
     }
 }
-void transformaArtistBin() // Função que transforma o arquivo artists.csv em binário
+void Artists :: TransformaArtistBin() // Função que transforma o arquivo artists.csv em binário
 {
     ofstream arquivoArtistBin;
-    arquivoArtistBin.open("artists.csv", ios::binary);
+    arquivoArtistBin.open("artists.bin", ios::binary);
 
     if (arquivoArtistBin.is_open())
     {
-        for (artists art : getList())
+        for (artists art : lista)
         {
             arquivoArtistBin.write((char *)&art, sizeof(art));
         }

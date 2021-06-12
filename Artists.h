@@ -35,6 +35,7 @@ public:
 
     void leArquivo(string path);
     void TransformaArtistBin();
+    
 };
 
 
