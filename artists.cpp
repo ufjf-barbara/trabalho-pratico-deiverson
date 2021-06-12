@@ -5,19 +5,14 @@
 
 using namespace std;
 
-Artists :: Artists( string id,float followers,string genres,string name,int popularity)
+Artists::Artists()
 {
-    this->art.id=id;
-    this->art.followers=followers;
-    this->art.genres=genres;
-    this->art.name=name;
-    this->art.popularity=popularity;
+    leArquivo();
 }
 
 Artists::~Artists()
 {
     cout<<"deletando leitura do arquivo Artists"<<endl;
-
     /*
     this->art.id=NULL;
     this->art.followers=NULL;
@@ -103,14 +98,22 @@ void Artists::leArquivo()
 
 
     int cont=0;
-
+    bool verifica;
     if(arquivo.is_open())
     {
         while(getline(arquivo,linha))
         {
             for(int i=0; i<linha.size(); i++)
             {
-                if(linha[i]==',')
+                if(linha[i]=='[')
+                {
+                    verifica=1;
+                }
+                if(linha[i]==']')
+                {
+                    verifica=0;
+                }
+                if(linha[i]==',' && verifica==0)
                 {
                     cont++;
                     i++;

@@ -6,7 +6,6 @@
 #define ARTISTS_H_INCLUDED
 
 
-
 using namespace std;
 
 struct artists
@@ -27,7 +26,7 @@ private:
 
 
 public:
-    Artists( string id,float followers,string genres,string name,int popularity);
+    Artists();
 
     ~Artists();
 
