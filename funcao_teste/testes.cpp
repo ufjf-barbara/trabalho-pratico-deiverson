@@ -34,8 +34,8 @@ void sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posi
 void func_teste(int tamT, int tamA, ifstream finT, ifstream finA)
 {
     int n = 0;
-    Artists art;
-    Tracks tr;
+    artists art;
+    tracks tr;
     while (!(n == 10 || n == 100)) // loop para chamar o teste adequadamente;
     {
         cout << "Quantos registros deseja obter aleatoriamente, 10 ou 100?" << endl;
@@ -56,7 +56,7 @@ void func_teste(int tamT, int tamA, ifstream finT, ifstream finA)
             cout << "Registros Artists" << endl;
             for (int i = 0; i < n; i++)
             {
-                finA.seekg(0, vetA * tamA);
+                finA.seekg(0, vetA[i] * tamA);
                 finA.read((char *)&art, tamA);
                 cout << art.<< endl; // colocar os parametros a serem impressos
             }
@@ -64,8 +64,8 @@ void func_teste(int tamT, int tamA, ifstream finT, ifstream finA)
             cout << "Registros Tracks" << endl;
             for (int i = 0; i < n; i++)
             {
-                finT.seekg(0, vetB * tamB);
-                finT.read((char *)&tr, tamB);
+                finT.seekg(0, vetT[i] * tamT);
+                finT.read((char *)&tr, tamT);
                 cout << tr.<< endl; // colocar os parametros a serem impressos
             }
             finT.seekg(0, finT.beg);
