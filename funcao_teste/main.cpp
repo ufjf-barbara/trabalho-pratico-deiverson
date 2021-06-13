@@ -68,7 +68,7 @@ void func_teste(int tamA, ifstream *finA)
 
             cout << "Registros Artists" << endl;
             for (int i=0; i<n; i++)
-            { 
+            {
                 //artist art;
                 finA->seekg(vetA[i] * sizeof(artist), finA->beg);
                 finA->read((char *)&art[i], sizeof(artist));
