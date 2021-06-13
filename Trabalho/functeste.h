@@ -16,8 +16,8 @@ public:
 private:
     void sorteia_numero(int vet[], int n, int qtddReg);
     bool verifica_numero(int vet[], int n, int aux);
-    //voidcallTeste(int tamT, int tamA, ifstream *finT, ifstream *finA);
-    void callTeste(int tamA, ifstream *finA);
+    void callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA);
+    //void callTeste(int tamA, ifstream *finA);
 };
 
 #endif // ARTISTS_H_INCLUDED

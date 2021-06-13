@@ -81,11 +81,11 @@ void Artists::leArquivo(string path)
 
             cont = 0;
             lista.push_back(art);
-            cout << art.id << " ---";
+           /* cout << art.id << " ---";
             cout << art.followers << "---";
             cout << art.genres << "---";
             cout << art.name << "--- ";
-            cout << art.popularity << endl;
+            cout << art.popularity << endl;*/
             art.id = "";
             art.followers = 0;
             art.genres = "";

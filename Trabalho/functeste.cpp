@@ -8,30 +8,29 @@
 
 using namespace std;
 
-func_teste::func_teste()//construtor
+func_teste::func_teste() //construtor
 {
     //fonte pra mecher com seekg e tellg
     //https://www.cplusplus.com/reference/istream/istream/seekg/
-    ifstream //finT,
-        finA;
+    ifstream finT, finA;
     artists art;
     tracks tr;
-    //finT.open("tracks.bin", ios::binary);
+    finT.open("tracks.bin", ios::binary);
     finA.open("artists.bin", ios::binary);
-    // finT.seekg(0, finT.end);
+    finT.seekg(0, finT.end);
     finA.seekg(0, finA.end);
 
-    //   int tamT = finT.tellg() / sizeof(tr);
+    int tamT = finT.tellg() / sizeof(tr);
     int tamA = finA.tellg() / sizeof(art);
-    cout << finA.tellg() << "--" << sizeof(art) << "--" << tamA << endl;
+    //cout << finA.tellg() << "--" << sizeof(art) << "--" << tamA << endl;// tirar
 
-    //  finT.seekg(0, finT.beg);
+    finT.seekg(0, finT.beg);
     finA.seekg(0, finA.beg);
 
-    // callTeste(tamT, tamA, &finT, &finA);
-    callTeste(tamA, &finA);
-    //  finT.close();
+    callTeste(tamT, tamA, &finT, &finA);
+
     finA.close();
+    finT.close();
 }
 /*struct artist
 {
@@ -65,12 +64,12 @@ void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para so
     }
 }
 
-//voidcallTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
-void func_teste::callTeste(int tamA, ifstream *finA)
+void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
+
 {
     int n = 0;
     artists art;
-    tracks tr;
+    //tracks tr;
     while (!(n == 10 || n == 100)) // loop para chamar o teste adequadamente;
     {
         cout << "Quantos registros deseja obter aleatoriamente, 10 ou 100?" << endl;
@@ -85,16 +84,15 @@ void func_teste::callTeste(int tamA, ifstream *finA)
         else if (n == 10)
         {
             // chamar funçao pra pegar 10 registros e imprimilos na tela
-            //  int vetA[n], vetT[n];
-            int vetA[n];
+            int vetA[n], vetT[n];
             artists art[n];
+            tracks tr[n];
             sorteia_numero(vetA, n, tamA);
-            // sorteia_numero(vetT, n, tamT);
+            sorteia_numero(vetT, n, tamT);
 
             cout << "Registros Artists" << endl;
             for (int i = 0; i < n; i++)
             {
-                //artist art;
                 finA->seekg(vetA[i] * sizeof(artists), finA->beg);
                 finA->read((char *)&art[i], sizeof(artists));
                 cout << art[i].id
@@ -103,49 +101,51 @@ void func_teste::callTeste(int tamA, ifstream *finA)
                      << "," << art[i].name
                      << "," << art[i].popularity
                      << endl;
-                //cout<< finA->tellg()<<endl;
             }
-            //finA->seekg(0, finA->beg);
-            /* cout << "Registros Tracks" << endl;
+            finA->seekg(0, finA->beg);
+            cout << "Registros Tracks" << endl;
             for (int i = 0; i < n; i++)
             {
-                finT->seekg(vetT[i] * tamT, finT->beg);
-                finT->read((char *)&tr, tamT);
-                cout << tr.id
-                     << "," << tr.name
-                     << "," << tr.popularity
-                     << "," << tr.duration_ms
-                     << "," << tr.explicit_
-                     << "," << tr.artists
-                     << "," << tr.id_artists
-                     << "," << tr.release_date
-                     << "," << tr.danceability
-                     << "," << tr.energy
-                     << "," << tr.key
-                     << "," << tr.loudness
-                     << "," << tr.mode
-                     << "," << tr.speechiness
-                     << "," << tr.acousticness
-                     << "," << tr.instrumentalness
-                     << "," << tr.liveness
-                     << "," << tr.valence
-                     << "," << tr.tempo
-                     << "," << tr.time_signature
+                finT->seekg(vetT[i] * sizeof(tracks), finT->beg);
+                finT->read((char *)&tr[i], sizeof(tracks));
+                cout << tr[i].id
+                     << "," << tr[i].name
+                     << "," << tr[i].popularity
+                     << "," << tr[i].duration_ms
+                     << "," << tr[i].explicit_
+                     << "," << tr[i].artists
+                     << "," << tr[i].id_artists
+                     << "," << tr[i].release_date
+                     << "," << tr[i].danceability
+                     << "," << tr[i].energy
+                     << "," << tr[i].key
+                     << "," << tr[i].loudness
+                     << "," << tr[i].mode
+                     << "," << tr[i].speechiness
+                     << "," << tr[i].acousticness
+                     << "," << tr[i].instrumentalness
+                     << "," << tr[i].liveness
+                     << "," << tr[i].valence
+                     << "," << tr[i].tempo
+                     << "," << tr[i].time_signature
                      << endl; // colocar os parametros a serem impressos
             }
-            finT->seekg(0, finT->beg);*/
+            finT->seekg(0, finT->beg);
         }
         else //n= 100 ----- chamar funçao pra pegar 100 registros e criar arquivo de texto
         {
-            // int vetA[n], vetT[n];
-            int vetA[n];
+            int vetA[n], vetT[n];
+
             artists art[n];
+            tracks tr[n];
+
             sorteia_numero(vetA, n, tamA);
-            //sorteia_numero(vetT, n, tamT);
-            //  ofstream foutT, foutA;
-            ofstream foutA;
-            //foutT.open("");
-            foutA.open("print.txt");
+            sorteia_numero(vetT, n, tamT);
+
+            ofstream foutT, foutA;
+
+            foutT.open("printTRACK.txt");
+            foutA.open("printARTISTS.txt");
             //Registros Artists
             for (int i = 0; i < n; i++)
             {
@@ -160,36 +160,37 @@ void func_teste::callTeste(int tamA, ifstream *finA)
                       << endl; // colocar os parametros a serem impressos
             }
             finA->seekg(0, finA->beg);
-            foutA.close();
-            /* //Registros Tracks
+            //Registros Tracks
+
             for (int i = 0; i < n; i++)
             {
-                finT->seekg(vetT[i] * tamT, finT->beg);
-                finT->read((char *)&tr, tamT);
-                foutT << tr.id
-                      << "," << tr.name
-                      << "," << tr.popularity
-                      << "," << tr.duration_ms
-                      << "," << tr.explicit_
-                      << "," << tr.artists
-                      << "," << tr.id_artists
-                      << "," << tr.release_date
-                      << "," << tr.danceability
-                      << "," << tr.energy
-                      << "," << tr.key
-                      << "," << tr.loudness
-                      << "," << tr.mode
-                      << "," << tr.speechiness
-                      << "," << tr.acousticness
-                      << "," << tr.instrumentalness
-                      << "," << tr.liveness
-                      << "," << tr.valence
-                      << "," << tr.tempo
-                      << "," << tr.time_signature
+                finT->seekg(vetT[i] * sizeof(tracks), finT->beg);
+                finT->read((char *)&tr[i], sizeof(tracks));
+                foutT << tr[i].id
+                      << "," << tr[i].name
+                      << "," << tr[i].popularity
+                      << "," << tr[i].duration_ms
+                      << "," << tr[i].explicit_
+                      << "," << tr[i].artists
+                      << "," << tr[i].id_artists
+                      << "," << tr[i].release_date
+                      << "," << tr[i].danceability
+                      << "," << tr[i].energy
+                      << "," << tr[i].key
+                      << "," << tr[i].loudness
+                      << "," << tr[i].mode
+                      << "," << tr[i].speechiness
+                      << "," << tr[i].acousticness
+                      << "," << tr[i].instrumentalness
+                      << "," << tr[i].liveness
+                      << "," << tr[i].valence
+                      << "," << tr[i].tempo
+                      << "," << tr[i].time_signature
                       << endl; // colocar os parametros a serem impressos
             }
             finT->seekg(0, finT->beg);
-            foutT.close();*/
+            foutT.close();
+            foutA.close();
         }
     }
 }

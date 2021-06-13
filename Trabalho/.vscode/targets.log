@@ -6,8 +6,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # PARTICULAR PURPOSE.
 
 # This program built for i386-pc-mingw32
+ 
 
-# Make data base, printed on Sun Jun 13 11:10:42 2021
+# Make data base, printed on Sun Jun 13 16:51:53 2021
 
 # Variables
 
@@ -30,11 +31,12 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # makefile
-CURDIR := c:/Users/deive/Desktop/funcao_teste
+CURDIR := c:/Users/deive/Desktop/precau�ao
 # default
 SHELL := sh.exe
 # environment
-WINDIR = C:\Windows
+WINDIR = C:\Wind 
+ows
 # environment
 VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupport":true}
 # environment
@@ -54,7 +56,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-1cf67f76-f95f-4f29-af41-83642cd8fbf5-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ef3c75a7-8248-4922-8101-bc8052a98a85-sock
 # environment
 VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -78,7 +80,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9464_LGPHALKUEJOFYKMD
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_1612_FUNRZLDKNLGCWBGM
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -98,7 +100,8 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProce
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
-COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+COMMONPROGRAMFILES = C:\Program File 
+s (x86)\Common Files
 # environment
 LOGONSERVER = \\LAPTOP-9OMP552O
 # environment
@@ -161,7 +164,8 @@ APPDATA = C:\Users\deive\AppData\Roaming
 TEMP = C:\Users\deive\AppData\Local\Temp
 # environment
 COMSPEC = C:\Windows\system32\cmd.exe
-# default
+# default 
+
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
@@ -186,7 +190,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 9464
+VSCODE_PID = 1612
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -201,26 +205,30 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # : could not be stat'd.
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
-# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1621020549): 155 files, no impossibilities.
-# . (key c:/Users/deive/Desktop/funcao_teste, mtime 1623555157): 20 files, no impossibilities.
+# C:\Windows\System32\Wbem (key C:/Windows/System 
+32/Wbem, mtime 1621020549): 155 files, no impossibilities.
+# . (key c:/Users/deive/Desktop/precau�ao, mtime 1623599920): 19 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1623502108): 4 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1622058532): 57 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
-# C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
+# C:\Program Files (x86)\Common Files\Oracle\Java 
+\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
 # C:\Windows (key C:/Windows, mtime 1623361144): 114 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/, mtime 1622472733): 18 files, no impossibilities.
 # C:\Users\deive\AppData\Local\GitHubDesktop\bin (key C:/Users/deive/AppData/Local/GitHubDesktop/bin, mtime 1612476182): 4 files, no impossibilities.
 # C:\Program Files\Java\jdk1.8.0_271\bin (key C:/Program Files/Java/jdk1.8.0_271/bin, mtime 1610457260): 54 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Microsoft\WindowsApps (key C:/Users/deive/AppData/Local/Microsoft/WindowsApps, mtime 1623204272): 12 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1622472783): 6 files, no impossibilities.
-# C:\Program Files (x86)\apache-maven-3.6.3\bin (key C:/Program Files (x86)/apache-maven-3.6.3/bin, mtime 1573140738): 8 files, no impossibilities.
+# C:\Program Files (x86)\apach 
+e-maven-3.6.3\bin (key C:/Program Files (x86)/apache-maven-3.6.3/bin, mtime 1573140738): 8 files, no impossibilities.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1608642917): 8 files, no impossibilities.
-# C:\Windows\system32 (key C:/Windows/system32, mtime 1623406646): 2834 files, no impossibilities.
+# C:\Windows\system32 (key C:/Windows/system32, mtime 1623604915): 2834 files, no impossibilities.
 # C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1611235165): 5 files, no impossibilities.
 
-# 3361 files, no impossibilities in 19 directories.
+# 3360 files, no impossibilities in 19 directories.
 
-# Implicit Rules
+# Impli 
+cit Rules
 
 # No implicit rules.
 
@@ -266,11 +274,12 @@ makefile:
 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
-# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4 
+makefile:2: *** missing separator (did you mean TAB instead of 8 spaces?).  Stop.
+ 
+096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jun 13 11:10:42 2021
+# Finished Make data base on Sun Jun 13 16:51:53 2021
 
- 
-makefile:2: *** missing separator (did you mean TAB instead of 8 spaces?).  Stop.
  
