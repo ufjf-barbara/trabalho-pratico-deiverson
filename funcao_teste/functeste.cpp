@@ -1,4 +1,3 @@
-#include <list>
 #include "Artists.h"
 #include "Tracks.h"
 #include "functeste.h"
@@ -8,6 +7,32 @@
 #include <stdlib.h>
 
 using namespace std;
+
+func_teste::func_teste()//construtor
+{
+    //fonte pra mecher com seekg e tellg
+    //https://www.cplusplus.com/reference/istream/istream/seekg/
+    ifstream //finT,
+        finA;
+    artists art;
+    tracks tr;
+    //finT.open("tracks.bin", ios::binary);
+    finA.open("artists.bin", ios::binary);
+    // finT.seekg(0, finT.end);
+    finA.seekg(0, finA.end);
+
+    //   int tamT = finT.tellg() / sizeof(tr);
+    int tamA = finA.tellg() / sizeof(art);
+    cout << finA.tellg() << "--" << sizeof(art) << "--" << tamA << endl;
+
+    //  finT.seekg(0, finT.beg);
+    finA.seekg(0, finA.beg);
+
+    // callTeste(tamT, tamA, &finT, &finA);
+    callTeste(tamA, &finA);
+    //  finT.close();
+    finA.close();
+}
 /*struct artist
 {
     string id;
@@ -15,8 +40,8 @@ using namespace std;
     string genres;
     string name;
     int popularity;
-};
-bool verifica_numero(int vet[], int n, int aux)
+};*/
+bool func_teste::verifica_numero(int vet[], int n, int aux)
 {
     for (int i = 0; i < n; i++)
         if (vet[i] == aux)
@@ -24,7 +49,7 @@ bool verifica_numero(int vet[], int n, int aux)
     return false;
 }
 
-void sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
+void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
 {
     srand(time(NULL));
 
@@ -34,15 +59,14 @@ void sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posi
         do
         {
             aux = rand() % qtddReg;
-        }
-        while (verifica_numero(vet, n, aux));
+        } while (verifica_numero(vet, n, aux));
 
         vet[i] = aux;
     }
 }
 
-//void func_teste(int tamT, int tamA, ifstream *finT, ifstream *finA)
-void func_teste(int tamA, ifstream *finA)
+//voidcallTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
+void func_teste::callTeste(int tamA, ifstream *finA)
 {
     int n = 0;
     artists art;
@@ -63,16 +87,16 @@ void func_teste(int tamA, ifstream *finA)
             // chamar funçao pra pegar 10 registros e imprimilos na tela
             //  int vetA[n], vetT[n];
             int vetA[n];
-            artist art[n];
+            artists art[n];
             sorteia_numero(vetA, n, tamA);
             // sorteia_numero(vetT, n, tamT);
 
             cout << "Registros Artists" << endl;
-            for (int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
                 //artist art;
-                finA->seekg(vetA[i] * sizeof(artist), finA->beg);
-                finA->read((char *)&art[i], sizeof(artist));
+                finA->seekg(vetA[i] * sizeof(artists), finA->beg);
+                finA->read((char *)&art[i], sizeof(artists));
                 cout << art[i].id
                      << "," << art[i].followers
                      << "," << art[i].genres
@@ -80,7 +104,6 @@ void func_teste(int tamA, ifstream *finA)
                      << "," << art[i].popularity
                      << endl;
                 //cout<< finA->tellg()<<endl;
-
             }
             //finA->seekg(0, finA->beg);
             /* cout << "Registros Tracks" << endl;
@@ -111,24 +134,24 @@ void func_teste(int tamA, ifstream *finA)
                      << endl; // colocar os parametros a serem impressos
             }
             finT->seekg(0, finT->beg);*/
-/* }
+        }
         else //n= 100 ----- chamar funçao pra pegar 100 registros e criar arquivo de texto
         {
             // int vetA[n], vetT[n];
             int vetA[n];
-            artist art[n];
+            artists art[n];
             sorteia_numero(vetA, n, tamA);
             //sorteia_numero(vetT, n, tamT);
             //  ofstream foutT, foutA;
-            ofstream  foutA;
+            ofstream foutA;
             //foutT.open("");
             foutA.open("print.txt");
             //Registros Artists
             for (int i = 0; i < n; i++)
             {
 
-                finA->seekg(vetA[i] * sizeof(artist), finA->beg);
-                finA->read((char *)&art[i], sizeof(artist));
+                finA->seekg(vetA[i] * sizeof(artists), finA->beg);
+                finA->read((char *)&art[i], sizeof(artists));
                 foutA << art[i].id
                       << "," << art[i].followers
                       << "," << art[i].genres
@@ -167,41 +190,6 @@ void func_teste(int tamA, ifstream *finA)
             }
             finT->seekg(0, finT->beg);
             foutT.close();*/
-/* }
+        }
     }
-}*/
-int main()
-{
-
-    Artists *arti = new Artists("artiststeste.txt");
-    arti->TransformaArtistBin();
-    func_teste* teste = new func_teste();
-
-    //  Tracks *tr = new Tracks("tracksteste.txt");
-    //  tr->TransformaTrackBin();
-
-    //fonte pra mecher com seekg e tellg
-    //https://www.cplusplus.com/reference/istream/istream/seekg/
-    /*  ifstream //finT,
-    finA;
-    artists art;
-    tracks tr;
-    //finT.open("tracks.bin", ios::binary);
-    finA.open("artists.bin", ios::binary);
-    // finT.seekg(0, finT.end);
-    finA.seekg(0, finA.end);
-
-    //   int tamT = finT.tellg() / sizeof(tr);
-    int tamA = finA.tellg() / sizeof(art);
-    cout <<finA.tellg()<< "--"<<sizeof(art)<<"--"<< tamA<<endl;
-
-
-    //  finT.seekg(0, finT.beg);
-    finA.seekg(0, finA.beg);
-
-    // func_teste(tamT, tamA, &finT, &finA);
-    func_teste(tamA, &finA);
-    //  finT.close();
-    finA.close();*/
-    return 0;
 }
