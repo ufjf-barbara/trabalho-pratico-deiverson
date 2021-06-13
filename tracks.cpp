@@ -33,133 +33,175 @@ void Tracks::leArquivo(string path)
 
     fstream arquivo;
     string linha;
-    arquivo.open("tracks.csv", ios::in);
+    arquivo.open(path,ios::in);
 
-    int cont = 0;
+    int cont=0;
     bool verifica;
-    if (arquivo.is_open())
+    if(arquivo.is_open())
     {
-        getline(arquivo, linha);
-        while (getline(arquivo, linha))
+        getline(arquivo,linha);
+        while(getline(arquivo,linha))
         {
-
-            for (int i = 0; i < linha.size(); i++)
+            for(int i=0; i<linha.size(); i++)
             {
-                if (linha[i] == '[')
+                if(linha[i]=='[')
                 {
-                    verifica = 1;
+                    verifica=1;
                 }
-                if (linha[i] == ']')
+                if(linha[i]==']')
                 {
-                    verifica = 0;
+                    verifica=0;
                 }
-                if (linha[i] == ',' && verifica == 0)
+                if(linha[i]==',' && verifica==0)
                 {
                     cont++;
                     i++;
                 }
-                if (cont == 0)
+                if(cont==0)
                 {
-                    tr.id += linha[i];
+                    tr.id+=linha[i];
                 }
-                if (cont == 1)
+                if(cont==1)
                 {
-                    tr.name += linha[i];
+                    tr.name+=linha[i];
                 }
-                if (cont == 2)
+                if(cont==2)
                 {
 
-                    tr.popularity += linha[i];
+                    tr.popularity+=linha[i];
                 }
-                if (cont == 3)
+                if(cont==3)
                 {
 
-                    tr.duration_ms += linha[i];
+                    tr.duration_ms+=linha[i];
                 }
-                if (cont == 4)
+                if(cont==4)
                 {
-                    tr.explicit_ += linha[i];
+                    tr. explicit_+=linha[i];
+
+
                 }
-                if (cont == 5)
+                if(cont==5)
                 {
-                    tr.artists += linha[i];
+                    tr.artists+=linha[i];
+
                 }
-                if (cont == 6)
+                if(cont==6)
                 {
-                    tr.id_artists += linha[i];
+                    tr.id_artists+=linha[i];
+
                 }
-                if (cont == 7)
+                if(cont==7)
                 {
-                    tr.release_date += linha[i];
+                    tr.release_date+=linha[i];
+
                 }
-                if (cont == 8)
+                if(cont==8)
                 {
-                    tr.danceability += linha[i];
+                    tr.danceability+=linha[i];
+
+
                 }
-                if (cont == 9)
+                if(cont==9)
                 {
-                    tr.energy += linha[i];
+                    tr.energy+=linha[i];
+
                 }
-                if (cont == 10)
+                if(cont==10)
                 {
-                    tr.key += linha[i];
+                    tr.key+=linha[i];
+
                 }
-                if (cont == 11)
+                if(cont==11)
                 {
-                    tr.loudness += linha[i];
+                    tr.loudness+=linha[i];
+
+
                 }
-                if (cont == 12)
+                if(cont==12)
                 {
-                    tr.mode += linha[i];
+                    tr.mode+=linha[i];
+
+
                 }
-                if (cont == 13)
+                if(cont==13)
                 {
-                    tr.speechiness += linha[i];
+                    tr.speechiness+=linha[i];
+
+
                 }
-                if (cont == 14)
+                if(cont==14)
                 {
 
-                    tr.acousticness += linha[i];
+                    tr.acousticness+=linha[i];
+
                 }
-                if (cont == 15)
+                if(cont==15)
                 {
-                    tr.instrumentalness += linha[i];
+                    tr.instrumentalness+=linha[i];
+
+
                 }
-                if (cont == 16)
+                if(cont==16)
                 {
-                    tr.liveness += linha[i];
+                    tr.liveness+=linha[i];
+
+
                 }
-                if (cont == 17)
+                if(cont==17)
                 {
-                    tr.valence += linha[i];
+                    tr.valence+=linha[i];
+
+
                 }
-                if (cont == 18)
+                if(cont==18)
                 {
-                    tr.tempo += linha[i];
+                    tr.tempo+=linha[i];
+
                 }
-                if (cont == 19)
+                if(cont==19)
                 {
-                    tr.time_signature += linha[i];
+                    tr.time_signature+=linha[i];
+
                 }
 
-                /*if (cont == 20)
-                {
-                    tr.speechiness += linha[i];
-                }*/
+
             }
-            cont = 0;
-            cout << tr.id << "---" << tr.name << "---" << tr.popularity << "---" << tr.duration_ms << "---" << tr.explicit << "---" << tr.artists << "---" << tr.id_artists << "---" << tr.release_date << "---" << tr.danceability << "---" << tr.energy << "---" << tr.key << "---" << tr.loudness << "---" << tr.mode << "---" << tr.speechiness << "---" << tr.acousticness << "---" << tr.instrumentalness
+            cont=0;
+            cout << tr.id << "---" << tr.name << "---" << tr.popularity << "---" << tr.duration_ms << "---" << tr.explicit_ << "---" << tr.artists << "---" << tr.id_artists << "---" << tr.release_date << "---" << tr.danceability << "---" << tr.energy << "---" << tr.key << "---" << tr.loudness << "---" << tr.mode << "---" << tr.speechiness << "---" << tr.acousticness << "---" << tr.instrumentalness
                  << "---" << tr.liveness << "---" << tr.valence << "---" << tr.tempo << "---" << tr.time_signature << endl;
 
             lista.push_back(tr);
-            tr = {NULL};
+
+            tr.id="";
+            tr.name="";
+            tr.popularity=NULL;
+            tr.duration_ms=NULL;
+            tr.explicit_=NULL;
+            tr.artists="";
+            tr.id_artists="";
+            tr.release_date="";
+            tr.danceability=NULL;
+            tr.energy=NULL;
+            tr.key=NULL;
+            tr.loudness=NULL;
+            tr.mode=NULL;
+            tr.speechiness=NULL;
+            tr.acousticness=NULL;
+            tr.instrumentalness=NULL;
+            tr.liveness=NULL;
+            tr.valence=NULL;
+            tr.tempo=NULL;
+            tr.time_signature=NULL;
+
         }
         arquivo.close();
     }
     else
     {
-        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)" << endl;
+        cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)"<<endl;
     }
+
 }
 
 void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.csv em binário

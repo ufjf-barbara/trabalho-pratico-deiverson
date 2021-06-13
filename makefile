@@ -1,6 +1,6 @@
   executa: main.exe
            main.exe
   main.exe: main.cpp
-           main.cpp artists.
+           artists.cpp Artists.h tracks.cpp Tracks.h
 limpa:
      Del main.exe main.o		   		   
