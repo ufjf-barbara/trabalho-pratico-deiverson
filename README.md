@@ -26,3 +26,9 @@ Trabalho da disciplina de Estruturas de dados 2 turma E  professora BARBARA DE M
 g++ main.cpp artists.cpp tracks.cpp functeste.cpp
 
 ## Como rodar
+run: main.exe
+	main.exe
+  main.exe: main.cpp
+	g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
+limpa:
+	Del main.exe main.o	
