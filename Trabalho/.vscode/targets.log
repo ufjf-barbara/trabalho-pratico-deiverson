@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Sun Jun 13 21:06:33 2021
+# Make data base, printed on Sun Jun 13 22:22:55 2021
 
 # Variables
 
@@ -33,8 +33,7 @@ HOMEDRIVE = C:
 # makefile
 CURDIR := c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/Trabalho
 # default
-SHELL := sh 
-.exe
+SHELL := sh.exe
 # environment
 WINDIR = C:\Windows
 # environment
@@ -56,9 +55,9 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-1b72ffd9-f207-451b-ae47-947c3153a08a-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-513612cd-6cf2-43d1-96fe-a13d2819e921-sock
 # environment
-VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
+VSCODE_CWD = C:\Users\deive\Documents\GitHub\trabalho-pratico-deiverson\Trabalho
 # environment
 PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\MinGW\bin;
 # environment
@@ -80,7 +79,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_18532_PMCMIDCYOXLIXEYJ
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_7384_MIZHUGPRJZXCABGT
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -100,7 +99,6 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProce
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
- 
 COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
 # environment
 LOGONSERVER = \\LAPTOP-9OMP552O
@@ -163,8 +161,7 @@ APPDATA = C:\Users\deive\AppData\Roaming
 # environment
 TEMP = C:\Users\deive\AppData\Local\Temp
 # environment
-COMSPEC = C 
-:\Windows\system32\cmd.exe
+COMSPEC = C:\Windows\system32\cmd.exe
 # default
 MAKEFILES := 
 # automatic
@@ -190,7 +187,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 18532
+VSCODE_PID = 7384
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -205,27 +202,25 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # : could not be stat'd.
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
-# C:\Windows 
-\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1621020549): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/Trabalho, mtime 1623629165): 16 files, no impossibilities.
+#  
+C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1621020549): 155 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/Trabalho, mtime 1623633598): 17 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1623502108): 4 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1622058532): 57 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
 # C:\Windows (key C:/Windows, mtime 1623361144): 114 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/, mtime 1622472733): 18 files, no impossibilities.
-# C:\Users\deive\AppData\Local\GitHubDesktop\bin (key C:/Users/deive/App 
-Data/Local/GitHubDesktop/bin, mtime 1612476182): 4 files, no impossibilities.
+# C:\Users\deive\AppData\Local\GitHubDesktop\bin (key C:/Users/deive/AppData/Local/GitHubDesktop/bin, mtime 1612476182): 4 files, no impossibilities.
 # C:\Program Files\Java\jdk1.8.0_271\bin (key C:/Program Files/Java/jdk1.8.0_271/bin, mtime 1610457260): 54 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Microsoft\WindowsApps (key C:/Users/deive/AppData/Local/Microsoft/WindowsApps, mtime 1623204272): 12 files, no impossibilities.
-# C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/Scripts/, mtime  
-1622472783): 6 files, no impossibilities.
+# C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1622472783): 6 files, no impossibilities.
 # C:\Program Files (x86)\apache-maven-3.6.3\bin (key C:/Program Files (x86)/apache-maven-3.6.3/bin, mtime 1573140738): 8 files, no impossibilities.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1608642917): 8 files, no impossibilities.
 # C:\Windows\system32 (key C:/Windows/system32, mtime 1623604915): 2834 files, no impossibilities.
 # C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1611235165): 5 files, no impossibilities.
 
-# 3357 files, no impossibilities in 19 directories.
+# 3358 files, no impossibilities in 19 directories.
 
 # Implicit Rules
 
@@ -249,10 +244,7 @@ all:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
-#  File ha 
-makefile:2: *** missing separator (did you mean TAB instead of 8 spaces?).  Stop.
- 
-s not been updated.
+#  File has not been updated.
 
 # Not a target:
 makefile:
@@ -275,10 +267,13 @@ makefile:
 # No general (`VPATH' variable) search path.
 
 # # of strings in strcache: 1
-# # of strcache buffers: 1
+# # of str 
+makefile:2: *** missing separator (did you mean TAB instead of 8 spaces?).  Stop.
+ 
+cache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jun 13 21:06:33 2021
+# Finished Make data base on Sun Jun 13 22:22:55 2021
 
  
