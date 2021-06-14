@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Tracks.h"
 #include <list>
+#include <sstream>
 
 using namespace std;
 
@@ -35,6 +36,23 @@ void Tracks::leArquivo(string path)
     string linha;
     arquivo.open(path,ios::in);
 
+    string auxPopularity;
+    string auxDuration_ms;
+    string auxexplicit_;
+    string auxdanceability;
+    string auxenergy;
+    string auxkey;
+    string auxloudness;
+    string auxmode;
+    string auxspeechiness;
+    string auxacousticness;
+    string auxinstrumentalness;
+    string  auxliveness;
+    string  auxvalence;
+    string auxtempo;
+    string auxtime_signature;
+
+
     int cont=0;
     bool verifica;
     if(arquivo.is_open())
@@ -67,22 +85,23 @@ void Tracks::leArquivo(string path)
                 }
                 if(cont==2)
                 {
-
-                    tr.popularity+=linha[i];
+                    auxPopularity+=linha[i];
+                    istringstream(auxPopularity)>>tr.popularity;
                 }
                 if(cont==3)
                 {
-
-                    tr.duration_ms+=linha[i];
+                    auxDuration_ms+=linha[i];
+                    istringstream(auxDuration_ms)>>tr.duration_ms;
                 }
                 if(cont==4)
                 {
-                    tr. explicit_+=linha[i];
-
+                    auxexplicit_+=linha[i];
+                    istringstream(auxexplicit_)>>tr. explicit_;
 
                 }
                 if(cont==5)
                 {
+
                     tr.artists+=linha[i];
 
                 }
@@ -98,70 +117,80 @@ void Tracks::leArquivo(string path)
                 }
                 if(cont==8)
                 {
-                    tr.danceability+=linha[i];
-
+                    auxdanceability+=linha[i];
+                    istringstream(auxdanceability)>>tr.danceability;
 
                 }
                 if(cont==9)
                 {
-                    tr.energy+=linha[i];
+                    auxenergy+=linha[i];
+                    istringstream(auxenergy)>>tr.energy;
 
                 }
                 if(cont==10)
                 {
-                    tr.key+=linha[i];
+                    auxkey+=linha[i];
+                    istringstream(auxkey)>>tr.key;
 
                 }
                 if(cont==11)
                 {
-                    tr.loudness+=linha[i];
+                    auxloudness+=linha[i];
+                    istringstream(auxloudness)>>tr.loudness;
 
 
                 }
                 if(cont==12)
                 {
-                    tr.mode+=linha[i];
+                    auxmode+=linha[i];
+                    istringstream(auxmode)>>tr.mode;
 
 
                 }
                 if(cont==13)
                 {
-                    tr.speechiness+=linha[i];
+                    auxspeechiness+=linha[i];
+                    istringstream(auxspeechiness)>>tr.speechiness;
 
 
                 }
                 if(cont==14)
                 {
-
-                    tr.acousticness+=linha[i];
+                    auxacousticness+=linha[i];
+                    istringstream(auxacousticness)>>tr.acousticness;
 
                 }
                 if(cont==15)
                 {
-                    tr.instrumentalness+=linha[i];
+                    auxinstrumentalness+=linha[i];
+                    istringstream(auxinstrumentalness)>>tr.instrumentalness;
 
 
                 }
                 if(cont==16)
                 {
-                    tr.liveness+=linha[i];
+                    auxliveness+=linha[i];
+                    istringstream(auxliveness)>>tr.liveness;
 
 
                 }
                 if(cont==17)
                 {
-                    tr.valence+=linha[i];
+                    auxvalence+=linha[i];
+                    istringstream(auxvalence)>>tr.valence;
 
 
                 }
                 if(cont==18)
                 {
-                    tr.tempo+=linha[i];
+                    auxtempo+=linha[i];
+                    istringstream(auxtempo)>>tr.tempo;
 
                 }
                 if(cont==19)
                 {
-                    tr.time_signature+=linha[i];
+                    auxtime_signature+=linha[i];
+                    istringstream(auxtime_signature)>>tr.time_signature;
 
                 }
 
@@ -193,6 +222,24 @@ void Tracks::leArquivo(string path)
             tr.valence=NULL;
             tr.tempo=NULL;
             tr.time_signature=NULL;
+            //zerando variaveis auxiliares
+
+            auxPopularity="";
+            auxDuration_ms="";
+            auxexplicit_="";
+            auxdanceability="";
+            auxenergy="";
+            auxkey="";
+            auxloudness="";
+            auxmode="";
+            auxspeechiness="";
+            auxacousticness="";
+            auxinstrumentalness="";
+            auxliveness="";
+            auxvalence="";
+            auxtempo="";
+            auxtime_signature="";
+
 
         }
         arquivo.close();
