@@ -8,7 +8,7 @@
 
 using namespace std;
 
-func_teste::func_teste(string path) //construtor
+void func_teste::func_test(string path) //construtor
 {
     ifstream finT, finA;
     artists art;
@@ -72,7 +72,6 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
         if (!(n == 10 || n == 100))
         {
-            system("cls");
             cout << "Resposta invalida" << endl;
         }
         else if (n == 10) // chamar funçao pra pegar 10 registros e imprimilos na tela

@@ -17,8 +17,8 @@ int main(int argc, char **argv)
 
     ifstream artbin, trbin;
 
-    artbin.open("../arquivo/artists.bin", ios::in|ios::binary);
-    trbin.open("../arquivo/tracks.bin", ios::in|ios::binary);
+    artbin.open("../arquivo/artists.bin", ios::in | ios::binary);
+    trbin.open("../arquivo/tracks.bin", ios::in | ios::binary);
 
     if (!artbin.is_open() && !trbin.is_open())
 
@@ -38,12 +38,11 @@ int main(int argc, char **argv)
 
         // tr->TransformaTrackBin(); //colocar o endereço certo e criar string path como atributo pra classe
     }
-  
 
     artbin.close();
     trbin.close();
 
-    func_teste *teste = new func_teste(path);
+    func_teste::func_test(path);
 
     return 0;
 }
