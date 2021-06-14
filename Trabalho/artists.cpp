@@ -8,8 +8,7 @@ using namespace std;
 
 Artists::Artists(string path)
 {
-
-    leArquivo(path+"/artiststeste.txt");
+    leArquivo(path);
 }
 
 Artists::~Artists()
@@ -105,7 +104,7 @@ void Artists::leArquivo(string path)
 void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo artists.csv em bin�rio
 {
     ofstream arquivoArtistBin;
-    arquivoArtistBin.open("../arquivo/artists.bin", ios::binary);
+    arquivoArtistBin.open("artists.bin", ios::binary);
     if (arquivoArtistBin.is_open())
     {
         for (artists art : lista)
