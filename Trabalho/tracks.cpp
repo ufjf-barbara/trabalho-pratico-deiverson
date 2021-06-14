@@ -9,7 +9,7 @@ Tracks ::Tracks(string path)
 {
 
     cout << "Criando objeto tracks" << endl;
-    leArquivo(path);
+    leArquivo(path+"/tracksteste.txt");
 }
 
 Tracks::~Tracks()
@@ -207,7 +207,7 @@ void Tracks::leArquivo(string path)
 void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.csv em binário
 {
     ofstream arquivoTrackBin;
-    arquivoTrackBin.open("tracks.bin", ios::binary);
+    arquivoTrackBin.open("../arquivo/tracks.bin", ios::binary);
 
     if (arquivoTrackBin.is_open())
     {
