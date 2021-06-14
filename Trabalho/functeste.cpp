@@ -10,11 +10,14 @@ using namespace std;
 
 func_teste::func_teste(string path) //construtor
 {
+
     ifstream finT, finA;
     artists art;
     tracks tr;
-    finT.open(path + "/tracks.bin", ios::binary);
-    finA.open(path + "/artists.bin", ios::binary);
+
+    finT.open("../arquivo/tracks.bin", ios::binary);
+    finA.open("../arquivo/artists.bin", ios::binary);
+
     finT.seekg(0, finT.end);
     finA.seekg(0, finA.end);
 
@@ -23,10 +26,11 @@ func_teste::func_teste(string path) //construtor
 
     finT.seekg(0, finT.beg);
     finA.seekg(0, finA.beg);
+
     if (finT.is_open() && finA.is_open())
         callTeste(tamT, tamA, &finT, &finA);
     else
-        cout << "Um dos arquivos nao pode ser aberto" << endl;
+        cout << "arquivos nao abriram" << endl;
 
     finA.close();
     finT.close();
@@ -64,7 +68,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
     //tracks tr;
     while (!(n == 10 || n == 100)) // loop para chamar o teste adequadamente;
     {
-        cout << "Quantos registros deseja obter aleatoriamente, 10 ou 100?" << endl;
+        cout << "----------------Quantos registros deseja obter aleatoriamente, 10 ou 100?----------------" << endl;
         cin >> n;
         cin.ignore();
 
@@ -85,14 +89,18 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             cout << "Registros Artists" << endl;
             for (int i = 0; i < n; i++)
             {
+
                 finA->seekg(vetA[i] * sizeof(artists), finA->beg);
+                
                 finA->read((char *)&art[i], sizeof(artists));
+                
                 cout << art[i].id
                      << "," << art[i].followers
                      << "," << art[i].genres
                      << "," << art[i].name
                      << "," << art[i].popularity
                      << endl;
+                    
             }
             finA->seekg(0, finA->beg);
             cout << "Registros Tracks" << endl;
@@ -100,6 +108,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             {
                 finT->seekg(vetT[i] * sizeof(tracks), finT->beg);
                 finT->read((char *)&tr[i], sizeof(tracks));
+                
                 cout << tr[i].id
                      << "," << tr[i].name
                      << "," << tr[i].popularity
@@ -136,8 +145,8 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
             ofstream foutT, foutA;
 
-            foutT.open("printTRACK.txt");
-            foutA.open("printARTISTS.txt");
+            foutT.open("../arquivo/printTRACK.txt");
+            foutA.open("../arquivo/printARTISTS.txt");
             //Registros Artists
             for (int i = 0; i < n; i++)
             {

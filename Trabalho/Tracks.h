@@ -43,6 +43,7 @@ private:
 public:
 
     Tracks(string path);
+    Tracks();
     ~Tracks();
 
     list<tracks> getList();

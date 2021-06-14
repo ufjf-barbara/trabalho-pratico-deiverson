@@ -27,6 +27,7 @@ private:
 public:
 
     Artists(string path);
+    Artists();
 
     ~Artists();
 

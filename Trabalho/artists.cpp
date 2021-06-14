@@ -10,9 +10,11 @@ using namespace std;
 Artists::Artists(string path)
 {
 
-    leArquivo(path+"/artiststeste.txt");
+    leArquivo(path + "./artiststeste.txt");
 }
+Artists::Artists(){
 
+}
 Artists::~Artists()
 {
     cout << "deletando leitura do arquivo Artists" << endl;
@@ -35,85 +37,79 @@ void Artists::leArquivo(string path)
     arquivo.open(path, ios::in);
 
     artists art;
-    string auxFollowers="";
-    string auxPopularity="";
+    string auxFollowers = "";
+    string auxPopularity = "";
 
-    int cont=0;
+    int cont = 0;
     bool verifica;
-    if(arquivo.is_open())
+    if (arquivo.is_open())
     {
-        getline(arquivo,linha);
-        while(getline(arquivo,linha))
+        getline(arquivo, linha);
+        while (getline(arquivo, linha))
         {
 
-            for(int i=0; i<linha.size(); i++)
+            for (int i = 0; i < linha.size(); i++)
             {
-                if(linha[i]=='[')
+                if (linha[i] == '[')
                 {
-                    verifica=1;
+                    verifica = 1;
                 }
-                if(linha[i]==']')
+                if (linha[i] == ']')
                 {
-                    verifica=0;
+                    verifica = 0;
                 }
-                if(linha[i]==',' && verifica==0)
+                if (linha[i] == ',' && verifica == 0)
                 {
                     cont++;
                     i++;
                 }
-                if(cont==0)
+                if (cont == 0)
                 {
-                    art.id+=linha[i];
-
+                    art.id += linha[i];
                 }
-                if( cont==1)
+                if (cont == 1)
                 {
-                    auxFollowers+=linha[i];
-                    istringstream(auxFollowers)>>art.followers;
-
-
-
+                    auxFollowers += linha[i];
+                    istringstream(auxFollowers) >> art.followers;
                 }
-                if(cont==2)
+                if (cont == 2)
                 {
-                    art.genres+=linha[i];
-
+                    art.genres += linha[i];
                 }
-                if(cont==3)
+                if (cont == 3)
                 {
-                    art.name+=linha[i];
-
+                    art.name += linha[i];
                 }
-                if(cont==4)
+                if (cont == 4)
                 {
-                    auxPopularity+=linha[i];
-                    istringstream(auxPopularity)>>art.popularity;
+                    auxPopularity += linha[i];
+                    istringstream(auxPopularity) >> art.popularity;
                 }
             }
 
-            cont=0;
+            cont = 0;
             lista.push_back(art);
-            cout<<art.id<<" ---";
-            cout<<art.followers<<"---";
-            cout<<art.genres<<"---";
-            cout<<art.name<<"--- ";
-            cout<<art.popularity<<endl;
-            art.id="";
-            art.followers=NULL;
-            art.genres="";
-            art.name="";
-            art.popularity=NULL;
-            auxFollowers="";
-            auxPopularity="";
+            /*    cout << art.id << " ---";
+            cout << art.followers << "---";
+            cout << art.genres << "---";
+            cout << art.name << "--- ";
+            cout << art.popularity << endl; */
+            art.id = "";
+            art.followers = 0;
+            art.genres = "";
+            art.name = "";
+            art.popularity = 0;
+            auxFollowers = "";
+            auxPopularity = "";
         }
 
-
         arquivo.close();
+        TransformaArtistBin();
     }
 
     else
     {
-        cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)"<<endl;
+        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)" << endl;
     }
 }
 

@@ -11,9 +11,11 @@ Tracks ::Tracks(string path)
 {
 
     cout << "Criando objeto tracks" << endl;
-    leArquivo(path+"/tracksteste.txt");
+    leArquivo(path+"./tracksteste.txt");
 }
-
+Tracks ::Tracks(){
+    
+}
 Tracks::~Tracks()
 {
     cout << "deletando objeto tracks " << endl;
@@ -198,31 +200,31 @@ void Tracks::leArquivo(string path)
 
             }
             cont=0;
-            cout << tr.id << "---" << tr.name << "---" << tr.popularity << "---" << tr.duration_ms << "---" << tr.explicit_ << "---" << tr.artists << "---" << tr.id_artists << "---" << tr.release_date << "---" << tr.danceability << "---" << tr.energy << "---" << tr.key << "---" << tr.loudness << "---" << tr.mode << "---" << tr.speechiness << "---" << tr.acousticness << "---" << tr.instrumentalness
-                 << "---" << tr.liveness << "---" << tr.valence << "---" << tr.tempo << "---" << tr.time_signature << endl;
+           // cout << tr.id << "---" << tr.name << "---" << tr.popularity << "---" << tr.duration_ms << "---" << tr.explicit_ << "---" << tr.artists << "---" << tr.id_artists << "---" << tr.release_date << "---" << tr.danceability << "---" << tr.energy << "---" << tr.key << "---" << tr.loudness << "---" << tr.mode << "---" << tr.speechiness << "---" << tr.acousticness << "---" << tr.instrumentalness
+               //  << "---" << tr.liveness << "---" << tr.valence << "---" << tr.tempo << "---" << tr.time_signature << endl;
 
             lista.push_back(tr);
 
             tr.id="";
             tr.name="";
-            tr.popularity=NULL;
-            tr.duration_ms=NULL;
-            tr.explicit_=NULL;
+            tr.popularity=0;
+            tr.duration_ms=0;
+            tr.explicit_=0;
             tr.artists="";
             tr.id_artists="";
             tr.release_date="";
-            tr.danceability=NULL;
-            tr.energy=NULL;
-            tr.key=NULL;
-            tr.loudness=NULL;
-            tr.mode=NULL;
-            tr.speechiness=NULL;
-            tr.acousticness=NULL;
-            tr.instrumentalness=NULL;
-            tr.liveness=NULL;
-            tr.valence=NULL;
-            tr.tempo=NULL;
-            tr.time_signature=NULL;
+            tr.danceability=0;
+            tr.energy=0;
+            tr.key=0;
+            tr.loudness=0;
+            tr.mode=0;
+            tr.speechiness=0;
+            tr.acousticness=0;
+            tr.instrumentalness=0;
+            tr.liveness=0;
+            tr.valence=0;
+            tr.tempo=0;
+            tr.time_signature=0;
             //zerando variaveis auxiliares
 
             auxPopularity="";
@@ -244,10 +246,11 @@ void Tracks::leArquivo(string path)
 
         }
         arquivo.close();
+        TransformaTrackBin();
     }
     else
     {
-        cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)"<<endl;
+        cout<<"Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)tracks"<<endl;
     }
 
 }
