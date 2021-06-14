@@ -263,7 +263,7 @@ void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.
     {
         for (tracks tr : lista)
         {
-            arquivoTrackBin.write((char *)&tr, sizeof(tr));
+            arquivoTrackBin.write((char *)&tr, sizeof(tracks));
         }
     }
     else

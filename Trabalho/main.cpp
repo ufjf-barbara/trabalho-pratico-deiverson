@@ -1,4 +1,3 @@
-#include <list>
 #include "Artists.h"
 #include "Tracks.h"
 #include "functeste.h"
@@ -20,7 +19,7 @@ int main(int argc, char **argv)
     artbin.open("../arquivo/artists.bin", ios::in);
     trbin.open("../arquivo/tracks.bin", ios::in);
 
-    if (!(artbin.is_open() && trbin.is_open()))
+    if (!artbin && !trbin)
 
     {
         artbin.close();
@@ -40,6 +39,9 @@ int main(int argc, char **argv)
     }
     Artists *ar = new Artists();
     Tracks *tra = new Tracks();
+    
+    artbin.close();
+    trbin.close();
 
     func_teste *teste = new func_teste(path);
 

@@ -15,8 +15,8 @@ func_teste::func_teste(string path) //construtor
     artists art;
     tracks tr;
 
-    finT.open("../arquivo/tracks.bin", ios::binary);
-    finA.open("../arquivo/artists.bin", ios::binary);
+    finT.open("../arquivo/tracks.bin", ios::in);
+    finA.open("../arquivo/artists.bin", ios::in);
 
     finT.seekg(0, finT.end);
     finA.seekg(0, finA.end);
@@ -27,7 +27,7 @@ func_teste::func_teste(string path) //construtor
     finT.seekg(0, finT.beg);
     finA.seekg(0, finA.beg);
 
-    if (finT.is_open() && finA.is_open())
+    if (finT && finA)
         callTeste(tamT, tamA, &finT, &finA);
     else
         cout << "arquivos nao abriram" << endl;
@@ -53,7 +53,7 @@ void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para so
     {
         do
         {
-            aux = rand() % qtddReg;
+            aux = rand() % qtddReg+1;
         } while (verifica_numero(vet, n, aux));
 
         vet[i] = aux;
@@ -64,8 +64,6 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
 {
     int n = 0;
-    artists art;
-    //tracks tr;
     while (!(n == 10 || n == 100)) // loop para chamar o teste adequadamente;
     {
         cout << "----------------Quantos registros deseja obter aleatoriamente, 10 ou 100?----------------" << endl;
@@ -91,16 +89,15 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             {
 
                 finA->seekg(vetA[i] * sizeof(artists), finA->beg);
-                
+
                 finA->read((char *)&art[i], sizeof(artists));
-                
+                cout << "uai";
                 cout << art[i].id
                      << "," << art[i].followers
                      << "," << art[i].genres
                      << "," << art[i].name
                      << "," << art[i].popularity
                      << endl;
-                    
             }
             finA->seekg(0, finA->beg);
             cout << "Registros Tracks" << endl;
@@ -108,7 +105,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             {
                 finT->seekg(vetT[i] * sizeof(tracks), finT->beg);
                 finT->read((char *)&tr[i], sizeof(tracks));
-                
+
                 cout << tr[i].id
                      << "," << tr[i].name
                      << "," << tr[i].popularity
