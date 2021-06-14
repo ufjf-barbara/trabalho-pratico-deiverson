@@ -11,15 +11,16 @@ using namespace std;
 int main(int argc, char **argv)
 {
     //colocar verificaçao pra caso os arquivos bin ja existam!!!!11
+    srand(time(NULL));
 
     string path = argv[1];
 
     ifstream artbin, trbin;
 
-    artbin.open("../arquivo/artists.bin", ios::in);
-    trbin.open("../arquivo/tracks.bin", ios::in);
+    artbin.open("../arquivo/artists.bin", ios::in|ios::binary);
+    trbin.open("../arquivo/tracks.bin", ios::in|ios::binary);
 
-    if (!artbin && !trbin)
+    if (!artbin.is_open() && !trbin.is_open())
 
     {
         artbin.close();
@@ -37,9 +38,8 @@ int main(int argc, char **argv)
 
         // tr->TransformaTrackBin(); //colocar o endereço certo e criar string path como atributo pra classe
     }
-    Artists *ar = new Artists();
-    Tracks *tra = new Tracks();
-    
+  
+
     artbin.close();
     trbin.close();
 

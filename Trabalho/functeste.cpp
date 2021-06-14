@@ -10,7 +10,6 @@ using namespace std;
 
 func_teste::func_teste(string path) //construtor
 {
-
     ifstream finT, finA;
     artists art;
     tracks tr;
@@ -21,13 +20,13 @@ func_teste::func_teste(string path) //construtor
     finT.seekg(0, finT.end);
     finA.seekg(0, finA.end);
 
-    int tamT = finT.tellg() / sizeof(tr);
-    int tamA = finA.tellg() / sizeof(art);
+    int tamT = finT.tellg() / sizeof(tracks);
+    int tamA = finA.tellg() / sizeof(artists);
 
     finT.seekg(0, finT.beg);
     finA.seekg(0, finA.beg);
 
-    if (finT && finA)
+    if (finT.is_open() && finA.is_open())
         callTeste(tamT, tamA, &finT, &finA);
     else
         cout << "arquivos nao abriram" << endl;
@@ -46,17 +45,18 @@ bool func_teste::verifica_numero(int vet[], int n, int aux)
 
 void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
 {
-    srand(time(NULL));
-
+    
+    cout << "------------------\n"<<qtddReg << "\n";
     int aux;
     for (int i = 0; i < n; i++)
     {
         do
         {
-            aux = rand() % qtddReg+1;
+            aux = rand() % qtddReg + 1;
         } while (verifica_numero(vet, n, aux));
 
         vet[i] = aux;
+        cout <<aux<<endl;
     }
 }
 
@@ -81,6 +81,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             int vetA[n], vetT[n];
             artists art[n];
             tracks tr[n];
+            artists test;
             sorteia_numero(vetA, n, tamA);
             sorteia_numero(vetT, n, tamT);
 
@@ -90,8 +91,9 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
                 finA->seekg(vetA[i] * sizeof(artists), finA->beg);
 
-                finA->read((char *)&art[i], sizeof(artists));
+                finA->read((char *)&test, sizeof(artists));
                 cout << "uai";
+                art[i]=test;
                 cout << art[i].id
                      << "," << art[i].followers
                      << "," << art[i].genres

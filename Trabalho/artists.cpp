@@ -4,6 +4,11 @@
 #include "Artists.h"
 #include <list>
 #include <sstream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
 
 using namespace std;
 
@@ -12,8 +17,8 @@ Artists::Artists(string path)
 
     leArquivo(path + "./artiststeste.txt");
 }
-Artists::Artists(){
-
+Artists::Artists()
+{
 }
 Artists::~Artists()
 {
@@ -71,6 +76,8 @@ void Artists::leArquivo(string path)
                 {
                     auxFollowers += linha[i];
                     istringstream(auxFollowers) >> art.followers;
+                    //art.followers=atof(auxFollowers.c_str());
+                    //atof()
                 }
                 if (cont == 2)
                 {
@@ -116,6 +123,10 @@ void Artists::leArquivo(string path)
 void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo artists.csv em bin�rio
 {
     ofstream arquivoArtistBin;
+    string aux;
+    char c[50];
+    aux = "asdfghjklkjhgfdxcvbnmjhgfcvbnjh";
+    strcpy(c, aux.c_str());
     arquivoArtistBin.open("../arquivo/artists.bin", ios::binary);
     if (arquivoArtistBin.is_open())
     {

@@ -1,6 +1,6 @@
-  executa: main.exe
-           main.exe
+  run: main.exe
+	main.exe
   main.exe: main.cpp
-           main.cpp artists.
+	g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
 limpa:
-     Del main.exe main.o		   		   
+	Del main.exe main.o		   		   
