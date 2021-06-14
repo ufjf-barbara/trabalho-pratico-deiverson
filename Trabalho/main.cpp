@@ -9,15 +9,17 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char **argv)
 {
+//colocar verificaçao pra caso os arquivos bin ja existam!!!!11
+    string path = argv[1];
+    cout << "\n\n\n\n\n\n\n"<< path <<"\n\n\n\n\n\n\n";
+    Artists *arti = new Artists(path);
+    arti->TransformaArtistBin();//colocar o endereço certo e criar string path como atributo pra classe
 
-    Artists *arti = new Artists("artiststeste.txt");
-    arti->TransformaArtistBin();
-
-    Tracks *tr = new Tracks("tracksteste.txt");
-    tr->TransformaTrackBin();
-    func_teste *teste = new func_teste();
+    Tracks *tr = new Tracks(path);
+    tr->TransformaTrackBin();//colocar o endereço certo e criar string path como atributo pra classe
+    func_teste *teste = new func_teste(path); 
 
     return 0;
 }

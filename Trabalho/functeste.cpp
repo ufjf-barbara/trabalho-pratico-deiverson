@@ -8,38 +8,30 @@
 
 using namespace std;
 
-func_teste::func_teste() //construtor
+func_teste::func_teste(string path) //construtor
 {
-    //fonte pra mecher com seekg e tellg
-    //https://www.cplusplus.com/reference/istream/istream/seekg/
     ifstream finT, finA;
     artists art;
     tracks tr;
-    finT.open("tracks.bin", ios::binary);
-    finA.open("artists.bin", ios::binary);
+    finT.open(path + "/tracks.bin", ios::binary);
+    finA.open(path + "/artists.bin", ios::binary);
     finT.seekg(0, finT.end);
     finA.seekg(0, finA.end);
 
     int tamT = finT.tellg() / sizeof(tr);
     int tamA = finA.tellg() / sizeof(art);
-    //cout << finA.tellg() << "--" << sizeof(art) << "--" << tamA << endl;// tirar
 
     finT.seekg(0, finT.beg);
     finA.seekg(0, finA.beg);
-
-    callTeste(tamT, tamA, &finT, &finA);
+    if (finT.is_open() && finA.is_open())
+        callTeste(tamT, tamA, &finT, &finA);
+    else
+        cout << "Um dos arquivos nao pode ser aberto" << endl;
 
     finA.close();
     finT.close();
 }
-/*struct artist
-{
-    string id;
-    float followers;
-    string genres;
-    string name;
-    int popularity;
-};*/
+
 bool func_teste::verifica_numero(int vet[], int n, int aux)
 {
     for (int i = 0; i < n; i++)
@@ -81,9 +73,9 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             system("cls");
             cout << "Resposta invalida" << endl;
         }
-        else if (n == 10)
+        else if (n == 10) // chamar funçao pra pegar 10 registros e imprimilos na tela
         {
-            // chamar funçao pra pegar 10 registros e imprimilos na tela
+
             int vetA[n], vetT[n];
             artists art[n];
             tracks tr[n];
@@ -128,7 +120,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                      << "," << tr[i].valence
                      << "," << tr[i].tempo
                      << "," << tr[i].time_signature
-                     << endl; // colocar os parametros a serem impressos
+                     << endl;
             }
             finT->seekg(0, finT->beg);
         }
@@ -157,7 +149,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                       << "," << art[i].genres
                       << "," << art[i].name
                       << "," << art[i].popularity
-                      << endl; // colocar os parametros a serem impressos
+                      << endl;
             }
             finA->seekg(0, finA->beg);
             //Registros Tracks
@@ -186,7 +178,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                       << "," << tr[i].valence
                       << "," << tr[i].tempo
                       << "," << tr[i].time_signature
-                      << endl; // colocar os parametros a serem impressos
+                      << endl;
             }
             finT->seekg(0, finT->beg);
             foutT.close();
