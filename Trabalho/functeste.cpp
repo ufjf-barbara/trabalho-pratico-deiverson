@@ -47,8 +47,6 @@ bool func_teste::verifica_numero(int vet[], int n, int aux)
 void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
 {
 
-    cout << "------------------\n"
-         << qtddReg << "\n";
     int aux;
     for (int i = 0; i < n; i++)
     {
@@ -58,7 +56,6 @@ void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para so
         } while (verifica_numero(vet, n, aux));
 
         vet[i] = aux;
-        cout << aux << endl;
     }
 }
 void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
@@ -86,11 +83,6 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             sorteia_numero(vetA, n, tamA);
             sorteia_numero(vetT, n, tamT);
 
-            cout << "\n"
-                 << sizeof(artistsAux) << endl;
-
-            cout << "\n\nRegistros Artists\n\n"
-                 << endl;
             for (int i = 0; i < n; i++)
             {
                 ifstream finA;
@@ -99,8 +91,6 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                 int posicao = vetA[i] * sizeof(artistsAux);
                 finA.seekg(posicao, ios::beg);
                 finA.read((char *)&arti, sizeof(artistsAux));
-
-                cout << "Registro posicao --- " << posicao << "----" << finA.tellg() << endl;
 
                 art[i] = Artists ::converteArtToString(arti);
 
@@ -183,8 +173,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             }
 
             //Registros Tracks
-            cout << vetA << endl;
-            cout << vetT << endl;
+
             for (int i = 0; i < n; i++)
             {
                 ifstream finT;
@@ -195,28 +184,30 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                 tr[i] = Tracks::converteTracksToString(tra);
 
                 foutT << tr[i].id
-                      << "," << tr[i].name
-                      << "," << tr[i].popularity
-                      << "," << tr[i].duration_ms
-                      << "," << tr[i].explicit_
-                      << "," << tr[i].artists
-                      << "," << tr[i].id_artists
-                      << "," << tr[i].release_date
-                      << "," << tr[i].danceability
-                      << "," << tr[i].energy
-                      << "," << tr[i].key
-                      << "," << tr[i].loudness
-                      << "," << tr[i].mode
-                      << "," << tr[i].speechiness
-                      << "," << tr[i].acousticness
-                      << "," << tr[i].instrumentalness
-                      << "," << tr[i].liveness
-                      << "," << tr[i].valence
-                      << "," << tr[i].tempo
-                      << "," << tr[i].time_signature
-                      << endl;
-                foutT.close();
+                     << "," << tr[i].name
+                     << "," << tr[i].popularity
+                     << "," << tr[i].duration_ms
+                     << "," << tr[i].explicit_
+                     << "," << tr[i].artists
+                     << "," << tr[i].id_artists
+                     << "," << tr[i].release_date
+                     << "," << tr[i].danceability
+                     << "," << tr[i].energy
+                     << "," << tr[i].key
+                     << "," << tr[i].loudness
+                     << "," << tr[i].mode
+                     << "," << tr[i].speechiness
+                     << "," << tr[i].acousticness
+                     << "," << tr[i].instrumentalness
+                     << "," << tr[i].liveness
+                     << "," << tr[i].valence
+                     << "," << tr[i].tempo
+                     << "," << tr[i].time_signature
+                     << endl;
+                finT.close();
             }
+            foutT.close();
+            foutA.close();
         }
     }
 }
