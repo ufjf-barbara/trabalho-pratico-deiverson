@@ -23,12 +23,7 @@
 Trabalho da disciplina de Estruturas de dados 2 turma E  professora BARBARA DE MELO QUINTELA , relativo ao assunto de manipulação de arquivos .
 
 ## Como compilar
-g++ main.cpp artists.cpp tracks.cpp functeste.cpp
+g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
 
 ## Como rodar
-run: main.exe
-	main.exe
-main.exe: main.cpp
-	g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
-limpa:
-	Del main.exe main.o	
+main.exe
