@@ -33,13 +33,13 @@ struct tracks
 struct tracksAux
 {
     char id[23];
-    char name[1000];
+    char name[500];
     int popularity;
     float duration_ms;
     int explicit_;
     char artists[1000];
-    char id_artists[1000];
-    char release_date[1000];
+    char id_artists[500];
+    char release_date[500];
     float danceability;
     float energy;
     int key;

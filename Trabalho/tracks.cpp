@@ -38,6 +38,7 @@ void Tracks::leArquivo(string path)
     string linha;
     arquivo.open(path, ios::in);
 
+    //variaveis utilizadas para conversão de string para valor numerico
     string auxPopularity;
     string auxDuration_ms;
     string auxexplicit_;
@@ -73,7 +74,7 @@ void Tracks::leArquivo(string path)
                 }
                 if (linha[i] == ',' && verifica == 0)
                 {
-                    cont++;
+                    cont++;//verifica posiçao do atributo na struct
                     i++;
                 }
                 if (cont == 0)
@@ -87,7 +88,7 @@ void Tracks::leArquivo(string path)
                 if (cont == 2)
                 {
                     auxPopularity += linha[i];
-                    istringstream(auxPopularity) >> tr.popularity;
+                    istringstream(auxPopularity) >> tr.popularity;//converte string para valor numerico
                 }
                 if (cont == 3)
                 {
@@ -175,7 +176,7 @@ void Tracks::leArquivo(string path)
             }
             cont = 0;
 
-            lista.push_back(tr);
+            lista.push_back(tr);//adiciona na lista
 
             tr.id = "";
             tr.name = "";
@@ -197,6 +198,7 @@ void Tracks::leArquivo(string path)
             tr.valence = 0;
             tr.tempo = 0;
             tr.time_signature = 0;
+
             //zerando variaveis auxiliares
 
             auxPopularity = "";

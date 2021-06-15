@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include "Artists.h"
@@ -52,7 +51,7 @@ void Artists::leArquivo(string path)
 
             for (int i = 0; i < linha.size(); i++)
             {
-                if (linha[i] == '[')
+                if (linha[i] == '[')//verificaçao de virgulas no meio de colchetes
                 {
                     verifica = 1;
                 }
@@ -62,7 +61,7 @@ void Artists::leArquivo(string path)
                 }
                 if (linha[i] == ',' && verifica == 0)
                 {
-                    cont++;
+                    cont++;//variavel para verificar qual atribut esta
                     i++;
                 }
                 if (cont == 0)
@@ -72,9 +71,8 @@ void Artists::leArquivo(string path)
                 if (cont == 1)
                 {
                     auxFollowers += linha[i];
-                    istringstream(auxFollowers) >> art.followers;
-                    //art.followers=atof(auxFollowers.c_str());
-                    //atof()
+                    istringstream(auxFollowers) >> art.followers;//usado para converter strings para valor numerico
+
                 }
                 if (cont == 2)
                 {
@@ -92,8 +90,8 @@ void Artists::leArquivo(string path)
             }
 
             cont = 0;
-            lista.push_back(art);
- 
+            lista.push_back(art);//adiciona na lista
+
             art.id = "";
             art.followers = 0;
             art.genres = "";
@@ -125,12 +123,6 @@ void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo arti
         {
             arti=converteToAux(art);
             arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
-              /*    cout << arti.id
-                      << "," << arti.followers
-                      << "," << arti.genres
-                      << "," << arti.name
-                      << "," << arti.popularity
-                      << endl; */
         }
     }
     else
