@@ -27,12 +27,13 @@ void func_teste::func_test(string path) //construtor
     finA.seekg(0, finA.beg);
 
     if (finT.is_open() && finA.is_open())
+    {
+        finA.close();
+        finT.close();
         callTeste(tamT, tamA, &finT, &finA);
+    }
     else
         cout << "arquivos nao abriram" << endl;
-
-    finA.close();
-    finT.close();
 }
 
 bool func_teste::verifica_numero(int vet[], int n, int aux)
@@ -53,7 +54,7 @@ void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para so
     {
         do
         {
-            aux = rand() % qtddReg + 1;
+            aux = rand() % qtddReg;
         } while (verifica_numero(vet, n, aux));
 
         vet[i] = aux;
@@ -85,30 +86,42 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             sorteia_numero(vetA, n, tamA);
             sorteia_numero(vetT, n, tamT);
 
-      
+            cout << "\n"
+                 << sizeof(artistsAux) << endl;
 
-           cout <<"\n\nRegistros Artists\n\n" << endl;
+            cout << "\n\nRegistros Artists\n\n"
+                 << endl;
             for (int i = 0; i < n; i++)
             {
+                ifstream finA;
+                finA.open("../print/artists.bin", ios::in);
                 artistsAux arti;
-                finA->seekg(vetA[i] * sizeof(artistsAux), finA->beg);
-                finA->read((char *)&arti, sizeof(artistsAux));
-                
+                int posicao = vetA[i] * sizeof(artistsAux);
+                finA.seekg(posicao, ios::beg);
+                finA.read((char *)&arti, sizeof(artistsAux));
+
+                cout << "Registro posicao --- " << posicao << "----" << finA.tellg() << endl;
+
                 art[i] = Artists ::converteArtToString(arti);
-                cout << art[i].id
-                     << "," << art[i].followers
-                     << "," << art[i].genres
-                     << "," << art[i].name
-                     << "," << art[i].popularity
+
+                cout << arti.id
+                     << "," << arti.followers
+                     << "," << arti.genres
+                     << "," << arti.name
+                     << "," << arti.popularity
                      << endl;
+                finA.close();
             }
-            finA->seekg(0, finA->beg);
-            cout <<"\n\nRegistros Tracks\n\n" << endl;
+            //  finA->seekg(0, finA->beg);
+            cout << "\n\nRegistros Tracks\n\n"
+                 << endl;
             for (int i = 0; i < n; i++)
             {
+                ifstream finT;
+                finT.open("../print/tracks.bin", ios::in);
                 tracksAux tra;
-                finT->seekg(vetT[i] * sizeof(tracksAux), finT->beg);
-                finT->read((char *)&tra, sizeof(tracksAux));
+                finT.seekg(vetT[i] * sizeof(tracksAux), finT.beg);
+                finT.read((char *)&tra, sizeof(tracksAux));
                 tr[i] = Tracks::converteTracksToString(tra);
 
                 cout << tr[i].id
@@ -132,8 +145,8 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                      << "," << tr[i].tempo
                      << "," << tr[i].time_signature
                      << endl;
+                finT.close();
             }
-            finT->seekg(0, finT->beg);
         }
         else //n= 100 ----- chamar funçao pra pegar 100 registros e criar arquivo de texto
         {
@@ -152,9 +165,12 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             //Registros Artists
             for (int i = 0; i < n; i++)
             {
+                ifstream finA;
+                finA.open("../print/artists.bin", ios::in);
                 artistsAux arti;
-                finA->seekg(vetA[i] * sizeof(artistsAux), finA->beg);
-                finA->read((char *)&arti, sizeof(artistsAux));
+                int posicao = vetA[i] * sizeof(artistsAux);
+                finA.seekg(posicao, ios::beg);
+                finA.read((char *)&arti, sizeof(artistsAux));
                 art[i] = Artists ::converteArtToString(arti);
 
                 foutA << art[i].id
@@ -163,16 +179,19 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                       << "," << art[i].name
                       << "," << art[i].popularity
                       << endl;
+                finA.close();
             }
-            finA->seekg(0, finA->beg);
+
             //Registros Tracks
             cout << vetA << endl;
             cout << vetT << endl;
             for (int i = 0; i < n; i++)
             {
+                ifstream finT;
+                finT.open("../print/tracks.bin", ios::in);
                 tracksAux tra;
-                finT->seekg(vetT[i] * sizeof(tracksAux), finT->beg);
-                finT->read((char *)&tra, sizeof(tracksAux));
+                finT.seekg(vetT[i] * sizeof(tracksAux), finT.beg);
+                finT.read((char *)&tra, sizeof(tracksAux));
                 tr[i] = Tracks::converteTracksToString(tra);
 
                 foutT << tr[i].id
@@ -196,10 +215,8 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                       << "," << tr[i].tempo
                       << "," << tr[i].time_signature
                       << endl;
+                foutT.close();
             }
-            finT->seekg(0, finT->beg);
-            foutT.close();
-            foutA.close();
         }
     }
 }
