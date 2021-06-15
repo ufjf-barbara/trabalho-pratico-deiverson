@@ -13,7 +13,7 @@ using namespace std;
 Artists::Artists(string path)
 {
 
-    leArquivo(path + "./artiststeste.txt");
+    leArquivo(path + "./artists.csv");
 }
 Artists::Artists()
 {

@@ -30,7 +30,7 @@ void func_teste::func_test(string path) //construtor
     {
         finA.close();
         finT.close();
-        callTeste(tamT, tamA, &finT, &finA);
+        callTeste(tamT, tamA);
     }
     else
         cout << "arquivos nao abriram" << endl;
@@ -58,7 +58,7 @@ void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para so
         vet[i] = aux;
     }
 }
-void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
+void func_teste::callTeste(int tamT, int tamA)
 
 {
     int n = 0;
@@ -102,7 +102,7 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                      << endl;
                 finA.close();
             }
-            //  finA->seekg(0, finA->beg);
+           
             cout << "\n\nRegistros Tracks\n\n"
                  << endl;
             for (int i = 0; i < n; i++)

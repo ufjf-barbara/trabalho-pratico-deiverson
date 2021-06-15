@@ -11,7 +11,7 @@ using namespace std;
 Tracks ::Tracks(string path)
 {
 
-    leArquivo(path + "./tracksteste.txt");
+    leArquivo(path + "./tracks.csv");
 }
 Tracks ::Tracks()
 {
