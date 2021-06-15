@@ -8,8 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-
-
 using namespace std;
 
 Artists::Artists(string path)
@@ -22,7 +20,6 @@ Artists::Artists()
 }
 Artists::~Artists()
 {
-    cout << "deletando leitura do arquivo Artists" << endl;
 }
 
 //GETTERS E SETTERS
@@ -96,11 +93,7 @@ void Artists::leArquivo(string path)
 
             cont = 0;
             lista.push_back(art);
-            /*    cout << art.id << " ---";
-            cout << art.followers << "---";
-            cout << art.genres << "---";
-            cout << art.name << "--- ";
-            cout << art.popularity << endl; */
+ 
             art.id = "";
             art.followers = 0;
             art.genres = "";
@@ -123,16 +116,21 @@ void Artists::leArquivo(string path)
 void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo artists.csv em bin�rio
 {
     ofstream arquivoArtistBin;
-    string aux;
-    char c[50];
-    aux = "asdfghjklkjhgfdxcvbnmjhgfcvbnjh";
-    strcpy(c, aux.c_str());
-    arquivoArtistBin.open("../arquivo/artists.bin", ios::binary);
+
+    arquivoArtistBin.open("../print/artists.bin", ios::binary);
     if (arquivoArtistBin.is_open())
     {
+        artistsAux arti;
         for (artists art : lista)
         {
-            arquivoArtistBin.write((char *)&art, sizeof(artists));
+            arti=converteToAux(art);
+            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
+              /*    cout << arti.id
+                      << "," << arti.followers
+                      << "," << arti.genres
+                      << "," << arti.name
+                      << "," << arti.popularity
+                      << endl; */
         }
     }
     else
@@ -140,4 +138,39 @@ void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo arti
         cout << "N foi possivel abrir o arquivo" << endl;
     }
     arquivoArtistBin.close();
+}
+artistsAux Artists::converteToAux(artists art)
+{
+    artistsAux arti;
+
+    strcpy(arti.id, art.id.c_str());
+    arti.followers = art.followers;
+    arti.followers = art.followers;
+    strcpy(arti.genres, art.genres.c_str());
+    strcpy(arti.name, art.name.c_str());
+    arti.popularity = art.popularity;
+
+    return arti;
+}
+artists Artists:: converteArtToString(artistsAux art)
+{
+    artists arti;
+
+    arti.id = concatenaArtists(art.id);
+    arti.followers = art.followers;
+    arti.followers = art.followers;
+    arti.genres = concatenaArtists(art.genres);
+    arti.name = concatenaArtists(art.name);
+    arti.popularity = art.popularity;
+
+    return arti;
+}
+string Artists::concatenaArtists(char linha[])
+{
+    string concatena = "";
+    for (int i = 0; linha[i] != '\0'; i++)
+    {
+        concatena += linha[i];
+    }
+    return concatena;
 }

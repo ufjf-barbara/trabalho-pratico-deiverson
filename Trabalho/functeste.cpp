@@ -11,17 +11,17 @@ using namespace std;
 void func_teste::func_test(string path) //construtor
 {
     ifstream finT, finA;
-    artists art;
-    tracks tr;
+    artistsAux art;
+    tracksAux tr;
 
-    finT.open("../arquivo/tracks.bin", ios::in);
-    finA.open("../arquivo/artists.bin", ios::in);
+    finT.open("../print/tracks.bin", ios::in);
+    finA.open("../print/artists.bin", ios::in);
 
     finT.seekg(0, finT.end);
     finA.seekg(0, finA.end);
 
-    int tamT = finT.tellg() / sizeof(tracks);
-    int tamA = finA.tellg() / sizeof(artists);
+    int tamT = finT.tellg() / sizeof(tracksAux);
+    int tamA = finA.tellg() / sizeof(artistsAux);
 
     finT.seekg(0, finT.beg);
     finA.seekg(0, finA.beg);
@@ -45,8 +45,9 @@ bool func_teste::verifica_numero(int vet[], int n, int aux)
 
 void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
 {
-    
-    cout << "------------------\n"<<qtddReg << "\n";
+
+    cout << "------------------\n"
+         << qtddReg << "\n";
     int aux;
     for (int i = 0; i < n; i++)
     {
@@ -56,10 +57,9 @@ void func_teste::sorteia_numero(int vet[], int n, int qtddReg) //funçao para so
         } while (verifica_numero(vet, n, aux));
 
         vet[i] = aux;
-        cout <<aux<<endl;
+        cout << aux << endl;
     }
 }
-
 void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
 {
@@ -79,20 +79,22 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
             int vetA[n], vetT[n];
             artists art[n];
+
             tracks tr[n];
-            artists test;
+
             sorteia_numero(vetA, n, tamA);
             sorteia_numero(vetT, n, tamT);
 
-            cout << "Registros Artists" << endl;
+      
+
+           cout <<"\n\nRegistros Artists\n\n" << endl;
             for (int i = 0; i < n; i++)
             {
-
-                finA->seekg(vetA[i] * sizeof(artists), finA->beg);
-
-                finA->read((char *)&test, sizeof(artists));
-                cout << "uai";
-                art[i]=test;
+                artistsAux arti;
+                finA->seekg(vetA[i] * sizeof(artistsAux), finA->beg);
+                finA->read((char *)&arti, sizeof(artistsAux));
+                
+                art[i] = Artists ::converteArtToString(arti);
                 cout << art[i].id
                      << "," << art[i].followers
                      << "," << art[i].genres
@@ -101,11 +103,13 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
                      << endl;
             }
             finA->seekg(0, finA->beg);
-            cout << "Registros Tracks" << endl;
+            cout <<"\n\nRegistros Tracks\n\n" << endl;
             for (int i = 0; i < n; i++)
             {
-                finT->seekg(vetT[i] * sizeof(tracks), finT->beg);
-                finT->read((char *)&tr[i], sizeof(tracks));
+                tracksAux tra;
+                finT->seekg(vetT[i] * sizeof(tracksAux), finT->beg);
+                finT->read((char *)&tra, sizeof(tracksAux));
+                tr[i] = Tracks::converteTracksToString(tra);
 
                 cout << tr[i].id
                      << "," << tr[i].name
@@ -134,8 +138,8 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
         else //n= 100 ----- chamar funçao pra pegar 100 registros e criar arquivo de texto
         {
             int vetA[n], vetT[n];
-
             artists art[n];
+
             tracks tr[n];
 
             sorteia_numero(vetA, n, tamA);
@@ -143,14 +147,16 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
 
             ofstream foutT, foutA;
 
-            foutT.open("../arquivo/printTRACK.txt");
-            foutA.open("../arquivo/printARTISTS.txt");
+            foutT.open("../print/printTRACK.txt");
+            foutA.open("../print/printARTISTS.txt");
             //Registros Artists
             for (int i = 0; i < n; i++)
             {
+                artistsAux arti;
+                finA->seekg(vetA[i] * sizeof(artistsAux), finA->beg);
+                finA->read((char *)&arti, sizeof(artistsAux));
+                art[i] = Artists ::converteArtToString(arti);
 
-                finA->seekg(vetA[i] * sizeof(artists), finA->beg);
-                finA->read((char *)&art[i], sizeof(artists));
                 foutA << art[i].id
                       << "," << art[i].followers
                       << "," << art[i].genres
@@ -160,11 +166,15 @@ void func_teste::callTeste(int tamT, int tamA, ifstream *finT, ifstream *finA)
             }
             finA->seekg(0, finA->beg);
             //Registros Tracks
-
+            cout << vetA << endl;
+            cout << vetT << endl;
             for (int i = 0; i < n; i++)
             {
-                finT->seekg(vetT[i] * sizeof(tracks), finT->beg);
-                finT->read((char *)&tr[i], sizeof(tracks));
+                tracksAux tra;
+                finT->seekg(vetT[i] * sizeof(tracksAux), finT->beg);
+                finT->read((char *)&tra, sizeof(tracksAux));
+                tr[i] = Tracks::converteTracksToString(tra);
+
                 foutT << tr[i].id
                       << "," << tr[i].name
                       << "," << tr[i].popularity
