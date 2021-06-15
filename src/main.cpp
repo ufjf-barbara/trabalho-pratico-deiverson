@@ -17,26 +17,20 @@ int main(int argc, char **argv)
 
     ifstream artbin, trbin;
 
-    artbin.open("../arquivo/artists.bin", ios::in | ios::binary);
-    trbin.open("../arquivo/tracks.bin", ios::in | ios::binary);
+    artbin.open("../print/artists.bin", ios::in | ios::binary);
+    trbin.open("../print/tracks.bin", ios::in | ios::binary);
 
-    if (!artbin.is_open() && !trbin.is_open())
-
+    if (!artbin.is_open())
     {
         artbin.close();
-        trbin.close();
-
-        cout << "vai criar arquivo" << endl;
-
         Artists *arti = new Artists(path);
         delete arti;
-
-        //  arti->TransformaArtistBin() ; //colocar o endereço certo e criar string path como atributo pra classe
-
+    }
+    if (!trbin.is_open())
+    {
+        trbin.close();
         Tracks *tr = new Tracks(path);
         delete tr;
-
-        // tr->TransformaTrackBin(); //colocar o endereço certo e criar string path como atributo pra classe
     }
 
     artbin.close();
