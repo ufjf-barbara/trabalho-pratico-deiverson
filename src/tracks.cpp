@@ -39,6 +39,7 @@ void Tracks::leArquivo(string path)
     arquivo.open(path, ios::in);
 
     //variaveis utilizadas para conversão de string para valor numerico
+
     string auxPopularity;
     string auxDuration_ms;
     string auxexplicit_;
@@ -178,6 +179,8 @@ void Tracks::leArquivo(string path)
 
             lista.push_back(tr);//adiciona na lista
 
+            //zerando variaveis para reutilizalas
+
             tr.id = "";
             tr.name = "";
             tr.popularity = 0;
@@ -245,6 +248,8 @@ void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.
     arquivoTrackBin.close();
 }
 
+//converte os campos de string para vetores de caracteres
+
 tracksAux Tracks::converteToAux(tracks tr)
 {
     tracksAux tra;
@@ -273,6 +278,9 @@ tracksAux Tracks::converteToAux(tracks tr)
 
     return tra;
 }
+
+//converte vetores de caracteres para strings
+
 tracks Tracks::converteTracksToString(tracksAux tr)
 {
     tracks tra;
@@ -301,6 +309,8 @@ tracks Tracks::converteTracksToString(tracksAux tr)
 
     return tra;
 }
+
+//função para transformar vetores de caracteres em string
 
 string Tracks::concatenaTracks(char linha[])
 {

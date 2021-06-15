@@ -131,6 +131,9 @@ void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo arti
     }
     arquivoArtistBin.close();
 }
+
+//converte os campos de string para vetores de caracteres
+
 artistsAux Artists::converteToAux(artists art)
 {
     artistsAux arti;
@@ -144,6 +147,9 @@ artistsAux Artists::converteToAux(artists art)
 
     return arti;
 }
+
+//converte vetores de caracteres para strings
+
 artists Artists:: converteArtToString(artistsAux art)
 {
     artists arti;
@@ -157,6 +163,9 @@ artists Artists:: converteArtToString(artistsAux art)
 
     return arti;
 }
+
+//função para transformar vetores de caracteres em string
+
 string Artists::concatenaArtists(char linha[])
 {
     string concatena = "";
