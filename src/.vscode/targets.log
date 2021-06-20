@@ -6,8 +6,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # PARTICULAR PURPOSE.
 
 # This program built for i386-pc-mingw32
+ 
 
-# Make data base, printed on Tue Jun 15 19:26:37 2021
+# Make data base, printed on Thu Jun 17 17:04:45 2021
 
 # Variables
 
@@ -54,9 +55,9 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-6aff8ec9-73b6-4f99-9980-936ba3190e01-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-3a9dcc7b-d86a-426b-a67c-e8f8fd95444e-sock
 # environment
-VSCODE_CWD = C:\Users\deive\Documents\GitHub\trabalho-pratico-deiverson\src
+VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
 # environment
 PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\MinGW\bin;
 # environment
@@ -80,7 +81,7 @@ DIR = ""
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16612_KRBFHLAKWGNDMIPK
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_18860_LEKTFCHSMAJRPWNN
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -188,7 +189,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 16612
+VSCODE_PID = 18860
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -204,7 +205,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1621020549): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1623795682): 16 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1623885906): 16 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1623502108): 4 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1622058532): 57 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
@@ -231,7 +232,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # Not a target:
 functeste.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-15 19:12:03
+#  Last modified 2021-06-15 19:53:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -255,7 +256,7 @@ all: a.exe
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-15 19:12:03
+#  Last modified 2021-06-15 20:48:24
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -264,7 +265,7 @@ makefile:
 # Not a target:
 artists.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-15 19:12:03
+#  Last modified 2021-06-16 19:53:47
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -326,13 +327,13 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `makefile', line 6):
-	del /S *.class
+	del /S *.exe
 	
 
 # Not a target:
 tracks.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-15 19:12:03
+#  Last modified 2021-06-16 20:09:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -351,6 +352,6 @@ tracks.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jun 15 19:26:37 2021
+# Finished Make data base on Thu Jun 17 17:04:45 2021
 
  

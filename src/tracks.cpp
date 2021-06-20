@@ -10,7 +10,11 @@ using namespace std;
 
 Tracks ::Tracks(string path)
 {
-
+    id = 0;
+    name = 0;
+    artists = 0;
+    id_artists = 0;
+    release_date = 0;
     leArquivo(path + "./tracks.csv");
 }
 Tracks ::Tracks()
@@ -63,6 +67,12 @@ void Tracks::leArquivo(string path)
         getline(arquivo, linha);
         while (getline(arquivo, linha))
         {
+            int contid = 0;
+            int contname = 0;
+            int contartists = 0;
+            int contid_artists = 0;
+            int contrelease_date = 0;
+
             for (int i = 0; i < linha.size(); i++)
             {
                 if (linha[i] == '[')
@@ -75,21 +85,23 @@ void Tracks::leArquivo(string path)
                 }
                 if (linha[i] == ',' && verifica == 0)
                 {
-                    cont++;//verifica posiçao do atributo na struct
+                    cont++; //verifica posiçao do atributo na struct
                     i++;
                 }
                 if (cont == 0)
                 {
+                    contid++;
                     tr.id += linha[i];
                 }
                 if (cont == 1)
                 {
+                    contname++;
                     tr.name += linha[i];
                 }
                 if (cont == 2)
                 {
                     auxPopularity += linha[i];
-                    istringstream(auxPopularity) >> tr.popularity;//converte string para valor numerico
+                    istringstream(auxPopularity) >> tr.popularity; //converte string para valor numerico
                 }
                 if (cont == 3)
                 {
@@ -103,15 +115,17 @@ void Tracks::leArquivo(string path)
                 }
                 if (cont == 5)
                 {
-
+                    contartists++;
                     tr.artists += linha[i];
                 }
                 if (cont == 6)
                 {
+                    contid_artists++;
                     tr.id_artists += linha[i];
                 }
                 if (cont == 7)
                 {
+                    contrelease_date++;
                     tr.release_date += linha[i];
                 }
                 if (cont == 8)
@@ -177,9 +191,20 @@ void Tracks::leArquivo(string path)
             }
             cont = 0;
 
-            lista.push_back(tr);//adiciona na lista
+            lista.push_back(tr); //adiciona na lista
 
             //zerando variaveis para reutilizalas
+
+            if (this->id < contid)
+                this->id = contid;
+            if (this->name < contname)
+                this->name = contname;
+            if (this->artists < contartists)
+                this->artists = contartists;
+            if (this->id_artists < contid_artists)
+                this->id_artists = contid_artists;
+            if (this->release_date < contrelease_date)
+                this->release_date = contrelease_date;
 
             tr.id = "";
             tr.name = "";
@@ -220,6 +245,12 @@ void Tracks::leArquivo(string path)
             auxtempo = "";
             auxtime_signature = "";
         }
+        cout << "\n\nid = " << this->id
+             << "\nname = " << this->name
+             << "\nartists = " << this->artists
+             << "\nid_artists = " << this->id_artists
+             << "\n release_date = " << this->release_date << endl;
+
         arquivo.close();
         TransformaTrackBin();
     }

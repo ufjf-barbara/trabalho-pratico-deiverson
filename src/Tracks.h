@@ -32,14 +32,14 @@ struct tracks
 };
 struct tracksAux
 {
-    char id[23];
-    char name[500];
+    char id[48];
+    char name[386];
     int popularity;
     float duration_ms;
     int explicit_;
-    char artists[1000];
-    char id_artists[500];
-    char release_date[500];
+    char artists[939];
+    char id_artists[1511];
+    char release_date[1434];
     float danceability;
     float energy;
     int key;
@@ -73,6 +73,13 @@ public:
     tracksAux converteToAux(tracks tr);
     static tracks converteTracksToString(tracksAux tr);
     static string concatenaTracks(char linha[]);
+
+    // contadores estaticos
+    int id;
+    int name;
+    int artists;
+    int id_artists;
+    int release_date;
 };
 
 #endif // TRACKS_H_INCLUDED

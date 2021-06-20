@@ -17,10 +17,10 @@ struct artists
 };
 struct artistsAux
 {
-    char id[23];
+    char id[32];
     float followers;
-    char genres[1000];
-    char name[1000];
+    char genres[375];
+    char name[322];
     int popularity;
 };
 
@@ -43,6 +43,11 @@ public:
     void leArquivo(string path);
     void TransformaArtistBin();
    static string concatenaArtists(char linha[]);
+
+   // contadores
+   int id;
+   int name;
+   int genres;
 };
 
 #endif // ARTISTS_H_INCLUDED

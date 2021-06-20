@@ -11,6 +11,9 @@ using namespace std;
 
 Artists::Artists(string path)
 {
+    id = 0;
+    name = 0;
+    genres = 0;
 
     leArquivo(path + "./artists.csv");
 }
@@ -48,10 +51,13 @@ void Artists::leArquivo(string path)
         getline(arquivo, linha);
         while (getline(arquivo, linha))
         {
+            int contid = 0;
+            int contname = 0;
+            int contgenres = 0;
 
             for (int i = 0; i < linha.size(); i++)
             {
-                if (linha[i] == '[')//verificaçao de virgulas no meio de colchetes
+                if (linha[i] == '[') //verificaçao de virgulas no meio de colchetes
                 {
                     verifica = 1;
                 }
@@ -61,25 +67,27 @@ void Artists::leArquivo(string path)
                 }
                 if (linha[i] == ',' && verifica == 0)
                 {
-                    cont++;//variavel para verificar qual atribut esta
+                    cont++; //variavel para verificar qual atribut esta
                     i++;
                 }
                 if (cont == 0)
                 {
+                    contid++;
                     art.id += linha[i];
                 }
                 if (cont == 1)
                 {
                     auxFollowers += linha[i];
-                    istringstream(auxFollowers) >> art.followers;//usado para converter strings para valor numerico
-
+                    istringstream(auxFollowers) >> art.followers; //usado para converter strings para valor numerico
                 }
                 if (cont == 2)
                 {
+                    contgenres++;
                     art.genres += linha[i];
                 }
                 if (cont == 3)
                 {
+                    contname++;
                     art.name += linha[i];
                 }
                 if (cont == 4)
@@ -87,10 +95,16 @@ void Artists::leArquivo(string path)
                     auxPopularity += linha[i];
                     istringstream(auxPopularity) >> art.popularity;
                 }
+                if (this->id < contid)
+                    this->id = contid;
+                if (this->name < contname)
+                    this->name = contname;
+                if (this->genres < contgenres)
+                    this->genres = contgenres;
             }
 
             cont = 0;
-            lista.push_back(art);//adiciona na lista
+            lista.push_back(art); //adiciona na lista
 
             art.id = "";
             art.followers = 0;
@@ -100,7 +114,9 @@ void Artists::leArquivo(string path)
             auxFollowers = "";
             auxPopularity = "";
         }
-
+        cout << "\n id = " << this->id
+             << "\n name = " << this->name
+             << "\n genres = " << this->genres;
         arquivo.close();
         TransformaArtistBin();
     }
@@ -121,7 +137,7 @@ void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo arti
         artistsAux arti;
         for (artists art : lista)
         {
-            arti=converteToAux(art);
+            arti = converteToAux(art);
             arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
         }
     }
@@ -150,7 +166,7 @@ artistsAux Artists::converteToAux(artists art)
 
 //converte vetores de caracteres para strings
 
-artists Artists:: converteArtToString(artistsAux art)
+artists Artists::converteArtToString(artistsAux art)
 {
     artists arti;
 
