@@ -5,7 +5,7 @@
 👤 **Deiverson**
 
 * Github:[@DeiversonMAP](https://github.com/DeiversonMAP) 
-* Matricula: ()
+* Matricula: (201965123AB)
 
 
 👤 **Deyvison Gregorio Dias**
@@ -23,5 +23,7 @@
 Trabalho da disciplina de Estruturas de dados 2 turma E  professora BARBARA DE MELO QUINTELA , relativo ao assunto de manipulação de arquivos .
 
 ## Como compilar
+g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
 
 ## Como rodar
+main.exe
