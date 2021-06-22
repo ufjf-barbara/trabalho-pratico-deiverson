@@ -274,7 +274,7 @@ void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.
     }
     else
     {
-        cout << "N foi possível abrir o arquivo" << endl;
+        cout << "N foi possível abrir o arquivo track \n" << endl;
     }
     arquivoTrackBin.close();
 }
@@ -351,4 +351,59 @@ string Tracks::concatenaTracks(char linha[])
         concatena += linha[i];
     }
     return concatena;
+}
+bool Tracks::verifica_numero(int vet[], int n, int aux)
+{
+    for (int i = 0; i < n; i++)
+        if (vet[i] == aux)
+            return true;
+    return false;
+}
+
+// função que sorteia o numero da posiçao dos registros a serem coletados para impressao
+void Tracks::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
+{
+
+    int aux;
+    for (int i = 0; i < n; i++)
+    {
+        do
+        {
+            aux = rand() % qtddReg;
+        } while (verifica_numero(vet, n, aux));
+
+        vet[i] = aux;
+    }
+}
+list<tracks> Tracks:: registrosTr(int n, int tam)
+{
+    list<tracks> list;
+    int vet[n];
+    sorteia_numero(vet, n, tam);
+
+    for (int i = 0; i < n; i++)
+    {
+        tracks tr;
+        tracksAux tra;
+        //abertura do arquivo binario
+        ifstream fin;
+        fin.open("../print/tracks.bin", ios::in);
+
+        //estrutura auxiliar
+       
+        // pegando a posiçao em bytes
+        int posicao = vet[i] * sizeof(tracksAux);
+        // posicionando o ponteiro na posiçao a ser lida
+        fin.seekg(posicao, ios::beg);
+        //lendo o registro em uma estrurura aux com vetores de caracteres
+
+        fin.read((char *)&tra, sizeof(tracksAux));
+        // convertendo os vetores
+        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+        tr = Tracks ::converteTracksToString(tra);
+        list.push_back(tr);
+        fin.close(); // fechando o arquivo binario
+    }
+
+    return list;
 }
