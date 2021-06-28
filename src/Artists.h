@@ -42,12 +42,18 @@ public:
     static artists converteArtToString(artistsAux art);
     void leArquivo(string path);
     void TransformaArtistBin();
-   static string concatenaArtists(char linha[]);
+    static string concatenaArtists(char linha[]);
 
-   // contadores
-   int id;
-   int name;
-   int genres;
+    //METODOS estaticos
+    
+    static bool verifica_numero(int vet[], int n, int aux);
+    static void sorteia_numero(int vet[], int n, int qtddReg);
+    static list<artists> registrosArt(int n, int tam);
+
+    // contadores
+    int id;
+    int name;
+    int genres;
 };
 
 #endif // ARTISTS_H_INCLUDED

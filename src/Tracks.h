@@ -74,6 +74,11 @@ public:
     static tracks converteTracksToString(tracksAux tr);
     static string concatenaTracks(char linha[]);
 
+    //METODOS estaticos
+    static bool verifica_numero(int vet[], int n, int aux);
+    static void sorteia_numero(int vet[], int n, int qtddReg);
+    static list<tracks> registrosTr(int n,int tam);
+
     // contadores estaticos
     int id;
     int name;
