@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <vector>
 
 #ifndef ARTISTS_H_INCLUDED
 #define ARTISTS_H_INCLUDED
@@ -48,7 +49,8 @@ public:
     
     static bool verifica_numero(int vet[], int n, int aux);
     static void sorteia_numero(int vet[], int n, int qtddReg);
-    static list<artists> registrosArt(int n, int tam);
+    static vector<artists> registrosArt(int n, int tam);
+   //' static list<artists> registrosArt(int n, int tam);
 
     // contadores
     int id;

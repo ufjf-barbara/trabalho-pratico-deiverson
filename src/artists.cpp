@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <list>
+#include <vector>
 
 using namespace std;
 
@@ -124,7 +125,8 @@ void Artists::leArquivo(string path)
 
     else
     {
-        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)art\n" << endl;
+        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)art\n"
+             << endl;
     }
 }
 
@@ -215,12 +217,14 @@ void Artists::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sorte
         vet[i] = aux;
     }
 }
-list<artists> Artists::registrosArt(int n, int tam)
+vector<artists> Artists::registrosArt(int n, int tam)
+//list<artists> Artists::registrosArt(int n, int tam)
 {
-    list<artists> list;
+    // list<artists> list;
+    vector<artists> vect;
     int vet[n];
     sorteia_numero(vet, n, tam);
-    
+
     for (int i = 0; i < n; i++)
     {
         artists art;
@@ -240,9 +244,11 @@ list<artists> Artists::registrosArt(int n, int tam)
         // convertendo os vetores
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         art = Artists ::converteArtToString(arti);
-        list.push_back(art);
+        //  list.push_back(art);
+        vect.push_back(art);
         fin.close(); // fechando o arquivo binario
     }
 
-    return list;
+    // return list;
+    return vect;
 }

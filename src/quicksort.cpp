@@ -1,0 +1,81 @@
+#include <iostream>
+#include "Artists.h"
+
+using namespace std;
+
+static int trocas = 0;
+static int comparacao = 0;
+
+int particionamento(vector<artists> vet, int b, int f)
+{
+    float pivo = vet[b + (f - b) / 2].followers;
+    int i = b;
+    int j = f + 1;
+    artists aux;
+
+    do
+    {
+        while (vet[i].followers < pivo)
+        {
+            i++;
+            comparacao++;
+        }
+
+        do
+        {
+            j--;
+            comparacao++;
+        } while (pivo < vet[j].followers);
+        if (i < j)
+        {
+            trocas++;
+            aux = vet[i];
+            vet[i] = vet[j];
+            vet[j] = aux;
+        }
+    } while (i < j);
+
+    return j;
+}
+
+void Quicksort(vector<artists> vet, int b, int f)
+{
+    int pivo;
+    if (b < f)
+    {
+        pivo = particionamento(vet, b, f);
+        Quicksort(vet, b, pivo);
+        Quicksort(vet, pivo + 1, f);
+    }
+}
+int main()
+{
+    ifstream finA;
+    finA.open("../print/artists.bin", ios::in);
+
+    finA.seekg(0, finA.end);
+
+    int tamA = finA.tellg() / sizeof(artistsAux);
+
+    int n = 10;
+
+    vector<artists> vet = Artists::registrosArt(n, tamA);
+
+    cout << "Vetor inicial:" << endl;
+
+    for (int i = 0; i < 10; i++)
+        cout << "->" << vet[i].followers;
+    cout << "\n";
+
+    Quicksort(vet, 0, 9);
+
+    cout << "\nComparacoes:\t " << comparacao;
+    cout << "\nTrocas:\t " << trocas;
+    cout << "\n";
+
+    cout << "Vetor ordenado:\t" << endl;
+    for (int i = 0; i < 10; i++)
+        cout << "->" << vet[i].followers;
+
+    return 0;
+}
