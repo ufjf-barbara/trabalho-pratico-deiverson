@@ -32,7 +32,7 @@ void func_teste::func_test(string path) // funçao estatica
     {
         finA.close();
         finT.close();
-        callTeste(tamT, tamA);
+        testReadBin(tamT, tamA);
     }
     else
         cout << "arquivos nao abriram" << endl;
@@ -42,7 +42,7 @@ void func_teste::func_test(string path) // funçao estatica
 // manipular os ponteiros nos arquivos e fazer a impreçao no console output
 // em um arquivo de texto em uma pasta chamada " print " do diretorio principal
 // do trabalho
-void func_teste::callTeste(int tamT, int tamA)
+void func_teste::testReadBin(int tamT, int tamA)
 
 {
     int n = 0;

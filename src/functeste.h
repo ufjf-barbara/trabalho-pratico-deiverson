@@ -13,7 +13,7 @@ public:
   static void func_test(string path);
 
 private:
-  static void callTeste(int tamT, int tamA);
+  static void testReadBin(int tamT, int tamA);
 };
 
 #endif // ARTISTS_H_INCLUDED

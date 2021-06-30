@@ -40,9 +40,9 @@ public:
     //metodos
     list<artists> getList();
     artistsAux converteToAux(artists art);
-    static artists converteArtToString(artistsAux art);
     void leArquivo(string path);
     void TransformaArtistBin();
+    static artists converteArtToString(artistsAux art);
     static string concatenaArtists(char linha[]);
 
     //METODOS estaticos
@@ -50,7 +50,7 @@ public:
     static bool verifica_numero(int vet[], int n, int aux);
     static void sorteia_numero(int vet[], int n, int qtddReg);
     static vector<artists> registrosArt(int n, int tam);
-   //' static list<artists> registrosArt(int n, int tam);
+   // static list<artists> registrosArt(int n, int tam);
 
     // contadores
     int id;

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Artists.h"
 
 using namespace std;
@@ -48,32 +49,34 @@ void Quicksort(vector<artists> vet, int b, int f)
         Quicksort(vet, pivo + 1, f);
     }
 }
-int main()
+int main(int argc, char **argv)
 {
     ifstream finA;
     finA.open("../print/artists.bin", ios::in);
 
     finA.seekg(0, finA.end);
 
-    int tamA = finA.tellg() / sizeof(artistsAux);
+    int tam = finA.tellg() / sizeof(artistsAux);
 
     int n = 10;
 
-    vector<artists> vet = Artists::registrosArt(n, tamA);
+    vector<artists> vet = Artists::registrosArt(n, tam);
 
     cout << "Vetor inicial:" << endl;
 
     for (int i = 0; i < 10; i++)
         cout << "->" << vet[i].followers;
+
     cout << "\n";
 
     Quicksort(vet, 0, 9);
 
-    cout << "\nComparacoes:\t " << comparacao;
+    cout << "\nComparacoes:\t" << comparacao;
     cout << "\nTrocas:\t " << trocas;
     cout << "\n";
 
     cout << "Vetor ordenado:\t" << endl;
+    
     for (int i = 0; i < 10; i++)
         cout << "->" << vet[i].followers;
 
