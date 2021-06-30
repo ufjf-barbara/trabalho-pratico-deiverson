@@ -1,13 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include "Artists.h"
+#include <vector>
+#include <time.h>
 
 using namespace std;
 
 static int trocas = 0;
 static int comparacao = 0;
 
-int particionamento(vector<artists> vet, int b, int f)
+int particionamento(vector<artists> &vet, int b, int f)
 {
     float pivo = vet[b + (f - b) / 2].followers;
     int i = b;
@@ -39,7 +41,7 @@ int particionamento(vector<artists> vet, int b, int f)
     return j;
 }
 
-void Quicksort(vector<artists> vet, int b, int f)
+void Quicksort(vector<artists> &vet, int b, int f)
 {
     int pivo;
     if (b < f)
@@ -51,6 +53,9 @@ void Quicksort(vector<artists> vet, int b, int f)
 }
 int main(int argc, char **argv)
 {
+    srand(time(NULL));
+
+    clock_t beginTime, endTime;
     ifstream finA;
     finA.open("../print/artists.bin", ios::in);
 
@@ -58,27 +63,32 @@ int main(int argc, char **argv)
 
     int tam = finA.tellg() / sizeof(artistsAux);
 
-    int n = 10;
+    int n = 80000;
 
     vector<artists> vet = Artists::registrosArt(n, tam);
 
     cout << "Vetor inicial:" << endl;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < n; i++)
         cout << "->" << vet[i].followers;
 
     cout << "\n";
 
-    Quicksort(vet, 0, 9);
+    beginTime = clock(); 
+    Quicksort(vet, 0, n - 1);
+    endTime = clock();
 
     cout << "\nComparacoes:\t" << comparacao;
     cout << "\nTrocas:\t " << trocas;
+    cout << "\nTempo de Processamento : " << (endTime - beginTime) 
+    / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
     cout << "\n";
 
     cout << "Vetor ordenado:\t" << endl;
-    
-    for (int i = 0; i < 10; i++)
+
+    for (int i = 0; i < n; i++)
         cout << "->" << vet[i].followers;
+    cout << "\n";
 
     return 0;
 }
