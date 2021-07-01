@@ -6,6 +6,9 @@
 
 using namespace std;
 
+static int trocas = 0;
+static int comparacao = 0;
+
 
 void selectionSort(vector<artists> &vet,int n)
 {
@@ -25,11 +28,13 @@ void selectionSort(vector<artists> &vet,int n)
             {
                 menor=vet[j].followers;
                 indice=j;
+                comparacao++;
             }
         }
         aux=vet[i];
         vet[i]=vet[indice];
         vet[indice]=aux;
+        troca++;
     }
 }
 
@@ -64,7 +69,8 @@ int main(int argc, char **argv)
     endTime = clock();
 
 
-
+    cout << "\nComparacoes:\t" << comparacao;
+    cout << "\nTrocas:\t " << trocas;
     cout << "\nTempo de Processamento : " << (endTime - beginTime)
          / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
     cout << "\n";
