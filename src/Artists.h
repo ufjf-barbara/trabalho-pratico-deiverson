@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <vector>
 
 #ifndef ARTISTS_H_INCLUDED
 #define ARTISTS_H_INCLUDED
@@ -39,15 +40,22 @@ public:
     //metodos
     list<artists> getList();
     artistsAux converteToAux(artists art);
-    static artists converteArtToString(artistsAux art);
     void leArquivo(string path);
     void TransformaArtistBin();
-   static string concatenaArtists(char linha[]);
+    static artists converteArtToString(artistsAux art);
+    static string concatenaArtists(char linha[]);
 
-   // contadores
-   int id;
-   int name;
-   int genres;
+    //METODOS estaticos
+    
+    static bool verifica_numero(int vet[], int n, int aux);
+    static void sorteia_numero(int vet[], int n, int qtddReg);
+    static vector<artists> registrosArt(int n, int tam);
+   // static list<artists> registrosArt(int n, int tam);
+
+    // contadores
+    int id;
+    int name;
+    int genres;
 };
 
 #endif // ARTISTS_H_INCLUDED

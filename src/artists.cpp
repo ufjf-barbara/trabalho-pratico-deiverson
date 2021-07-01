@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <list>
+#include <vector>
 
 using namespace std;
 
@@ -123,7 +125,8 @@ void Artists::leArquivo(string path)
 
     else
     {
-        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)" << endl;
+        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)art\n"
+             << endl;
     }
 }
 
@@ -190,4 +193,62 @@ string Artists::concatenaArtists(char linha[])
         concatena += linha[i];
     }
     return concatena;
+}
+bool Artists::verifica_numero(int vet[], int n, int aux)
+{
+    for (int i = 0; i < n; i++)
+        if (vet[i] == aux)
+            return true;
+    return false;
+}
+
+// função que sorteia o numero da posiçao dos registros a serem coletados para impressao
+void Artists::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
+{
+
+    int aux;
+    for (int i = 0; i < n; i++)
+    {
+        do
+        {
+            aux = rand() % qtddReg;
+        } while (verifica_numero(vet, n, aux));
+
+        vet[i] = aux;
+    }
+}
+vector<artists> Artists::registrosArt(int n, int tam)
+//list<artists> Artists::registrosArt(int n, int tam)
+{
+    // list<artists> list;
+    vector<artists> vect;
+    int vet[n];
+    sorteia_numero(vet, n, tam);
+
+    for (int i = 0; i < n; i++)
+    {
+        artists art;
+        artistsAux arti;
+        //abertura do arquivo binario
+        ifstream fin;
+        fin.open("../print/artists.bin", ios::in);
+
+        //estrutura auxiliar
+        // pegando a posiçao em bytes
+        int posicao = vet[i] * sizeof(artistsAux);
+        // posicionando o ponteiro na posiçao a ser lida
+        fin.seekg(posicao, ios::beg);
+        //lendo o registro em uma estrurura aux com vetores de caracteres
+
+        fin.read((char *)&arti, sizeof(artistsAux));
+        // convertendo os vetores
+        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+        art = Artists ::converteArtToString(arti);
+        //  list.push_back(art);
+        vect.push_back(art);
+        fin.close(); // fechando o arquivo binario
+    }
+
+    // return list;
+    return vect;
 }
