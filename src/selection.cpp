@@ -7,25 +7,19 @@
 using namespace std;
 
 
-void selectionSort(vector<artists> &vet)
+void selectionSort(vector<artists> &vet,int n)
 {
-    int tam=lista.size();
-
-    for(artists art:lista)
-    {
-        vet.push_back(art);
-    }
 
     int menor=vet[0].followers;
     int indice=0;
     artists aux;
     int i=0,j=0;
 
-    for(i=0; i<tam; i++)
+    for(i=0; i<n; i++)
     {
         menor=vet[i].followers;
         indice=i;
-        for(j=i; j<tam; j++)
+        for(j=i; j<n; j++)
         {
             if(menor>vet[j].followers)
             {
@@ -66,7 +60,7 @@ int main(int argc, char **argv)
     cout << "\n";
 
     beginTime = clock();
-    selectionSort(vet);
+    selectionSort(vet,n);
     endTime = clock();
 
 
