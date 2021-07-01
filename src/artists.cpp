@@ -8,8 +8,11 @@
 #include <stdlib.h>
 #include <list>
 #include <vector>
+#include <math.h>
+#include <time.h>
 
 using namespace std;
+uint64_t xzero;
 
 Artists::Artists(string path)
 {
@@ -194,27 +197,48 @@ string Artists::concatenaArtists(char linha[])
     }
     return concatena;
 }
-bool Artists::verifica_numero(int vet[], int n, int aux)
+/* bool Artists::verifica_numero(int vet[], int n, int aux)
 {
     for (int i = 0; i < n; i++)
-        if (vet[i] == aux)
+        if (i == aux)
             return true;
     return false;
 }
+ */
 
+uint64_t myRand(int tam)
+{
+    int a = 6521;
+    int b = 56152;
+  //  cout << "a " << a << " b " << b << endl;
+    xzero = (uint64_t)(a * xzero + b) % tam;
+    return xzero;
+}
 // função que sorteia o numero da posiçao dos registros a serem coletados para impressao
 void Artists::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
 {
-
+    xzero = 5009;
     int aux;
+    int cont;
+
     for (int i = 0; i < n; i++)
     {
+        cout << i << "\n ";
+       /*  cont = 0;
+        for (int j = 0; j < qtddReg; j++)
+        {
+            if (vet[j] != -1)
+                cont++; 
+        }*/
+     //   cout << cont << "--------------\n";
         do
         {
-            aux = rand() % qtddReg;
-        } while (verifica_numero(vet, n, aux));
+            aux = myRand(qtddReg);
 
-        vet[i] = aux;
+        //    cout << aux << "-->" << qtddReg << "\n ";
+        } while (vet[aux] != -1); //verifica_numero(vet, n, aux)
+
+        vet[aux] = 1;
     }
 }
 vector<artists> Artists::registrosArt(int n, int tam)
@@ -222,33 +246,43 @@ vector<artists> Artists::registrosArt(int n, int tam)
 {
     // list<artists> list;
     vector<artists> vect;
-    int vet[n];
+    cout << "for\n";
+    int *vet = (int *)malloc(tam * sizeof(int));
+
+    for (int i = 0; i < tam; i++)
+        vet[i] = -1;
+
+    cout << "sort\n";
     sorteia_numero(vet, n, tam);
-
-    for (int i = 0; i < n; i++)
+    cout << "sorted\n";
+    for (int i = 0; i < tam; i++)
     {
-        artists art;
-        artistsAux arti;
-        //abertura do arquivo binario
-        ifstream fin;
-        fin.open("../print/artists.bin", ios::in);
+        if (vet[i] == 1)
+        {
+            artists art;
+            artistsAux arti;
+            //abertura do arquivo binario
+            ifstream fin;
+            fin.open("../print/artists.bin", ios::in);
 
-        //estrutura auxiliar
-        // pegando a posiçao em bytes
-        int posicao = vet[i] * sizeof(artistsAux);
-        // posicionando o ponteiro na posiçao a ser lida
-        fin.seekg(posicao, ios::beg);
-        //lendo o registro em uma estrurura aux com vetores de caracteres
+            //estrutura auxiliar
+            // pegando a posiçao em bytes
+            int posicao = i * sizeof(artistsAux);
+            // posicionando o ponteiro na posiçao a ser lida
+            fin.seekg(posicao, ios::beg);
+            //lendo o registro em uma estrurura aux com vetores de caracteres
 
-        fin.read((char *)&arti, sizeof(artistsAux));
-        // convertendo os vetores
-        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-        art = Artists ::converteArtToString(arti);
-        //  list.push_back(art);
-        vect.push_back(art);
-        fin.close(); // fechando o arquivo binario
+            fin.read((char *)&arti, sizeof(artistsAux));
+            // convertendo os vetores
+            //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+            art = Artists ::converteArtToString(arti);
+            //  list.push_back(art);
+            vect.push_back(art);
+            fin.close(); // fechando o arquivo binarios
+        }
     }
 
     // return list;
+    free(vet);
     return vect;
 }
