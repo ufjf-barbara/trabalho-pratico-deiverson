@@ -2,13 +2,12 @@
 #include <fstream>
 #include "Artists.h"
 #include <vector>
-#include <time.h>
+#include <ctime>
 
 using namespace std;
 
 static int trocas = 0;
 static int comparacao = 0;
-
 
 int particionamento(vector<artists> &vet, int b, int f)
 {
@@ -66,13 +65,17 @@ int main(int argc, char **argv)
     int tam = finA.tellg() / sizeof(artistsAux);
 
     int n = 800000;
-    cout << "3\n";
+
     vector<artists> vet = Artists::registrosArt(n, tam);
-    cout << "4\n";
-    cout << "Vetor inicial:" << endl;
+   
+    ofstream fout;
+
+    fout.open("ArtistsDesordenado.txt", ios::out);
 
     for (int i = 0; i < n; i++)
-        cout << "->" << vet[i].followers;
+        fout << "->" << vet[i].followers;
+        
+    fout.close();
 
     cout << "\n";
 
@@ -87,11 +90,10 @@ int main(int argc, char **argv)
     cout << "\nTempo de Processamento : " << (endTime - beginTime) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
     cout << "\n";
 
-    cout << "Vetor ordenado:\t" << endl;
-
+    fout.open("ArtistsOrdenado.txt", ios::out);
     for (int i = 0; i < n; i++)
-        cout << "->" << vet[i].followers;
+        fout << "->" << vet[i].followers;
     cout << "\n";
-
+    fout.close();
     return 0;
 }

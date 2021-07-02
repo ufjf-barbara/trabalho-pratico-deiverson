@@ -1,7 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <list>
-
 #ifndef TRACKS_H_INCLUDED
 #define TRACKS_H_INCLUDED
 
@@ -77,7 +73,7 @@ public:
     //METODOS estaticos
     static bool verifica_numero(int vet[], int n, int aux);
     static void sorteia_numero(int vet[], int n, int qtddReg);
-    static list<tracks> registrosTr(int n,int tam);
+    static vector<tracks> registrosTr(int n,int tam);
 
     // contadores estaticos
     int id;
