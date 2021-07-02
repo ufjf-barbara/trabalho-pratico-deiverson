@@ -1,3 +1,6 @@
+#include <list>
+#include <vector>
+
 #ifndef TRACKS_H_INCLUDED
 #define TRACKS_H_INCLUDED
 

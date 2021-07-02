@@ -1,12 +1,16 @@
-#include "Artists.h"
-#include <sstream>
-#include <string.h>
-#include <algorithm>
 #include <iostream>
 #include <fstream>
+#include "Artists.h"
+#include <list>
+#include <sstream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <list>
 #include <vector>
-
+#include <math.h>
+#include <ctime>
+#include <algorithm>
 
 using namespace std;
 uint64_t xzero;

@@ -1,3 +1,6 @@
+#include <list>
+#include <vector>
+
 #ifndef ARTISTS_H_INCLUDED
 #define ARTISTS_H_INCLUDED
 

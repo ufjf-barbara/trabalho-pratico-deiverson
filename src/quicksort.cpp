@@ -55,11 +55,9 @@ int main(int argc, char **argv)
 {
     srand(time(NULL));
 
-    cout << "1\n";
     clock_t beginTime, endTime;
     ifstream finA;
     finA.open("../print/artists.bin", ios::in);
-    cout << "2\n";
     finA.seekg(0, finA.end);
 
     int tam = finA.tellg() / sizeof(artistsAux);
@@ -91,9 +89,12 @@ int main(int argc, char **argv)
     cout << "\n";
 
     fout.open("ArtistsOrdenado.txt", ios::out);
+ 
     for (int i = 0; i < n; i++)
         fout << "->" << vet[i].followers;
     cout << "\n";
+ 
     fout.close();
+ 
     return 0;
 }
