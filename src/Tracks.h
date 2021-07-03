@@ -1,5 +1,10 @@
+#include <iostream>
+#include <fstream>
 #include <list>
 #include <vector>
+#include <sstream>
+#include <string.h>
+#include <algorithm>
 
 #ifndef TRACKS_H_INCLUDED
 #define TRACKS_H_INCLUDED
