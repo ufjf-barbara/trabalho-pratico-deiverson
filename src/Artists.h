@@ -1,5 +1,17 @@
+#include <iostream>
+#include <fstream>
+#include <list>
+#include <sstream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <list>
 #include <vector>
+#include <math.h>
+#include <ctime>
+#include <algorithm>
+
+
 
 #ifndef ARTISTS_H_INCLUDED
 #define ARTISTS_H_INCLUDED
