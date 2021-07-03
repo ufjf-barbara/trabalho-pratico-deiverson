@@ -1,10 +1,8 @@
 #include "Artists.h"
 #include "Tracks.h"
 #include "functeste.h"
-#include <fstream>  //leitura e escrita de arquivos
 #include <iostream> //entrada pelo teclado e saida pela prompt
-#include <time.h>   // trabalhar com o relogio do sistema
-#include <stdlib.h>
+#include <fstream>
 
 using namespace std;
 
