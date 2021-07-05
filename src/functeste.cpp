@@ -58,7 +58,8 @@ void func_teste::testReadBin(int tamT, int tamA)
         }
         // se verdadeiro pega 10 registros aleatorios  e os imprime  na tela
         else if (n == 10)
-        {
+        {cout << "\n\nRegistros Artists\n\n"
+                 << endl;
             for (artists art : Artists::registrosArt(n, tamA))
             {
                 cout << art.id

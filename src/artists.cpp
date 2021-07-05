@@ -129,7 +129,7 @@ void Artists::leArquivo(string path)
 
     else
     {
-        cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)art\n"
+        cout << "Nao foi possivel abrir o arquivo artists.csv\n"
              << endl;
     }
 }
@@ -198,7 +198,7 @@ string Artists::concatenaArtists(char linha[])
     }
     return concatena;
 }
-
+int myrandom (int i) { return rand()%i;}
 vector<artists> Artists::registrosArt(int n, int tam)
 {
     vector<artists> vect;
@@ -207,9 +207,9 @@ vector<artists> Artists::registrosArt(int n, int tam)
     {
         vet.push_back(i);
     }
-    random_shuffle(vet.begin(), vet.end());
 
-    //sorteia_numero(vet, n, tam);
+    random_shuffle(vet.begin(), vet.end());
+   
     for (int i = 0; i < n; i++)
     {
 
@@ -221,7 +221,7 @@ vector<artists> Artists::registrosArt(int n, int tam)
 
         //estrutura auxiliar
         // pegando a posiçao em bytes
-        int posicao = i * sizeof(artistsAux);
+        int posicao = vet[i] * sizeof(artistsAux);
         // posicionando o ponteiro na posiçao a ser lida
         fin.seekg(posicao, ios::beg);
         //lendo o registro em uma estrurura aux com vetores de caracteres

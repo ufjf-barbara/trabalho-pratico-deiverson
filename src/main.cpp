@@ -41,7 +41,7 @@ int main(int argc, char **argv)
     {
         cout << "--------------------------------------------------------------------------" << endl;
         cout << "O que deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
-        cout << "[1] Ordenacao\n[2] Hash\n [3] Modulo teste\n [0] Finalizar\n";
+        cout << "[1] Ordenacao\n[2] Hash\n[3] Modulo teste\n[0] Finalizar\n";
         cout << "--------------------------------------------------------------------------" << endl;
         cin >> aux;
 

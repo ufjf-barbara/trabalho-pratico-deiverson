@@ -354,6 +354,7 @@ string Tracks::concatenaTracks(char linha[])
     }
     return concatena;
 }
+
 vector<tracks> Tracks::registrosTr(int n, int tam)
 {
     vector<tracks> vect;
@@ -366,27 +367,38 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
 
     for (int i = 0; i < n; i++)
     {
-        tracks tr;
-        tracksAux tra;
-        //abertura do arquivo binario
-        ifstream fin;
-        fin.open("../print/tracks.bin", ios::in);
+        vector<tracks> vect;
+        vector<int> vet;
+        for (int i = 0; i < tam; i++)
+        {
+            vet.push_back(i);
+        }
+        random_shuffle(vet.begin(), vet.end());
 
-        //estrutura auxiliar
+        //sorteia_numero(vet, n, tam);
+        for (int i = 0; i < n; i++)
+        {
 
-        // pegando a posiçao em bytes
-        int posicao = vet[i] * sizeof(tracksAux);
-        // posicionando o ponteiro na posiçao a ser lida
-        fin.seekg(posicao, ios::beg);
-        //lendo o registro em uma estrurura aux com vetores de caracteres
+            tracks tr;
+            tracksAux tra;
+            //abertura do arquivo binario
+            ifstream fin;
+            fin.open("../print/tracks.bin", ios::in);
 
-        fin.read((char *)&tra, sizeof(tracksAux));
-        // convertendo os vetores
-        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-        tr = Tracks ::converteTracksToString(tra);
-        vect.push_back(tr);
-        fin.close(); // fechando o arquivo binario
+            //estrutura auxiliar
+            // pegando a posiçao em bytes
+            int posicao = vet[i] * sizeof(tracksAux);
+            // posicionando o ponteiro na posiçao a ser lida
+            fin.seekg(posicao, ios::beg);
+            //lendo o registro em uma estrurura aux com vetores de caracteres
+
+            fin.read((char *)&tra, sizeof(tracksAux));
+            // convertendo os vetores
+            //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+            tr = Tracks ::converteTracksToString(tra);
+            vect.push_back(tr);
+            fin.close(); // fechando o arquivo binarios
+        }
+        return vect;
     }
-
-    return vect;
 }
