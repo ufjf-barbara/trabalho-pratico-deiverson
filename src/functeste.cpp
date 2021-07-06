@@ -1,10 +1,8 @@
 #include "Artists.h"
 #include "Tracks.h"
 #include "functeste.h"
-#include <fstream>  //leitura e escrita de arquivos
 #include <iostream> //entrada pelo teclado e saida pela prompt
-#include <time.h>   // trabalhar com o relogio do sistema
-#include <stdlib.h>
+#include <fstream>
 
 using namespace std;
 
@@ -32,7 +30,7 @@ void func_teste::func_test(string path) // funçao estatica
     {
         finA.close();
         finT.close();
-        callTeste(tamT, tamA);
+        testReadBin(tamT, tamA);
     }
     else
         cout << "arquivos nao abriram" << endl;
@@ -42,7 +40,7 @@ void func_teste::func_test(string path) // funçao estatica
 // manipular os ponteiros nos arquivos e fazer a impreçao no console output
 // em um arquivo de texto em uma pasta chamada " print " do diretorio principal
 // do trabalho
-void func_teste::callTeste(int tamT, int tamA)
+void func_teste::testReadBin(int tamT, int tamA)
 
 {
     int n = 0;

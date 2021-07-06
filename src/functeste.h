@@ -1,7 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <list>
-
 #ifndef FUNCTESTE_H_INCLUDED
 #define FUNCTESTE_H_INCLUDED
 
@@ -13,7 +9,12 @@ public:
   static void func_test(string path);
 
 private:
-  static void callTeste(int tamT, int tamA);
+  static void testReadBin(int tamT, int tamA);
+/*   void first();
+  void second();
+  void ();
+  void binTest();
+ */
 };
 
 #endif // ARTISTS_H_INCLUDED

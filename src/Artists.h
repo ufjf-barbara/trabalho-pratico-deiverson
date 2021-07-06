@@ -1,6 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <sstream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <list>
+#include <vector>
+#include <math.h>
+#include <ctime>
+#include <algorithm>
+
+
 
 #ifndef ARTISTS_H_INCLUDED
 #define ARTISTS_H_INCLUDED
@@ -39,16 +50,15 @@ public:
     //metodos
     list<artists> getList();
     artistsAux converteToAux(artists art);
-    static artists converteArtToString(artistsAux art);
     void leArquivo(string path);
     void TransformaArtistBin();
+    static artists converteArtToString(artistsAux art);
     static string concatenaArtists(char linha[]);
 
     //METODOS estaticos
-    
-    static bool verifica_numero(int vet[], int n, int aux);
-    static void sorteia_numero(int vet[], int n, int qtddReg);
-    static list<artists> registrosArt(int n, int tam);
+
+    static vector<artists> registrosArt(int n, int tam);
+    // static list<artists> registrosArt(int n, int tam);
 
     // contadores
     int id;
