@@ -11,8 +11,6 @@
 #include <ctime>
 #include <algorithm>
 
-
-
 #ifndef ARTISTS_H_INCLUDED
 #define ARTISTS_H_INCLUDED
 
@@ -56,7 +54,7 @@ public:
     static string concatenaArtists(char linha[]);
 
     //METODOS estaticos
-
+    static vector<pair<int, float>> registrosArtFollowers(int n, int tam);
     static vector<artists> registrosArt(int n, int tam);
     // static list<artists> registrosArt(int n, int tam);
 

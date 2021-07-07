@@ -1,6 +1,6 @@
+#include "Artists.h"
 #include <iostream>
 #include <fstream>
-#include "Artists.h"
 #include <list>
 #include <sstream>
 #include <stdio.h>
@@ -12,8 +12,10 @@
 #include <ctime>
 #include <algorithm>
 
+#include <utility>
+
+
 using namespace std;
-uint64_t xzero;
 
 Artists::Artists(string path)
 {
@@ -150,7 +152,7 @@ void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo arti
     }
     else
     {
-        cout << "N foi possivel abrir o arquivo" << endl;
+        cout << "Não foi possivel abrir o arquivo artists.bin\n" << endl;
     }
     arquivoArtistBin.close();
 }
@@ -198,18 +200,54 @@ string Artists::concatenaArtists(char linha[])
     }
     return concatena;
 }
-int myrandom (int i) { return rand()%i;}
+
 vector<artists> Artists::registrosArt(int n, int tam)
 {
     vector<artists> vect;
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        artists art;
+        artistsAux arti;
+        //abertura do arquivo binario
+        ifstream fin;
+        fin.open("../print/artists.bin", ios::in);
+
+        //estrutura auxiliar
+        // pegando a posiçao em bytes
+        int posicao = vet[i] * sizeof(artistsAux);
+        // posicionando o ponteiro na posiçao a ser lida
+        fin.seekg(posicao, ios::beg);
+        //lendo o registro em uma estrurura aux com vetores de caracteres
+
+        fin.read((char *)&arti, sizeof(artistsAux));
+        // convertendo os vetores
+        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+        art = Artists ::converteArtToString(arti);
+        vect.push_back(art);
+        fin.close(); // fechando o arquivo binarios
+    }
+    return vect;
+}
+ vector<pair<int,float>> Artists::registrosArtFollowers(int n, int tam)
+{
+    vector<pair<int,float>> vect;
+    
+
     vector<int> vet;
     for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
     }
-
     random_shuffle(vet.begin(), vet.end());
-   
+
     for (int i = 0; i < n; i++)
     {
 
@@ -230,7 +268,10 @@ vector<artists> Artists::registrosArt(int n, int tam)
         // convertendo os vetores
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         art = Artists ::converteArtToString(arti);
-        vect.push_back(art);
+
+        pair<int,float> paer(vet[i],art.followers);
+        
+        vect.push_back(paer);
         fin.close(); // fechando o arquivo binarios
     }
     return vect;

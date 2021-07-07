@@ -2,9 +2,14 @@
 #include <iostream>
 #include <fstream>
 #include <list>
-#include <vector>
 #include <sstream>
+#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <list>
+#include <vector>
+#include <math.h>
+#include <ctime>
 #include <algorithm>
 
 using namespace std;
@@ -18,9 +23,11 @@ Tracks ::Tracks(string path)
     release_date = 0;
     leArquivo(path + "./tracks.csv");
 }
+
 Tracks ::Tracks()
 {
 }
+
 Tracks::~Tracks()
 {
 }
@@ -260,6 +267,7 @@ void Tracks::leArquivo(string path)
         cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)tracks" << endl;
     }
 }
+
 void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.csv em binário
 {
     ofstream arquivoTrackBin;
@@ -275,7 +283,7 @@ void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.
     }
     else
     {
-        cout << "N foi possível abrir o arquivo track \n"
+        cout << "Não foi possivel abrir o arquivo tracks.bin\n"
              << endl;
     }
     arquivoTrackBin.close();
@@ -359,6 +367,7 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
 {
     vector<tracks> vect;
     vector<int> vet;
+
     for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
@@ -367,38 +376,26 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
 
     for (int i = 0; i < n; i++)
     {
-        vector<tracks> vect;
-        vector<int> vet;
-        for (int i = 0; i < tam; i++)
-        {
-            vet.push_back(i);
-        }
-        random_shuffle(vet.begin(), vet.end());
+        tracks tr;
+        tracksAux tra;
+        //abertura do arquivo binario
+        ifstream fin;
+        fin.open("../print/tracks.bin", ios::in);
 
-        //sorteia_numero(vet, n, tam);
-        for (int i = 0; i < n; i++)
-        {
+        //estrutura auxiliar
+        // pegando a posiçao em bytes
+        int posicao = vet[i] * sizeof(tracksAux);
+        // posicionando o ponteiro na posiçao a ser lida
+        fin.seekg(posicao, ios::beg);
+        //lendo o registro em uma estrurura aux com vetores de caracteres
 
-            tracks tr;
-            tracksAux tra;
-            //abertura do arquivo binario
-            ifstream fin;
-            fin.open("../print/tracks.bin", ios::in);
-
-            //estrutura auxiliar
-            // pegando a posiçao em bytes
-            int posicao = vet[i] * sizeof(tracksAux);
-            // posicionando o ponteiro na posiçao a ser lida
-            fin.seekg(posicao, ios::beg);
-            //lendo o registro em uma estrurura aux com vetores de caracteres
-
-            fin.read((char *)&tra, sizeof(tracksAux));
-            // convertendo os vetores
-            //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-            tr = Tracks ::converteTracksToString(tra);
-            vect.push_back(tr);
-            fin.close(); // fechando o arquivo binarios
-        }
-        return vect;
+        fin.read((char *)&tra, sizeof(tracksAux));
+        // convertendo os vetores
+        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+        tr = Tracks::converteTracksToString(tra);
+        vect.push_back(tr);
+        cout << vect[i].name << "\t" << vet[i] << endl;
+        fin.close(); // fechando o arquivo binarios
     }
+    return vect;
 }

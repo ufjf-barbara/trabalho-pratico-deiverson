@@ -4,31 +4,32 @@
 #include <vector>
 #include <ctime>
 
+#include <utility>
+
 using namespace std;
 
 static int trocas = 0;
 static int comparacao = 0;
 
-int particionamento(vector<artists> &vet, int b, int f)
+int particionamento(vector<pair<int, float>> &vet, int b, int f)
 {
-    float pivo = vet[b /* +((f-b)/2) */].followers;
+    pair<int, float> pivo = vet[b];
+    pair<int, float> aux;
     int i = b;
     int j = f + 1;
-    artists aux;
 
     do
     {
-        while (vet[i].followers < pivo && i <= f)
+        do
         {
             i++;
             comparacao++;
-        }
-
+        } while (vet[i].second < pivo.second && i <= f);
         do
         {
             j--;
             comparacao++;
-        } while (pivo < vet[j].followers);
+        } while (pivo.second < vet[j].second);
         if (i < j)
         {
             trocas++;
@@ -37,17 +38,19 @@ int particionamento(vector<artists> &vet, int b, int f)
             vet[j] = aux;
         }
     } while (i < j);
-
+    vet[b] = vet[j];
+    vet[j] = pivo;
     return j;
 }
 
-void Quicksort(vector<artists> &vet, int b, int f)
+
+void Quicksort(vector<pair<int, float>> &vet, int b, int f)
 {
     int pivo;
     if (b < f)
     {
         pivo = particionamento(vet, b, f);
-        Quicksort(vet, b, pivo);
+        Quicksort(vet, b, pivo-1);
         Quicksort(vet, pivo + 1, f);
     }
 }
@@ -62,28 +65,30 @@ int main(int argc, char **argv)
 
     int tam = finA.tellg() / sizeof(artistsAux);
 
-    int n = 500000;
-    vector<artists> vet;
+    int n = 800000;
+
+    vector<pair<int, float>> vet;
     ofstream fout;
-    for (int j = 0; j < 9; j++)
+    int j = 0;
+    for (j = 0; j < 1; j++)
     {
-        cout << "\n-----------------------------------------------------------\n";
-        vet = Artists::registrosArt(n, tam);
+        comparacao = 0;
+        trocas = 0;
+        cout << "\n-----------------------------------------------------------";
+        vet = Artists::registrosArtFollowers(n, tam);
 
         fout.open("ArtistsDesordenado.txt", ios::out);
         for (int i = 0; i < n; i++)
-            fout << "->" << vet[i].followers;
+            fout << "->" << vet[i].second;
 
         fout.close();
-
-        cout << "\n";
 
         beginTime = clock();
 
         Quicksort(vet, 0, n - 1);
 
         endTime = clock();
-        
+
         cout << "\nComparacoes:\t" << comparacao;
         cout << "\nTrocas:\t " << trocas;
         cout << "\nTempo de Processamento : " << (endTime - beginTime) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
@@ -92,10 +97,10 @@ int main(int argc, char **argv)
         fout.open("ArtistsOrdenado.txt", ios::out);
 
         for (int i = 0; i < n; i++)
-            fout << "->" << vet[i].followers;
-        cout << "\n";
-
+            fout <<i<< "->" << vet[i].second<<endl;
         fout.close();
+
+
     }
 
     return 0;

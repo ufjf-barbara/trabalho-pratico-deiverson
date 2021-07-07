@@ -3,6 +3,7 @@
 #include "functeste.h"
 #include <iostream> //entrada pelo teclado e saida pela prompt
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -58,7 +59,8 @@ void func_teste::testReadBin(int tamT, int tamA)
         }
         // se verdadeiro pega 10 registros aleatorios  e os imprime  na tela
         else if (n == 10)
-        {cout << "\n\nRegistros Artists\n\n"
+        {
+            cout << "\n\nRegistros Artists\n\n"
                  << endl;
             for (artists art : Artists::registrosArt(n, tamA))
             {
@@ -107,17 +109,15 @@ void func_teste::testReadBin(int tamT, int tamA)
             foutA.open("../print/printARTISTS.txt");
 
             //Registros Artists
-            for (int i = 0; i < n; i++)
+
+            for (artists art : Artists::registrosArt(n, tamA))
             {
-                for (artists art : Artists::registrosArt(n, tamA))
-                {
-                    foutA << art.id
-                          << "," << art.followers
-                          << "," << art.genres
-                          << "," << art.name
-                          << "," << art.popularity
-                          << endl;
-                }
+                foutA << art.id
+                      << "," << art.followers
+                      << "," << art.genres
+                      << "," << art.name
+                      << "," << art.popularity
+                      << endl;
             }
             foutA.close();
             //Registros Tracks
