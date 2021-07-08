@@ -14,7 +14,6 @@
 
 #include <utility>
 
-
 using namespace std;
 
 Artists::Artists(string path)
@@ -32,13 +31,6 @@ Artists::~Artists()
 {
 }
 
-//GETTERS E SETTERS
-
-list<artists> Artists::getList()
-{
-    return lista;
-}
-
 //METODOS
 
 void Artists::leArquivo(string path)
@@ -48,6 +40,9 @@ void Artists::leArquivo(string path)
     string linha;
     arquivo.open(path, ios::in);
 
+    ofstream arquivoArtistBin;
+    arquivoArtistBin.open("../print/artists.bin", ios::binary | ios::out);
+    artistsAux arti;
     artists art;
     string auxFollowers = "";
     string auxPopularity = "";
@@ -56,9 +51,11 @@ void Artists::leArquivo(string path)
     bool verifica;
     if (arquivo.is_open())
     {
+
         getline(arquivo, linha);
         while (getline(arquivo, linha))
         {
+
             int contid = 0;
             int contname = 0;
             int contgenres = 0;
@@ -112,7 +109,13 @@ void Artists::leArquivo(string path)
             }
 
             cont = 0;
-            lista.push_back(art); //adiciona na lista
+            // lista.push_back(art); //adiciona na lista
+
+            // Escrita---------------------------------------------------------------------------
+            arti = converteToAux(art);
+            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
+
+            //-----------------------------------------------------------------------------------
 
             art.id = "";
             art.followers = 0;
@@ -126,35 +129,14 @@ void Artists::leArquivo(string path)
              << "\n name = " << this->name
              << "\n genres = " << this->genres;
         arquivo.close();
-        TransformaArtistBin();
+        arquivoArtistBin.close();
     }
 
     else
     {
-        cout << "Nao foi possivel abrir o arquivo artists.csv\n"
+        cout << "\nNao foi possivel abrir o arquivo artists.csv\n"
              << endl;
     }
-}
-
-void Artists ::TransformaArtistBin() // Fun��o que transforma o arquivo artists.csv em bin�rio
-{
-    ofstream arquivoArtistBin;
-
-    arquivoArtistBin.open("../print/artists.bin", ios::binary);
-    if (arquivoArtistBin.is_open())
-    {
-        artistsAux arti;
-        for (artists art : lista)
-        {
-            arti = converteToAux(art);
-            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
-        }
-    }
-    else
-    {
-        cout << "Não foi possivel abrir o arquivo artists.bin\n" << endl;
-    }
-    arquivoArtistBin.close();
 }
 
 //converte os campos de string para vetores de caracteres
@@ -179,27 +161,16 @@ artists Artists::converteArtToString(artistsAux art)
 {
     artists arti;
 
-    arti.id = concatenaArtists(art.id);
+    arti.id.assign(art.id, strlen(art.id));
     arti.followers = art.followers;
-    arti.followers = art.followers;
-    arti.genres = concatenaArtists(art.genres);
-    arti.name = concatenaArtists(art.name);
+    arti.genres.assign(art.genres, strlen(art.genres));
+    arti.name.assign(art.name, strlen(art.name));
     arti.popularity = art.popularity;
 
     return arti;
 }
 
 //função para transformar vetores de caracteres em string
-
-string Artists::concatenaArtists(char linha[])
-{
-    string concatena = "";
-    for (int i = 0; linha[i] != '\0'; i++)
-    {
-        concatena += linha[i];
-    }
-    return concatena;
-}
 
 vector<artists> Artists::registrosArt(int n, int tam)
 {
@@ -212,13 +183,14 @@ vector<artists> Artists::registrosArt(int n, int tam)
     }
     random_shuffle(vet.begin(), vet.end());
 
+    ifstream fin;
+    fin.open("../print/artists.bin", ios::in | ios::binary);
+
     for (int i = 0; i < n; i++)
     {
         artists art;
         artistsAux arti;
         //abertura do arquivo binario
-        ifstream fin;
-        fin.open("../print/artists.bin", ios::in);
 
         //estrutura auxiliar
         // pegando a posiçao em bytes
@@ -231,15 +203,17 @@ vector<artists> Artists::registrosArt(int n, int tam)
         // convertendo os vetores
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         art = Artists ::converteArtToString(arti);
+
+        //          arti = converteToAux(art);
+        //            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
         vect.push_back(art);
-        fin.close(); // fechando o arquivo binarios
     }
+    fin.close(); // fechando o arquivo binarios
     return vect;
 }
- vector<pair<int,float>> Artists::registrosArtFollowers(int n, int tam)
+vector<pair<int, float>> Artists::registrosArtFollowers(int n, int tam)
 {
-    vector<pair<int,float>> vect;
-    
+    vector<pair<int, float>> vect;
 
     vector<int> vet;
     for (int i = 0; i < tam; i++)
@@ -255,7 +229,7 @@ vector<artists> Artists::registrosArt(int n, int tam)
         artistsAux arti;
         //abertura do arquivo binario
         ifstream fin;
-        fin.open("../print/artists.bin", ios::in);
+        fin.open("../print/artists.bin", ios::binary | ios::in);
 
         //estrutura auxiliar
         // pegando a posiçao em bytes
@@ -269,8 +243,8 @@ vector<artists> Artists::registrosArt(int n, int tam)
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         art = Artists ::converteArtToString(arti);
 
-        pair<int,float> paer(vet[i],art.followers);
-        
+        pair<int, float> paer(vet[i], art.followers);
+
         vect.push_back(paer);
         fin.close(); // fechando o arquivo binarios
     }

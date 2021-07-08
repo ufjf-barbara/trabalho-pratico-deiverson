@@ -25,16 +25,17 @@ void func_teste::func_test(string path) // funçao estatica
     //consigo obter o numero de registros que há em cada arquivo binario
     int tamT = finT.tellg() / sizeof(tracksAux);
     int tamA = finA.tellg() / sizeof(artistsAux);
+    cout<<"\ntamT "<<tamT<<endl;
 
     //verifico se os arquivos resalmente estao abertos e chamo finalmente a funçao teste
     if (finT.is_open() && finA.is_open())
     {
-        finA.close();
-        finT.close();
         testReadBin(tamT, tamA);
     }
     else
         cout << "arquivos nao abriram" << endl;
+    finA.close();
+    finT.close();
 }
 
 // funçao para saber quantos registros ler dos binarios,

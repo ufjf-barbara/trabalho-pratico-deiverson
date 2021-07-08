@@ -62,33 +62,25 @@ class Tracks
 {
 
 private:
-    list<tracks> lista;
-
-public:
-    Tracks(string path);
-    Tracks();
-    ~Tracks();
-
-    list<tracks> getList();
-
-    //METODOS
-    void leArquivo(string path);
-    void TransformaTrackBin();
-    tracksAux converteToAux(tracks tr);
-    static tracks converteTracksToString(tracksAux tr);
-    static string concatenaTracks(char linha[]);
-
-    //METODOS estaticos
-    static bool verifica_numero(int vet[], int n, int aux);
-    static void sorteia_numero(int vet[], int n, int qtddReg);
-    static vector<tracks> registrosTr(int n,int tam);
-
     // contadores estaticos
     int id;
     int name;
     int artists;
     int id_artists;
     int release_date;
+
+public:
+    Tracks(string path);
+    Tracks();
+    ~Tracks();
+
+    //METODOS
+    void leArquivo(string path);
+    tracksAux converteToAux(tracks tr);
+    static tracks converteTracksToString(tracksAux tr);
+
+    //METODOS estaticos
+    static vector<tracks> registrosTr(int n, int tam);
 };
 
 #endif // TRACKS_H_INCLUDED

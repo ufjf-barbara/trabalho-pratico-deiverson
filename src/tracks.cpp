@@ -34,11 +34,6 @@ Tracks::~Tracks()
 
 //GETTERS E SETTERS
 
-list<tracks> Tracks::getList()
-{
-    return lista;
-}
-
 //METODOS
 
 void Tracks::leArquivo(string path)
@@ -49,6 +44,10 @@ void Tracks::leArquivo(string path)
     fstream arquivo;
     string linha;
     arquivo.open(path, ios::in);
+
+    ofstream arquivoTrackBin;
+    arquivoTrackBin.open("../print/tracks.bin",ios::out| ios::binary);
+    tracksAux tra;
 
     //variaveis utilizadas para conversão de string para valor numerico
 
@@ -199,7 +198,12 @@ void Tracks::leArquivo(string path)
             }
             cont = 0;
 
-            lista.push_back(tr); //adiciona na lista
+            //lista.push_back(tr); //adiciona na lista
+
+            //escrita------------------------------------------------
+            tra = converteToAux(tr);
+            arquivoTrackBin.write((char *)&tra, sizeof(tracksAux));
+            //escrita------------------------------------------------
 
             //zerando variaveis para reutilizalas
 
@@ -257,36 +261,15 @@ void Tracks::leArquivo(string path)
              << "\nname = " << this->name
              << "\nartists = " << this->artists
              << "\nid_artists = " << this->id_artists
-             << "\n release_date = " << this->release_date << endl;
+             << "\nrelease_date = " << this->release_date << endl;
 
         arquivo.close();
-        TransformaTrackBin();
+        arquivoTrackBin.close();
     }
     else
     {
         cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)tracks" << endl;
     }
-}
-
-void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.csv em binário
-{
-    ofstream arquivoTrackBin;
-    arquivoTrackBin.open("../print/tracks.bin", ios::binary);
-    tracksAux tra;
-    if (arquivoTrackBin.is_open())
-    {
-        for (tracks tr : lista)
-        {
-            tra = converteToAux(tr);
-            arquivoTrackBin.write((char *)&tra, sizeof(tracksAux));
-        }
-    }
-    else
-    {
-        cout << "Não foi possivel abrir o arquivo tracks.bin\n"
-             << endl;
-    }
-    arquivoTrackBin.close();
 }
 
 //converte os campos de string para vetores de caracteres
@@ -326,15 +309,14 @@ tracks Tracks::converteTracksToString(tracksAux tr)
 {
     tracks tra;
 
-    tra.id = concatenaTracks(tr.id);
-    tra.name = concatenaTracks(tr.name);
+    tra.id.assign(tr.id, strlen(tr.id));
+    tra.name.assign(tr.name, strlen(tr.name));
     tra.popularity = tr.popularity;
     tra.duration_ms = tr.duration_ms;
     tra.explicit_ = tr.explicit_;
-    tra.artists = concatenaTracks(tr.artists);
-    tra.id_artists = concatenaTracks(tr.id_artists);
-    tra.artists = concatenaTracks(tr.artists);
-    tra.release_date = tr.release_date;
+    tra.artists.assign(tr.artists, strlen(tr.artists));
+    tra.id_artists.assign(tr.id_artists, strlen(tr.id_artists));
+    tra.release_date.assign(tr.release_date, strlen(tr.release_date));
     tra.danceability = tr.danceability;
     tra.energy = tr.energy;
     tra.key = tr.key;
@@ -351,17 +333,6 @@ tracks Tracks::converteTracksToString(tracksAux tr)
     return tra;
 }
 
-//função para transformar vetores de caracteres em string
-
-string Tracks::concatenaTracks(char linha[])
-{
-    string concatena = "";
-    for (int i = 0; linha[i] != '\0'; i++)
-    {
-        concatena += linha[i];
-    }
-    return concatena;
-}
 
 vector<tracks> Tracks::registrosTr(int n, int tam)
 {
@@ -380,11 +351,12 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
         tracksAux tra;
         //abertura do arquivo binario
         ifstream fin;
-        fin.open("../print/tracks.bin", ios::in);
+        fin.open("../print/tracks.bin", ios::in| ios::binary);
 
         //estrutura auxiliar
         // pegando a posiçao em bytes
         int posicao = vet[i] * sizeof(tracksAux);
+       
         // posicionando o ponteiro na posiçao a ser lida
         fin.seekg(posicao, ios::beg);
         //lendo o registro em uma estrurura aux com vetores de caracteres
@@ -394,7 +366,30 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         tr = Tracks::converteTracksToString(tra);
         vect.push_back(tr);
-        cout << vect[i].name << "\t" << vet[i] << endl;
+        cout<<"\n----------------------------------------------------"<<i<<"\n"<<endl;
+         cout<<"posicao "<<vet[i]<< endl;
+         cout << tr.id
+                     << "," << tr.name
+                     << "," << tr.popularity
+                     << "," << tr.duration_ms
+                     << "," << tr.explicit_
+                     << "," << tr.artists
+                     << "," << tr.id_artists
+                     << "," << tr.release_date
+                     << "," << tr.danceability
+                     << "," << tr.energy
+                     << "," << tr.key
+                     << "," << tr.loudness
+                     << "," << tr.mode
+                     << "," << tr.speechiness
+                     << "," << tr.acousticness
+                     << "," << tr.instrumentalness
+                     << "," << tr.liveness
+                     << "," << tr.valence
+                     << "," << tr.tempo
+                     << "," << tr.time_signature
+                     << endl;
+        //cout << vect[i].name << "\t" << vet[i] << endl;
         fin.close(); // fechando o arquivo binarios
     }
     return vect;
