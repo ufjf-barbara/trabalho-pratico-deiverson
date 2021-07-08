@@ -1,10 +1,11 @@
+#include "Tracks.h"
 #include <iostream>
 #include <fstream>
-#include "Tracks.h"
 #include <list>
+#include <vector>
 #include <sstream>
 #include <string.h>
-#include <stdlib.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -274,7 +275,8 @@ void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.
     }
     else
     {
-        cout << "N foi possível abrir o arquivo track \n" << endl;
+        cout << "N foi possível abrir o arquivo track \n"
+             << endl;
     }
     arquivoTrackBin.close();
 }
@@ -352,34 +354,15 @@ string Tracks::concatenaTracks(char linha[])
     }
     return concatena;
 }
-bool Tracks::verifica_numero(int vet[], int n, int aux)
+vector<tracks> Tracks::registrosTr(int n, int tam)
 {
-    for (int i = 0; i < n; i++)
-        if (vet[i] == aux)
-            return true;
-    return false;
-}
-
-// função que sorteia o numero da posiçao dos registros a serem coletados para impressao
-void Tracks::sorteia_numero(int vet[], int n, int qtddReg) //funçao para sortear a posiçao dos registros a serem impressos na tela ou arquivo
-{
-
-    int aux;
-    for (int i = 0; i < n; i++)
+    vector<tracks> vect;
+    vector<int> vet;
+    for (int i = 0; i < tam; i++)
     {
-        do
-        {
-            aux = rand() % qtddReg;
-        } while (verifica_numero(vet, n, aux));
-
-        vet[i] = aux;
+        vet.push_back(i);
     }
-}
-list<tracks> Tracks:: registrosTr(int n, int tam)
-{
-    list<tracks> list;
-    int vet[n];
-    sorteia_numero(vet, n, tam);
+    random_shuffle(vet.begin(), vet.end());
 
     for (int i = 0; i < n; i++)
     {
@@ -390,7 +373,7 @@ list<tracks> Tracks:: registrosTr(int n, int tam)
         fin.open("../print/tracks.bin", ios::in);
 
         //estrutura auxiliar
-       
+
         // pegando a posiçao em bytes
         int posicao = vet[i] * sizeof(tracksAux);
         // posicionando o ponteiro na posiçao a ser lida
@@ -401,9 +384,9 @@ list<tracks> Tracks:: registrosTr(int n, int tam)
         // convertendo os vetores
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         tr = Tracks ::converteTracksToString(tra);
-        list.push_back(tr);
+        vect.push_back(tr);
         fin.close(); // fechando o arquivo binario
     }
 
-    return list;
+    return vect;
 }

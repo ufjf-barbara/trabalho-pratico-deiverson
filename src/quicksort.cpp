@@ -2,7 +2,7 @@
 #include <fstream>
 #include "Artists.h"
 #include <vector>
-#include <time.h>
+#include <ctime>
 
 using namespace std;
 
@@ -58,37 +58,43 @@ int main(int argc, char **argv)
     clock_t beginTime, endTime;
     ifstream finA;
     finA.open("../print/artists.bin", ios::in);
-
     finA.seekg(0, finA.end);
 
     int tam = finA.tellg() / sizeof(artistsAux);
 
-    int n = 80000;
+    int n = 800000;
 
     vector<artists> vet = Artists::registrosArt(n, tam);
+   
+    ofstream fout;
 
-    cout << "Vetor inicial:" << endl;
+    fout.open("ArtistsDesordenado.txt", ios::out);
 
     for (int i = 0; i < n; i++)
-        cout << "->" << vet[i].followers;
+        fout << "->" << vet[i].followers;
+        
+    fout.close();
 
     cout << "\n";
 
-    beginTime = clock(); 
+    beginTime = clock();
+
     Quicksort(vet, 0, n - 1);
+
     endTime = clock();
 
     cout << "\nComparacoes:\t" << comparacao;
     cout << "\nTrocas:\t " << trocas;
-    cout << "\nTempo de Processamento : " << (endTime - beginTime) 
-    / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+    cout << "\nTempo de Processamento : " << (endTime - beginTime) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
     cout << "\n";
 
-    cout << "Vetor ordenado:\t" << endl;
-
+    fout.open("ArtistsOrdenado.txt", ios::out);
+ 
     for (int i = 0; i < n; i++)
-        cout << "->" << vet[i].followers;
+        fout << "->" << vet[i].followers;
     cout << "\n";
-
+ 
+    fout.close();
+ 
     return 0;
 }

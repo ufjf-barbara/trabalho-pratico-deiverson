@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Wed Jun 30 19:49:09 2021
+# Make data base, printed on Sat Jul 03 10:28:42 2021
 
 # Variables
 
@@ -34,7 +34,6 @@ HOMEDRIVE = C:
 CURDIR := c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src
 # default
 SHELL := sh.exe
- 
 # environment
 WINDIR = C:\Windows
 # environment
@@ -56,12 +55,11 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-a7c7857a-16d3-4d49-8e0c-6cf52c6ff0d8-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-7e9ddd61-33ea-4cfb-88e0-4dc63ec66ff6-sock
 # environment
-VSCODE_CWD = C:\Users\deive\Documents\GitHub\trabalho-pratico-deiverson\src
+VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
 # environment
-PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\M 
-inGW\bin;
+PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\MinGW\bin;
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
@@ -83,7 +81,7 @@ DIR = ""
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3156_CXSQIUBDTTNSKYDW
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15976_ADJSEDNJSKXLOWDB
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -123,8 +121,7 @@ MAKE_VERSION := 3.81
 # makefile
 .DEFAULT_GOAL := all
 # environment
-PROGRAMFI 
-LES(X86) = C:\Program Files (x86)
+PROGRAMFILES(X86) = C:\Program Files (x86)
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -164,8 +161,7 @@ SYSTEMROOT = C:\Windows
 # environment
 APPDATA = C:\Users\deive\AppData\Roaming
 # environment
-TEMP = C:\Users\deive\A 
-ppData\Local\Temp
+TEMP = C:\Users\deive\AppData\Local\Temp
 # environment
 COMSPEC = C:\Windows\system32\cmd.exe
 # default
@@ -193,7 +189,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 3156
+VSCODE_PID = 15976
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -207,28 +203,25 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 
 # : could not be stat'd.
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
-# C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 
- 29 files, no impossibilities.
+# C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1621020549): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1625089622): 18 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1625318821): 16 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1624317101): 4 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1622058532): 57 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
 # C:\Windows (key C:/Windows, mtime 1623361144): 114 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/, mtime 1622472733): 18 files, no impossibilities.
-# C:\Users\deive\AppData\Local\Git 
-HubDesktop\bin (key C:/Users/deive/AppData/Local/GitHubDesktop/bin, mtime 1612476182): 4 files, no impossibilities.
+# C:\Users\deive\AppData\Local\GitHubDesktop\bin (key C:/Users/deive/AppData/Local/GitHubDesktop/bin, mtime 1612476182): 4 files, no impossibilities.
 # C:\Program Files\Java\jdk1.8.0_271\bin (key C:/Program Files/Java/jdk1.8.0_271/bin, mtime 1610457260): 54 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Microsoft\WindowsApps (key C:/Users/deive/AppData/Local/Microsoft/WindowsApps, mtime 1624054871): 12 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1622472783): 6 files, no impossibilities.
 # C:\Program Files (x86)\apache-maven-3.6.3\bin (key C:/Program Files (x86)/apache-maven-3.6.3/bin, mtime 1573140738): 8 files, no impossibilities.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1608642917): 8 files, no impossibilities.
-# C:\Windows\system32 (key C:/Windows/system32, mtime 1624359298): 2834 files, no impossibilities.
-# C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, 
- mtime 1611235165): 5 files, no impossibilities.
+# C:\Windows\system32 (key C:/Windows/system32, mtime 1625194306): 2834 files, no impossibilities.
+# C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1611235165): 5 files, no impossibilities.
 
-# 3359 files, no impossibilities in 19 directories.
+# 3357 files, no impossibilities in 19 directories.
 
 # Implicit Rules
 
@@ -239,7 +232,7 @@ HubDesktop\bin (key C:/Users/deive/AppData/Local/GitHubDesktop/bin, mtime 161247
 # Not a target:
 functeste.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-29 20:03:55
+#  Last modified 2021-07-03 10:27:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -250,7 +243,6 @@ all: a.exe
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
- 
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/2=0%
@@ -273,7 +265,7 @@ makefile:
 # Not a target:
 artists.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-29 19:08:25
+#  Last modified 2021-07-03 10:27:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -282,17 +274,16 @@ artists.cpp:
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-29 20:17:12
+#  Last modified 2021-07-03 10:27:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 a.exe: main.cpp artists.cpp tracks.cpp functeste.cpp
-#  Implicit rule search h 
-as not been done.
+#  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `'
-#  File does not exist.
+#  Last modified 2021-07-02 19:23:51
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -333,8 +324,7 @@ run: a.exe
 
 clean:
 #  Implicit rule search has not been done.
-#  
- Modification time never checked.
+#  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `makefile', line 6):
 	del /S *.exe
@@ -343,7 +333,7 @@ clean:
 # Not a target:
 tracks.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-29 19:01:59
+#  Last modified 2021-07-03 10:27:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -362,6 +352,6 @@ tracks.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jun 30 19:49:09 2021
+# Finished Make data base on Sat Jul 03 10:28:42 2021
 
  
