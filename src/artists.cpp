@@ -35,7 +35,6 @@ Artists::~Artists()
 
 void Artists::leArquivo(string path)
 {
-
     fstream arquivo;
     string linha;
     arquivo.open(path, ios::in);
@@ -44,6 +43,7 @@ void Artists::leArquivo(string path)
     arquivoArtistBin.open("../print/artists.bin", ios::binary | ios::out);
     artistsAux arti;
     artists art;
+
     string auxFollowers = "";
     string auxPopularity = "";
 
@@ -109,9 +109,9 @@ void Artists::leArquivo(string path)
             }
 
             cont = 0;
-            // lista.push_back(art); //adiciona na lista
 
             // Escrita---------------------------------------------------------------------------
+         
             arti = converteToAux(art);
             arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
 
@@ -204,8 +204,6 @@ vector<artists> Artists::registrosArt(int n, int tam)
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         art = Artists ::converteArtToString(arti);
 
-        //          arti = converteToAux(art);
-        //            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
         vect.push_back(art);
     }
     fin.close(); // fechando o arquivo binarios

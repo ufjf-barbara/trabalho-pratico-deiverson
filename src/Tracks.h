@@ -36,14 +36,14 @@ struct tracks
 };
 struct tracksAux
 {
-    char id[48];
+    char id[23];
     char name[386];
     int popularity;
     float duration_ms;
     int explicit_;
     char artists[939];
     char id_artists[1511];
-    char release_date[1434];
+    char release_date[1433];
     float danceability;
     float energy;
     int key;
@@ -77,7 +77,7 @@ public:
     //METODOS
     void leArquivo(string path);
     tracksAux converteToAux(tracks tr);
-    static tracks converteTracksToString(tracksAux tr);
+    static tracks converteTracksToString(tracksAux tra);
 
     //METODOS estaticos
     static vector<tracks> registrosTr(int n, int tam);
