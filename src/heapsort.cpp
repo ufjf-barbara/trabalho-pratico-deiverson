@@ -17,16 +17,16 @@ void MaxHeapify(vector<artists> &vet, int i, int n) //Funcao que verifica a prop
 
     if ((l <= n) && (vet[l].followers > vet[i].followers)) //Se o filho da esquerda e maior do que a raiz(pai)
     {
-        m = l;
+        vet[m].followers = vet[l].followers;
     }
     else
-        m = i;
+        vet[m].followers = vet[i].followers;
 
     if ((r <= n) && (vet[r].followers > vet[m].followers)) //Se o filho da esquerda e maior do que a raiz(pai)
     {
-        m = r;
+        vet[m].followers = vet[r].followers;
     }
-    if (m != i)  // Se o maior não é raiz
+    if (m != i) // Se o maior não é raiz
     {
         swap(vet[i].followers, vet[m].followers);
         MaxHeapify(vet, m, n);
