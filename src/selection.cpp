@@ -53,14 +53,13 @@ int main(int argc, char **argv)
 
     int tam = finA.tellg() / sizeof(artistsAux);
 
-    int n = 10;
+    int n = 80000;
 
     vector<artists> vet = Artists::registrosArt(n, tam);
 
     cout << "Vetor inicial:" << endl;
 
-    for (int i = 0; i < n; i++)
-        cout << "->" << vet[i].followers;
+
 
     cout << "\n";
 

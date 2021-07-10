@@ -111,7 +111,7 @@ void Artists::leArquivo(string path)
             cont = 0;
 
             // Escrita---------------------------------------------------------------------------
-         
+
             arti = converteToAux(art);
             arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
 
@@ -128,8 +128,6 @@ void Artists::leArquivo(string path)
         cout << "\n id = " << this->id
              << "\n name = " << this->name
              << "\n genres = " << this->genres;
-        arquivo.close();
-        arquivoArtistBin.close();
     }
 
     else
@@ -137,6 +135,8 @@ void Artists::leArquivo(string path)
         cout << "\nNao foi possivel abrir o arquivo artists.csv\n"
              << endl;
     }
+    arquivo.close();
+    arquivoArtistBin.close();
 }
 
 //converte os campos de string para vetores de caracteres

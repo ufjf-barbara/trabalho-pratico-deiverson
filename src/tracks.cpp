@@ -65,15 +65,15 @@ void Tracks::leArquivo(string path)
     string auxtempo;
     string auxtime_signature;
 
+    int erro = 0;
     int cont = 0;
     bool verifica;
     if (arquivo.is_open())
     {
-        int conta = 0;
         getline(arquivo, linha);
         while (getline(arquivo, linha))
         {
-            conta++;
+
             int contid = 0;
             int contname = 0;
             int contartists = 0;
@@ -199,22 +199,25 @@ void Tracks::leArquivo(string path)
                     this->id = contid;
                 if (this->name < contname)
                     this->name = contname;
-                if (this->artists < contartists)
+                if (this->artists < contartists && contartists < 937)
                     this->artists = contartists;
-                if (this->id_artists < contid_artists)
+                if (this->id_artists < contid_artists && contid_artists < 1000)
                     this->id_artists = contid_artists;
-                if (this->release_date < contrelease_date)
+                if (this->release_date < contrelease_date && contrelease_date < 1000)
                     this->release_date = contrelease_date;
+                if (contid_artists >= 1000 || contrelease_date >= 1000)
+                    erro++;
             }
             cont = 0;
 
             //lista.push_back(tr); //adiciona na lista
 
             //escrita------------------------------------------------
-
-            tra = converteToAux(tr);
-            arquivoTrackBin.write((char *)&tra, sizeof(tracksAux));
-
+            if (!(contid_artists >= 1000 || contrelease_date >= 1000))
+            {
+                tra = converteToAux(tr);
+                arquivoTrackBin.write((char *)&tra, sizeof(tracksAux));
+            }
             //escrita------------------------------------------------
 
             //zerando variaveis para reutilizalas
@@ -263,14 +266,14 @@ void Tracks::leArquivo(string path)
              << "\nartists = " << this->artists
              << "\nid_artists = " << this->id_artists
              << "\nrelease_date = " << this->release_date << endl;
-
-        arquivo.close();
-        arquivoTrackBin.close();
     }
     else
     {
         cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)tracks" << endl;
     }
+    cout << "Erros " << erro;
+    arquivo.close();
+    arquivoTrackBin.close();
 }
 
 //converte os campos de string para vetores de caracteres
@@ -346,7 +349,7 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
     random_shuffle(vet.begin(), vet.end());
 
     ifstream fin;
-    fin.open("../print/tracks.bin" /* ios::in | ios::binary*/ );
+    fin.open("../print/tracks.bin", ios::in | ios::binary);
 
     for (int i = 0; i < n; i++)
     {
@@ -357,7 +360,6 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
         //estrutura auxiliar
         // pegando a posiçao em bytes
         int posicao = vet[i] * sizeof(tracksAux);
-
         // posicionando o ponteiro na posiçao a ser lida
         fin.seekg(posicao, ios::beg);
         //lendo o registro em uma estrurura aux com vetores de caracteres
@@ -365,7 +367,8 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
         fin.read((char *)&tra, sizeof(tracksAux));
         // convertendo os vetores
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-        tr = Tracks::converteTracksToString(tra);
+        tr = Tracks ::converteTracksToString(tra);
+
         vect.push_back(tr);
     }
     fin.close(); // fechando o arquivo binarios

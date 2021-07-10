@@ -26,6 +26,7 @@ int main(int argc, char **argv)
         Artists *arti = new Artists(path);
         delete arti;
     }
+    artbin.close();
     if (!trbin.is_open()) // Verificaçao pra saber se o arquivo Tracks.bin ja foi criado, caso nao, ler o Tracks.csv e cria-lo
     {
         trbin.close();
@@ -33,7 +34,6 @@ int main(int argc, char **argv)
         delete tr;
     }
 
-    artbin.close();
     trbin.close();
 
     int aux = 1;
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
             //Chamar  Modulo Teste;
             break;
         default:
-            cout<<"\nOpcao invalida\n";
+            cout << "\nOpcao invalida\n";
         }
     }
     func_teste::func_test(path); // chamada para executar a funçao teste

@@ -25,7 +25,7 @@ void func_teste::func_test(string path) // funçao estatica
     //consigo obter o numero de registros que há em cada arquivo binario
     int tamT = finT.tellg() / sizeof(tracksAux);
     int tamA = finA.tellg() / sizeof(artistsAux);
-    cout<<"\ntamT "<<tamT<<endl;
+    cout<<"\ntellgT "<< finT.tellg() <<"\ntamT "<< tamT<<"\nsizeT "<< sizeof(tracksAux)<<endl;
 
     //verifico se os arquivos resalmente estao abertos e chamo finalmente a funçao teste
     if (finT.is_open() && finA.is_open())
@@ -79,26 +79,26 @@ void func_teste::testReadBin(int tamT, int tamA)
             for (tracks tr : Tracks::registrosTr(n, tamT))
             {
                 cout << tr.id
-                     << "," << tr.name
-                     << "," << tr.popularity
-                     << "," << tr.duration_ms
-                     << "," << tr.explicit_
-                     << "," << tr.artists
-                     << "," << tr.id_artists
-                     << "," << tr.release_date
-                     << "," << tr.danceability
-                     << "," << tr.energy
-                     << "," << tr.key
-                     << "," << tr.loudness
-                     << "," << tr.mode
-                     << "," << tr.speechiness
-                     << "," << tr.acousticness
-                     << "," << tr.instrumentalness
-                     << "," << tr.liveness
-                     << "," << tr.valence
-                     << "," << tr.tempo
-                     << "," << tr.time_signature
-                     << endl;
+                     << " , " << tr.name
+                     << " , " << tr.popularity
+                     << " , " << tr.duration_ms
+                     << " , " << tr.explicit_
+                     << " , " << tr.artists
+                     << " , " << tr.id_artists
+                     << " , " << tr.release_date
+                     << " , " << tr.danceability
+                     << " , " << tr.energy
+                     << " , " << tr.key
+                     << " , " << tr.loudness
+                     << " , " << tr.mode
+                     << " , " << tr.speechiness
+                     << " , " << tr.acousticness
+                     << " , " << tr.instrumentalness
+                     << " , " << tr.liveness
+                     << " , " << tr.valence
+                     << " , " << tr.tempo
+                     << " , " << tr.time_signature
+                     <<"\n\n-----------------------------------\n\n";
             }
         }
         else //n= 100 ----- pega 100 registros e cria arquivo de texto armazenando-os na pasta print

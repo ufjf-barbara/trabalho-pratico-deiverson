@@ -42,8 +42,8 @@ struct tracksAux
     float duration_ms;
     int explicit_;
     char artists[939];
-    char id_artists[1511];
-    char release_date[1433];
+    char id_artists[1000];//1511
+    char release_date[1000];//1433
     float danceability;
     float energy;
     int key;
