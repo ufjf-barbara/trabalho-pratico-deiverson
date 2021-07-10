@@ -1,11 +1,11 @@
-all: a.exe
+all: a
 
-a.exe : main.cpp artists.cpp tracks.cpp functeste.cpp
-		g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
+a : main.cpp artists.cpp tracks.cpp functeste.cpp
+	g++ main.cpp artists.cpp tracks.cpp functeste.cpp -o main.exe
 clean:
 	del /S *.exe
 
 DIR=""
 
-run:a.exe
-	main.exe $(DIR)
+run:a
+	.\main.exe $(DIR)

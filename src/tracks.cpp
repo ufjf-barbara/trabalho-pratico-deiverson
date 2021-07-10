@@ -2,9 +2,14 @@
 #include <iostream>
 #include <fstream>
 #include <list>
-#include <vector>
 #include <sstream>
+#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <list>
+#include <vector>
+#include <math.h>
+#include <ctime>
 #include <algorithm>
 
 using namespace std;
@@ -18,30 +23,29 @@ Tracks ::Tracks(string path)
     release_date = 0;
     leArquivo(path + "./tracks.csv");
 }
+
 Tracks ::Tracks()
 {
 }
+
 Tracks::~Tracks()
 {
 }
 
 //GETTERS E SETTERS
 
-list<tracks> Tracks::getList()
-{
-    return lista;
-}
-
 //METODOS
 
 void Tracks::leArquivo(string path)
 {
-
-    tracks tr;
-
     fstream arquivo;
     string linha;
     arquivo.open(path, ios::in);
+
+    ofstream arquivoTrackBin;
+    arquivoTrackBin.open("../print/tracks.bin", ios::binary);
+    tracksAux tra;
+    tracks tr;
 
     //variaveis utilizadas para conversão de string para valor numerico
 
@@ -61,6 +65,7 @@ void Tracks::leArquivo(string path)
     string auxtempo;
     string auxtime_signature;
 
+    int erro = 0;
     int cont = 0;
     bool verifica;
     if (arquivo.is_open())
@@ -68,6 +73,7 @@ void Tracks::leArquivo(string path)
         getline(arquivo, linha);
         while (getline(arquivo, linha))
         {
+
             int contid = 0;
             int contname = 0;
             int contartists = 0;
@@ -189,23 +195,32 @@ void Tracks::leArquivo(string path)
                     auxtime_signature += linha[i];
                     istringstream(auxtime_signature) >> tr.time_signature;
                 }
+                if (this->id < contid)
+                    this->id = contid;
+                if (this->name < contname)
+                    this->name = contname;
+                if (this->artists < contartists && contartists < 937)
+                    this->artists = contartists;
+                if (this->id_artists < contid_artists && contid_artists < 1000)
+                    this->id_artists = contid_artists;
+                if (this->release_date < contrelease_date && contrelease_date < 1000)
+                    this->release_date = contrelease_date;
+                if (contid_artists >= 1000 || contrelease_date >= 1000)
+                    erro++;
             }
             cont = 0;
 
-            lista.push_back(tr); //adiciona na lista
+            //lista.push_back(tr); //adiciona na lista
+
+            //escrita------------------------------------------------
+            if (!(contid_artists >= 1000 || contrelease_date >= 1000))
+            {
+                tra = converteToAux(tr);
+                arquivoTrackBin.write((char *)&tra, sizeof(tracksAux));
+            }
+            //escrita------------------------------------------------
 
             //zerando variaveis para reutilizalas
-
-            if (this->id < contid)
-                this->id = contid;
-            if (this->name < contname)
-                this->name = contname;
-            if (this->artists < contartists)
-                this->artists = contartists;
-            if (this->id_artists < contid_artists)
-                this->id_artists = contid_artists;
-            if (this->release_date < contrelease_date)
-                this->release_date = contrelease_date;
 
             tr.id = "";
             tr.name = "";
@@ -250,34 +265,14 @@ void Tracks::leArquivo(string path)
              << "\nname = " << this->name
              << "\nartists = " << this->artists
              << "\nid_artists = " << this->id_artists
-             << "\n release_date = " << this->release_date << endl;
-
-        arquivo.close();
-        TransformaTrackBin();
+             << "\nrelease_date = " << this->release_date << endl;
     }
     else
     {
         cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)tracks" << endl;
     }
-}
-void Tracks ::TransformaTrackBin() // Função que transforma o arquivo artists.csv em binário
-{
-    ofstream arquivoTrackBin;
-    arquivoTrackBin.open("../print/tracks.bin", ios::binary);
-    tracksAux tra;
-    if (arquivoTrackBin.is_open())
-    {
-        for (tracks tr : lista)
-        {
-            tra = converteToAux(tr);
-            arquivoTrackBin.write((char *)&tra, sizeof(tracksAux));
-        }
-    }
-    else
-    {
-        cout << "N foi possível abrir o arquivo track \n"
-             << endl;
-    }
+    cout << "Erros " << erro;
+    arquivo.close();
     arquivoTrackBin.close();
 }
 
@@ -314,66 +309,55 @@ tracksAux Tracks::converteToAux(tracks tr)
 
 //converte vetores de caracteres para strings
 
-tracks Tracks::converteTracksToString(tracksAux tr)
+tracks Tracks::converteTracksToString(tracksAux tra)
 {
-    tracks tra;
+    tracks tr;
 
-    tra.id = concatenaTracks(tr.id);
-    tra.name = concatenaTracks(tr.name);
-    tra.popularity = tr.popularity;
-    tra.duration_ms = tr.duration_ms;
-    tra.explicit_ = tr.explicit_;
-    tra.artists = concatenaTracks(tr.artists);
-    tra.id_artists = concatenaTracks(tr.id_artists);
-    tra.artists = concatenaTracks(tr.artists);
-    tra.release_date = tr.release_date;
-    tra.danceability = tr.danceability;
-    tra.energy = tr.energy;
-    tra.key = tr.key;
-    tra.loudness = tr.loudness;
-    tra.mode = tr.mode;
-    tra.speechiness = tr.speechiness;
-    tra.acousticness = tr.acousticness;
-    tra.instrumentalness = tr.instrumentalness;
-    tra.liveness = tr.liveness;
-    tra.valence = tr.valence;
-    tra.tempo = tr.tempo;
-    tra.time_signature = tr.time_signature;
+    tr.id.assign(tra.id, strlen(tra.id));
+    tr.name.assign(tra.name, strlen(tra.name));
+    tr.popularity = tra.popularity;
+    tr.duration_ms = tra.duration_ms;
+    tr.explicit_ = tra.explicit_;
+    tr.artists.assign(tra.artists, strlen(tra.artists));
+    tr.id_artists.assign(tra.id_artists, strlen(tra.id_artists));
+    tr.release_date.assign(tra.release_date, strlen(tra.release_date));
+    tr.danceability = tra.danceability;
+    tr.energy = tra.energy;
+    tr.key = tra.key;
+    tr.loudness = tra.loudness;
+    tr.mode = tra.mode;
+    tr.speechiness = tra.speechiness;
+    tr.acousticness = tra.acousticness;
+    tr.instrumentalness = tra.instrumentalness;
+    tr.liveness = tra.liveness;
+    tr.valence = tra.valence;
+    tr.tempo = tra.tempo;
+    tr.time_signature = tra.time_signature;
 
-    return tra;
+    return tr;
 }
 
-//função para transformar vetores de caracteres em string
-
-string Tracks::concatenaTracks(char linha[])
-{
-    string concatena = "";
-    for (int i = 0; linha[i] != '\0'; i++)
-    {
-        concatena += linha[i];
-    }
-    return concatena;
-}
 vector<tracks> Tracks::registrosTr(int n, int tam)
 {
     vector<tracks> vect;
     vector<int> vet;
+
     for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
     }
     random_shuffle(vet.begin(), vet.end());
 
+    ifstream fin;
+    fin.open("../print/tracks.bin", ios::in | ios::binary);
+
     for (int i = 0; i < n; i++)
     {
         tracks tr;
         tracksAux tra;
         //abertura do arquivo binario
-        ifstream fin;
-        fin.open("../print/tracks.bin", ios::in);
 
         //estrutura auxiliar
-
         // pegando a posiçao em bytes
         int posicao = vet[i] * sizeof(tracksAux);
         // posicionando o ponteiro na posiçao a ser lida
@@ -384,9 +368,9 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
         // convertendo os vetores
         //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
         tr = Tracks ::converteTracksToString(tra);
-        vect.push_back(tr);
-        fin.close(); // fechando o arquivo binario
-    }
 
+        vect.push_back(tr);
+    }
+    fin.close(); // fechando o arquivo binarios
     return vect;
 }
