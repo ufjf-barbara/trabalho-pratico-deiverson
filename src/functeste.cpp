@@ -26,7 +26,7 @@ void func_teste::func_test(string path) // funçao estatica
     //consigo obter o numero de registros que há em cada arquivo binario
     int tamT = finT.tellg() / sizeof(tracksAux);
     int tamA = finA.tellg() / sizeof(artistsAux);
-    cout<<"\ntellgT "<< finT.tellg() <<"\ntamT "<< tamT<<"\nsizeT "<< sizeof(tracksAux)<<endl;
+    cout << "\ntellgT " << finT.tellg() << "\ntamT " << tamT << "\nsizeT " << sizeof(tracksAux) << endl;
 
     //verifico se os arquivos resalmente estao abertos e chamo finalmente a funçao teste
     if (finT.is_open() && finA.is_open())
@@ -99,7 +99,7 @@ void func_teste::testReadBin(int tamT, int tamA)
                      << " , " << tr.valence
                      << " , " << tr.tempo
                      << " , " << tr.time_signature
-                     <<"\n\n-----------------------------------\n\n";
+                     << "\n\n-----------------------------------\n\n";
             }
         }
         else //n= 100 ----- pega 100 registros e cria arquivo de texto armazenando-os na pasta print
@@ -151,10 +151,21 @@ void func_teste::testReadBin(int tamT, int tamA)
             foutT.close();
         }
     }
-{
+    {
+    }
+}
 
+/* void ordenacaoteste()
+{
+    Ordenacao ord;
+    vector<pair<int, float>> vet;
+
+    ord.Quicksort();
+    ofstream saida("../teste.txt", ios::out);
+
+    cout << "\nComparacoes:\t" << comparacao;
+    cout << "\nTrocas:\t " << trocas;
+    cout << "\nTempo de Processamento : " << (endTime - beginTime) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+    cout << "\n";
 }
-}
-void ordenacaoteste(){
-    ordena
-}
+ */
