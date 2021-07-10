@@ -9,43 +9,47 @@ using namespace std;
 static int trocas = 0;
 static int comparacao = 0;
 
-void maxHeapify(vector<artists> &vet, int n, int i)
+void MaxHeapify(vector<artists> &vet, int i, int n) //Funcao que verifica a propriedade de heap de maximo
 {
-    int largest = i;   // incializando o maior como raiz(pai)
-    int l = 2 * i + 1; // Right(i) -- Filho a esquerda do indice i
-    int r = 2 * i + 2; // Right(i) -- Filho a direita do indice i
+    int m = i;           //incializando o maior como raiz(pai)
+    int l = 2 * i;       //Left(i) -- Filho a esquerda do indice i
+    int r = (2 * i) + 1; //Right(i) -- Filho a direita do indice i
 
-    // Se o filho da esquerda é maior que o pai
-    if ((l < n) && (vet[l].followers > vet[largest].followers))
-        vet[largest].followers = vet[l].followers;
-
-    // Se o filho da direita é maior que o pai
-    if ((r < n) && (vet[r].followers > vet[largest].followers))
-        vet[largest].followers = vet[r].followers;
-
-    // Se o maior não é raiz
-    if (largest != i)
+    if ((l <= n) && (vet[l].followers > vet[i].followers)) //Se o filho da esquerda e maior do que a raiz(pai)
     {
-        swap(vet[i].followers, vet[largest].followers);
+        vet[m].followers = vet[l].followers;
+    }
+    else
+        vet[m].followers = vet[i].followers;
 
-        maxHeapify(vet, n, largest);
+    if ((r <= n) && (vet[r].followers > vet[m].followers)) //Se o filho da esquerda e maior do que a raiz(pai)
+    {
+        vet[m].followers = vet[r].followers;
+    }
+    if (m != i) // Se o maior não é raiz
+    {
+        swap(vet[i].followers, vet[m].followers);
+        MaxHeapify(vet, m, n);
     }
 }
 
-void heapSort(vector<artists> &vet, int n) // Funcao de ordenacao do heapsort
+void CriaMaxHeap(vector<artists> &vet, int n) //Funcao que cria heap de maximo
 {
-    // Construindo a heap
-    for (int i = n / 2 - 1; i >= 0; i--)
-        maxHeapify(vet, n, i);
-    comparacao++;
 
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        MaxHeapify(vet, i, n);
+    }
+}
+
+void HeapSort(vector<artists> &vet, int n) //Funcao de sorteamento HeapSort
+{
+
+    CriaMaxHeap(vet, n);
     for (int i = n - 1; i > 0; i--)
     {
-
-        swap(vet[0], vet[i]);
-        trocas++;
-        // Chama maxHeapify no heap reduzido
-        maxHeapify(vet, i, 0);
+        swap(vet[1].followers, vet[i].followers);
+        MaxHeapify(vet, 1, n - 1);
     }
 }
 
@@ -72,7 +76,7 @@ int main(int argc, char **argv)
     cout << "\n";
 
     beginTime = clock();
-    heapSort(vet, n);
+    HeapSort(vet, n);
     endTime = clock();
 
     cout << "\nComparacoes:\t" << comparacao;
