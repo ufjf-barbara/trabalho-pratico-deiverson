@@ -10,10 +10,10 @@ using namespace std;
 
 void  Hashtable(vector<vector<tracks>>&tabela)
 {
+	tracks track;
+	track.id="-1";
     for(int i=0; i<19; i++)
     {
-        tracks track;
-        track.id="-1";
         tabela[i].push_back(track);
     }
 }
@@ -60,6 +60,10 @@ void  inserir (vector<tracks> &vet,vector<vector<tracks>>&tabela)
         while(verifica!=false);
     }
 }
+
+
+
+
 
 
 
