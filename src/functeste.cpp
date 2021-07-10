@@ -1,6 +1,7 @@
 #include "Artists.h"
 #include "Tracks.h"
 #include "functeste.h"
+#include "Ordenacao.h"
 #include <iostream> //entrada pelo teclado e saida pela prompt
 #include <fstream>
 #include <vector>
@@ -150,4 +151,10 @@ void func_teste::testReadBin(int tamT, int tamA)
             foutT.close();
         }
     }
+{
+
+}
+}
+void ordenacaoteste(){
+    ordena
 }

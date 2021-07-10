@@ -12,5 +12,6 @@
         "system_error": "cpp",
         "array": "cpp",
         "ostream": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

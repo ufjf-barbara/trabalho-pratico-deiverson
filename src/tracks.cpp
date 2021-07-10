@@ -205,6 +205,7 @@ void Tracks::leArquivo(string path)
                     this->id_artists = contid_artists;
                 if (this->release_date < contrelease_date && contrelease_date < 1000)
                     this->release_date = contrelease_date;
+
                 if (contid_artists >= 1000 || contrelease_date >= 1000)
                     erro++;
             }
@@ -271,7 +272,7 @@ void Tracks::leArquivo(string path)
     {
         cout << "Nao foi possivel abrir o arquivo (Arquivo nao esta aberto)tracks" << endl;
     }
-    cout << "Erros " << erro;
+    cout << "Erros " << erro << endl;
     arquivo.close();
     arquivoTrackBin.close();
 }

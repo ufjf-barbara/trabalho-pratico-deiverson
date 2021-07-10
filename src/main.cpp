@@ -1,6 +1,7 @@
 #include "Artists.h"
 #include "Tracks.h"
 #include "functeste.h"
+#include "Ordenacao.h"
 #include <fstream>  //leitura e escrita de arquivos
 #include <iostream> //entrada pelo teclado e saida pela prompt
 #include <time.h>   // trabalhar com o relogio do sistema
@@ -46,18 +47,32 @@ int main(int argc, char **argv)
         cin >> aux;
 
         cin.ignore();
+
+        Ordenacao ord;
+        int r;
+        ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+        saida.close();
+        ifstream ns("input.txt", ios::in);
+        string straux;
+
         switch (aux)
         {
         case 0:
             break;
         case 1:
             //Chamar  Ordenacao;
+            while (getline(ns, straux))
+            {
+                istringstream(straux) >> r;
+                ord.chamaFuncaoOrdenacao(r);
+            }
             break;
         case 2:
             //Chamar  Hash;
             break;
         case 3:
             //Chamar  Modulo Teste;
+            r=100;
             break;
         default:
             cout << "\nOpcao invalida\n";
