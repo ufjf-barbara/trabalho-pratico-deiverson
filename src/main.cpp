@@ -50,8 +50,8 @@ int main(int argc, char **argv)
 
         Ordenacao ord;
         int r;
-        ofstream saida("../print/saida.txt", ios::out | ios::trunc);
-        saida.close();
+        ofstream saida;
+
         ifstream ns("input.txt", ios::in);
         string straux;
 
@@ -61,6 +61,8 @@ int main(int argc, char **argv)
             break;
         case 1:
             //Chamar  Ordenacao;
+            saida.open("../print/saida.txt", ios::out | ios::trunc);
+            saida.close();
             while (getline(ns, straux))
             {
                 istringstream(straux) >> r;
@@ -72,7 +74,7 @@ int main(int argc, char **argv)
             break;
         case 3:
             //Chamar  Modulo Teste;
-            r=100;
+            r = 100;
             break;
         default:
             cout << "\nOpcao invalida\n";

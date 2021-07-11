@@ -17,6 +17,8 @@ public:
     void SelectionSort(vector<pair<int, float>> &vet, int n);
     int particionamento(vector<pair<int, float>> &vet, int b, int f);
     void Quicksort(vector<pair<int, float>> &vet, int b, int f);
+    void maxHeapify(vector<pair<int, float>> &vet, int n, int i);
+    void heapSort(vector<pair<int, float>> &vet, int n);
     void PrintResult();
 };
 #endif //ORDENACAO_H_INCLUDED

@@ -1,0 +1,105 @@
+
+-----------------------------------------------
+Quick Sort
+Para 10000 registros: 
+Numero medio de omparacoes:	47940
+Numero  medio de trocas:	11073
+Tempo medio de Processamento:	0 segundos
+
+-----------------------------------------------
+Heap Sort
+Para 10000 registros: 
+Numero medio de omparacoes:	1666
+Numero  medio de trocas:	3333
+Tempo medio de Processamento:	0.001 segundos
+
+-----------------------------------------------
+Selection Sort
+Para 10000 registros: 
+Numero medio de omparacoes:	18247
+Numero  medio de trocas:	3333
+Tempo medio de Processamento:	0.04 segundos
+
+-----------------------------------------------
+Quick Sort
+Para 50000 registros: 
+Numero medio de omparacoes:	298170
+Numero  medio de trocas:	70147
+Tempo medio de Processamento:	0.003 segundos
+
+-----------------------------------------------
+Heap Sort
+Para 50000 registros: 
+Numero medio de omparacoes:	8333
+Numero  medio de trocas:	16666
+Tempo medio de Processamento:	0.006 segundos
+
+-----------------------------------------------
+Selection Sort
+Para 50000 registros: 
+Numero medio de omparacoes:	98937
+Numero  medio de trocas:	16666
+Tempo medio de Processamento:	1.291 segundos
+
+-----------------------------------------------
+Quick Sort
+Para 100000 registros: 
+Numero medio de omparacoes:	612259
+Numero  medio de trocas:	158704
+Tempo medio de Processamento:	0.006 segundos
+
+-----------------------------------------------
+Heap Sort
+Para 100000 registros: 
+Numero medio de omparacoes:	16666
+Numero  medio de trocas:	33333
+Tempo medio de Processamento:	0.012 segundos
+
+-----------------------------------------------
+Selection Sort
+Para 100000 registros: 
+Numero medio de omparacoes:	212016
+Numero  medio de trocas:	33333
+Tempo medio de Processamento:	5.737 segundos
+
+-----------------------------------------------
+Quick Sort
+Para 500000 registros: 
+Numero medio de omparacoes:	3644243
+Numero  medio de trocas:	929597
+Tempo medio de Processamento:	0.039 segundos
+
+-----------------------------------------------
+Heap Sort
+Para 500000 registros: 
+Numero medio de omparacoes:	83333
+Numero  medio de trocas:	166666
+Tempo medio de Processamento:	0.091 segundos
+
+-----------------------------------------------
+Selection Sort
+Para 500000 registros: 
+Numero medio de omparacoes:	1160507
+Numero  medio de trocas:	166666
+Tempo medio de Processamento:	155.408 segundos
+
+-----------------------------------------------
+Quick Sort
+Para 800000 registros: 
+Numero medio de omparacoes:	5826048
+Numero  medio de trocas:	1607174
+Tempo medio de Processamento:	0.056 segundos
+
+-----------------------------------------------
+Heap Sort
+Para 800000 registros: 
+Numero medio de omparacoes:	133333
+Numero  medio de trocas:	266666
+Tempo medio de Processamento:	0.141 segundos
+
+-----------------------------------------------
+Selection Sort
+Para 800000 registros: 
+Numero medio de omparacoes:	1757915
+Numero  medio de trocas:	266666
+Tempo medio de Processamento:	388.408 segundos

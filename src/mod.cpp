@@ -38,5 +38,6 @@ int main()
     cout << mod << endl;
     cout << j << endl;
     }
+    aux%primo
     return 0;
 }

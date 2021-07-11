@@ -22,22 +22,24 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
     finA.open("../print/artists.bin", ios::in);
     finA.seekg(0, finA.end);
 
+    vector<pair<int, float>> aux;
+
     int tam = finA.tellg() / sizeof(artistsAux);
     int M = 3;
     n = N;
 
     ofstream fout;
-
     fout.close();
 
     for (int i = 0; i < M; i++)
     {
+        aux = Artists::registrosArtFollowers(n, tam);
+        vet = aux;
 
-        //quickSort
+        //QuickSort
         comparacao = 0;
         trocas = 0;
 
-        vet = Artists::registrosArtFollowers(n, tam);
         beginTime = clock();
         Quicksort(vet, 0, n - 1);
         endTime = clock();
@@ -46,11 +48,24 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
         compQ = comparacao;
         trocaQ = trocas;
 
+        //HeapSort
+        comparacao = 0;
+        trocas = 0;
+        vet = aux;
+
+        beginTime = clock();
+        heapSort(vet, n);
+        endTime = clock();
+
+        timeH = endTime - beginTime;
+        compH = comparacao;
+        trocaH = trocas;
+
         //Selection
         comparacao = 0;
         trocas = 0;
+        vet = aux;
 
-        vet = Artists::registrosArtFollowers(n, tam);
         beginTime = clock();
         SelectionSort(vet, n);
         endTime = clock();
@@ -58,19 +73,6 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
         timeS = endTime - beginTime;
         compS = comparacao;
         trocaS = trocas;
-
-        //HeapSort
-        comparacao = 0;
-        trocas = 0;
-
-        vet = Artists::registrosArtFollowers(n, tam);
-        beginTime = clock();
-        //heap(vet, n);
-        endTime = clock();
-
-        timeH = endTime - beginTime;
-        compH = comparacao;
-        trocaH = trocaH;
     }
     timeQ /= M;
     timeS /= M;
@@ -78,8 +80,10 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
 
     compQ /= M;
     trocaQ /= M;
+
     compS /= M;
     trocaS /= M;
+    
     compH /= M;
     trocaH /= M;
 
@@ -156,33 +160,75 @@ void Ordenacao::Quicksort(vector<pair<int, float>> &vet, int b, int f)
         Quicksort(vet, pivo + 1, f);
     }
 }
+void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i)
+{
+    int maior = i;     // incializando o maior como raiz(pai)
+    int l = 2 * i + 1; // Right(i) -- Filho a esquerda do indice i
+    int r = 2 * i + 2; // Right(i) -- Filho a direita do indice i
+
+    // Se o filho da esquerda é maior que o pai
+    if ((l < n) && (vet[l].second > vet[maior].second))
+        maior = l;
+
+    // Se o filho da direita é maior que o pai
+    if ((r < n) && (vet[r].second > vet[maior].second))
+        maior = r;
+
+    // Se o maior não é raiz
+    if (maior != i)
+    {
+        swap(vet[i].second, vet[maior].second);
+
+        maxHeapify(vet, n, maior);
+    }
+}
+
+void Ordenacao ::heapSort(vector<pair<int, float>> &vet, int n) // Funcao de ordenacao do heapsort
+{
+    // Construindo a heap
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        maxHeapify(vet, n, i);
+        comparacao++;
+    }
+
+    for (int i = n - 1; i > 0; i--)
+    {
+
+        swap(vet[0].second, vet[i].second);
+        trocas++;
+        // Chama maxHeapify no heap reduzido
+        maxHeapify(vet, i, 0);
+    }
+}
+
 void Ordenacao::PrintResult()
 {
 
     ofstream saida("../print/saida.txt", ios::out | ios::app);
 
-    saida << "\n----------------------------------------\n"
+    saida << "\n-----------------------------------------------\n"
           << "Quick Sort" << endl
           << "Para " << n << " registros: "
-          << "\nNumero de omparacoes:\t" << compQ
-          << "\nNumero de trocas:\t" << trocaQ
-          << "\nTempo de Processamento:\t" << timeQ / ((float)CLOCKS_PER_SEC)
+          << "\nNumero medio de comparacoes:\t" << compQ
+          << "\nNumero  medio de trocas:\t" << trocaQ
+          << "\nTempo medio de Processamento:\t" << timeQ / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
 
-    saida << "\n----------------------------------------\n"
-          << "Selection Sort" << endl
-          << "Para " << n << " registros: "
-          << "\nNumero de omparacoes:\t" << compS
-          << "\nNumero de trocas:\t" << trocaS
-          << "\nTempo de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
-          << " segundos" << endl;
-
-    saida << "\n----------------------------------------\n"
+    saida << "\n-----------------------------------------------\n"
           << "Heap Sort" << endl
           << "Para " << n << " registros: "
-          << "\nNumero de omparacoes:\t" << compH
-          << "\nNumero de trocas:\t" << trocaH
-          << "\nTempo de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
+          << "\nNumero medio de comparacoes:\t" << compH
+          << "\nNumero  medio de trocas:\t" << trocaH
+          << "\nTempo medio de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
+          << " segundos" << endl;
+
+    saida << "\n-----------------------------------------------\n"
+          << "Selection Sort" << endl
+          << "Para " << n << " registros: "
+          << "\nNumero medio de comparacoes:\t" << compS
+          << "\nNumero  medio de trocas:\t" << trocaS
+          << "\nTempo medio de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida.close();
 }
