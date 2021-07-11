@@ -69,12 +69,11 @@ void  tabelaHash::inserir (vector<tracks> &vet,vector<vector<tracks>>&tabela)
                 tabela.insert(indice,vet[i]);
                 verifica=true;
             }
-            if(tabela[i].[0].id==vet[i].id_artists &&tabela[i].ar)
+            if(tabela[i].[0].id_artists==vet[i].id_artists )
             {
                 tabela[indice].push_back(vet[i]);
                 verifica=true;
             }
-            if()
             else
             {
                 indice=gerarCodigoHash(vet[i].id);
