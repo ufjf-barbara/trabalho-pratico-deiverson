@@ -1,66 +1,89 @@
 #include <iostream>
-#include "tabelaHash.h"
 #include <vector>
-#include "Artists.h"
+#include <fstream>
+#include <string>
+
+#include "tabelaHash.h"
 #include "Tracks.h"
 #include "Ordenacao.h"
 using namespace std;
 
-tabelaHash::tabelaHash(int nn)
+tabelaHash::tabelaHash()
 {
-    primo = 0;
+    ifstream ifs("../print/tracks.bin");
+    ifs.seekg(0, ifs.end);
+    mod = ifs.tellg() / sizeof(tracksAux);
+    ifs.close();
+
+    conta_colisao_de_artistas = 0;
+
     tracks track;
+
     track.id = "-1";
-    for (int i = 0; i < n; i++)
+
+    cout << "\nconstrutor " << mod << endl;
+    
+    for (int i = 0; i < mod; i++)
     {
+        if (i = 0)
+        {
+            cout << "\nprimeiro for";
+        }
+
         tabela[i].push_back(track);
     }
+    cout << "\nconstrutor "  << endl;
+
+    vector<tracks> tr = Tracks::registrosTr(mod, mod);
+    inserir(tr);
+    artistasFrequentes();
 }
 
 int tabelaHash::gerarCodigoHash(string id)
 {
-    int num;
-    for (int i = 0; i < id.size(); i++)
-    {
-        num = num + char(id[i]);
-    }
-    return num % primo;
+    cout << "\ngera codigo" << endl;
+    return (id[9] * id[3] * id[19] % mod);
 }
 
-int tabelaHash::detMod()
-{
-    int mPrimo = 0, result;
-    for (int j = n; j > 0; j--)
-    {
-        result = 0;
-        for (int i = 1; i <= n; i++)
-        {
-            if (n % i == 0)
-            {
-                result++;
-            }
-        }
-        if (result == 2)
-        {
-            primo = j;
-            break;
-        }
-    }
-}
+// int tabelaHash::detMod()
+// {
+//     int j = 0;
+//     int mmod = 0, result;
+//     for (j = n; j > 0; j--)
+//     {
+//         result = 0;
+//         for (int i = 1; i <= n / 2; i++)
+//         {
+//             if (n % i == 0)
+//             {
+//                 result++;
+//             }
+//         }
+//         if (result == 2)
+//         {
+//             mod = j;
+//             break;
+//         }
+//     }
+//     return j;
+// }
 
-void tabelaHash::inserir(vector<tracks> &vet, vector<vector<tracks>> &tabela)
+void tabelaHash::inserir(vector<tracks> &vet)
 {
+    cout << "\ninsercao" << endl;
     int indice = 0;
     bool verifica = false;
-    for (int i = 0; i < 19; i++)
+
+    for (int i = 0; i < mod; i++)
     {
+        cout << "\ninsercao" << endl;
         indice = gerarCodigoHash(vet[i].id_artists);
         do
         {
             verifica = false;
             if (tabela[indice][0].id == "-1")
             {
-                tabela[indice].insert(0, vet[i]);
+                tabela[indice].insert(tabela[indice].begin(), vet[i]);
                 verifica = true;
             }
             else if (tabela[i][0].id_artists == vet[i].id_artists)
@@ -70,8 +93,8 @@ void tabelaHash::inserir(vector<tracks> &vet, vector<vector<tracks>> &tabela)
             }
             else
             {
-                indice = gerarCodigoHash(vet[i].id);
-                verifica = true;
+                conta_colisao_de_artistas++;
+                indice++;
             }
         } while (verifica != false);
     }
@@ -91,9 +114,9 @@ tracks tabelaHash::musicaPopular(vector<tracks> &vet)
     return vet[aux];
 }
 
-void tabelaHash::artistasFrequentes(vector<vector<tracks>> &tabela)
+void tabelaHash::artistasFrequentes()
 {
-    tabela = Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size() - 1);
+    Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size());
     int M = 0;
     cout << "\nDeseja obter quantos artistas mais frequentes?" << endl;
     cin >> M;
@@ -103,4 +126,8 @@ void tabelaHash::artistasFrequentes(vector<vector<tracks>> &tabela)
         cout << "\nArtista:\t" << tabela[i][0].artists
              << "\tMusica mais popular:\t" << musicaPopular(tabela[i]).name << endl;
     }
+}
+int tabelaHash::getcont()
+{
+    return conta_colisao_de_artistas;
 }

@@ -234,21 +234,21 @@ void Ordenacao::PrintResult()
 }
 
 
-vector<vector<tracks>> Ordenacao ::ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f)
+void Ordenacao ::ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f)
 {
     int pivo;
     if (b < f)
     {
-        pivo = particionamento(vet, b, f);
-        Quicksort(vet, b, pivo - 1);
-        Quicksort(vet, pivo + 1, f);
+        pivo = particionamentoTracks(vet, b, f);
+        ordenaQuickTraks(vet, b, pivo - 1);
+        ordenaQuickTraks(vet, pivo + 1, f);
     }
 }
 
 int Ordenacao::particionamentoTracks(vector<vector<tracks>> &vet, int b, int f)
 {
-    pair<int, float> pivo = vet[b];
-    pair<int, float> aux;
+    vector<tracks> pivo = vet[b];
+    vector<tracks> aux;
     int i = b;
     int j = f + 1;
 
@@ -258,12 +258,12 @@ int Ordenacao::particionamentoTracks(vector<vector<tracks>> &vet, int b, int f)
         {
             i++;
             comparacao++;
-        } while (vet[i].second > pivo.second);
+        } while (vet[i].size() > pivo.size());
         do
         {
             j--;
             comparacao++;
-        } while (pivo.second > vet[j].second);
+        } while (pivo.size() > vet[j].size());
         if (i < j)
         {
             trocas++;

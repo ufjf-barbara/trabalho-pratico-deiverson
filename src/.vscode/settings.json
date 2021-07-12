@@ -13,5 +13,12 @@
         "array": "cpp",
         "ostream": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "c:\\Users\\deive\\Documents\\GitHub\\trabalho-pratico-deiverson\\src",
+            "binaryPath": "c:\\Users\\deive\\Documents\\GitHub\\trabalho-pratico-deiverson\\src\\main.exe",
+            "binaryArgs": []
+        }
+    ]
 }

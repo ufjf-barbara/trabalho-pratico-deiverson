@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include"tracks.h"
 
 #ifndef TABELAHASH_H_INCLUDED
 #define TABELAHASH_H_INCLUDED
@@ -9,16 +11,20 @@ class tabelaHash
 
 private:
     vector<vector<tracks>> tabela;
-    int primo, n;
+    int mod, n;
+    int conta_colisao_de_artistas;
 
 public:
-    tabelaHash(int n);
+
+    int getcont();
+
+    tabelaHash();
     int gerarCodigoHash(string id);
-    void inserir(vector<tracks> &vet, vector<vector<tracks>> &tabela);
+    void inserir(vector<tracks> &vet);
     int detMod();
     
     tracks  musicaPopular(vector<tracks> &vet);
-    void artistasFrequentes(vector<vector<tracks>> &tabela);
+    void artistasFrequentes();
 };
 
 #endif // TABELAHASH_H_INCLUDED

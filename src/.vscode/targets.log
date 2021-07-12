@@ -6,8 +6,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # PARTICULAR PURPOSE.
 
 # This program built for i386-pc-mingw32
+ 
 
-# Make data base, printed on Sun Jul 11 21:14:01 2021
+# Make data base, printed on Mon Jul 12 14:09:04 2021
 
 # Variables
 
@@ -52,11 +53,11 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-5c3e58dc-86f4-4580-ae54-e14218fd2db0-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f8fd2b61-57f4-4d49-82ba-952a500dc900-sock
 # environment
 VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
 # environment
-PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\Program Files\CodeBlocks\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\Program Files\CodeBlocks\MinGW\bin;
+PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\Program Files\CodeBlocks\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\Program Files\CodeBlocks\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
@@ -78,7 +79,7 @@ DIR = ""
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10284_NJIAJVYGVBAJBOWK
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_19020_HFAGBQQHROKSUPAB
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -190,7 +191,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 10284
+VSCODE_PID = 19020
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -206,9 +207,9 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1625764714): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1626047993): 26 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1626055920): 26 files, no impossibilities.
 # C:\Program Files\CodeBlocks\MinGW\bin (key C:/Program Files/CodeBlocks/MinGW/bin, mtime 1622056820): 58 files, no impossibilities.
-# C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1625770177): 4 files, no impossibilities.
+# C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1626054853): 4 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
 # C:\Windows (key C:/Windows, mtime 1625764711): 114 files, no impossibilities.
@@ -294,7 +295,7 @@ makefile:
 # Not a target:
 artists.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-10 17:39:34
+#  Last modified 2021-07-11 21:27:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -353,6 +354,6 @@ tracks.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jul 11 21:14:01 2021
+# Finished Make data base on Mon Jul 12 14:09:04 2021
 
  
