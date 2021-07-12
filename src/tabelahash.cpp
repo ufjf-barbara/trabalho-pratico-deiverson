@@ -93,13 +93,14 @@ tracks tabelaHash::musicaPopular(vector<tracks> &vet)
 
 void tabelaHash::artistasFrequentes(vector<vector<tracks>> &tabela)
 {
-    tabela = Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size()-1);
-    int M=0;
-    cout << "\nDeseja obter quantos artistas mais frequentes?" <<endl;
+    tabela = Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size() - 1);
+    int M = 0;
+    cout << "\nDeseja obter quantos artistas mais frequentes?" << endl;
     cin >> M;
-    cin.ignore(); 
-    for(int i=0;i<M;i++){
-      cout << "\nArtista:\t" <<  tabela[i].[0].                            ;
-    
+    cin.ignore();
+    for (int i = 0; i < M; i++)
+    {
+        cout << "\nArtista:\t" << tabela[i].[0].artists
+             << "\tmusica mais popular:\t" << musicaPopular(tabela[i]) << endl;
     }
 }
