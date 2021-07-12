@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Mon Jul 12 14:09:04 2021
+# Make data base, printed on Mon Jul 12 16:44:27 2021
 
 # Variables
 
@@ -53,7 +53,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f8fd2b61-57f4-4d49-82ba-952a500dc900-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-16abed82-09c7-4ecd-b134-693966599692-sock
 # environment
 VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -79,7 +79,7 @@ DIR = ""
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_19020_HFAGBQQHROKSUPAB
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_4696_ELUKSFWPDYGFYDKN
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -191,7 +191,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 19020
+VSCODE_PID = 4696
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -207,7 +207,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1625764714): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1626055920): 26 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1626117898): 25 files, no impossibilities.
 # C:\Program Files\CodeBlocks\MinGW\bin (key C:/Program Files/CodeBlocks/MinGW/bin, mtime 1622056820): 58 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1626054853): 4 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
@@ -223,7 +223,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # C:\Windows\system32 (key C:/Windows/system32, mtime 1625833202): 2835 files, no impossibilities.
 # C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1611235165): 5 files, no impossibilities.
 
-# 3369 files, no impossibilities in 19 directories.
+# 3368 files, no impossibilities in 19 directories.
 
 # Implicit Rules
 
@@ -262,7 +262,7 @@ a: main.cpp artists.cpp tracks.cpp functeste.cpp
 # Not a target:
 functeste.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-10 17:56:54
+#  Last modified 2021-07-12 16:09:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -286,7 +286,7 @@ all: a
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-10 17:57:30
+#  Last modified 2021-07-12 16:09:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -295,16 +295,17 @@ makefile:
 # Not a target:
 artists.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-11 21:27:12
+#  Last modified 2021-07-12 16:09:07
 #  File has been updated.
 #  Successfully updated.
-# variable set hash-table stats:
+# variable set hash-table st 
+ats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-10 22:00:41
+#  Last modified 2021-07-12 16:09:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -354,6 +355,6 @@ tracks.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jul 12 14:09:04 2021
+# Finished Make data base on Mon Jul 12 16:44:27 2021
 
  

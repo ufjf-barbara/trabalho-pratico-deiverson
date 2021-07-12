@@ -10,7 +10,7 @@ int main()
 {
     tabelaHash *hash = new tabelaHash();
 
-    cout << "\n\ncolisisoes :\n"<<hash->getcont();
+    cout << "\n\ncolisisoes :\t"<<hash->getcont();
 
     return 0;
 }
