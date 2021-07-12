@@ -14,7 +14,7 @@ tabelaHash::tabelaHash()
     ifs.seekg(0, ifs.end);
     mod = ifs.tellg() / sizeof(tracksAux);
     ifs.close();
-
+    contador = 0;
     this->conta_colisao_de_artistas = 0;
 
     tracks track;
@@ -43,8 +43,9 @@ tabelaHash::tabelaHash()
 
 int tabelaHash::gerarCodigoHash(string id)
 {
+    // cout << "\ngera codigo  " << id << "  " << (id[9] * id[3] * id[17]) << endl;
 
-    return (id[9] * id[3] * id[19] % mod);
+    return abs((id[9] * id[3] * id[17]) % mod);
 }
 
 // int tabelaHash::detMod()
@@ -76,9 +77,9 @@ void tabelaHash::inserir(vector<tracks> &vet)
     int indice = 0;
     bool verifica = false;
 
-    for (int i = 0; i < mod; i++)
+    for (int i = 0; i < tabela.size(); i++)
     {
-        cout << "\ninsercao" << endl;
+        //  cout << "\ninsercao" << endl;
         indice = gerarCodigoHash(vet[i].id_artists);
         do
         {
@@ -91,15 +92,16 @@ void tabelaHash::inserir(vector<tracks> &vet)
             else if (tabela[i][0].id_artists == vet[i].id_artists)
             {
                 tabela[indice].push_back(vet[i]);
+                contador++;
                 verifica = true;
             }
             else
             {
-                conta_colisao_de_artistas++;
+                this->conta_colisao_de_artistas++;
                 if (indice + 1 < mod)
                     indice++;
-                 else
-                 indice=0;   
+                else
+                    indice = 0;
             }
         } while (verifica != false);
     }
@@ -121,6 +123,7 @@ tracks tabelaHash::musicaPopular(vector<tracks> &vet)
 
 void tabelaHash::artistasFrequentes()
 {
+    tracks tr;
     Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size());
     int M = 0;
     cout << "\nDeseja obter quantos artistas mais frequentes?" << endl;
@@ -128,11 +131,17 @@ void tabelaHash::artistasFrequentes()
     cin.ignore();
     for (int i = 0; i < M; i++)
     {
+        tr = musicaPopular(tabela[i]);
         cout << "\nArtista:\t" << tabela[i][0].artists
-             << "\tMusica mais popular:\t" << musicaPopular(tabela[i]).name << endl;
+             << "\tocorrencias:\t" << tabela[i].size()
+             << "\tMusica mais popular:\t" << tr.name
+             << endl;
     }
+    cout<<"\ncontador:\t"<<this->contador<<endl;
+    cout<<"\ncolisaum:\t"<<this->conta_colisao_de_artistas<<endl;
+
 }
 int tabelaHash::getcont()
 {
-    return conta_colisao_de_artistas;
+    return this->conta_colisao_de_artistas;
 }

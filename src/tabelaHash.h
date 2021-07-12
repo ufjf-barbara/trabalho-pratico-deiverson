@@ -11,7 +11,7 @@ class tabelaHash
 
 private:
     vector<vector<tracks>> tabela;
-    int mod;
+    int mod,contador;
     int conta_colisao_de_artistas;
 
 public:
