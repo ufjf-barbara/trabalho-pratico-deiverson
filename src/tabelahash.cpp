@@ -58,12 +58,12 @@ void tabelaHash::inserir(vector<tracks> &vet, vector<vector<tracks>> &tabela)
         do
         {
             verifica = false;
-            if (tabela[i].[0].id == "-1")
+            if (tabela[indice][0].id == "-1")
             {
-                tabela.insert(indice, vet[i]);
+                tabela[indice].insert(0, vet[i]);
                 verifica = true;
             }
-            if (tabela[i].[0].id_artists == vet[i].id_artists)
+            else if (tabela[i][0].id_artists == vet[i].id_artists)
             {
                 tabela[indice].push_back(vet[i]);
                 verifica = true;
@@ -100,7 +100,7 @@ void tabelaHash::artistasFrequentes(vector<vector<tracks>> &tabela)
     cin.ignore();
     for (int i = 0; i < M; i++)
     {
-        cout << "\nArtista:\t" << tabela[i].[0].artists
-             << "\tmusica mais popular:\t" << musicaPopular(tabela[i]) << endl;
+        cout << "\nArtista:\t" << tabela[i][0].artists
+             << "\tMusica mais popular:\t" << musicaPopular(tabela[i]).name << endl;
     }
 }
