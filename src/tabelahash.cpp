@@ -24,7 +24,7 @@ tabelaHash::tabelaHash()
     tr.push_back(track);
 
     cout << "\nconstrutor " << mod << endl;
-    for (int i = 0; i < this->mod; i++)
+    for (int i = 0; i < (this->mod); i++)
     {
         if (i == 0)
         {
@@ -83,27 +83,32 @@ void tabelaHash::inserir(vector<tracks> &vet)
         indice = gerarCodigoHash(vet[i].id_artists);
         do
         {
+          //  cout << "\nIndice:\t" << indice << endl;
             verifica = false;
+
             if (tabela[indice][0].id == "-1")
             {
-                tabela[indice].insert(tabela[indice].begin(), vet[i]);
+                tabela[indice].erase(tabela[indice].begin());
+                tabela[indice].push_back(vet[i]);
+             //   cout << "\ncriou indice:\t" << i << endl;
                 verifica = true;
             }
-            else if (tabela[i][0].id_artists == vet[i].id_artists)
+            else if (tabela[indice][0].id_artists == vet[i].id_artists)
             {
                 tabela[indice].push_back(vet[i]);
+              //  cout << "\nadd i:\t" << i << endl;
                 contador++;
                 verifica = true;
             }
             else
             {
                 this->conta_colisao_de_artistas++;
-                if (indice + 1 < mod)
+                if ((indice + 1) < mod)
                     indice++;
                 else
                     indice = 0;
             }
-        } while (verifica != false);
+        } while (!verifica);
     }
 }
 
@@ -137,9 +142,8 @@ void tabelaHash::artistasFrequentes()
              << "\tMusica mais popular:\t" << tr.name
              << endl;
     }
-    cout<<"\ncontador:\t"<<this->contador<<endl;
-    cout<<"\ncolisaum:\t"<<this->conta_colisao_de_artistas<<endl;
-
+    cout << "\ncontador:\t" << this->contador << endl;
+    cout << "\ncolisaum:\t" << this->conta_colisao_de_artistas << endl;
 }
 int tabelaHash::getcont()
 {
