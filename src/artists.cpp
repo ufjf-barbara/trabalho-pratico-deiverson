@@ -209,6 +209,7 @@ vector<artists> Artists::registrosArt(int n, int tam)
     fin.close(); // fechando o arquivo binarios
     return vect;
 }
+
 vector<pair<int, float>> Artists::registrosArtFollowers(int n, int tam)
 {
     vector<pair<int, float>> vect;

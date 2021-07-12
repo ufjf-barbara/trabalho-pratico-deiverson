@@ -83,7 +83,7 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
 
     compS /= M;
     trocaS /= M;
-    
+
     compH /= M;
     trocaH /= M;
 
@@ -231,4 +231,48 @@ void Ordenacao::PrintResult()
           << "\nTempo medio de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida.close();
+}
+
+
+vector<vector<tracks>> Ordenacao ::ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f)
+{
+    int pivo;
+    if (b < f)
+    {
+        pivo = particionamento(vet, b, f);
+        Quicksort(vet, b, pivo - 1);
+        Quicksort(vet, pivo + 1, f);
+    }
+}
+
+int Ordenacao::particionamentoTracks(vector<vector<tracks>> &vet, int b, int f)
+{
+    pair<int, float> pivo = vet[b];
+    pair<int, float> aux;
+    int i = b;
+    int j = f + 1;
+
+    do
+    {
+        do
+        {
+            i++;
+            comparacao++;
+        } while (vet[i].second > pivo.second);
+        do
+        {
+            j--;
+            comparacao++;
+        } while (pivo.second > vet[j].second);
+        if (i < j)
+        {
+            trocas++;
+            aux = vet[i];
+            vet[i] = vet[j];
+            vet[j] = aux;
+        }
+    } while (i < j);
+    vet[b] = vet[j];
+    vet[j] = pivo;
+    return j;
 }
