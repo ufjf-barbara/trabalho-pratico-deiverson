@@ -11,7 +11,7 @@ using namespace std;
 static int comparacao = 0;
 static int trocas = 0;
 static int compQ = 0, trocaQ = 0, compM = 0, trocaM = 0, compH = 0, trocaH = 0, n = 0;
-static clock_t timeQ, timeS, timeH;
+static clock_t timeQ, timeM, timeH;
 
 void Ordenacao::chamaFuncaoOrdenacao(int n)
 {
@@ -58,15 +58,15 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
         vet = aux;
 
         beginTime = clock();
-        MergeSort(vet, n);
+        MergeSort(vet, 0, vet.size() - 1);
         endTime = clock();
 
-        timeS = endTime - beginTime;
+        timeM = endTime - beginTime;
         compM = comparacao;
         trocaM = trocas;
     }
     timeQ /= M;
-    timeS /= M;
+    timeM /= M;
     timeH /= M;
 
     compQ /= M;
@@ -81,10 +81,13 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
     PrintResult(n);
 }
 
-void MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
+void Ordenacao::MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
 {
-    int i, j, k, metade; //variaveis para contadores e para pegar a metade do vector
-    vector<pair<int, float>> v;//vector auxiliar
+    int i, j, k, metade;        //variaveis para contadores e para pegar a metade do vector
+    vector<pair<int, float>> v; //vector auxiliar
+    pair<int, float> par;
+    for (int cont = 0; cont < (fim + 1 - inicio); cont++)
+        v.push_back(par);
 
     if (inicio == fim)
     {
@@ -93,17 +96,18 @@ void MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
 
     metade = (inicio + fim) / 2;
 
-    MergeSort(vet, inicio, metade);//usa-se o metodo recursivo para a primeira metada
-    MergeSort(vet, metade + 1, fim);//usa-se o metodo recursivo para a sugunda metada
+    MergeSort(vet, inicio, metade);  //usa-se o metodo recursivo para a primeira metada
+    MergeSort(vet, metade + 1, fim); //usa-se o metodo recursivo para a sugunda metada
 
-    i = inicio;//recebe primeiro indice do vetor
-    j = metade + 1;//recebe o indice do metade+1 do vetor
+    i = inicio;     //recebe primeiro indice do vetor
+    j = metade + 1; //recebe o indice do metade+1 do vetor
     k = 0;
 
     while (i < metade + 1 || j < fim + 1)
     {
         if (i == metade + 1)
         {
+            trocas++;
             v[k] = vet[j];
             j++;
             k++;
@@ -112,21 +116,23 @@ void MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
         {
             if (j == fim + 1)
             {
-
+                comparacao++;
                 v[k] = vet[i];
                 i++;
                 k++;
             }
             else
             {
-                if (vet[i] < vet[j])
+                if (vet[i].second < vet[j].second)
                 {
+                    comparacao++;
                     v[k] = vet[i];
                     i++;
                     k++;
                 }
                 else
                 {
+                    trocas++;
                     v[k] = vet[j];
                     j++;
                     k++;
@@ -139,8 +145,6 @@ void MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
         vet[i] = v[i - inicio];
     }
 }
-
-
 
 int Ordenacao::particionamento(vector<pair<int, float>> &vet, int b, int f)
 {
@@ -202,7 +206,7 @@ void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i) //funcao
     // Se o maior não é raiz
     if (maior != i)
     {
-        swap(vet[i].second, vet[maior].second);  // troca o nó filho com o nó pai/raiz
+        swap(vet[i].second, vet[maior].second); // troca o nó filho com o nó pai/raiz
 
         maxHeapify(vet, n, maior); //chamada recursiva para apilcar a propriedade de heap de máximo na sub-árvore afetada
     }
@@ -211,16 +215,16 @@ void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i) //funcao
 void Ordenacao ::heapSort(vector<pair<int, float>> &vet, int n) // Funcao de ordenacao do heapsort
 {
     // Construindo a heap
-    for (int i = n / 2 - 1; i >= 0; i--)  // construcao de uma heap de maximo ao utilizar a funcao maxHeapify
+    for (int i = n / 2 - 1; i >= 0; i--) // construcao de uma heap de maximo ao utilizar a funcao maxHeapify
     {
         maxHeapify(vet, n, i);
         comparacao++;
     }
 
-    for (int i = n - 1; i > 0; i--)   // Extraindo um a um os elementos da heap
+    for (int i = n - 1; i > 0; i--) // Extraindo um a um os elementos da heap
     {
 
-        swap(vet[0].second, vet[i].second);  //move o nó atual para o fim
+        swap(vet[0].second, vet[i].second); //move o nó atual para o fim
         trocas++;
         // Chama maxHeapify na heap reduzida
         maxHeapify(vet, i, 0);
@@ -253,7 +257,7 @@ void Ordenacao::PrintResult(int n)
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compM
           << "\nNumero  medio de trocas:\t" << trocaM
-          << "\nTempo medio de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
+          << "\nTempo medio de Processamento:\t" << timeM / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida.close();
 }
@@ -374,16 +378,16 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
     }
     saida << "\n";
 
-    //Mer
+    //Merge sort
     comparacao = 0;
     trocas = 0;
     vet = aux;
 
     beginTime = clock();
-    MergeSort(vet, vet.size());
+    MergeSort(vet, 0, vet.size() - 1);
     endTime = clock();
 
-    timeS = endTime - beginTime;
+    timeM = endTime - beginTime;
     compM = comparacao;
     trocaM = trocas;
 
@@ -391,7 +395,7 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
           << "Merge Sort" << endl
           << "\nNumero de comparacoes:\t" << compM
           << "\nNumero de trocas:\t" << trocaM
-          << "\nTempo de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
+          << "\nTempo de Processamento:\t" << timeM / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "vetor ordenado:\n";

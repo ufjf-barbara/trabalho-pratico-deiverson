@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 
 # This program built for i386-pc-mingw32
 
-# Make data base, printed on Tue Jul 13 13:56:06 2021
+# Make data base, printed on Tue Jul 13 16:47:26 2021
 
 # Variables
 
@@ -52,9 +52,9 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ff37d4f6-3169-4055-b7a2-f8ab6289c186-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f2043618-9156-4b51-b0df-2161d2f527dd-sock
 # environment
-VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
+VSCODE_CWD = C:\Users\deive\Documents\GitHub\trabalho-pratico-deiverson\src
 # environment
 PATH = C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_271\bin;C:\Program Files\CodeBlocks\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\deive\AppData\Local\Programs\Python\Python39\;C:\Users\deive\AppData\Local\Microsoft\WindowsApps;C:\Users\deive\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Program Files\JetBrains\PyCharm 2020.3.4\bin;;C:\Program Files\CodeBlocks\MinGW\bin;C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin
 # environment
@@ -78,7 +78,7 @@ DIR = ""
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3528_OUGJBIOICPWUMVGM
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15872_TRYDSKVNRNWMPMFC
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -96,7 +96,7 @@ PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\deive\AppData\Roaming\Code\CachedData\2d23c42a936db1c7b3b06f918cde29561cc47cd6
+VSCODE_CODE_CACHE_PATH = C:\Users\deive\AppData\Roaming\Code\CachedData\2aeda6b18e13c4f4f9edf6667158a6b8d408874b
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
@@ -140,7 +140,7 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
 # environment
 OS = Windows_NT
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\8e870d72a231fbdab7ed0b5b85222853-1.58.0-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\8e870d72a231fbdab7ed0b5b85222853-1.58.1-main-sock
 # environment
 HOMEPATH = \Users\deive
 # environment
@@ -159,6 +159,8 @@ SYSTEMROOT = C:\Windows
 +F = $(notdir $+)
 # environment
 APPDATA = C:\Users\deive\AppData\Roaming
+# environment
+__COMPAT_LAYER = DetectorsAppHealth
 # environment
 TEMP = C:\Users\deive\AppData\Local\Temp
 # environment
@@ -190,11 +192,11 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 3528
+VSCODE_PID = 15872
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
-# Load=91/1024=9%, Rehash=0, Collisions=9/113=8%
+# Load=92/1024=9%, Rehash=0, Collisions=9/114=8%
 
 # Pattern-specific Variable Values
 
@@ -206,9 +208,9 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1625764714): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1626145017): 19 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1626205391): 19 files, no impossibilities.
 # C:\Program Files\CodeBlocks\MinGW\bin (key C:/Program Files/CodeBlocks/MinGW/bin, mtime 1622056820): 58 files, no impossibilities.
-# C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1626054853): 4 files, no impossibilities.
+# C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1626199071): 4 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
 # C:\Windows (key C:/Windows, mtime 1625764711): 114 files, no impossibilities.
@@ -261,7 +263,7 @@ a: main.cpp artists.cpp tracks.cpp functeste.cpp
 # Not a target:
 functeste.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-12 23:56:00
+#  Last modified 2021-07-13 15:26:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -285,7 +287,7 @@ all: a
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-12 22:06:30
+#  Last modified 2021-07-13 14:39:48
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -294,7 +296,7 @@ makefile:
 # Not a target:
 artists.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-12 21:19:26
+#  Last modified 2021-07-13 15:32:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -303,7 +305,7 @@ artists.cpp:
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-12 23:55:03
+#  Last modified 2021-07-13 15:34:37
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -334,7 +336,7 @@ clean:
 # Not a target:
 tracks.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-12 21:23:05
+#  Last modified 2021-07-13 14:39:48
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -353,6 +355,6 @@ tracks.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jul 13 13:56:06 2021
+# Finished Make data base on Tue Jul 13 16:47:26 2021
 
  
