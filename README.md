@@ -18,6 +18,7 @@
 * Github:[@gabrielduqueschiffner](https://github.com/gabrielduqueschiffner)
 * Matricula:(201965033A)
 
+Link do relatorio :https://docs.google.com/document/d/1ZWu4LiywHh_9iTz27FrEwu1a1mo9NKk1BUw5xRzGAf4/edit
 
 ## Descriçao
 Trabalho da disciplina de Estruturas de dados 2 turma E  professora BARBARA DE MELO QUINTELA , relativo ao assunto de manipulação de arquivos .
