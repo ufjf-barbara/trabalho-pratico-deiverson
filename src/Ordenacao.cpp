@@ -10,26 +10,17 @@ using namespace std;
 
 static int comparacao = 0;
 static int trocas = 0;
-static int compQ = 0, trocaQ = 0, compS = 0, trocaS = 0, compH = 0, trocaH = 0, n = 0;//variaveis auxiliares
+static int compQ = 0, trocaQ = 0, compS = 0, trocaS = 0, compH = 0, trocaH = 0, n = 0;
 static clock_t timeQ, timeS, timeH;
 
-void Ordenacao::chamaFuncaoOrdenacao(int N)
+void Ordenacao::chamaFuncaoOrdenacao(int n)
 {
-    srand(time(NULL));
-
     clock_t beginTime, endTime;
-    ifstream finA;
-    finA.open("../print/artists.bin", ios::in);
-    finA.seekg(0, finA.end);
 
-    vector<pair<int, float>> aux; // vector a ser ordenado
+    vector<pair<int, float>> aux;
 
-    int tam = finA.tellg() / sizeof(artistsAux);
+    int tam = Artists::getTAM();
     int M = 3;
-    n = N;
-
-    ofstream fout;
-    fout.close();
 
     for (int i = 0; i < M; i++)
     {
@@ -87,24 +78,24 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
     compH /= M;
     trocaH /= M;
 
-    PrintResult();
+    PrintResult(n);
 }
 
 void Ordenacao::SelectionSort(vector<pair<int, float>> &vet, int n)
 {
 
-    float menor = vet[0].second;//inicializaçao para variavel auxiliar
+    float menor = vet[0].second;
     int indice = 0;
-    pair<int, float> aux;//vector para ordenar para trabalhar como um dicionario
-    int i = 0, j = 0;//criadas fora pois o j fica fora do escopo 
+    pair<int, float> aux;
+    int i = 0, j = 0;
 
     for (i = 0; i < n; i++)
     {
-        menor = vet[i].second;//recebe o segundo elemento
+        menor = vet[i].second;
         indice = i;
         for (j = i; j < n; j++)
         {
-            if (menor > vet[j].second)//achar menor valor
+            if (menor > vet[j].second)
             {
                 menor = vet[j].second;
                 indice = j;
@@ -160,6 +151,7 @@ void Ordenacao::Quicksort(vector<pair<int, float>> &vet, int b, int f)
         Quicksort(vet, pivo + 1, f);
     }
 }
+
 void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i)
 {
     int maior = i;     // incializando o maior como raiz(pai)
@@ -202,12 +194,12 @@ void Ordenacao ::heapSort(vector<pair<int, float>> &vet, int n) // Funcao de ord
     }
 }
 
-void Ordenacao::PrintResult()//impressao de resultados
+void Ordenacao::PrintResult(int n)
 {
 
     ofstream saida("../print/saida.txt", ios::out | ios::app);
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Quick Sort" << endl
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compQ
@@ -215,7 +207,7 @@ void Ordenacao::PrintResult()//impressao de resultados
           << "\nTempo medio de Processamento:\t" << timeQ / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Heap Sort" << endl
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compH
@@ -223,7 +215,7 @@ void Ordenacao::PrintResult()//impressao de resultados
           << "\nTempo medio de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Selection Sort" << endl
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compS
@@ -232,7 +224,6 @@ void Ordenacao::PrintResult()//impressao de resultados
           << " segundos" << endl;
     saida.close();
 }
-
 
 void Ordenacao ::ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f)
 {
@@ -275,4 +266,106 @@ int Ordenacao::particionamentoTracks(vector<vector<tracks>> &vet, int b, int f)
     vet[b] = vet[j];
     vet[j] = pivo;
     return j;
+}
+
+void Ordenacao::chamaFuncaoOrdenacaoTeste()
+{
+    ofstream saida("../print/teste.txt", ios::out | ios::trunc);
+
+    clock_t beginTime, endTime;
+
+    vector<pair<int, float>> aux;
+
+    int tam = Artists::getTAM();
+
+    aux = Artists::registrosArtFollowers(100, tam);
+    vet = aux;
+
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "vetor desordenado:\n";
+    for (int i = 0; i < aux.size(); i++)
+    {
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\t\tSeguidores:\t" << vet[i].second << endl;
+    }
+    saida << "\n";
+
+    //QuickSort
+    comparacao = 0;
+    trocas = 0;
+
+    beginTime = clock();
+    Quicksort(vet, 0, vet.size() - 1);
+    endTime = clock();
+
+    timeQ = endTime - beginTime;
+    compQ = comparacao;
+    trocaQ = trocas;
+
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Quick Sort" << endl
+          << "\nNumero de comparacoes:\t" << compQ
+          << "\nNumero de trocas:\t" << trocaQ
+          << "\nTempo de Processamento:\t" << timeQ / ((float)CLOCKS_PER_SEC)
+          << " segundos" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "vetor ordenado:\n";
+    for (int i = aux.size() - 1; i >= 0; i--)
+    {
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\t\tSeguidores:\t" << vet[i].second << endl;
+    }
+    saida << "\n";
+
+    //HeapSort
+    comparacao = 0;
+    trocas = 0;
+    vet = aux;
+
+    beginTime = clock();
+    heapSort(vet, vet.size());
+    endTime = clock();
+
+    timeH = endTime - beginTime;
+    compH = comparacao;
+    trocaH = trocas;
+
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Heap Sort" << endl
+          << "\nNumero de comparacoes:\t" << compH
+          << "\nNumero de trocas:\t" << trocaH
+          << "\nTempo de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
+          << " segundos" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n";
+    for (int i = aux.size() - 1; i >= 0; i--)
+    {
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\t\tSeguidores:\t" << vet[i].second << endl;
+    }
+    saida << "\n";
+
+    //Selection
+    comparacao = 0;
+    trocas = 0;
+    vet = aux;
+
+    beginTime = clock();
+    SelectionSort(vet, vet.size());
+    endTime = clock();
+
+    timeS = endTime - beginTime;
+    compS = comparacao;
+    trocaS = trocas;
+
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Selection Sort" << endl
+          << "\nNumero de comparacoes:\t" << compS
+          << "\nNumero de trocas:\t" << trocaS
+          << "\nTempo de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
+          << " segundos" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "vetor ordenado:\n";
+    for (int i = aux.size() - 1; i >= 0; i--)
+    {
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\tSeguidores:\t" << vet[i].second << endl;
+    }
+    saida << "\n";
+    saida.close();
 }

@@ -249,3 +249,24 @@ vector<pair<int, float>> Artists::registrosArtFollowers(int n, int tam)
     }
     return vect;
 }
+int Artists::getTAM()
+{
+    ifstream fin;
+    fin.open("../print/artists.bin", ios::in);
+    fin.seekg(0, fin.end);
+    int tam = fin.tellg() / sizeof(artistsAux);
+    fin.close();
+    return tam;
+}
+artists Artists::reg(int i)
+{
+    artistsAux arti;
+    ifstream fin;
+    fin.open("../print/artists.bin", ios::in | ios::binary);
+    int posicao = i * sizeof(artistsAux);
+    fin.seekg(posicao, ios::beg);
+    fin.read((char *)&arti, sizeof(artistsAux));
+    fin.close();
+    
+    return Artists ::converteArtToString(arti);
+}

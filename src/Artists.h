@@ -58,6 +58,9 @@ public:
     //METODOS estaticos
     static vector<pair<int, float>> registrosArtFollowers(int n, int tam);
     static vector<artists> registrosArt(int n, int tam);
+    static int getTAM();
+    static artists reg(int i);
+
 
 
 };
