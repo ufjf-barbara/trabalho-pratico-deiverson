@@ -32,7 +32,6 @@ Tracks::~Tracks()
 {
 }
 
-//GETTERS E SETTERS
 
 //METODOS
 
@@ -262,11 +261,13 @@ void Tracks::leArquivo(string path)
             auxtempo = "";
             auxtime_signature = "";
         }
+        /*
         cout << "\n\nid = " << this->id
              << "\nname = " << this->name
              << "\nartists = " << this->artists
              << "\nid_artists = " << this->id_artists
              << "\nrelease_date = " << this->release_date << endl;
+             */
     }
     else
     {
