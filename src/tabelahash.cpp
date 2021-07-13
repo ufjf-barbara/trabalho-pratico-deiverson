@@ -141,6 +141,7 @@ int tabelaHash::getcont()
 void tabelaHash::artistasFrequentesTeste()
 {
     tracks tr;
+    ofstream saida("../print/teste.txt", ios::out | ios::app);
     Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size());
     int M = 1;
     cout << "\nDeseja obter quantos artistas mais frequentes?" << endl;
@@ -149,10 +150,10 @@ void tabelaHash::artistasFrequentesTeste()
     for (int i = 0; i < M; i++)
     {
         tr = musicaPopular(tabela[i]);
-        cout << "\nArtista:\t" << tabela[i][0].artists
+        saida << "\nArtista:\t" << tabela[i][0].artists
              << "\tocorrencias:\t" << tabela[i].size()
              << "\tMusica mais popular:\t" << tr.name
              << endl;
     }
-    cout << "\nColisoes:\t" << this->conta_colisao_de_artistas << endl;
+    saida << "\nColisoes:\t" << this->conta_colisao_de_artistas << endl;
 }

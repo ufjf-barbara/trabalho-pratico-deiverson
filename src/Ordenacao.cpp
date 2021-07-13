@@ -285,7 +285,7 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
           << "vetor desordenado:\n";
     for (int i = 0; i < aux.size(); i++)
     {
-        saida << vet[i].second << "  ";
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\t\tSeguidores:\t" << vet[i].second << endl;
     }
     saida << "\n";
 
@@ -309,9 +309,9 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
           << " segundos" << endl;
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "vetor ordenado:\n";
-    for (int i = 0; i < aux.size(); i++)
+    for (int i = aux.size() - 1; i >= 0; i--)
     {
-        saida << vet[i].second << "  ";
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\t\tSeguidores:\t" << vet[i].second << endl;
     }
     saida << "\n";
 
@@ -334,11 +334,10 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
           << "\nNumero de trocas:\t" << trocaH
           << "\nTempo de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
-    saida << "\n-------------------------------------------------------------------------------------------------------\n"
-          << "vetor ordenado:\n";
-    for (int i = 0; i < aux.size(); i++)
+    saida << "\n-------------------------------------------------------------------------------------------------------\n";
+    for (int i = aux.size() - 1; i >= 0; i--)
     {
-        saida << vet[i].second << "  ";
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\t\tSeguidores:\t" << vet[i].second << endl;
     }
     saida << "\n";
 
@@ -363,9 +362,9 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
           << " segundos" << endl;
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "vetor ordenado:\n";
-    for (int i = 0; i < aux.size(); i++)
+    for (int i = aux.size() - 1; i >= 0; i--)
     {
-        saida << vet[i].second << "  ";
+        saida << "Artista:\t" << Artists::reg(vet[i].first).name << "\tSeguidores:\t" << vet[i].second << endl;
     }
     saida << "\n";
     saida.close();
