@@ -10,7 +10,7 @@ using namespace std;
 
 static int comparacao = 0;
 static int trocas = 0;
-static int compQ = 0, trocaQ = 0, compS = 0, trocaS = 0, compH = 0, trocaH = 0, n = 0;
+static int compQ = 0, trocaQ = 0, compM = 0, trocaM = 0, compH = 0, trocaH = 0, n = 0;
 static clock_t timeQ, timeS, timeH;
 
 void Ordenacao::chamaFuncaoOrdenacao(int n)
@@ -52,18 +52,18 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
         compH = comparacao;
         trocaH = trocas;
 
-        //Selection
+        //MergeSort
         comparacao = 0;
         trocas = 0;
         vet = aux;
 
         beginTime = clock();
-        SelectionSort(vet, n);
+        MergeSort(vet, n);
         endTime = clock();
 
         timeS = endTime - beginTime;
-        compS = comparacao;
-        trocaS = trocas;
+        compM = comparacao;
+        trocaM = trocas;
     }
     timeQ /= M;
     timeS /= M;
@@ -72,8 +72,8 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
     compQ /= M;
     trocaQ /= M;
 
-    compS /= M;
-    trocaS /= M;
+    compM /= M;
+    trocaM /= M;
 
     compH /= M;
     trocaH /= M;
@@ -81,33 +81,66 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
     PrintResult(n);
 }
 
-void Ordenacao::SelectionSort(vector<pair<int, float>> &vet, int n)
+void MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
 {
+    int i, j, k, metade; //variaveis para contadores e para pegar a metade do vector
+    vector<pair<int, float>> v;//vector auxiliar
 
-    float menor = vet[0].second;
-    int indice = 0;
-    pair<int, float> aux;
-    int i = 0, j = 0;
-
-    for (i = 0; i < n; i++)
+    if (inicio == fim)
     {
-        menor = vet[i].second;
-        indice = i;
-        for (j = i; j < n; j++)
+        return;
+    }
+
+    metade = (inicio + fim) / 2;
+
+    MergeSort(vet, inicio, metade);//usa-se o metodo recursivo para a primeira metada
+    MergeSort(vet, metade + 1, fim);//usa-se o metodo recursivo para a sugunda metada
+
+    i = inicio;//recebe primeiro indice do vetor
+    j = metade + 1;//recebe o indice do metade+1 do vetor
+    k = 0;
+
+    while (i < metade + 1 || j < fim + 1)
+    {
+        if (i == metade + 1)
         {
-            if (menor > vet[j].second)
+            v[k] = vet[j];
+            j++;
+            k++;
+        }
+        else
+        {
+            if (j == fim + 1)
             {
-                menor = vet[j].second;
-                indice = j;
-                comparacao++;
+
+                v[k] = vet[i];
+                i++;
+                k++;
+            }
+            else
+            {
+                if (vet[i] < vet[j])
+                {
+                    v[k] = vet[i];
+                    i++;
+                    k++;
+                }
+                else
+                {
+                    v[k] = vet[j];
+                    j++;
+                    k++;
+                }
             }
         }
-        aux = vet[i];
-        vet[i] = vet[indice];
-        vet[indice] = aux;
-        trocas++;
+    }
+    for (i = inicio; i <= fim; i++)
+    {
+        vet[i] = v[i - inicio];
     }
 }
+
+
 
 int Ordenacao::particionamento(vector<pair<int, float>> &vet, int b, int f)
 {
@@ -216,10 +249,10 @@ void Ordenacao::PrintResult(int n)
           << " segundos" << endl;
 
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
-          << "Selection Sort" << endl
+          << "Merge Sort" << endl
           << "Para " << n << " registros: "
-          << "\nNumero medio de comparacoes:\t" << compS
-          << "\nNumero  medio de trocas:\t" << trocaS
+          << "\nNumero medio de comparacoes:\t" << compM
+          << "\nNumero  medio de trocas:\t" << trocaM
           << "\nTempo medio de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida.close();
@@ -341,23 +374,23 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
     }
     saida << "\n";
 
-    //Selection
+    //Mer
     comparacao = 0;
     trocas = 0;
     vet = aux;
 
     beginTime = clock();
-    SelectionSort(vet, vet.size());
+    MergeSort(vet, vet.size());
     endTime = clock();
 
     timeS = endTime - beginTime;
-    compS = comparacao;
-    trocaS = trocas;
+    compM = comparacao;
+    trocaM = trocas;
 
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
-          << "Selection Sort" << endl
-          << "\nNumero de comparacoes:\t" << compS
-          << "\nNumero de trocas:\t" << trocaS
+          << "Merge Sort" << endl
+          << "\nNumero de comparacoes:\t" << compM
+          << "\nNumero de trocas:\t" << trocaM
           << "\nTempo de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
