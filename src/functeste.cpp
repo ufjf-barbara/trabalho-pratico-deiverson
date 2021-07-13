@@ -18,20 +18,20 @@ void func_teste::func_test(string path) // funçao estatica
     finA.open("../print/artists.bin", ios::in);
 
     //posicionando o ponteiro no final do arquivo
-    finT.seekg(0, finT.end);
-    finA.seekg(0, finA.end);
+    // finT.seekg(0, finT.end);
+    // finA.seekg(0, finA.end);
 
     // usando o tellg pra saber o tamanho do arquivo com o ponteiro no final delete
     // e dividindo pelo tamnha da estrutura utiliza pra fazer a escrita em binarios
     //consigo obter o numero de registros que há em cada arquivo binario
-    int tamT = finT.tellg() / sizeof(tracksAux);
-    int tamA = finA.tellg() / sizeof(artistsAux);
-    cout << "\ntellgT " << finT.tellg() << "\ntamT " << tamT << "\nsizeT " << sizeof(tracksAux) << endl;
+    // int tamT = finT.tellg() / sizeof(tracksAux);
+    // int tamA = finA.tellg() / sizeof(artistsAux);
+    // cout << "\ntellgT " << finT.tellg() << "\ntamT " << tamT << "\nsizeT " << sizeof(tracksAux) << endl;
 
     //verifico se os arquivos resalmente estao abertos e chamo finalmente a funçao teste
     if (finT.is_open() && finA.is_open())
     {
-        testReadBin(tamT, tamA);
+        testReadBin(Tracks::getTAM(), Artists::getTAM());
     }
     else
         cout << "arquivos nao abriram" << endl;
@@ -151,21 +151,13 @@ void func_teste::testReadBin(int tamT, int tamA)
             foutT.close();
         }
     }
-    {
-    }
 }
 
-/* void ordenacaoteste()
+void func_teste:: moduloTesteDois()
 {
+
     Ordenacao ord;
-    vector<pair<int, float>> vet;
+   
+    ord.chamaFuncaoOrdenacaoTeste();
 
-    ord.Quicksort();
-    ofstream saida("../teste.txt", ios::out);
-
-    cout << "\nComparacoes:\t" << comparacao;
-    cout << "\nTrocas:\t " << trocas;
-    cout << "\nTempo de Processamento : " << (endTime - beginTime) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
-    cout << "\n";
 }
- */

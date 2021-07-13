@@ -48,28 +48,7 @@ int tabelaHash::gerarCodigoHash(string id)
     return abs((id[9] * id[3] * id[17]) % mod);
 }
 
-// int tabelaHash::detMod()
-// {
-//     int j = 0;
-//     int mmod = 0, result;
-//     for (j = n; j > 0; j--)
-//     {
-//         result = 0;
-//         for (int i = 1; i <= n / 2; i++)
-//         {
-//             if (n % i == 0)
-//             {
-//                 result++;
-//             }
-//         }
-//         if (result == 2)
-//         {
-//             mod = j;
-//             break;
-//         }
-//     }
-//     return j;
-// }
+
 
 void tabelaHash::inserir(vector<tracks> &vet)
 {

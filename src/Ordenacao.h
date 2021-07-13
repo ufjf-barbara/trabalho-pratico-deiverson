@@ -14,6 +14,7 @@ private:
 
 public:
     void chamaFuncaoOrdenacao(int N);
+    void chamaFuncaoOrdenacaoTeste();
     void SelectionSort(vector<pair<int, float>> &vet, int n);
     int particionamento(vector<pair<int, float>> &vet, int b, int f);
     void Quicksort(vector<pair<int, float>> &vet, int b, int f);

@@ -375,3 +375,12 @@ vector<tracks> Tracks::registrosTr(int n, int tam)
     fin.close(); // fechando o arquivo binarios
     return vect;
 }
+int Tracks::getTAM()
+{
+    ifstream fin;
+    fin.open("../print/tracks.bin", ios::in);
+    fin.seekg(0, fin.end);
+    int tam = fin.tellg() / sizeof(tracksAux);
+    fin.close();
+    return tam;
+}
