@@ -10,7 +10,7 @@ using namespace std;
 
 static int comparacao = 0;
 static int trocas = 0;
-static int compQ = 0, trocaQ = 0, compS = 0, trocaS = 0, compH = 0, trocaH = 0, n = 0;
+static int compQ = 0, trocaQ = 0, compS = 0, trocaS = 0, compH = 0, trocaH = 0, n = 0;//variaveis auxiliares
 static clock_t timeQ, timeS, timeH;
 
 void Ordenacao::chamaFuncaoOrdenacao(int N)
@@ -22,7 +22,7 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
     finA.open("../print/artists.bin", ios::in);
     finA.seekg(0, finA.end);
 
-    vector<pair<int, float>> aux;
+    vector<pair<int, float>> aux; // vector a ser ordenado
 
     int tam = finA.tellg() / sizeof(artistsAux);
     int M = 3;
@@ -93,18 +93,18 @@ void Ordenacao::chamaFuncaoOrdenacao(int N)
 void Ordenacao::SelectionSort(vector<pair<int, float>> &vet, int n)
 {
 
-    float menor = vet[0].second;
+    float menor = vet[0].second;//inicializaçao para variavel auxiliar
     int indice = 0;
-    pair<int, float> aux;
-    int i = 0, j = 0;
+    pair<int, float> aux;//vector para ordenar para trabalhar como um dicionario
+    int i = 0, j = 0;//criadas fora pois o j fica fora do escopo 
 
     for (i = 0; i < n; i++)
     {
-        menor = vet[i].second;
+        menor = vet[i].second;//recebe o segundo elemento
         indice = i;
         for (j = i; j < n; j++)
         {
-            if (menor > vet[j].second)
+            if (menor > vet[j].second)//achar menor valor
             {
                 menor = vet[j].second;
                 indice = j;
@@ -202,7 +202,7 @@ void Ordenacao ::heapSort(vector<pair<int, float>> &vet, int n) // Funcao de ord
     }
 }
 
-void Ordenacao::PrintResult()
+void Ordenacao::PrintResult()//impressao de resultados
 {
 
     ofstream saida("../print/saida.txt", ios::out | ios::app);
