@@ -137,6 +137,7 @@ void tabelaHash::artistasFrequentesTeste()
     tracks tr;
     ofstream saida("../print/teste.txt", ios::out | ios::app);//escreve teste.txt os resultados
     Ordenacao::ordenaQuickTraks(tabela, 0, tabela.size());
+
     int M = 1;
     cout << "\nDeseja obter quantos artistas mais frequentes?" << endl;
     cin >> M;
