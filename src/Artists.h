@@ -37,8 +37,7 @@ class Artists
 {
 
 private:
-
- // contadores
+    // contadores
     int id;
     int name;
     int genres;
@@ -52,17 +51,15 @@ public:
     //metodos
     artistsAux converteToAux(artists art);
     void leArquivo(string path);
-   // void TransformaArtistBin();
     static artists converteArtToString(artistsAux art);
 
     //METODOS estaticos
     static vector<pair<int, float>> registrosArtFollowers(int n, int tam);
     static vector<artists> registrosArt(int n, int tam);
+
+    //Getters
     static int getTAM();
     static artists reg(int i);
-
-
-
 };
 
 #endif // ARTISTS_H_INCLUDED

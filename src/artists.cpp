@@ -24,9 +24,11 @@ Artists::Artists(string path)
 
     leArquivo(path + "./artists.csv");
 }
+
 Artists::Artists()
 {
 }
+
 Artists::~Artists()
 {
 }
@@ -113,7 +115,7 @@ void Artists::leArquivo(string path)
             // Escrita---------------------------------------------------------------------------
 
             arti = converteToAux(art);
-            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux));
+            arquivoArtistBin.write((char *)&arti, sizeof(artistsAux)); // chamada de funçao pra escrita em binario
 
             //-----------------------------------------------------------------------------------
 
@@ -125,9 +127,10 @@ void Artists::leArquivo(string path)
             auxFollowers = "";
             auxPopularity = "";
         }
-        cout << "\n id = " << this->id
-             << "\n name = " << this->name
-             << "\n genres = " << this->genres;
+        // prints para saber os tamanhos dos vetores de caracteres
+        // cout << "\n id = " << this->id
+        //      << "\n name = " << this->name
+        //      << "\n genres = " << this->genres;
     }
 
     else
@@ -140,7 +143,6 @@ void Artists::leArquivo(string path)
 }
 
 //converte os campos de string para vetores de caracteres
-
 artistsAux Artists::converteToAux(artists art)
 {
     artistsAux arti;
@@ -156,7 +158,6 @@ artistsAux Artists::converteToAux(artists art)
 }
 
 //converte vetores de caracteres para strings
-
 artists Artists::converteArtToString(artistsAux art)
 {
     artists arti;
@@ -171,84 +172,52 @@ artists Artists::converteArtToString(artistsAux art)
 }
 
 //função para transformar vetores de caracteres em string
-
 vector<artists> Artists::registrosArt(int n, int tam)
 {
     vector<artists> vect;
-    vector<int> vet;
 
+    //Embaralhamento de um vector para obter registros aleatoriamente-----
+    vector<int> vet;
     for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
     }
     random_shuffle(vet.begin(), vet.end());
+    //--------------------------------------------------------------------
 
-    ifstream fin;
-    fin.open("../print/artists.bin", ios::in | ios::binary);
-
+    // Leitura dos registros--------------------------------------
     for (int i = 0; i < n; i++)
     {
-        artists art;
-        artistsAux arti;
-        //abertura do arquivo binario
-
-        //estrutura auxiliar
-        // pegando a posiçao em bytes
-        int posicao = vet[i] * sizeof(artistsAux);
-        // posicionando o ponteiro na posiçao a ser lida
-        fin.seekg(posicao, ios::beg);
-        //lendo o registro em uma estrurura aux com vetores de caracteres
-
-        fin.read((char *)&arti, sizeof(artistsAux));
-        // convertendo os vetores
-        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-        art = Artists ::converteArtToString(arti);
-
-        vect.push_back(art);
+        vect.push_back(reg(vet[i]));
     }
-    fin.close(); // fechando o arquivo binarios
+    //-------------------------------------------------------------
     return vect;
 }
 
-vector<pair<int, float>> Artists::registrosArtFollowers(int n, int tam)
+vector<pair<int, float>> Artists::registrosArtFollowers(int n, int tam) //funçao para retornar vector<pair<int, float>> para as funçoes de ordenaçao de artists
 {
     vector<pair<int, float>> vect;
 
+    //Embaralhamento de um vector para obter registros aleatoriamente-----
     vector<int> vet;
     for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
     }
     random_shuffle(vet.begin(), vet.end());
+    //--------------------------------------------------------------------
 
+    // Leitura dos registros--------------------------------------
     for (int i = 0; i < n; i++)
     {
-
-        artists art;
-        artistsAux arti;
-        //abertura do arquivo binario
-        ifstream fin;
-        fin.open("../print/artists.bin", ios::binary | ios::in);
-
-        //estrutura auxiliar
-        // pegando a posiçao em bytes
-        int posicao = vet[i] * sizeof(artistsAux);
-        // posicionando o ponteiro na posiçao a ser lida
-        fin.seekg(posicao, ios::beg);
-        //lendo o registro em uma estrurura aux com vetores de caracteres
-
-        fin.read((char *)&arti, sizeof(artistsAux));
-        // convertendo os vetores
-        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-        art = Artists ::converteArtToString(arti);
-
-        pair<int, float> paer(vet[i], art.followers);
+        pair<int, float> paer(vet[i], reg(vet[i]).followers);
 
         vect.push_back(paer);
-        fin.close(); // fechando o arquivo binarios
     }
+    //-------------------------------------------------------------
     return vect;
 }
+
 int Artists::getTAM()
 {
     ifstream fin;
@@ -258,15 +227,24 @@ int Artists::getTAM()
     fin.close();
     return tam;
 }
+
 artists Artists::reg(int i)
 {
     artistsAux arti;
+    //abertura do arquivo binario
     ifstream fin;
     fin.open("../print/artists.bin", ios::in | ios::binary);
+    //estrutura auxiliar
+    // pegando a posiçao em bytes
     int posicao = i * sizeof(artistsAux);
+    // posicionando o ponteiro na posiçao a ser lida
     fin.seekg(posicao, ios::beg);
+    //lendo o registro em uma estrurura aux com vetores de caracteres
     fin.read((char *)&arti, sizeof(artistsAux));
-    fin.close();
-    
+
+    fin.close(); // fechando o arquivo binarios
+
+    // convertendo os vetores
+    //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
     return Artists ::converteArtToString(arti);
 }

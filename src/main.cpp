@@ -44,15 +44,15 @@ int main(int argc, char **argv)
 
     return 0;
 }
-void call(string path)
+void call(string path)// funçao para chamar as execuçoes do trabalho
 {
     int aux = 1;
     while (aux != 0)
     {
-        cout << "\n-------------------------------------------------------------------------------------------------------\n"<< endl;
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"<< endl;
         cout << "Qual parte do trabalho deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
         cout << "[1] Primeira parte\n[2] Segunda parte\n[0] Finalizar\n";
-        cout << "\n-------------------------------------------------------------------------------------------------------\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
         cin >> aux;
         cin.ignore();
         if (aux >= 0 && aux <= 2)
@@ -62,10 +62,10 @@ void call(string path)
             case 0:
                 break;
             case 1:
-                parteUm(path);
+                parteUm(path);//chama a primeira parte do trabalho
                 break;
             case 2:
-                parteDois(path);
+                parteDois(path);//chama a segunda parte do trabalho
                 break;
             default:
                 cout << "\nOpcao invalida\n";
@@ -80,10 +80,10 @@ void parteDois(string path)
     int aux = 1;
     while (aux != 0)
     {
-        cout << "\n-------------------------------------------------------------------------------------------------------\n"<< endl;
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"<< endl;
         cout << "O que deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
         cout << "[1] Ordenacao\n[2] Hash\n[3] Modulo teste\n[0] Finalizar\n";
-        cout << "\n-------------------------------------------------------------------------------------------------------\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
         cin >> aux;
 
         cin.ignore();
@@ -103,24 +103,24 @@ void parteDois(string path)
             break;
         case 1:
             //Chamar  Ordenacao;
-            saida.open("../print/saida.txt", ios::out | ios::trunc);
+            saida.open("../print/saida.txt", ios::out | ios::trunc);//abre o arquivo o limpando
             saida.close();
-            while (getline(ns, straux))
+            while (getline(ns, straux)) //Para cada linha o input.dat sao chamadas as funçoes de ordenaçao
             { cout << "Aguarde . . ."<<endl;
                 istringstream(straux) >> r;
                 ord.chamaFuncaoOrdenacao(r);
-                cout << "Ordenacao para "<<r<<" registros concluida "<< endl;
+                cout << "Ordenacao para "<<r<<" registros concluida "<< endl;//mensagens de loading pra tela
             }
             break;
 
         case 2:
             //Chamar  Hash;
-            table = new tabelaHash();
+            table = new tabelaHash(); // Chama a funçao da tabela hash
             break;
 
         case 3:
             //Chamar  Modulo Teste;
-            func_teste::moduloTesteDois();
+            func_teste::moduloTesteDois();// Chama uma funçao para realizar , testes das chamadas acima, porem com quantidades reduzidas
             break;
 
         default:
@@ -129,7 +129,7 @@ void parteDois(string path)
     }
 }
 
-void parteUm(string path)
+void parteUm(string path)// Parte 1 do trabalho
 {
-    func_teste::func_test(path); // chamada para executar a funçao teste
+    func_teste::moduloTesteUm(path); // chamada para executar a funçao teste da primeira parte do trabalho
 }

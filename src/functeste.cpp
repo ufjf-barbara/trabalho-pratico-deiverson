@@ -10,33 +10,25 @@
 
 using namespace std;
 
-void func_teste::func_test(string path) // funçao estatica
+// funçao estatica
+void func_teste::moduloTesteUm(string path) //funçao pra teste da primeira parte de trabalhho
 {
     ifstream finT, finA;
     artistsAux art;
     tracksAux tr;
 
+    //abertura do arquivo binario para verificaçao se estao abertos
+
     finT.open("../print/tracks.bin", ios::in);
     finA.open("../print/artists.bin", ios::in);
 
-    //posicionando o ponteiro no final do arquivo
-    // finT.seekg(0, finT.end);
-    // finA.seekg(0, finA.end);
-
-    // usando o tellg pra saber o tamanho do arquivo com o ponteiro no final delete
-    // e dividindo pelo tamnha da estrutura utiliza pra fazer a escrita em binarios
-    //consigo obter o numero de registros que há em cada arquivo binario
-    // int tamT = finT.tellg() / sizeof(tracksAux);
-    // int tamA = finA.tellg() / sizeof(artistsAux);
-    // cout << "\ntellgT " << finT.tellg() << "\ntamT " << tamT << "\nsizeT " << sizeof(tracksAux) << endl;
-
-    //verifico se os arquivos resalmente estao abertos e chamo finalmente a funçao teste
     if (finT.is_open() && finA.is_open())
     {
-        testReadBin(Tracks::getTAM(), Artists::getTAM());
+        testReadBin(Tracks::getTAM(), Artists::getTAM()); //chama a funçao
     }
     else
         cout << "arquivos nao abriram" << endl;
+
     finA.close();
     finT.close();
 }
@@ -45,6 +37,7 @@ void func_teste::func_test(string path) // funçao estatica
 // manipular os ponteiros nos arquivos e fazer a impreçao no console output
 // em um arquivo de texto em uma pasta chamada " print " do diretorio principal
 // do trabalho
+
 void func_teste::testReadBin(int tamT, int tamA)
 
 {
@@ -66,7 +59,7 @@ void func_teste::testReadBin(int tamT, int tamA)
         {
             cout << "\n\nRegistros Artists\n\n"
                  << endl;
-            for (artists art : Artists::registrosArt(n, tamA))
+            for (artists art : Artists::registrosArt(n, tamA)) //recebe um vector de estruturas artists para imprimir
             {
                 cout << art.id
                      << "," << art.followers
@@ -79,7 +72,7 @@ void func_teste::testReadBin(int tamT, int tamA)
             cout << "\n\nRegistros Tracks\n\n"
                  << endl;
 
-            for (tracks tr : Tracks::registrosTr(n, tamT))
+            for (tracks tr : Tracks::registrosTr(n, tamT)) //recebe um vector de estruturas tracks para imprimir
             {
                 cout << tr.id
                      << " , " << tr.name
@@ -113,7 +106,7 @@ void func_teste::testReadBin(int tamT, int tamA)
 
             //Registros Artists
 
-            for (artists art : Artists::registrosArt(n, tamA))
+            for (artists art : Artists::registrosArt(n, tamA)) //recebe um vector de estruturas artists para imprimir em arquivo de texto
             {
                 foutA << art.id
                       << "," << art.followers
@@ -125,7 +118,7 @@ void func_teste::testReadBin(int tamT, int tamA)
             foutA.close();
             //Registros Tracks
 
-            for (tracks tr : Tracks::registrosTr(n, tamT))
+            for (tracks tr : Tracks::registrosTr(n, tamT)) //recebe um vector de estruturas tracks para imprimir em arquivo de texto
             {
                 foutT << tr.id
                       << "," << tr.name
@@ -154,12 +147,11 @@ void func_teste::testReadBin(int tamT, int tamA)
     }
 }
 
-void func_teste::moduloTesteDois()
+void func_teste::moduloTesteDois() //funçao pra teste da segunda parte de trabalhho
 {
-
     Ordenacao ord;
 
-    ord.chamaFuncaoOrdenacaoTeste();
+    ord.chamaFuncaoOrdenacaoTeste(); //chama a funçao de teste da ordenaçao
 
-    tabelaHash *table = new tabelaHash(1000);
+    tabelaHash *table = new tabelaHash(1000); //chama o construtor de teste da tabela hash
 }

@@ -9,7 +9,7 @@ private:
   static void testReadBin(int tamT, int tamA);
 
 public:
-  static void func_test(string path);
+  static void moduloTesteUm(string path);
   static void moduloTesteDois();
 
 
