@@ -222,8 +222,8 @@ int Artists::getTAM()
 {
     ifstream fin;
     fin.open("../print/artists.bin", ios::in);
-    fin.seekg(0, fin.end);
-    int tam = fin.tellg() / sizeof(artistsAux);
+    fin.seekg(0, fin.end);// posicionamento do ponteiro no final do arquivo
+    int tam = fin.tellg() / sizeof(artistsAux);//tamamnho do arquivo dividido pelo tamnho da estrutura para saber a quantidade de registrosArtFollowers
     fin.close();
     return tam;
 }

@@ -81,7 +81,10 @@ public:
 
     //METODOS estaticos
     static vector<tracks> registrosTr(int n, int tam);
+    
+    //getters
     static int getTAM();
+    static tracks reg(int i);
 };
 
 #endif // TRACKS_H_INCLUDED

@@ -341,46 +341,52 @@ tracks Tracks::converteTracksToString(tracksAux tra)
 vector<tracks> Tracks::registrosTr(int n, int tam)
 {
     vector<tracks> vect;
-    vector<int> vet;
 
+    //Embaralhamento de um vector para obter registros aleatoriamente-----
+    vector<int> vet;
     for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
     }
     random_shuffle(vet.begin(), vet.end());
+    //--------------------------------------------------------------------
 
-    ifstream fin;
-    fin.open("../print/tracks.bin", ios::in | ios::binary);
-
+    // Leitura dos registros--------------------------------------
     for (int i = 0; i < n; i++)
     {
-        tracks tr;
-        tracksAux tra;
-        //abertura do arquivo binario
-
-        //estrutura auxiliar
-        // pegando a posiçao em bytes
-        int posicao = vet[i] * sizeof(tracksAux);
-        // posicionando o ponteiro na posiçao a ser lida
-        fin.seekg(posicao, ios::beg);
-        //lendo o registro em uma estrurura aux com vetores de caracteres
-
-        fin.read((char *)&tra, sizeof(tracksAux));
-        // convertendo os vetores
-        //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
-        tr = Tracks ::converteTracksToString(tra);
-
-        vect.push_back(tr);
+        vect.push_back(reg(vet[i]));
     }
-    fin.close(); // fechando o arquivo binarios
+    //-------------------------------------------------------------
     return vect;
 }
+
 int Tracks::getTAM()
 {
     ifstream fin;
     fin.open("../print/tracks.bin", ios::in);
-    fin.seekg(0, fin.end);
-    int tam = fin.tellg() / sizeof(tracksAux);
+    fin.seekg(0, fin.end);                     // posicionamento do ponteiro no final do arquivo
+    int tam = fin.tellg() / sizeof(tracksAux); //tamamnho do arquivo dividido pelo tamnho da estrutura para saber a quantidade de registrosArtFollowers
     fin.close();
     return tam;
+}
+
+tracks Tracks::reg(int i)
+{
+    tracksAux tra;
+    //abertura do arquivo binario
+    ifstream fin;
+    fin.open("../print/tracks.bin", ios::in | ios::binary);
+    //estrutura auxiliar
+    // pegando a posiçao em bytes
+    int posicao = i * sizeof(tracksAux);
+    // posicionando o ponteiro na posiçao a ser lida
+    fin.seekg(posicao, ios::beg);
+    //lendo o registro em uma estrurura aux com vetores de caracteres
+    fin.read((char *)&tra, sizeof(tracksAux));
+
+    fin.close(); // fechando o arquivo binarios
+
+    // convertendo os vetores
+    //de caracteres da estrutura auxiliar e atribuindo ela à estrutura padrao
+    return Tracks ::converteTracksToString(tra);
 }

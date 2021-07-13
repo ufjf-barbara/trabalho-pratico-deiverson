@@ -65,6 +65,7 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
         compM = comparacao;
         trocaM = trocas;
     }
+    //Pegando as médias
     timeQ /= M;
     timeM /= M;
     timeH /= M;
@@ -148,8 +149,8 @@ void Ordenacao::MergeSort(vector<pair<int, float>> &vet, int inicio, int fim)
 
 int Ordenacao::particionamento(vector<pair<int, float>> &vet, int b, int f)
 {
-    pair<int, float> pivo = vet[b];
-    pair<int, float> aux;
+    pair<int, float> pivo = vet[b]; //pivo escolhido, primeira posiçao do vetor
+    pair<int, float> aux;           //vector auxiliar
     int i = b;
     int j = f + 1;
 
@@ -159,12 +160,57 @@ int Ordenacao::particionamento(vector<pair<int, float>> &vet, int b, int f)
         {
             i++;
             comparacao++;
-        } while (vet[i].second < pivo.second && i <= f);
+        } while (vet[i].second < pivo.second && i <= f); //Comparando vet na posiçao i com o pivo
         do
         {
             j--;
             comparacao++;
-        } while (pivo.second < vet[j].second);
+        } while (pivo.second < vet[j].second); //Comparando vet na posiçao j com o pivo
+        if (i < j)                             //Se i for menor que j, trocamos os valores de i e j do vector cada posiçao recebendo o valor da outra
+        {
+            trocas++;
+            aux = vet[i];
+            vet[i] = vet[j];
+            vet[j] = aux;
+        }
+    } while (i < j);
+
+    vet[b] = vet[j];
+    vet[j] = pivo; //posiçao j recebe pivo para retorna-lo pra funçao que a chamou esta
+
+    return j;
+}
+
+void Ordenacao::Quicksort(vector<pair<int, float>> &vet, int b, int f) //Ordenaçao dos artists
+{
+    int pivo;
+    if (b < f)
+    {
+        pivo = particionamento(vet, b, f); //Recebe um pivo,indice onde o valor ja está na posiçao correta
+        Quicksort(vet, b, pivo - 1);       //Chamada recursiva do método
+        Quicksort(vet, pivo + 1, f);
+    }
+}
+
+int Ordenacao::particionamentoTracks(vector<vector<tracks>> &vet, int b, int f)
+{
+    vector<tracks> pivo = vet[b];
+    vector<tracks> aux;
+    int i = b;
+    int j = f + 1;
+
+    do
+    {
+        do
+        {
+            i++;
+            comparacao++;
+        } while (vet[i].size() > pivo.size());
+        do
+        {
+            j--;
+            comparacao++;
+        } while (pivo.size() > vet[j].size());
         if (i < j)
         {
             trocas++;
@@ -178,14 +224,14 @@ int Ordenacao::particionamento(vector<pair<int, float>> &vet, int b, int f)
     return j;
 }
 
-void Ordenacao::Quicksort(vector<pair<int, float>> &vet, int b, int f)
+void Ordenacao ::ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f) //Ordenaçao das tracks
 {
     int pivo;
     if (b < f)
     {
-        pivo = particionamento(vet, b, f);
-        Quicksort(vet, b, pivo - 1);
-        Quicksort(vet, pivo + 1, f);
+        pivo = particionamentoTracks(vet, b, f); //Recebe um pivo,indice onde o valor ja está na posiçao correta
+        ordenaQuickTraks(vet, b, pivo - 1);      //Chamada recursiva do método
+        ordenaQuickTraks(vet, pivo + 1, f);
     }
 }
 
@@ -260,49 +306,6 @@ void Ordenacao::PrintResult(int n)
           << "\nTempo medio de Processamento:\t" << timeM / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
     saida.close();
-}
-
-void Ordenacao ::ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f)
-{
-    int pivo;
-    if (b < f)
-    {
-        pivo = particionamentoTracks(vet, b, f);
-        ordenaQuickTraks(vet, b, pivo - 1);
-        ordenaQuickTraks(vet, pivo + 1, f);
-    }
-}
-
-int Ordenacao::particionamentoTracks(vector<vector<tracks>> &vet, int b, int f)
-{
-    vector<tracks> pivo = vet[b];
-    vector<tracks> aux;
-    int i = b;
-    int j = f + 1;
-
-    do
-    {
-        do
-        {
-            i++;
-            comparacao++;
-        } while (vet[i].size() > pivo.size());
-        do
-        {
-            j--;
-            comparacao++;
-        } while (pivo.size() > vet[j].size());
-        if (i < j)
-        {
-            trocas++;
-            aux = vet[i];
-            vet[i] = vet[j];
-            vet[j] = aux;
-        }
-    } while (i < j);
-    vet[b] = vet[j];
-    vet[j] = pivo;
-    return j;
 }
 
 void Ordenacao::chamaFuncaoOrdenacaoTeste()
