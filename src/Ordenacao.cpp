@@ -78,7 +78,7 @@ void Ordenacao::chamaFuncaoOrdenacao(int n)
     compH /= M;
     trocaH /= M;
 
-    PrintResult();
+    PrintResult(n);
 }
 
 void Ordenacao::SelectionSort(vector<pair<int, float>> &vet, int n)
@@ -194,12 +194,12 @@ void Ordenacao ::heapSort(vector<pair<int, float>> &vet, int n) // Funcao de ord
     }
 }
 
-void Ordenacao::PrintResult()
+void Ordenacao::PrintResult(int n)
 {
 
     ofstream saida("../print/saida.txt", ios::out | ios::app);
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Quick Sort" << endl
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compQ
@@ -207,7 +207,7 @@ void Ordenacao::PrintResult()
           << "\nTempo medio de Processamento:\t" << timeQ / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Heap Sort" << endl
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compH
@@ -215,7 +215,7 @@ void Ordenacao::PrintResult()
           << "\nTempo medio de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Selection Sort" << endl
           << "Para " << n << " registros: "
           << "\nNumero medio de comparacoes:\t" << compS
@@ -279,34 +279,41 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
     int tam = Artists::getTAM();
 
     aux = Artists::registrosArtFollowers(100, tam);
-    saida << "\n-----------------------------------------------\n"
+    vet = aux;
+
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "vetor desordenado:\n";
     for (int i = 0; i < aux.size(); i++)
     {
-        saida << aux[i].second << "  ";
+        saida << vet[i].second << "  ";
     }
     saida << "\n";
-
-    vet = aux;
 
     //QuickSort
     comparacao = 0;
     trocas = 0;
 
     beginTime = clock();
-    Quicksort(vet, 0, n - 1);
+    Quicksort(vet, 0, vet.size() - 1);
     endTime = clock();
 
     timeQ = endTime - beginTime;
     compQ = comparacao;
     trocaQ = trocas;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Quick Sort" << endl
           << "\nNumero de comparacoes:\t" << compQ
           << "\nNumero de trocas:\t" << trocaQ
           << "\nTempo de Processamento:\t" << timeQ / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "vetor ordenado:\n";
+    for (int i = 0; i < aux.size(); i++)
+    {
+        saida << vet[i].second << "  ";
+    }
+    saida << "\n";
 
     //HeapSort
     comparacao = 0;
@@ -314,19 +321,26 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
     vet = aux;
 
     beginTime = clock();
-    heapSort(vet, n);
+    heapSort(vet, vet.size());
     endTime = clock();
 
     timeH = endTime - beginTime;
     compH = comparacao;
     trocaH = trocas;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Heap Sort" << endl
           << "\nNumero de comparacoes:\t" << compH
           << "\nNumero de trocas:\t" << trocaH
           << "\nTempo de Processamento:\t" << timeH / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "vetor ordenado:\n";
+    for (int i = 0; i < aux.size(); i++)
+    {
+        saida << vet[i].second << "  ";
+    }
+    saida << "\n";
 
     //Selection
     comparacao = 0;
@@ -334,18 +348,25 @@ void Ordenacao::chamaFuncaoOrdenacaoTeste()
     vet = aux;
 
     beginTime = clock();
-    SelectionSort(vet, n);
+    SelectionSort(vet, vet.size());
     endTime = clock();
 
     timeS = endTime - beginTime;
     compS = comparacao;
     trocaS = trocas;
 
-    saida << "\n-----------------------------------------------\n"
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Selection Sort" << endl
           << "\nNumero de comparacoes:\t" << compS
           << "\nNumero de trocas:\t" << trocaS
           << "\nTempo de Processamento:\t" << timeS / ((float)CLOCKS_PER_SEC)
           << " segundos" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "vetor ordenado:\n";
+    for (int i = 0; i < aux.size(); i++)
+    {
+        saida << vet[i].second << "  ";
+    }
+    saida << "\n";
     saida.close();
 }

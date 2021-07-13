@@ -20,7 +20,7 @@ public:
     void Quicksort(vector<pair<int, float>> &vet, int b, int f);
     void maxHeapify(vector<pair<int, float>> &vet, int n, int i);
     void heapSort(vector<pair<int, float>> &vet, int n);
-    void PrintResult();
+    void PrintResult(int n);
     static void ordenaQuickTraks(vector<vector<tracks>> &vet, int b, int f);
     static int particionamentoTracks(vector<vector<tracks>> &vet, int b, int f);
     

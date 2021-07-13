@@ -2,6 +2,8 @@
 #include "Tracks.h"
 #include "functeste.h"
 #include "Ordenacao.h"
+#include "tabelaHash.h"
+
 #include <iostream> //entrada pelo teclado e saida pela prompt
 #include <fstream>
 #include <vector>
@@ -98,8 +100,7 @@ void func_teste::testReadBin(int tamT, int tamA)
                      << " , " << tr.liveness
                      << " , " << tr.valence
                      << " , " << tr.tempo
-                     << " , " << tr.time_signature
-                     << "\n\n-----------------------------------\n\n";
+                     << " , " << tr.time_signature;
             }
         }
         else //n= 100 ----- pega 100 registros e cria arquivo de texto armazenando-os na pasta print
@@ -153,11 +154,12 @@ void func_teste::testReadBin(int tamT, int tamA)
     }
 }
 
-void func_teste:: moduloTesteDois()
+void func_teste::moduloTesteDois()
 {
 
     Ordenacao ord;
-   
+
     ord.chamaFuncaoOrdenacaoTeste();
 
+    tabelaHash *table = new tabelaHash(1000);
 }

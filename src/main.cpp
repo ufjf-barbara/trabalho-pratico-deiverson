@@ -11,9 +11,13 @@
 
 using namespace std;
 
+void call(string path);
+void parteDois(string path);
+void parteUm(string path);
+
 int main(int argc, char **argv)
 {
-
+    srand(time(NULL));
     string path = argv[1];
 
     ifstream artbin, trbin;
@@ -42,13 +46,13 @@ int main(int argc, char **argv)
 }
 void call(string path)
 {
-    int aux = 0;
+    int aux = 1;
     while (aux != 0)
     {
-        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "\n-------------------------------------------------------------------------------------------------------\n"<< endl;
         cout << "Qual parte do trabalho deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
         cout << "[1] Primeira parte\n[2] Segunda parte\n[0] Finalizar\n";
-        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "\n-------------------------------------------------------------------------------------------------------\n";
         cin >> aux;
         cin.ignore();
         if (aux >= 0 && aux <= 2)
@@ -64,20 +68,22 @@ void call(string path)
                 parteDois(path);
                 break;
             default:
+                cout << "\nOpcao invalida\n";
             }
         }
     }
 }
+
 void parteDois(string path)
 {
 
     int aux = 1;
     while (aux != 0)
     {
-        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "\n-------------------------------------------------------------------------------------------------------\n"<< endl;
         cout << "O que deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
         cout << "[1] Ordenacao\n[2] Hash\n[3] Modulo teste\n[0] Finalizar\n";
-        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "\n-------------------------------------------------------------------------------------------------------\n";
         cin >> aux;
 
         cin.ignore();
@@ -86,8 +92,10 @@ void parteDois(string path)
         int r;
         ofstream saida;
 
-        ifstream ns("input.txt", ios::in);
+        ifstream ns("input.dat", ios::in);
         string straux;
+
+        tabelaHash *table;
 
         switch (aux)
         {
@@ -98,21 +106,23 @@ void parteDois(string path)
             saida.open("../print/saida.txt", ios::out | ios::trunc);
             saida.close();
             while (getline(ns, straux))
-            {
+            { cout << "Aguarde . . ."<<endl;
                 istringstream(straux) >> r;
                 ord.chamaFuncaoOrdenacao(r);
+                cout << "Ordenacao para "<<r<<" registros concluida "<< endl;
             }
             break;
+
         case 2:
             //Chamar  Hash;
-            tabelaHash *hash = new tabelaHash();
-
+            table = new tabelaHash();
             break;
+
         case 3:
             //Chamar  Modulo Teste;
-           func_teste::moduloTesteDois()
-
+            func_teste::moduloTesteDois();
             break;
+
         default:
             cout << "\nOpcao invalida\n";
         }

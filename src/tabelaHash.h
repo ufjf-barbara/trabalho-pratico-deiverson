@@ -11,13 +11,14 @@ class tabelaHash
 
 private:
     vector<vector<tracks>> tabela;
-    int mod,contador;
+    int mod;
     int conta_colisao_de_artistas;
 
 public:
 
     int getcont();
 
+    tabelaHash(int n);
     tabelaHash();
     int gerarCodigoHash(string id);
     void inserir(vector<tracks> &vet);
@@ -25,6 +26,7 @@ public:
     
     tracks  musicaPopular(vector<tracks> &vet);
     void artistasFrequentes();
+    void artistasFrequentesTeste();
 };
 
 #endif // TABELAHASH_H_INCLUDED
