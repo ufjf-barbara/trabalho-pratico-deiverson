@@ -185,7 +185,7 @@ void Ordenacao::Quicksort(vector<pair<int, float>> &vet, int b, int f)
     }
 }
 
-void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i)
+void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i) //funcao para verificar e transformar a heap em uma heap de maximo
 {
     int maior = i;     // incializando o maior como raiz(pai)
     int l = 2 * i + 1; // Right(i) -- Filho a esquerda do indice i
@@ -202,27 +202,27 @@ void Ordenacao::maxHeapify(vector<pair<int, float>> &vet, int n, int i)
     // Se o maior não é raiz
     if (maior != i)
     {
-        swap(vet[i].second, vet[maior].second);
+        swap(vet[i].second, vet[maior].second);  // troca o nó filho com o nó pai/raiz
 
-        maxHeapify(vet, n, maior);
+        maxHeapify(vet, n, maior); //chamada recursiva para apilcar a propriedade de heap de máximo na sub-árvore afetada
     }
 }
 
 void Ordenacao ::heapSort(vector<pair<int, float>> &vet, int n) // Funcao de ordenacao do heapsort
 {
     // Construindo a heap
-    for (int i = n / 2 - 1; i >= 0; i--)
+    for (int i = n / 2 - 1; i >= 0; i--)  // construcao de uma heap de maximo ao utilizar a funcao maxHeapify
     {
         maxHeapify(vet, n, i);
         comparacao++;
     }
 
-    for (int i = n - 1; i > 0; i--)
+    for (int i = n - 1; i > 0; i--)   // Extraindo um a um os elementos da heap
     {
 
-        swap(vet[0].second, vet[i].second);
+        swap(vet[0].second, vet[i].second);  //move o nó atual para o fim
         trocas++;
-        // Chama maxHeapify no heap reduzido
+        // Chama maxHeapify na heap reduzida
         maxHeapify(vet, i, 0);
     }
 }
