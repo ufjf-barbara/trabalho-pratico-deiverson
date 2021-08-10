@@ -38,8 +38,10 @@ private:
 public:
     ArvoreVp();
     ArvoreVp(int n);
-    void insercao(Node* aux);
-    void insercaoBalanceado();
+    void insercao();
+    void insercaoBalanceado(Node* p);
+    void rightRotate(Node* x);
+    void leftRotate(Node *x);
     void busca(int val);
 }
 
