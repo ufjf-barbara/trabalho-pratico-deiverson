@@ -209,5 +209,21 @@ void ArvoreVp::leftRotate(Node *x)
   x->pai = y;
 }
 
+//busca
 
+bool ArvoreVp::busca(int val)
+{
+    return auxBusca(raiz, val);
+}
 
+bool ArvoreVp::auxBusca(Node *p, int val)
+{
+    if(p == NULL)
+        return false;
+    else if(p->getInfo() == val)
+        return true;
+    else if(val < p->getInfo())
+        return auxBusca(p->getEsq(), val);
+    else
+        return auxBusca(p->getDir(), val);
+}

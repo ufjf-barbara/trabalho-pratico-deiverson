@@ -26,7 +26,7 @@ struct Node
     Node *esq;
     Node *dir;
     int color;
-}
+};
 
 class ArvoreVp
 {
@@ -43,6 +43,7 @@ public:
     void rightRotate(Node* x);
     void leftRotate(Node *x);
     void busca(int val);
-}
+    bool auxBusca(Node *p, int val);
+};
 
 #endif // ARVOREVP_H_INCLUDED
