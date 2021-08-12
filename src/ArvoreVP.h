@@ -44,6 +44,11 @@ public:
     void leftRotate(Node *x);
     void busca(int val);
     bool auxBusca(Node *p, int val);
+    void imprime() ;
+    void auxImprime(Node* r, string str, bool verifica) ;
+
+  
+
 };
 
 #endif // ARVOREVP_H_INCLUDED

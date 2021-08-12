@@ -222,8 +222,32 @@ bool ArvoreVp::auxBusca(Node *p, int val)
         return false;
     else if(p->getInfo() == val)
         return true;
-    else if(val < p->getInfo())
-        return auxBusca(p->getEsq(), val);
+    else if(val < p->esq())
+        return auxBusca(p->esq(), val);
     else
-        return auxBusca(p->getDir(), val);
+        return auxBusca(p->dir(), val);
 }
+
+ void ArvoreVp::imprime() {
+    if (raiz) {
+      auxImprime(this->raiz, "", true);
+    }
+  }
+
+  void ArvoreVp::auxImprime(Node* r, string str, bool verifica) {
+    if (r != NULL) {
+      cout << str;
+      if (verifica) {
+        cout << "R----";
+        str += "   ";
+      } else {
+        cout << "L----";
+        str += "|  ";
+      }
+
+      string Color = r->color ? "RED" : "BLACK";
+      cout << r->data << "(" << Color << ")" << endl;
+      auxImprime(r->esq, str, false);
+      auxImprime(r->dir, str, true);
+    }
+  }
