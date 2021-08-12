@@ -20,7 +20,8 @@ ArvoreVp::ArvoreVp()
 ArvoreVp::ArvoreVp(int n)
 {
     raiz = NULL;
-    int tam=Artists::getTAM();
+
+    int tam = Artists::getTAM();
     vector<int> vet;
 
     for (int i = 0; i < tam; i++)
@@ -43,8 +44,8 @@ ArvoreVp::ArvoreVp(int n)
 
         insercao(aux);
     }
-    cout<< qtdd(raiz)<<endl;
-    cout<< n <<endl;
+    cout << qtdd(raiz) << endl;
+    cout << n << endl;
 }
 
 //algoritmo de inserção
@@ -76,7 +77,7 @@ void ArvoreVp::insercao(Node *aux)
         raiz = aux;
         raiz->color = 0;
     }
-    else if (Compara(aux->nome, y->nome)<0)
+    else if (Compara(aux->nome, y->nome) < 0)
     {
         y->esq = aux;
     }
@@ -84,16 +85,17 @@ void ArvoreVp::insercao(Node *aux)
     {
         y->dir = aux;
     }
+    insercaoBalanceado(aux);
 
-//    if (aux->pai == NULL)
-//    {
-//        return;
-//    }
+    //    if (aux->pai == NULL)
+    //    {
+    //        return;
+    //    }
 
-//    if (aux->pai->pai == NULL)
-//    {
-//        return;
-//    }
+    //    if (aux->pai->pai == NULL)
+    //    {
+    //        return;
+    //    }
 }
 
 //algoritmo de inserção
@@ -277,12 +279,12 @@ int ArvoreVp::Compara(string str1, string str2)
 }
 int ArvoreVp::qtdd(Node *no)
 {
-    if (no==NULL)
+    if (no == NULL)
     {
         return 0;
     }
     else
     {
-        return 1+ qtdd(no->esq) + qtdd(no->dir);
+        return 1 + qtdd(no->esq) + qtdd(no->dir);
     }
 }
