@@ -1,4 +1,6 @@
+#include "ArvoreVP.h"
 #include "Artists.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -6,11 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <vector>
-#include <math.h>
-#include <ctime>
 #include <algorithm>
-#include "ArvoreVP.h"
-
 #include <utility>
 
 using namespace std;
@@ -18,12 +16,10 @@ using namespace std;
 ArvoreVp::ArvoreVp()
 {
   raiz = NULL;
-  aux = NULL;
 }
 ArvoreVp::ArvoreVp(int n)
 {
   raiz = NULL;
-  aux = NULL;
 
   vector<int> vet;
   for (int i = 0; i < Artists::getTAM(); i++)
@@ -34,22 +30,22 @@ ArvoreVp::ArvoreVp(int n)
 
   for (int i = 0; i < n; i++)
   {
-
-    artists art = Artists::reg(vet[n]);
+    Node *aux;
+    artists art = Artists::reg(vet[i]);
     aux->nome = art.name;
     aux->posicao = vet[n];
     aux->id = art.id;
-    aux->color = 0;
+    aux->color = 0; 
     aux->esq = NULL;
     aux->dir = NULL;
     aux->pai = NULL;
 
-    insercao();
+    insercao(aux);
   }
 }
 
 //algoritmo de inserção
-void ArvoreVp::insercao()
+void ArvoreVp::insercao(Node *aux)
 {
 
   aux->color = 1;
@@ -60,13 +56,14 @@ void ArvoreVp::insercao()
   while (x != NULL)
   {
     y = x;
-    if (aux->data < x->data)
+    int a = Compara(aux->nome, raiz->nome);
+    if (a == 0 || a > 0)
     {
-      x = x->esq;
+      x = x->dir;
     }
     else
     {
-      x = x->dir;
+      x = x->esq;
     }
   }
 
@@ -75,7 +72,7 @@ void ArvoreVp::insercao()
   {
     raiz = aux;
   }
-  else if (aux->data < y->data)
+  else if (Compara(aux->nome, y->nome))
   {
     y->esq = aux;
   }
@@ -211,43 +208,73 @@ void ArvoreVp::leftRotate(Node *x)
 
 //busca
 
-bool ArvoreVp::busca(int val)
+bool ArvoreVp::busca(string val)
 {
-    return auxBusca(raiz, val);
+  return auxBusca(this->raiz, val);
 }
 
-bool ArvoreVp::auxBusca(Node *p, int val)
+bool ArvoreVp::auxBusca(Node *p, string val)
 {
-    if(p == NULL)
-        return false;
-    else if(p->getInfo() == val)
-        return true;
-    else if(val < p->esq())
-        return auxBusca(p->esq(), val);
+  if (p == NULL)
+    return false;
+  else if (p->nome == val)
+    return true;
+  else if (Compara(p->nome, val))
+    return auxBusca(p->esq, val);
+  else
+    return auxBusca(p->dir, val);
+}
+
+void ArvoreVp::imprime()
+{
+  if (raiz)
+  {
+    auxImprime(this->raiz, "", true);
+  }
+}
+
+void ArvoreVp::auxImprime(Node *r, string str, bool verifica)
+{
+  if (r != NULL)
+  {
+    cout << str;
+    if (verifica)
+    {
+      cout << "R----";
+      str += "   ";
+    }
     else
-        return auxBusca(p->dir(), val);
+    {
+      cout << "L----";
+      str += "|  ";
+    }
+
+    string Color = r->color ? "Rubro" : "Negro";
+    cout << r->nome << "(" << Color << ")" << endl;
+    auxImprime(r->esq, str, false);
+    auxImprime(r->dir, str, true);
+  }
 }
 
- void ArvoreVp::imprime() {
-    if (raiz) {
-      auxImprime(this->raiz, "", true);
-    }
-  }
+int ArvoreVp::Compara(string str1, string str2)
+{
+  char aux1[375];
+  char aux2[375];
 
-  void ArvoreVp::auxImprime(Node* r, string str, bool verifica) {
-    if (r != NULL) {
-      cout << str;
-      if (verifica) {
-        cout << "R----";
-        str += "   ";
-      } else {
-        cout << "L----";
-        str += "|  ";
-      }
+  strcpy(aux1, str1.c_str());
+  strcpy(aux2, str2.c_str());
 
-      string Color = r->color ? "RED" : "BLACK";
-      cout << r->data << "(" << Color << ")" << endl;
-      auxImprime(r->esq, str, false);
-      auxImprime(r->dir, str, true);
-    }
-  }
+  int aux;
+  if (str1.length() <= str2.length())
+    aux = str1.length();
+  else
+    aux = str2.length();
+
+  int resultado = strncmp(aux1, aux2, aux);
+  if (resultado > 0)
+    return 1;
+  else if (resultado == 0)
+    return 0;
+  else
+    return -1;
+}

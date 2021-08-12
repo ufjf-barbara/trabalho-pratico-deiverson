@@ -33,21 +33,20 @@ class ArvoreVp
 
 private:
     Node *raiz;
-    Node *aux;
+
+    void auxImprime(Node *r, string str, bool verifica);
+    bool auxBusca(Node *p, string val);
+    void insercao(Node *aux);
+    void insercaoBalanceado(Node *p);
+    void rightRotate(Node *x);
+    void leftRotate(Node *x);
+    int Compara(string str1, string str2);
 
 public:
     ArvoreVp();
     ArvoreVp(int n);
-    void insercao();
-    void insercaoBalanceado(Node* p);
-    void rightRotate(Node* x);
-    void leftRotate(Node *x);
-    void busca(int val);
-    bool auxBusca(Node *p, int val);
-    void imprime() ;
-    void auxImprime(Node* r, string str, bool verifica) ;
-
-  
+    bool busca(string val);
+    void imprime();
 
 };
 
