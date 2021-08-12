@@ -37,9 +37,9 @@ private:
     void auxImprime(Node *r, string str, bool verifica);
     bool auxBusca(Node *p, string val);
     void insercao(Node *aux);
-    void insercaoBalanceada(Node *p);
-    void rotacaoDir(Node *x);
-    void rotacaoEsq(Node *x);
+    void insercaoBalanceado(Node *p);
+    void rightRotate(Node *x);
+    void leftRotate(Node *x);
     int Compara(string str1, string str2);
 
 public:
@@ -47,6 +47,7 @@ public:
     ArvoreVp(int n);
     bool busca(string val);
     void imprime();
+    int qtdd(Node *no);
 
 };
 

@@ -1,4 +1,5 @@
 #include "Artists.h"
+
 #include <iostream>
 #include <fstream>
 #include <list>
@@ -11,7 +12,6 @@
 #include <math.h>
 #include <ctime>
 #include <algorithm>
-
 #include <utility>
 
 using namespace std;
