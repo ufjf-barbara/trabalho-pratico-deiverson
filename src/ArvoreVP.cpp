@@ -106,7 +106,7 @@ void ArvoreVp::insercaoBalanceado(Node *p)
     {
         if (p->pai == p->pai->pai->dir)
         {
-            u = p->pai->pai->dir;
+            u = p->pai->pai->esq;
             if (u->color == 1)
             {
                 u->color = 0;
@@ -116,7 +116,7 @@ void ArvoreVp::insercaoBalanceado(Node *p)
             }
             else
             {
-                if (p == p->pai->dir)
+                if (p == p->pai->esq)
                 {
                     p = p->pai;
                     rightRotate(p);
