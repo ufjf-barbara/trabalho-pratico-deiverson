@@ -91,10 +91,11 @@ void ArvoreVp::insercao(Node *aux)
   {
     return;
   }
+  insercaoBalanceada(aux);
 }
 
 //algoritmo de inserção
-void ArvoreVp::insercaoBalanceado(Node *p)
+void ArvoreVp::insercaoBalanceada(Node *p)
 {
   Node *u;
   while (p->pai->color == 1)
@@ -114,11 +115,11 @@ void ArvoreVp::insercaoBalanceado(Node *p)
         if (p == p->pai->dir)
         {
           p = p->pai;
-          rightRotate(p);
+          rotacaoDir(p);
         }
         p->pai->color = 0;
         p->pai->pai->color = 1;
-        leftRotate(p->pai->pai);
+        rotacaoEsq(p->pai->pai);
       }
     }
     else
@@ -137,11 +138,11 @@ void ArvoreVp::insercaoBalanceado(Node *p)
         if (p == p->pai->dir)
         {
           p = p->pai;
-          leftRotate(p);
+          rotacaoEsq(p);
         }
         p->pai->color = 0;
         p->pai->pai->color = 1;
-        rightRotate(p->pai->pai);
+        rotacaoDir(p->pai->pai);
       }
     }
     if (p == raiz)
@@ -154,7 +155,7 @@ void ArvoreVp::insercaoBalanceado(Node *p)
 
 //rotação para direita
 
-void ArvoreVp::rightRotate(Node *x)
+void ArvoreVp::rotacaoDir(Node *x)
 {
   Node *y = x->esq;
   x->esq = y->dir;
@@ -181,7 +182,7 @@ void ArvoreVp::rightRotate(Node *x)
 
 //rotação para esquerda
 
-void ArvoreVp::leftRotate(Node *x)
+void ArvoreVp::rotacaoEsq(Node *x)
 {
   Node *y = x->dir;
   x->dir = y->esq;
@@ -233,26 +234,26 @@ void ArvoreVp::imprime()
   }
 }
 
-void ArvoreVp::auxImprime(Node *r, string str, bool verifica)
+void ArvoreVp::auxImprime(Node *p, string str, bool verifica)
 {
-  if (r != NULL)
+  if (p != NULL)
   {
     cout << str;
     if (verifica)
     {
-      cout << "R----";
+      cout << "D----";
       str += "   ";
     }
     else
     {
-      cout << "L----";
+      cout << "E----";
       str += "|  ";
     }
 
-    string Color = r->color ? "Rubro" : "Negro";
-    cout << r->nome << "(" << Color << ")" << endl;
-    auxImprime(r->esq, str, false);
-    auxImprime(r->dir, str, true);
+    string Color = p->color ? "Rubro" : "Negro";
+    cout << p->nome << "(" << Color << ")" << endl;
+    auxImprime(p->esq, str, false);
+    auxImprime(p->dir, str, true);
   }
 }
 

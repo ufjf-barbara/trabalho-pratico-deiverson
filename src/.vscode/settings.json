@@ -13,7 +13,8 @@
         "array": "cpp",
         "ostream": "cpp",
         "unordered_map": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "utility": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.launchConfigurations": [
