@@ -49,10 +49,10 @@ ArvoreVp::ArvoreVp(int n)
 }
 
 //algoritmo de inserção
-void ArvoreVp::insercao(Node *aux)
+void ArvoreVp::insercao(Node *no)
 {
 
-    aux->color = 1;
+    no->color = 1;
 
     Node *y = NULL;
     Node *x = this->raiz;
@@ -60,7 +60,7 @@ void ArvoreVp::insercao(Node *aux)
     while (x != NULL)
     {
         y = x;
-        int a = Compara(aux->nome, x->nome);
+        int a = Compara(no->nome, x->nome);
         if (a >= 0)
         {
             x = x->dir;
@@ -71,91 +71,88 @@ void ArvoreVp::insercao(Node *aux)
         }
     }
 
-    aux->pai = y;
+    no->pai = y;
     if (y == NULL)
     {
-        raiz = aux;
-        raiz->color = 0;
+        raiz = no;
     }
-    else if (Compara(aux->nome, y->nome) < 0)
+    else if (Compara(no->nome, y->nome) < 0)
     {
-        y->esq = aux;
+        y->esq = no;
     }
     else
     {
-        y->dir = aux;
+        y->dir = no;
     }
-    insercaoBalanceado(aux);
 
-    //    if (aux->pai == NULL)
-    //    {
-    //        return;
-    //    }
+    if (no->pai == NULL)
+    {
+        raiz->color = 0;
+        return;
+    }
 
-    //    if (aux->pai->pai == NULL)
-    //    {
-    //        return;
-    //    }
+    if (no->pai->pai == NULL)
+    {
+        return;
+    }
+    insercaoBalanceado(no);
 }
 
 //algoritmo de inserção
 void ArvoreVp::insercaoBalanceado(Node *p)
 {
     Node *u; //uncle
-    Node *pai_p = NULL;
-    Node *vo_p = NULL;
-    while ((p != raiz) && (p->pai->color == 1) && (p->color == 0))
+    while ((p->pai->color == 1) && (p->color == 0))
     {
-        pai_p = p->pai;
-        vo_p = p->pai->pai;
-        if (pai_p == vo_p->esq)
+        if (p->pai == p->pai->pai->dir)
         {
-            u = vo_p->dir;
-            if (u->color == 1 && u != NULL)
+            u = p->pai->pai->esq;
+            if (u->color == 1 )
             {
-                vo_p->color = 1;
-                pai_p->color = 0;
                 u->color = 0;
-                p = vo_p;
+                p->pai->color = 0;
+                p->pai->pai->color = 1;
+                p = p->pai->pai;
             }
             else
             {
-                if (p == pai_p->dir)
+                if (p == p->pai->esq)
                 {
-                    leftRotate(pai_p);
-                    p = pai_p;
-                    pai_p = p->pai;
-                } ////////////////////////////////
-                leftRotate(vo_p);
-                pai_p->color = 0;
-                vo_p->color = 1;
-                p = pai_p;
+                    p = p->pai;
+                    rightRotate(p);
+                }
+                p->pai->color = 0;
+                p->pai->pai->color = 1;
+                leftRotate(p);
             }
         }
         else
         {
-            u = vo_p->dir;
+            u = p->pai->pai->dir;
 
-            if (u->color == 1 && u != NULL)
+            if (u->color == 1 )
             {
+
                 u->color = 0;
-                pai_p->color = 0;
-                vo_p->color = 1;
-                p = vo_p;
+                p->pai->color = 0;
+                p->pai->pai->color = 1;
+                p = p->pai->pai;
             }
             else
             {
-                if (p == pai_p->esq)
+                if (p ==  p->pai->dir)
                 {
-                    rightRotate(pai_p);
-                    p = pai_p;
-                    pai_p = p->pai;
+                    p =  p->pai;
+                    rightRotate(p);
                 }
-                rightRotate(vo_p);
-                pai_p->color = 0;
-                vo_p->color = 1;
-                p = pai_p;
+                	p->pai->color = 0;
+					p->pai->pai->color = 1;
+                rightRotate(p);
             }
+        }
+        if (p == raiz)
+        {
+            break;
         }
     }
     raiz->color = 0;
@@ -163,7 +160,7 @@ void ArvoreVp::insercaoBalanceado(Node *p)
 
 //rotação para direita
 
-void ArvoreVp::leftRotate(Node *no)
+void ArvoreVp::rightRotate(Node *no)
 {
     Node *y = no->esq;
 
@@ -192,7 +189,7 @@ void ArvoreVp::leftRotate(Node *no)
 
 //rotação para esquerda
 
-void ArvoreVp::rightRotate(Node *no)
+void ArvoreVp::leftRotate(Node *no)
 {
     Node *y = no->dir;
 

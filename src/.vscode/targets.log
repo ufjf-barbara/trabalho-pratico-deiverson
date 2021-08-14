@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Sat Aug 14 11:49:58 2021
+# Make data base, printed on Sat Aug 14 17:53:53 2021
 
 # Variables
 
@@ -34,6 +34,7 @@ HOMEDRIVE = C:
 CURDIR := c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src
 # default
 SHELL := sh.exe
+ 
 # environment
 WINDIR = C:\Windows
 # environment
@@ -50,12 +51,13 @@ MAKEFILE_LIST :=  makefile
 TMP = C:\Users\deive\AppData\Local\Temp
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# environment
+# environm 
+ent
 PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-e9bfebbf-dc56-4177-aa83-8f6d84a5aba5-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-11a36134-8e17-49ce-94d7-e005fbe27036-sock
 # environment
 VSCODE_CWD = C:\Users\deive\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -80,8 +82,9 @@ ELECTRON_RUN_AS_NODE = 1
 DIR = ""
 # automatic
 %F = $(notdir $%)
-# environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_5052_ONGTVAFUSMVYFOSB
+# e 
+nvironment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_1340_BJXSBROORYCQXHJC
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -135,7 +138,8 @@ MAKE_COMMAND := make.exe
 # environment
 PROCESSOR_ARCHITEW6432 = AMD64
 # default
-.VARIABLES := 
+.VARIABLES : 
+= 
 # automatic
 *F = $(notdir $*)
 # environment
@@ -193,7 +197,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 5052
+VSCODE_PID = 1340
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # variable set hash-table stats:
@@ -206,11 +210,13 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # Directories
 
 # : could not be stat'd.
-# C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
+# C:\Program Files\JetBrains\PyCharm 2020.3.4\bin (key C 
+:/Program Files/JetBrains/PyCharm 2020.3.4/bin, mtime 1621953757): 28 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1608826867): 29 files, no impossibilities.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1625764714): 155 files, no impossibilities.
-# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1628876404): 29 files, no impossibilities.
-# C:\Program Files\CodeBlocks\MinGW\bin (key C:/Program Files/CodeBlocks/MinGW/bin, mtime 1622056820): 58 files, no impossibilities.
+# . (key c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src, mtime 1628963890): 29 files, no impossibilities.
+# C:\Program Files\CodeBlocks\MinGW\bin  
+(key C:/Program Files/CodeBlocks/MinGW/bin, mtime 1622056820): 58 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/deive/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1628187485): 4 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1611510882): 5 files, no impossibilities.
@@ -218,7 +224,8 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-9OMP552O
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/, mtime 1628605064): 19 files, no impossibilities.
 # C:\Users\deive\AppData\Local\GitHubDesktop\bin (key C:/Users/deive/AppData/Local/GitHubDesktop/bin, mtime 1612476182): 4 files, no impossibilities.
 # C:\Program Files\Java\jdk1.8.0_271\bin (key C:/Program Files/Java/jdk1.8.0_271/bin, mtime 1610457260): 54 files, no impossibilities.
-# C:\Users\deive\AppData\Local\Microsoft\WindowsApps (key C:/Users/deive/AppData/Local/Microsoft/WindowsApps, mtime 1626377513): 12 files, no impossibilities.
+ 
+# C:\Users\deive\AppData\Local\Microsoft\WindowsApps (key C:/Users/deive/AppData/Local/Microsoft/WindowsApps, mtime 1628973067): 12 files, no impossibilities.
 # C:\Users\deive\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/deive/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1628606370): 8 files, no impossibilities.
 # C:\Program Files (x86)\apache-maven-3.6.3\bin (key C:/Program Files (x86)/apache-maven-3.6.3/bin, mtime 1573140738): 8 files, no impossibilities.
 # C:\Program Files\Java\jdk-16.0.1+9\bin (key C:/Program Files/Java/jdk-16.0.1+9/bin, mtime 1619038436): 124 files, no impossibilities.
@@ -311,8 +318,7 @@ main.cpp:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
-# Load=0/32=0%, 
- Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .SUFFIXES:
@@ -350,6 +356,6 @@ tracks.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Aug 14 11:49:58 2021
+# Finished Make data base on Sat Aug 14 17:53:53 2021
 
  
