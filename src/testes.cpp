@@ -10,7 +10,8 @@ using namespace std;
 
 int main()
 {
-    ArvoreVp* vp = new ArvoreVp(100);
+    srand(time(NULL));
+    ArvoreVp* vp = new ArvoreVp(30);
     vp->imprime();
     return 0;
 }

@@ -38,8 +38,8 @@ private:
     bool auxBusca(Node *p, string val);
     void insercao(Node *aux);
     void insercaoBalanceado(Node *p);
-    void rightRotate(Node *x);
-    void leftRotate(Node *x);
+    void rightRotate(Node *no);
+    void leftRotate(Node *no);
     int Compara(string str1, string str2);
 
 public:

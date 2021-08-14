@@ -101,57 +101,61 @@ void ArvoreVp::insercao(Node *aux)
 //algoritmo de inserção
 void ArvoreVp::insercaoBalanceado(Node *p)
 {
-    Node *u;
-    while (p->pai->color == 1)
+    Node *u; //uncle
+    Node *pai_p = NULL;
+    Node *vo_p = NULL;
+    while ((p != raiz) && (p->pai->color == 1) && (p->color == 0))
     {
-        if (p->pai == p->pai->pai->dir)
+        pai_p = p->pai;
+        vo_p = p->pai->pai;
+        if (pai_p == vo_p->esq)
         {
-            u = p->pai->pai->esq;
-            if (u->color == 1)
+            u = vo_p->dir;
+            if (u->color == 1 && u != NULL)
             {
+                vo_p->color = 1;
+                pai_p->color = 0;
                 u->color = 0;
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
-                p = p->pai->pai;
+                p = vo_p;
             }
             else
             {
-                if (p == p->pai->esq)
+                if (p == pai_p->dir)
                 {
-                    p = p->pai;
-                    rightRotate(p);
-                }
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
-                leftRotate(p->pai->pai);
+                    leftRotate(pai_p);
+                    p = pai_p;
+                    pai_p = p->pai;
+                } ////////////////////////////////
+                leftRotate(vo_p);
+                pai_p->color = 0;
+                vo_p->color = 1;
+                p = pai_p;
             }
         }
         else
         {
-            u = p->pai->pai->dir;
+            u = vo_p->dir;
 
-            if (u->color == 1)
+            if (u->color == 1 && u != NULL)
             {
                 u->color = 0;
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
-                p = p->pai->pai;
+                pai_p->color = 0;
+                vo_p->color = 1;
+                p = vo_p;
             }
             else
             {
-                if (p == p->pai->dir)
+                if (p == pai_p->esq)
                 {
-                    p = p->pai;
-                    leftRotate(p);
+                    rightRotate(pai_p);
+                    p = pai_p;
+                    pai_p = p->pai;
                 }
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
-                rightRotate(p->pai->pai);
+                rightRotate(vo_p);
+                pai_p->color = 0;
+                vo_p->color = 1;
+                p = pai_p;
             }
-        }
-        if (p == raiz)
-        {
-            break;
         }
     }
     raiz->color = 0;
@@ -159,56 +163,57 @@ void ArvoreVp::insercaoBalanceado(Node *p)
 
 //rotação para direita
 
-void ArvoreVp::rightRotate(Node *x)
+void ArvoreVp::leftRotate(Node *no)
 {
-    Node *y = x->esq;
-    x->esq = y->dir;
+    Node *y = no->esq;
+
+    no->esq = y->dir;
+
     if (y->dir != NULL)
     {
-        y->dir->pai = x;
+        y->dir->pai = no;
     }
-    y->pai = x->pai;
-    if (x->pai == nullptr)
+    y->pai = no->pai;
+    if (no->pai == NULL)
     {
         this->raiz = y;
     }
-    else if (x == x->pai->dir)
+    else if (no == no->pai->dir)
     {
-        x->pai->dir = y;
+        no->pai->dir = y;
     }
     else
     {
-        x->pai->esq = y;
+        no->pai->esq = y;
     }
-    y->dir = x;
-    x->pai = y;
+    y->dir = no;
+    no->pai = y;
 }
 
 //rotação para esquerda
 
-void ArvoreVp::leftRotate(Node *x)
+void ArvoreVp::rightRotate(Node *no)
 {
-    Node *y = x->dir;
-    x->dir = y->esq;
+    Node *y = no->dir;
+
+    no->dir = y->esq;
+
     if (y->esq != NULL)
-    {
-        y->esq->pai = x;
-    }
-    y->pai = x->pai;
-    if (x->pai == nullptr)
-    {
-        this->raiz = y;
-    }
-    else if (x == x->pai->esq)
-    {
-        x->pai->esq = y;
-    }
+        y->esq->pai = no;
+
+    y->pai = no->pai;
+
+    if (no->pai == NULL)
+        raiz = y;
+
+    else if (no == no->pai->esq)
+        no->pai->esq = y;
+
     else
-    {
-        x->pai->dir = y;
-    }
-    y->esq = x;
-    x->pai = y;
+        no->pai->dir = y;
+
+    y->esq = no;
+    no->pai = y;
 }
 
 //busca
@@ -253,8 +258,12 @@ void ArvoreVp::auxImprime(Node *r, string str, bool verifica)
             cout << "L----";
             str += "|  ";
         }
+        string Color;
+        if (r->color == 1)
+            Color = "Rubro";
+        else
+            Color = "Negro";
 
-        string Color = r->color ? "Rubro" : "Negro";
         cout << r->nome << "(" << Color << ")" << endl;
         auxImprime(r->esq, str, false);
         auxImprime(r->dir, str, true);
