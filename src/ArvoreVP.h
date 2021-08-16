@@ -40,7 +40,7 @@ private:
     void insercaoBalanceado(Node *p);
     void rightRotate(Node *no);
     void leftRotate(Node *no);
-    int Compara(string str1, string str2);
+    // int Compara(string str1, string str2);
 
 public:
     ArvoreVp();
