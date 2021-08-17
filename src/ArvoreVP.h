@@ -12,6 +12,8 @@
 
 #include <utility>
 
+#define NEGRO 0
+#define RUBRO 1
 #ifndef ARVOREVP_H_INCLUDED
 #define ARVOREVP_H_INCLUDED
 
