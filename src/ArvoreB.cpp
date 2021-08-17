@@ -20,10 +20,10 @@ ArvoreB::ArvoreB()
     raiz = NULL;
 }
 
-ArvoreB::ArvoreB(int n)
+ArvoreB::ArvoreB(int ordem, int t)
 {
     raiz = NULL;
-
+    this->t = t;
     int tam = Artists::getTAM();
     vector<int> vet;
     for (int i = 0; i < tam; i++)
@@ -36,70 +36,99 @@ ArvoreB::ArvoreB(int n)
     {
         NodeArvB *aux = new NodeArvB();
         artists art = Artists::reg(vet[i]);
+
         aux->m = 0;
         aux->nome = art.name;
         aux->posicao = vet[n];
         aux->id = art.id;
-        aux->aux->folha = NULL;
+
         aux->esq = NULL;
         aux->dir = NULL;
         aux->pai = NULL;
     }
+}
+// bool ArvoreB::Busca(string val)
+// {
+//     return auxBusca(this->raiz, val);
+// }
 
-    bool ArvoreB::busca(string val)
+// NodeArvB *auxBusca(NodeArvB *no, int ch)
+// {
+//     if (no != NULL)
+//     {
+//         int i = 0;
+//         while (i < no->m && ch > no->s[i])
+//         {
+//             i++;
+//         }
+//         if (i < no->m && ch == no->s[i])
+//         {
+//             return no; // encontrou chave
+//         }
+//         else if (no->p[i] != NULL)
+//         {
+//             return Busca(no->p[i], ch);
+//         }
+//         else
+//             return no; //nó era folha -- não existem mais
+//         // nós a Buscar, então retorna o nó onde a chave deveria estar
+//     }
+//     else
+//         return NULL; //nó é NULL, não há como Buscar
+// }
+
+// int Compara(string str1, string str2)
+// {
+//     int aux;
+//     if (str1.length() <= str2.length())
+//         aux = str1.length();
+//     else
+//         aux = str2.length();
+
+//     int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
+//     if (resultado > 0)
+//         return 1;
+//     else if (resultado == 0)
+//         return 0;
+//     else
+//         return -1;
+// }
+
+int ArvoreB::Busca(Arvb *arvore, int val)
+{
+    int nivel = 1, i = 0;
+    int valor = val; //mudar para o artists
+    Arvb *aux;
+    if (aux == NULL)
     {
-        return auxBusca(this->raiz, val);
+        return 0;
     }
-
-    TNo *auxBusca(TNo * no, int ch)
+    while (nivel)
     {
-        if (no != NULL)
+        while ((aux->info[i] < valor) && (i < aux->elems))
         {
-            int i = 0;
-            while (i < no->m && ch > no->s[i])
-            {
-                i++;
-            }
-            if (i < no->m && ch == no->s[i])
-            {
-                return no; // encontrou chave
-            }
-            else if (no->p[i] != NULL)
-            {
-                return busca(no->p[i], ch);
-            }
+            i++;
+            if ((aux->info[i] == valor) && (i < aux->elems))
+                return (nivel);
             else
-                return no; //nó era folha -- não existem mais
-            nós a buscar, então retorna o nó onde a chave deveria estar
+            {
+                if (aux->filhos[i] != NULL)
+                {
+
+                    aux = aux->filhos[i];
+                    i = 0;
+                    nivel++;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
-        else
-            return NULL; //nó é NULL, não há como buscar
     }
+   return 0;
+}
 
-    // bool ArvoreB::auxBusca(NodeArvB *p, string val)
-    // {
-    //     if (p == NULL)
-    //         return false;
-    //     else if (p->nome == val)
-    //         return true;
-    //     else if (Compara(p->nome, val))
-    //         return auxBusca(p->esq, val);
-    //     else
-    //         return auxBusca(p->dir, val);
-    // }
-
-    int ArvoreB::Compara(string str1, string str2)
-    {
-        int aux;
-        if (str1.length() <= str2.length())
-            aux = str1.length();
-        else
-            aux = str2.length();
-
-        int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
-        if (resultado > 0)
-            return 1;
-        else if (resultado == 0)
-            return 0;
-        else
-            return -1;
+void ArvoreB::insercao(NodeArvB val)
+{
+}
