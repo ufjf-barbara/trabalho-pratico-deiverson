@@ -14,32 +14,41 @@
 
 #ifndef ARVOREB_H_INCLUDED
 #define ARVOREB_H_INCLUDED
-#define TAMMIN= 200;
+
+#define TAMMIN = 200;
 using namespace std;
 
-// struct Arvb
+
+
+// typedef struct arvb
 // {
-//    Arvb *pai; //pt para o nó pai
-//     int m;          //quantidade de chaves armazenadas no nó
-//     vector<Arvb> chaves;    //array de chaves
-//     vector<Arvb> filhos;  //ponteiro para array de ponteiros p/ os filhos
+//     int ordem;
+//     int elems;
+//     vector<int> info;
+//     struct arvb *filhos[TAMMIN];
 
 //     string id;
 //     string nome;
 //     int posicao;
-//     Arvb *pai;
-//     Arvb *esq;
-//     Arvb *dir;
-// };
-typedef struct arvb {
-int ordem;
-int elems;
- vector<int> info;
- struct arvb *filhos[TAMMIN];
 
-} Arvb;
+// } Arvb;
+typedef struct NodeArvB
+{
+    int m;                     //quantidade de chaves armazenadas no nó
+    struct No *pai;            //pt para o nó pai
+    list<key> chaves;        //array de chaves
+    list<NodeArvB *> folhas; //ponteiro para array de ponteiros p/ os filhos
 
+    int getSizeKeys() return chaves.size();
 
+} TNo;
+
+struct key
+{
+    string id;
+    string nome;
+    int posicao;
+};
 
 class ArvoreB
 {
@@ -54,9 +63,9 @@ private:
 
 public:
     ArvoreB();
-    ArvoreB(int n,int t);
+    ArvoreB(int n, int t);
     ~ArvoreB();
-     
+
     void insercao(Arvb *aux);
     int Busca(Arvb *arvore, int val);
     void imprime();

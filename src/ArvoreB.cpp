@@ -34,17 +34,17 @@ ArvoreB::ArvoreB(int ordem, int t)
 
     for (int i = 0; i < n; i++)
     {
-        NodeArvB *aux = new NodeArvB();
+        Arvb *aux= new Arvb();
         artists art = Artists::reg(vet[i]);
 
-        aux->m = 0;
+        
         aux->nome = art.name;
         aux->posicao = vet[n];
         aux->id = art.id;
 
-        aux->esq = NULL;
-        aux->dir = NULL;
-        aux->pai = NULL;
+        // aux->esq = NULL;
+        // aux->dir = NULL;
+        // aux->pai = NULL;
     }
 }
 // bool ArvoreB::Busca(string val)
@@ -118,7 +118,6 @@ int ArvoreB::Busca(Arvb *arvore, int val)
                     aux = aux->filhos[i];
                     i = 0;
                     nivel++;
-                }
                 else
                 {
                     return 0;
@@ -129,6 +128,64 @@ int ArvoreB::Busca(Arvb *arvore, int val)
    return 0;
 }
 
-void ArvoreB::insercao(NodeArvB val)
+void Insert(key *val)
 {
+    // int aux = raiz.getSizeKeys();
+    // if (aux = 0)
+    // {
+    //     raiz->chaves.push_back(val);
+    //     return;
+    // }
+    auxinsert(raiz, val);
+}
+
+void auxInsert(NodeArvB *no, key *val)
+{
+    int aux = no.getSizeKeys();
+    if (aux < O)
+    {
+        if (aux == 0)
+            no->chaves.push_back(val);
+        else
+        {
+            no->chaves.insert(val);
+            for (int i = 0; i < no->chaves.size(); i++)
+            {
+                if (i == 0 && Compara(val->name, no->chaves[i]->name) < 0)
+                {
+                    no->chaves.insert(i, val);
+                    break;
+                }
+                else if (i != 0 && Compara(val->name, no->chaves[i - 1]->name) > 0 &&
+                         Compara(val->name, no->chaves[i]->name) < 0)
+                {
+                    no->chaves.insert(i, val);
+                    break;
+                }
+            }
+        }
+        return;
+    }
+    int i = 0;
+    while (no->chaves[i] != NULL)
+    {
+        if (i = 0)
+        {
+            auxinsert(no->folhas[i], val);
+            break;
+        }
+        else if (Compara(val->name, no->chaves[i]->name) > 0 &&
+                 Compara(val->name, no->chaves[i + 1]->name) < 0)
+        {
+            auxinsert(no->folhas[i], val);
+            break;
+        }
+        else if (i == no.getSizeKeys() && Compara(val->name, no->chaves[i]->name) > 0)
+        {
+            auxinsert(no->folhas[i], val);
+            break;
+        }
+        else
+            i++;
+    }
 }
