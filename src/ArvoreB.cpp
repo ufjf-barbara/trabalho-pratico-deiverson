@@ -41,11 +41,11 @@ ArvoreB::ArvoreB(int n)
         aux->nome = art.name;
         aux->posicao = vet[n];
         aux->id = art.id;
-        Insert(aux);
+        insercao(aux);
     }
 }
 
-void Insert(key *val)
+void ArvoreB::insercao(key *p)
 {
     // int aux = raiz.getSizeKeys();
     // if (aux = 0)
@@ -53,7 +53,7 @@ void Insert(key *val)
     //     raiz->chaves.push_back(val);
     //     return;
     // }
-    auxinsert(raiz, val);
+    auxinsert(raiz, partial_sort);
 }
 
 void auxInsert(NodeArvB *no, key *val)
