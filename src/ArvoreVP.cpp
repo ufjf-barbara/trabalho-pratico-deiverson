@@ -9,16 +9,12 @@
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
-#include <utility>
 
 using namespace std;
+
 int Compara(string str1, string str2);
 
 ArvoreVp::ArvoreVp()
-{
-    raiz = NULL;
-}
-ArvoreVp::ArvoreVp(int n)
 {
     raiz = NULL;
 
@@ -37,6 +33,38 @@ ArvoreVp::ArvoreVp(int n)
         Node *aux = new Node();
         artists art = Artists::reg(vet[i]);
         aux->nome = art.name;
+        aux->posicao = vet[i];
+        aux->id = art.id;
+        aux->color = NEGRO;
+        aux->esq = NULL;
+        aux->dir = NULL;
+        aux->pai = NULL;
+
+        insercao(aux);
+    }
+    clock_t end = clock();
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
+}
+
+ArvoreVp::ArvoreVp(int n)
+{
+    raiz = NULL;
+
+    int tam = Artists::getTAM();
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    clock_t begin = clock();
+    for (int i = 0; i < n; i++)
+    {
+        Node *aux = new Node();
+        artists art = Artists::reg(vet[i]);
+        aux->nome = art.name;
         aux->posicao = vet[n];
         aux->id = art.id;
         aux->color = NEGRO;
@@ -47,7 +75,7 @@ ArvoreVp::ArvoreVp(int n)
         insercao(aux);
     }
     clock_t end = clock();
-    cout << "\ntempo insecao" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
     cout << qtdd(raiz) << endl;
     cout << n << endl;
 }
@@ -99,29 +127,10 @@ void ArvoreVp::insercao(Node *no)
     {
         return;
     }
-    insercaoBalanceado(no);
+    Balanceamento(no);
 }
 
-Node *BSTInsert(Node *raiz, Node *p)
-{
-    if (raiz == NULL)
-        return p;
-
-    if (Compara(p->nome, raiz->nome) < 0)
-    {
-        raiz->esq = BSTInsert(raiz->esq, p);
-        raiz->esq->pai = raiz;
-    }
-    else if (Compara(p->nome, raiz->nome) >= 0)
-    {
-        raiz->dir = BSTInsert(raiz->dir, p);
-        raiz->dir->pai = raiz;
-    }
-
-    return raiz;
-}
-//algoritmo de inserção
-void ArvoreVp::insercaoBalanceado(Node *p)
+void ArvoreVp::Balanceamento(Node *p)
 {
     Node *u; //uncle
     while (p->pai && p->pai->color == RUBRO && p->color == RUBRO)
@@ -234,7 +243,6 @@ void ArvoreVp::rightRotate(Node *pai)
     Node *avo = pai->pai;
     Node *aux = pai->dir;
 
-    // aux=pai->dir;
     pai->dir = avo;
     if (avo)
     {
@@ -261,7 +269,6 @@ void ArvoreVp::leftRotate(Node *pai)
     Node *avo = pai->pai;
     Node *aux = pai->esq;
 
-    //    aux=pai->esq;
     pai->esq = avo;
     if (avo)
     {
@@ -283,33 +290,79 @@ void ArvoreVp::leftRotate(Node *pai)
 
 //busca
 
-int ArvoreVp::busca(string val)
+void ArvoreVp::busca()
 {
-    cout << "\n"
-         << val << endl;
-    // cont=0;
-    return auxBusca(this->raiz, val);
+
+    int tam = Artists::getTAM();
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    saida.close();
+
+    for (int i = 0; i < 100; i++)
+    {
+        Node *aux = new Node();
+        artists art = Artists::reg(vet[i]);
+        begin = clock();
+        auxBusca(this->raiz, art.name);
+    }
+    imprime(0, true);
 }
 
 int ArvoreVp::auxBusca(Node *p, string val)
 {
     if (p == NULL)
         return -1;
-    // cout << "\n"
-    //      << p->nome << "---" << val << endl;
+
     if (p->nome == val)
-    { // cont++;
-        // imprime(p->posicao); ;;tbm imprimir comp e tempo
+    {
+        compI++;
+        imprime(p->posicao, false);
         return p->posicao;
     }
     else if (Compara(val, p->nome) < 0)
-    { // cont+=2;
+    {
+        compI += 2;
         return auxBusca(p->esq, val);
     }
     else
-    { // cont+=3;
+    {
+        compI += 3;
         return auxBusca(p->dir, val);
     }
+}
+
+void ArvoreVp::imprime(int pos, bool b)
+{
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    if (b)
+    {
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+        saida << "Tempo medio:\t" << tempoGlob / 100 << " segundos" << endl;
+        saida << "Media de comparaçoes:\t" << compGlob / 100 << endl;
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+
+        saida.close();
+        return;
+    }
+    compGlob += compI;
+    clock_t end = clock();
+    tempoGlob += (end - begin) / ((float)CLOCKS_PER_SEC);
+    artists art = Artists::reg(pos);
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Artista:\t" << art.name << endl
+          << "Followers:\t" << art.followers << endl
+          << "Genres:\t" << art.genres << endl
+          << "Id:\t" << art.id << endl
+          << "Popularity:\t" << art.popularity << endl
+          << "\nTempo da busca:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl
+          << "Numero de comparacoes:\t" << compI << endl;
 }
 
 void ArvoreVp::imprime()
@@ -363,6 +416,7 @@ int Compara(string str1, string str2)
     else
         return -1;
 }
+
 int ArvoreVp::qtdd(Node *no)
 {
     if (no == NULL)

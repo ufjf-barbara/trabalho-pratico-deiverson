@@ -1,7 +1,7 @@
 all: a
 
 a : main.cpp artists.cpp tracks.cpp functeste.cpp
-	g++ main.cpp artists.cpp tracks.cpp functeste.cpp Ordenacao.cpp tabelahash.cpp -o main
+	g++ main.cpp artists.cpp tracks.cpp functeste.cpp Ordenacao.cpp tabelahash.cpp ArvoreVP.cpp -o main
 
 DIR=""
 
