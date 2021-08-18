@@ -45,13 +45,14 @@ private:
     int Compara(string str1, string str2);
     void auxInsert(NodeArvB *no, key *val);
     void auxImprime(NodeArvB *r, string str, bool verifica);
+    void cisao(NodeArvB *r);
 
 public:
     ArvoreB();
     ArvoreB(int n);
 
     void insercao(key *aux);
-    NodeArvB *busca(NodeArvB *p, NodeArvB *node);
+    int busca(NodeArvB *no, string val);
     void imprime();
 };
 

@@ -59,6 +59,8 @@ void ArvoreB::insercao(key *p)
     {
         raiz = new NodeArvB();
         raiz->pai = NULL;
+        raiz->folha = true;
+        raiz->m = 1;
         raiz->chaves.push_back(p);
     }
     else
@@ -74,40 +76,32 @@ void ArvoreB::auxInsert(NodeArvB *no, key *k)
     //caso base , de ser uma folha
     if (no->folha)
     {
-        if (no->chaves.size() == 0)
+        int tam = no->chaves.size();
+        for (int i = 0; i < tam; i++)
         {
-            no->chaves.insert(no->chaves.begin(), k);
-            return;
-        }
-        else
-        {
-            int tam = no->chaves.size();
-            for (int i = 0; i < tam; i++)
+            if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
             {
-                if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
-                {
-                    no->chaves.insert(no->chaves.begin(), k);
-                    no->folhas.insert(no->folhas.begin(), new NodeArvB());
-                    no->folhas.insert(no->folhas.begin() + 1, new NodeArvB());
-                    //if cisao
-                    return;
-                }
-                else if (Compara(k->name, no->chaves[i - 1]->name) > 0 && Compara(k->name, no->chaves[i]->name) < 0)
-                {
-                    no->chaves.insert(no->chaves.begin() + i, k);
-                    no->folhas.insert(no->folhas.begin() + i + 1, new NodeArvB());
-                    //if cisao
-                    return;
-                }
-                else
-                {
-                    no->chaves.insert(no->chaves.end(), k);
-                    no->folhas.insert(no->folhas.end(), new NodeArvB());
-                    //if cisao
-                    return;
-                }
+                no->chaves.insert(no->chaves.begin(), k);
+                if (no->chaves.size() == 2 * t)
+                    cisao(no);
+                return;
+            }
+            else if (Compara(k->name, no->chaves[i - 1]->name) > 0 && Compara(k->name, no->chaves[i]->name) < 0)
+            {
+                no->chaves.insert(no->chaves.begin() + i, k);
+                if (no->chaves.size() == 2 * t)
+                    cisao(no);
+                return;
+            }
+            else
+            {
+                no->chaves.insert(no->chaves.end(), k);
+                if (no->chaves.size() == 2 * t)
+                    cisao(no);
+                return;
             }
         }
+
         return;
     }
     else //caso de ser um no
@@ -120,7 +114,7 @@ void ArvoreB::auxInsert(NodeArvB *no, key *k)
                 auxInsert(no->folhas[i], k);
                 return;
             }
-            else if (Compara(k->name, no->chaves[i]->name) > 0 &&
+            else if (i + 1 != NULL && Compara(k->name, no->chaves[i]->name) > 0 &&
                      Compara(k->name, no->chaves[i + 1]->name) < 0)
             {
                 auxInsert(no->folhas[i], k);
@@ -135,54 +129,20 @@ void ArvoreB::auxInsert(NodeArvB *no, key *k)
     }
 }
 
-NodeArvB *ArvoreB::busca(NodeArvB *p, NodeArvB *node)
+int ArvoreB::busca(NodeArvB *no, string val)
 {
-
-    NodeArvB *aux;
-    aux = busca(raiz, node);
-
-    if (aux == NULL)
+    int tam = no->chaves.size();
+    for (int i = 0; i < tam; i++)
     {
-        return NULL;
+        if (no->chaves[i]->name == val)
+            return no->chaves[i]->posicao;
+        else if (no->chaves[i - 1] && Compara(val, no->chaves[i - 1]->name) > 0 && Compara(val, no->chaves[i]->name) < 0)
+            return busca(no->folhas[i], val);
     }
-    else
-    {
-        int i = 0;
-        while ((i < (aux->m)) && (aux->chaves[i]->id < node->chaves[i]->id))
-        {
-            Comparacoes++;
-            i++;
-        }
-        if (aux->m > i)
-        {
-            if (aux->chaves[i]->id == p->chaves[i]->id)
-            {
-                Comparacoes++;
-                return aux;
-            }
-        }
-        return NULL;
-    }
+    return -1;
 }
 
 //função para comparar os valores das strings
-
-int Compara(string str1, string str2)
-{
-    int aux;
-    if (str1.length() <= str2.length())
-        aux = str1.length();
-    else
-        aux = str2.length();
-
-    int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
-    if (resultado > 0)
-        return 1;
-    else if (resultado == 0)
-        return 0;
-    else
-        return -1;
-}
 
 /*
 void ArvoreB::imprime()
@@ -220,3 +180,80 @@ void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
 }
 */
 
+void ArvoreB::cisao(NodeArvB *no) //overvlow apenas
+{
+    if (no->pai == NULL)
+    {
+        NodeArvB *dad;
+        NodeArvB *bro;
+
+        key *k = divide(no, bro, t);
+
+        dad->chaves.push_back(k);
+
+        no->pai = dad;
+        bro->pai = dad;
+
+        dad->folhas.push_back(no);
+        dad->folhas.push_back(bro);
+        dad->folha = false;
+        raiz = dad;
+    }
+    else
+    {
+        NodeArvB *bro;
+
+        key *k = divide(no, bro, t);
+        bro->pai = no->pai;
+
+        int tam = no->pai->chaves.size();
+
+        for (int i = 0; i < tam; i++)
+        {
+
+            if (no->chaves[i + 1] && Compara(k->name, no->pai->chaves[i]->name) > 0 && Compara(k->name, no->pai->chaves[i + 1]->name) < 0)
+            {
+                no->pai->chaves.insert(no->pai->chaves.begin() + i, k);
+                no->pai->folhas.insert(no->pai->folhas.begin() + i, bro);
+            }
+        }
+        if (no->pai->chaves.size() == 2 * t)
+        {
+            cisao(no->pai);
+        }
+    }
+}
+
+key *divide(NodeArvB *um, NodeArvB *dois, int t)
+{
+    key *k;
+    for (int i = t; i <= 2 * t; i++)
+    {
+        if (i == t + 1)
+            k = um->chaves[i];
+        else
+            dois->chaves.push_back(um->chaves[i]);
+    }
+    for (int i = 2 * t; i >= t; i--)
+    {
+        um->chaves.pop_back();
+    }
+    return k;
+}
+
+int Compara(string str1, string str2)
+{
+    int aux;
+    if (str1.length() <= str2.length())
+        aux = str1.length();
+    else
+        aux = str2.length();
+
+    int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
+    if (resultado > 0)
+        return 1;
+    else if (resultado == 0)
+        return 0;
+    else
+        return -1;
+}
