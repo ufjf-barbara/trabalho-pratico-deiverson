@@ -15,10 +15,16 @@
 
 using namespace std;
 
+static int Comparacoes = 0;
+
+//construtor padrao
+
 ArvoreB::ArvoreB()
 {
     raiz = NULL;
 }
+
+//Construtor de inserção
 
 ArvoreB::ArvoreB(int n)
 {
@@ -38,45 +44,53 @@ ArvoreB::ArvoreB(int n)
     {
         key *aux = new key();
         artists art = Artists::reg(vet[i]);
-        aux->nome = art.name;
+        aux->name = art.name;
         aux->posicao = vet[n];
         aux->id = art.id;
         insercao(aux);
     }
 }
 
+//função para inserir NÓ na arvore
+
 void ArvoreB::insercao(key *p)
 {
-    // int aux = raiz.getSizeKeys();
-    // if (aux = 0)
-    // {
-    //     raiz->chaves.push_back(val);
-    //     return;
-    // }
-    auxinsert(raiz, partial_sort);
+
+    if (raiz == NULL)
+    {
+        raiz = new NodeArvB();
+        raiz->pai = NULL;
+        raiz->chaves.push_back(p);
+    }
+    else
+    {
+        auxInsert(raiz, p);
+    }
 }
 
-void auxInsert(NodeArvB *no, key *val)
+//função auxiliar para inserir NÓ na arvore
+
+void ArvoreB::auxInsert(NodeArvB *no, key *k)
 {
-    int aux = no.getSizeKeys();
+    int aux = no->getSizeKeys();
     if (aux < O)
     {
         if (aux == 0)
-            no->chaves.push_back(val);
+            no->chaves.push_back(k);
         else
         {
-            
-            for (int i = 0; i < no->chaves.size(); i++)
+            int tam = no->chaves.size();
+            for (int i = 0; i < tam; i++)
             {
-                if (i == 0 && Compara(val->name, no->chaves[i]->name) < 0)
+                if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
                 {
-                    no->chaves.insert(i, val);
+                    no->chaves.insert(no->chaves.begin() + i, k);
                     break;
                 }
-                else if (i != 0 && Compara(val->name, no->chaves[i - 1]->name) > 0 &&
-                         Compara(val->name, no->chaves[i]->name) < 0)
+                else if (i != 0 && Compara(k->name, no->chaves[i - 1]->name) > 0 &&
+                         Compara(k->name, no->chaves[i]->name) < 0)
                 {
-                    no->chaves.insert(i, val);
+                    no->chaves.insert(no->chaves.begin() + i, k);
                     break;
                 }
             }
@@ -88,18 +102,18 @@ void auxInsert(NodeArvB *no, key *val)
     {
         if (i = 0)
         {
-            auxinsert(no->folhas[i], val);
+            auxInsert(no->folhas[i], k);
             break;
         }
-        else if (Compara(val->name, no->chaves[i]->name) > 0 &&
-                 Compara(val->name, no->chaves[i + 1]->name) < 0)
+        else if (Compara(k->name, no->chaves[i]->name) > 0 &&
+                 Compara(k->name, no->chaves[i + 1]->name) < 0)
         {
-            auxinsert(no->folhas[i], val);
+            auxInsert(no->folhas[i], k);
             break;
         }
-        else if (i == no.getSizeKeys() && Compara(val->name, no->chaves[i]->name) > 0)
+        else if (i == no->getSizeKeys() && Compara(k->name, no->chaves[i]->name) > 0)
         {
-            auxinsert(no->folhas[i], val);
+            auxInsert(no->folhas[i], k);
             break;
         }
         else
@@ -107,70 +121,88 @@ void auxInsert(NodeArvB *no, key *val)
     }
 }
 
-bool ArvoreB::busca(string val)
-{
-    return auxBusca(this->raiz, val);
-}
 
-bool ArvoreB::auxBusca(NodeArvB *p, string val)
+NodeArvB *ArvoreB::busca(NodeArvB *p, NodeArvB *node)
 {
-    int nivel = 1, i = 0;
-    string valor = val; //mudar para o artists
+
     NodeArvB *aux;
+    aux = busca(raiz, node);
+
     if (aux == NULL)
     {
-        return 0;
+        return NULL;
     }
-    while (nivel)
+    else
     {
-        while ((aux-> < valor) && (i < aux->elems))
+        int i = 0;
+        while ((i < (aux->m)) && (aux->chaves[i]->id < p->chaves[i]->id))
         {
+            Comparacoes++;
             i++;
-            if ((aux->info[i] == valor) && (i < aux->elems))
-                return (nivel);
-            else
+            
+        }
+        if (aux->m > i)
+        {
+            if (aux->chaves[i]->id == p->chaves[i]->id)
             {
-                if (aux->filhos[i] != NULL)
-                {
-
-                    aux = aux->filhos[i];
-                    i = 0;
-                    nivel++;
-                    else
-                    {
-                        return 0;
-                    }
-                }
+                Comparacoes++;
+                return aux;
             }
         }
+        return NULL;
+    }
+}
+
+//função para comparar os valores das strings
+
+int Compara(string str1, string str2)
+{
+    int aux;
+    if (str1.length() <= str2.length())
+        aux = str1.length();
+    else
+        aux = str2.length();
+
+    int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
+    if (resultado > 0)
+        return 1;
+    else if (resultado == 0)
         return 0;
-    }
+    else
+        return -1;
+}
 
-    // bool ArvoreB::auxBusca(NodeArvB *p, string val)
-    // {
-    //     if (p == NULL)
-    //         return false;
-    //     else if (p->nome == val)
-    //         return true;
-    //     else if (Compara(p->nome, val))
-    //         return auxBusca(p->esq, val);
-    //     else
-    //         return auxBusca(p->dir, val);
-    // }
 
-    int Compara(string str1, string str2)
+void ArvoreB::imprime()
+{
+    if (raiz)
     {
-        int aux;
-        if (str1.length() <= str2.length())
-            aux = str1.length();
-        else
-            aux = str2.length();
-
-        int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
-        if (resultado > 0)
-            return 1;
-        else if (resultado == 0)
-            return 0;
-        else
-            return -1;
+        auxImprime(this->raiz, "", true);
     }
+}
+
+void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
+{
+    if (p != NULL)
+    {
+        cout << str;
+        if (verifica)
+        {
+            cout << "R----";
+            str += "   ";
+        }
+        else
+        {
+            cout << "L----";
+            str += "|  ";
+        }
+
+        for(int i=0;i<p->m;i++)
+        {
+          cout << " " <<p->chaves[i]->id;
+        }
+        
+        auxImprime(p->esq, str, false);
+        auxImprime(p->dir, str, true);
+    }
+}
