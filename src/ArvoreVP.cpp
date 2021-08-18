@@ -9,14 +9,43 @@
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
-#include <utility>
 
 using namespace std;
+
+int Compara(string str1, string str2);
 
 ArvoreVp::ArvoreVp()
 {
     raiz = NULL;
+
+    int tam = Artists::getTAM();
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    clock_t begin = clock();
+    for (int i = 0; i < tam; i++)
+    {
+        Node *aux = new Node();
+        artists art = Artists::reg(vet[i]);
+        aux->nome = art.name;
+        aux->posicao = vet[i];
+        aux->id = art.id;
+        aux->color = NEGRO;
+        aux->esq = NULL;
+        aux->dir = NULL;
+        aux->pai = NULL;
+
+        insercao(aux);
+    }
+    clock_t end = clock();
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
 }
+
 ArvoreVp::ArvoreVp(int n)
 {
     raiz = NULL;
@@ -30,6 +59,7 @@ ArvoreVp::ArvoreVp(int n)
     }
     random_shuffle(vet.begin(), vet.end());
 
+    clock_t begin = clock();
     for (int i = 0; i < n; i++)
     {
         Node *aux = new Node();
@@ -37,22 +67,24 @@ ArvoreVp::ArvoreVp(int n)
         aux->nome = art.name;
         aux->posicao = vet[n];
         aux->id = art.id;
-        aux->color = 0;
+        aux->color = NEGRO;
         aux->esq = NULL;
         aux->dir = NULL;
         aux->pai = NULL;
 
         insercao(aux);
     }
+    clock_t end = clock();
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
     cout << qtdd(raiz) << endl;
     cout << n << endl;
 }
 
 //algoritmo de inserção
-void ArvoreVp::insercao(Node *aux)
+void ArvoreVp::insercao(Node *no)
 {
 
-    aux->color = 1;
+    no->color = RUBRO;
 
     Node *y = NULL;
     Node *x = this->raiz;
@@ -60,8 +92,8 @@ void ArvoreVp::insercao(Node *aux)
     while (x != NULL)
     {
         y = x;
-        int a = Compara(aux->nome, x->nome);
-        if (a >= 0)
+        int a = Compara(no->nome, x->nome);
+        if (a >= NEGRO)
         {
             x = x->dir;
         }
@@ -71,163 +103,266 @@ void ArvoreVp::insercao(Node *aux)
         }
     }
 
-    aux->pai = y;
+    no->pai = y;
     if (y == NULL)
     {
-        raiz = aux;
-        raiz->color = 0;
+        raiz = no;
     }
-    else if (Compara(aux->nome, y->nome) < 0)
+    else if (Compara(no->nome, y->nome) < NEGRO)
     {
-        y->esq = aux;
+        y->esq = no;
     }
     else
     {
-        y->dir = aux;
+        y->dir = no;
     }
-    insercaoBalanceado(aux);
 
-    //    if (aux->pai == NULL)
-    //    {
-    //        return;
-    //    }
+    if (no->pai == NULL)
+    {
+        raiz->color = NEGRO;
+        return;
+    }
 
-    //    if (aux->pai->pai == NULL)
-    //    {
-    //        return;
-    //    }
+    if (no->pai->pai == NULL)
+    {
+        return;
+    }
+    Balanceamento(no);
 }
 
-//algoritmo de inserção
-void ArvoreVp::insercaoBalanceado(Node *p)
+void ArvoreVp::Balanceamento(Node *p)
 {
-    Node *u;
-    while (p->pai->color == 1)
+    Node *u; //uncle
+    while (p->pai && p->pai->color == RUBRO && p->color == RUBRO)
     {
-        if (p->pai == p->pai->pai->dir)
+        if (p->pai->pai && p->pai == p->pai->pai->dir)
         {
             u = p->pai->pai->esq;
-            if (u->color == 1)
+            if (u && u->color == RUBRO)
             {
-                u->color = 0;
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
+                u->color = NEGRO;
+                p->pai->color = NEGRO;
+                p->pai->pai->color = RUBRO;
                 p = p->pai->pai;
             }
             else
             {
                 if (p == p->pai->esq)
                 {
-                    p = p->pai;
                     rightRotate(p);
+
+                    leftRotate(p);
+                    if (p->pai)
+                    {
+                        p = p->pai;
+                        p->color = NEGRO;
+                        if (p->dir)
+                            p->dir->color = RUBRO;
+                        if (p->esq)
+                            p->esq->color = RUBRO;
+                    }
+                    else
+                    {
+                        raiz = p;
+                        break;
+                    }
                 }
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
-                leftRotate(p->pai->pai);
+                else
+                {
+                    leftRotate(p->pai);
+                    p = p->pai;
+                    p->color = NEGRO;
+                    if (p->esq)
+                        p->esq->color = RUBRO;
+                    p->dir->color = RUBRO;
+                }
             }
         }
-        else
+        else if (p->pai->pai && p->pai == p->pai->pai->esq)
         {
             u = p->pai->pai->dir;
 
-            if (u->color == 1)
+            if (u && u->color == RUBRO)
             {
-                u->color = 0;
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
+                u->color = NEGRO;
+                p->pai->color = NEGRO;
+                p->pai->pai->color = RUBRO;
                 p = p->pai->pai;
             }
             else
             {
                 if (p == p->pai->dir)
                 {
-                    p = p->pai;
                     leftRotate(p);
+
+                    rightRotate(p);
+                    if (p->pai)
+                    {
+                        p = p->pai;
+                        p->color = NEGRO;
+                        if (p->esq)
+                            p->esq->color = RUBRO;
+                        if (p->dir)
+                            p->dir->color = RUBRO;
+                    }
+                    else
+                    {
+                        raiz = p;
+                        break;
+                    }
                 }
-                p->pai->color = 0;
-                p->pai->pai->color = 1;
-                rightRotate(p->pai->pai);
+                else
+                {
+                    rightRotate(p->pai);
+                    p = p->pai;
+                    p->color = NEGRO;
+                    p->esq->color = RUBRO;
+                    if (p->dir)
+                        p->dir->color = RUBRO;
+                }
             }
+        }
+        else
+        {
         }
         if (p == raiz)
         {
             break;
         }
     }
-    raiz->color = 0;
+    if (p->pai == NULL)
+        raiz = p;
+    raiz->color = NEGRO;
 }
 
 //rotação para direita
 
-void ArvoreVp::rightRotate(Node *x)
+void ArvoreVp::rightRotate(Node *pai)
 {
-    Node *y = x->esq;
-    x->esq = y->dir;
-    if (y->dir != NULL)
+    Node *p = pai->esq;
+    Node *avo = pai->pai;
+    Node *aux = pai->dir;
+
+    pai->dir = avo;
+    if (avo)
     {
-        y->dir->pai = x;
+        avo->esq = aux;
+        if (avo->pai)
+        {
+            if (avo->pai->dir == avo)
+                avo->pai->dir = pai;
+            else
+                avo->pai->esq = pai;
+        }
+        pai->pai = avo->pai;
+        avo->pai = pai;
     }
-    y->pai = x->pai;
-    if (x->pai == nullptr)
-    {
-        this->raiz = y;
-    }
-    else if (x == x->pai->dir)
-    {
-        x->pai->dir = y;
-    }
-    else
-    {
-        x->pai->esq = y;
-    }
-    y->dir = x;
-    x->pai = y;
+    if (aux)
+        aux->pai = avo;
 }
 
 //rotação para esquerda
 
-void ArvoreVp::leftRotate(Node *x)
+void ArvoreVp::leftRotate(Node *pai)
 {
-    Node *y = x->dir;
-    x->dir = y->esq;
-    if (y->esq != NULL)
+    Node *p = pai->dir;
+    Node *avo = pai->pai;
+    Node *aux = pai->esq;
+
+    pai->esq = avo;
+    if (avo)
     {
-        y->esq->pai = x;
+
+        avo->dir = aux;
+        if (avo->pai)
+        {
+            if (avo->pai->dir == avo)
+                avo->pai->dir = pai;
+            else
+                avo->pai->esq = pai;
+        }
+        pai->pai = avo->pai;
+        avo->pai = pai;
     }
-    y->pai = x->pai;
-    if (x->pai == nullptr)
-    {
-        this->raiz = y;
-    }
-    else if (x == x->pai->esq)
-    {
-        x->pai->esq = y;
-    }
-    else
-    {
-        x->pai->dir = y;
-    }
-    y->esq = x;
-    x->pai = y;
+    if (aux)
+        aux->pai = avo;
 }
 
 //busca
 
-bool ArvoreVp::busca(string val)
+void ArvoreVp::busca()
 {
-    return auxBusca(this->raiz, val);
+
+    int tam = Artists::getTAM();
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    saida.close();
+
+    for (int i = 0; i < 100; i++)
+    {
+        Node *aux = new Node();
+        artists art = Artists::reg(vet[i]);
+        begin = clock();
+        auxBusca(this->raiz, art.name);
+    }
+    imprime(0, true);
 }
 
-bool ArvoreVp::auxBusca(Node *p, string val)
+int ArvoreVp::auxBusca(Node *p, string val)
 {
     if (p == NULL)
-        return false;
-    else if (p->nome == val)
-        return true;
-    else if (Compara(p->nome, val))
+        return -1;
+
+    if (p->nome == val)
+    {
+        compI++;
+        imprime(p->posicao, false);
+        return p->posicao;
+    }
+    else if (Compara(val, p->nome) < 0)
+    {
+        compI += 2;
         return auxBusca(p->esq, val);
+    }
     else
+    {
+        compI += 3;
         return auxBusca(p->dir, val);
+    }
+}
+
+void ArvoreVp::imprime(int pos, bool b)
+{
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    if (b)
+    {
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+        saida << "Tempo medio:\t" << tempoGlob / 100 << " segundos" << endl;
+        saida << "Media de comparaçoes:\t" << compGlob / 100 << endl;
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+
+        saida.close();
+        return;
+    }
+    compGlob += compI;
+    clock_t end = clock();
+    tempoGlob += (end - begin) / ((float)CLOCKS_PER_SEC);
+    artists art = Artists::reg(pos);
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Artista:\t" << art.name << endl
+          << "Followers:\t" << art.followers << endl
+          << "Genres:\t" << art.genres << endl
+          << "Id:\t" << art.id << endl
+          << "Popularity:\t" << art.popularity << endl
+          << "\nTempo da busca:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl
+          << "Numero de comparacoes:\t" << compI << endl;
 }
 
 void ArvoreVp::imprime()
@@ -253,15 +388,19 @@ void ArvoreVp::auxImprime(Node *r, string str, bool verifica)
             cout << "L----";
             str += "|  ";
         }
+        string Color;
+        if (r->color == RUBRO)
+            Color = "Rubro";
+        else
+            Color = "Negro";
 
-        string Color = r->color ? "Rubro" : "Negro";
         cout << r->nome << "(" << Color << ")" << endl;
         auxImprime(r->esq, str, false);
         auxImprime(r->dir, str, true);
     }
 }
 
-int ArvoreVp::Compara(string str1, string str2)
+int Compara(string str1, string str2)
 {
     int aux;
     if (str1.length() <= str2.length())
@@ -277,6 +416,7 @@ int ArvoreVp::Compara(string str1, string str2)
     else
         return -1;
 }
+
 int ArvoreVp::qtdd(Node *no)
 {
     if (no == NULL)
