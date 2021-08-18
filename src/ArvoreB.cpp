@@ -19,6 +19,7 @@ static int Comparacoes = 0;
 static int trocas=0;
 
 int Compara(string str1, string str2);
+key *divide(Node *um, Node *dois, int t);
 
 ArvoreB::ArvoreB()
 {
@@ -79,8 +80,9 @@ void ArvoreB::auxInsert(Node *no, key *k)
             if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
             {
                 no->chaves.insert(no->chaves.begin(), k);
-                if (no->chaves.size() == 2 * t)
+                if (no->chaves.size() ==( 2 * this->t))
                     cisao(no);
+                    imprime(no);
                 return;
             }
             else if (Compara(k->name, no->chaves[i - 1]->name) > 0 && Compara(k->name, no->chaves[i]->name) < 0)
@@ -88,6 +90,7 @@ void ArvoreB::auxInsert(Node *no, key *k)
                 no->chaves.insert(no->chaves.begin() + i, k);
                 if (no->chaves.size() == 2 * t)
                     cisao(no);
+                    imprime(no);
                 return;
             }
             else
@@ -95,6 +98,7 @@ void ArvoreB::auxInsert(Node *no, key *k)
                 no->chaves.insert(no->chaves.end(), k);
                 if (no->chaves.size() == 2 * t)
                     cisao(no);
+                    imprime(no);
                 return;
             }
         }
@@ -111,7 +115,7 @@ void ArvoreB::auxInsert(Node *no, key *k)
                 auxInsert(no->folhas[i], k);
                 return;
             }
-            else if (i + 1 != NULL && Compara(k->name, no->chaves[i]->name) > 0 &&
+            else if ( no->chaves[i + 1] != NULL && Compara(k->name, no->chaves[i]->name) > 0 &&
                      Compara(k->name, no->chaves[i + 1]->name) < 0)
             {
                 auxInsert(no->folhas[i], k);
@@ -277,9 +281,20 @@ int Compara(string str1, string str2)
         return -1;
 }
 
-/*
-void ArvoreB::imprime()
-{
 
+void ArvoreB::imprime(Node *p)
+{
+    if(p==NULL)
+    {
+        cout<<"invalido"<<endl;
+    }
+    else
+    {
+        cout<<"chaves: ";
+        for(int i=0;i<p->chaves.size();i++)
+        {
+            cout<<p->chaves[i]<<" ";
+        }
+        cout<<endl;
+    }
 }
-*/

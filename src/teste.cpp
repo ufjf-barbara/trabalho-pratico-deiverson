@@ -1,4 +1,3 @@
-
 #include "ArvoreB.h"
 
 using namespace std;
@@ -6,7 +5,7 @@ using namespace std;
 int main()
 {
     ArvoreB *b = new ArvoreB();
-    b->imprime();
+    b->busca();
 
     return 0;
 }
