@@ -51,7 +51,7 @@ void call(string path)// funçao para chamar as execuçoes do trabalho
     {
         cout << "\n-----------------------------------------------------------------------------------------------------\n"<< endl;
         cout << "Qual parte do trabalho deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
-        cout << "[1] Primeira parte\n[2] Segunda parte\n[0] Finalizar\n";
+        cout << "[1] Primeira parte\n[2] Segunda parte\n[3] Terceira parte\n[0] Finalizar\n";
         cout << "\n-----------------------------------------------------------------------------------------------------\n";
         cin >> aux;
         cin.ignore();
@@ -67,6 +67,9 @@ void call(string path)// funçao para chamar as execuçoes do trabalho
             case 2:
                 parteDois(path);//chama a segunda parte do trabalho
                 break;
+            // case 3:
+            //     parteTres();
+            //     break;
             default:
                 cout << "\nOpcao invalida\n";
             }

@@ -14,7 +14,10 @@
         "ostream": "cpp",
         "unordered_map": "cpp",
         "initializer_list": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "unordered_set": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.launchConfigurations": [

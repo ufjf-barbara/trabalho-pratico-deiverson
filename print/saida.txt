@@ -1,0 +1,105 @@
+
+-------------------------------------------------------------------------------------------------------
+Quick Sort
+Para 10000 registros: 
+Numero medio de comparacoes:	52675
+Numero  medio de trocas:	10942
+Tempo medio de Processamento:	0 segundos
+
+-------------------------------------------------------------------------------------------------------
+Heap Sort
+Para 10000 registros: 
+Numero medio de comparacoes:	1666
+Numero  medio de trocas:	3333
+Tempo medio de Processamento:	0.001 segundos
+
+-------------------------------------------------------------------------------------------------------
+Merge Sort
+Para 10000 registros: 
+Numero medio de comparacoes:	23002
+Numero  medio de trocas:	21536
+Tempo medio de Processamento:	0.005 segundos
+
+-------------------------------------------------------------------------------------------------------
+Quick Sort
+Para 50000 registros: 
+Numero medio de comparacoes:	301283
+Numero  medio de trocas:	70221
+Tempo medio de Processamento:	0.003 segundos
+
+-------------------------------------------------------------------------------------------------------
+Heap Sort
+Para 50000 registros: 
+Numero medio de comparacoes:	8333
+Numero  medio de trocas:	16666
+Tempo medio de Processamento:	0.006 segundos
+
+-------------------------------------------------------------------------------------------------------
+Merge Sort
+Para 50000 registros: 
+Numero medio de comparacoes:	133984
+Numero  medio de trocas:	127504
+Tempo medio de Processamento:	0.029 segundos
+
+-------------------------------------------------------------------------------------------------------
+Quick Sort
+Para 100000 registros: 
+Numero medio de comparacoes:	648352
+Numero  medio de trocas:	157866
+Tempo medio de Processamento:	0.008 segundos
+
+-------------------------------------------------------------------------------------------------------
+Heap Sort
+Para 100000 registros: 
+Numero medio de comparacoes:	16666
+Numero  medio de trocas:	33333
+Tempo medio de Processamento:	0.015 segundos
+
+-------------------------------------------------------------------------------------------------------
+Merge Sort
+Para 100000 registros: 
+Numero medio de comparacoes:	284634
+Numero  medio de trocas:	271674
+Tempo medio de Processamento:	0.071 segundos
+
+-------------------------------------------------------------------------------------------------------
+Quick Sort
+Para 500000 registros: 
+Numero medio de comparacoes:	3556550
+Numero  medio de trocas:	933092
+Tempo medio de Processamento:	0.036 segundos
+
+-------------------------------------------------------------------------------------------------------
+Heap Sort
+Para 500000 registros: 
+Numero medio de comparacoes:	83333
+Numero  medio de trocas:	166666
+Tempo medio de Processamento:	0.09 segundos
+
+-------------------------------------------------------------------------------------------------------
+Merge Sort
+Para 500000 registros: 
+Numero medio de comparacoes:	1594405
+Numero  medio de trocas:	1564165
+Tempo medio de Processamento:	0.326 segundos
+
+-------------------------------------------------------------------------------------------------------
+Quick Sort
+Para 800000 registros: 
+Numero medio de comparacoes:	5929207
+Numero  medio de trocas:	1611557
+Tempo medio de Processamento:	0.059 segundos
+
+-------------------------------------------------------------------------------------------------------
+Heap Sort
+Para 800000 registros: 
+Numero medio de comparacoes:	133333
+Numero  medio de trocas:	266666
+Tempo medio de Processamento:	0.162 segundos
+
+-------------------------------------------------------------------------------------------------------
+Merge Sort
+Para 800000 registros: 
+Numero medio de comparacoes:	2677077
+Numero  medio de trocas:	2573397
+Tempo medio de Processamento:	0.553 segundos
