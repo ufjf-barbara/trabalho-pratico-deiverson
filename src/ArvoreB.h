@@ -9,6 +9,7 @@
 #include <math.h>
 #include <ctime>
 #include <algorithm>
+#include <ArvoreVP.h>
 #include <utility>
 
 #ifndef ARVOREB_H_INCLUDED
@@ -23,6 +24,7 @@ struct NodeArvB
     NodeArvB *pai;             //ptpara o nó pai
     vector<key *> chaves;      //array de chaves
     vector<NodeArvB *> folhas; //ponteiro para array de ponteiros p/ os filhos
+    bool folha;
 
     int getSizeKeys() { return chaves.size(); }
 };
