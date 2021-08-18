@@ -26,10 +26,10 @@ ArvoreB::ArvoreB()
 
 //Construtor de inserção
 
-ArvoreB::ArvoreB(int n)
+ArvoreB::ArvoreB(int t)
 {
     raiz = NULL;
-    this->O = 90;
+    this->t = t;
 
     int tam = Artists::getTAM();
     vector<int> vet;
@@ -40,15 +40,18 @@ ArvoreB::ArvoreB(int n)
     }
     random_shuffle(vet.begin(), vet.end());
 
-    for (int i = 0; i < n; i++)
+    clock_t begin = clock();
+    for (int i = 0; i < tam; i++)
     {
         key *aux = new key();
         artists art = Artists::reg(vet[i]);
         aux->name = art.name;
-        aux->posicao = vet[n];
+        aux->posicao = vet[i];
         aux->id = art.id;
         insercao(aux);
     }
+    clock_t end = clock();
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
 }
 
 //função para inserir NÓ na arvore
@@ -57,7 +60,7 @@ void ArvoreB::insercao(key *p)
 {
     if (raiz == NULL)
     {
-        raiz = new NodeArvB();
+        raiz = new Node();
         raiz->pai = NULL;
         raiz->folha = true;
         raiz->m = 1;
@@ -71,7 +74,7 @@ void ArvoreB::insercao(key *p)
 
 //função auxiliar para inserir NÓ na arvore
 
-void ArvoreB::auxInsert(NodeArvB *no, key *k)
+void ArvoreB::auxInsert(Node *no, key *k)
 {
     //caso base , de ser uma folha
     if (no->folha)
@@ -128,8 +131,31 @@ void ArvoreB::auxInsert(NodeArvB *no, key *k)
         }
     }
 }
+void ArvoreB::busca()
+{
 
-int ArvoreB::busca(NodeArvB *no, string val)
+    int tam = Artists::getTAM();
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    saida.close();
+
+    for (int i = 0; i < 100; i++)
+    {
+        Node *aux = new Node();
+        artists art = Artists::reg(vet[i]);
+        // begin = clock();
+        auxBusca(this->raiz, art.name);
+    }
+    // imprime(0, true);
+}
+int ArvoreB::auxBusca(Node *no, string val)
 {
     int tam = no->chaves.size();
     for (int i = 0; i < tam; i++)
@@ -137,7 +163,7 @@ int ArvoreB::busca(NodeArvB *no, string val)
         if (no->chaves[i]->name == val)
             return no->chaves[i]->posicao;
         else if (no->chaves[i - 1] && Compara(val, no->chaves[i - 1]->name) > 0 && Compara(val, no->chaves[i]->name) < 0)
-            return busca(no->folhas[i], val);
+            return auxBusca(no->folhas[i], val);
     }
     return -1;
 }
@@ -153,7 +179,7 @@ void ArvoreB::imprime()
     }
 }
 
-void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
+void ArvoreB::auxImprime(Node *p, string str, bool verifica)
 {
     if (p != NULL)
     {
@@ -180,12 +206,12 @@ void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
 }
 */
 
-void ArvoreB::cisao(NodeArvB *no) //overvlow apenas
+void ArvoreB::cisao(Node *no) //overvlow apenas
 {
     if (no->pai == NULL)
     {
-        NodeArvB *dad;
-        NodeArvB *bro;
+        Node *dad;
+        Node *bro;
 
         key *k = divide(no, bro, t);
 
@@ -201,7 +227,7 @@ void ArvoreB::cisao(NodeArvB *no) //overvlow apenas
     }
     else
     {
-        NodeArvB *bro;
+        Node *bro;
 
         key *k = divide(no, bro, t);
         bro->pai = no->pai;
@@ -224,7 +250,7 @@ void ArvoreB::cisao(NodeArvB *no) //overvlow apenas
     }
 }
 
-key *divide(NodeArvB *um, NodeArvB *dois, int t)
+key *divide(Node *um, Node *dois, int t)
 {
     key *k;
     for (int i = t; i <= 2 * t; i++)

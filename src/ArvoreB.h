@@ -17,12 +17,12 @@
 #define TAMMIN = 200;
 using namespace std;
 
-struct NodeArvB
+struct Node
 {
     int m;                     //quantidade de chaves armazenadas no nó
-    NodeArvB *pai;             //ptpara o nó pai
+    Node *pai;             //ptpara o nó pai
     vector<key *> chaves;      //array de chaves //TAM 2T
-    vector<NodeArvB *> folhas; //ponteiro para array de ponteiros p/ os filhos //TAM 2T+1
+    vector<Node *> folhas; //ponteiro para array de ponteiros p/ os filhos //TAM 2T+1
     bool folha;
 };
 
@@ -37,22 +37,22 @@ class ArvoreB
 {
 
 private:
-    NodeArvB *raiz;
-    int O;
+    Node *raiz;
     int t;
-    void auxImprime(NodeArvB *r, string str, bool verifica);
-    //bool auxBusca(NodeArvB *p, string val);
+    void auxImprime(Node *r, string str, bool verifica);
+    //bool auxBusca(Node *p, string val);
     int Compara(string str1, string str2);
-    void auxInsert(NodeArvB *no, key *val);
-    void auxImprime(NodeArvB *r, string str, bool verifica);
-    void cisao(NodeArvB *r);
+    void auxInsert(Node *no, key *val);
+    void auxImprime(Node *r, string str, bool verifica);
+    void cisao(Node *r);
+    int auxBusca(Node *no, string val);
 
 public:
     ArvoreB();
     ArvoreB(int n);
 
     void insercao(key *aux);
-    int busca(NodeArvB *no, string val);
+    void busca();
     void imprime();
 };
 

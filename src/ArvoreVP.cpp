@@ -310,6 +310,7 @@ void ArvoreVp::busca()
         Node *aux = new Node();
         artists art = Artists::reg(vet[i]);
         begin = clock();
+        compI;
         auxBusca(this->raiz, art.name);
     }
     imprime(0, true);
@@ -353,7 +354,7 @@ void ArvoreVp::imprime(int pos, bool b)
     }
     compGlob += compI;
     clock_t end = clock();
-    tempoGlob += (end - begin) / ((float)CLOCKS_PER_SEC);
+    tempoGlob += ((end - begin) / ((float)CLOCKS_PER_SEC));
     artists art = Artists::reg(pos);
     saida << "\n-------------------------------------------------------------------------------------------------------\n"
           << "Artista:\t" << art.name << endl
@@ -363,6 +364,7 @@ void ArvoreVp::imprime(int pos, bool b)
           << "Popularity:\t" << art.popularity << endl
           << "\nTempo da busca:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl
           << "Numero de comparacoes:\t" << compI << endl;
+    compI = 0;
 }
 
 void ArvoreVp::imprime()
