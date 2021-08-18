@@ -34,10 +34,13 @@ class ArvoreVp
 {
 
 private:
-    Node *raiz;
+    clock_t tempoGlob;
+    int compI;
+    int compGlob;
 
+    Node *raiz;
     void auxImprime(Node *r, string str, bool verifica);
-    bool auxBusca(Node *p, string val);
+    int auxBusca(Node *p, string val);
     void insercao(Node *aux);
     void insercaoBalanceado(Node *p);
     void rightRotate(Node *no);
@@ -47,10 +50,9 @@ private:
 public:
     ArvoreVp();
     ArvoreVp(int n);
-    bool busca(string val);
+    int busca(string val);
     void imprime();
     int qtdd(Node *no);
-
 };
 
 #endif // ARVOREVP_H_INCLUDED

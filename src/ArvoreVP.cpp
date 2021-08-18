@@ -12,8 +12,7 @@
 #include <utility>
 
 using namespace std;
-Node *BSTInsert(Node *raiz, Node *p);
-int Compara(string strRUBRO, string str2);
+int Compara(string str1, string str2);
 
 ArvoreVp::ArvoreVp()
 {
@@ -26,13 +25,14 @@ ArvoreVp::ArvoreVp(int n)
     int tam = Artists::getTAM();
     vector<int> vet;
 
-    for (int i = NEGRO; i < tam; i++)
+    for (int i = 0; i < tam; i++)
     {
         vet.push_back(i);
     }
     random_shuffle(vet.begin(), vet.end());
 
-    for (int i = NEGRO; i < n; i++)
+    clock_t begin = clock();
+    for (int i = 0; i < tam; i++)
     {
         Node *aux = new Node();
         artists art = Artists::reg(vet[i]);
@@ -46,6 +46,8 @@ ArvoreVp::ArvoreVp(int n)
 
         insercao(aux);
     }
+    clock_t end = clock();
+    cout << "\ntempo insecao" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
     cout << qtdd(raiz) << endl;
     cout << n << endl;
 }
@@ -97,40 +99,25 @@ void ArvoreVp::insercao(Node *no)
     {
         return;
     }
-//    imprime();
-//    cin.get();
     insercaoBalanceado(no);
-//    imprime();
-//    cin.get();
 }
 
-// void ArvoreVp::insercao(Node *no)
-// {
-//     // Do a normal BST insert
-//     raiz = BSTInsert(raiz, no);
-
-//     // fix Red Black Tree violations
-//     insercaoBalanceado(no);
-// }
 Node *BSTInsert(Node *raiz, Node *p)
 {
-    /* If the tree is empy, return a new node */
     if (raiz == NULL)
         return p;
 
-    /* Otherwise, recur down the tree */
-    if (Compara(p->nome, raiz->nome) < NEGRO)
+    if (Compara(p->nome, raiz->nome) < 0)
     {
         raiz->esq = BSTInsert(raiz->esq, p);
         raiz->esq->pai = raiz;
     }
-    else if (Compara(p->nome, raiz->nome) >= NEGRO)
+    else if (Compara(p->nome, raiz->nome) >= 0)
     {
         raiz->dir = BSTInsert(raiz->dir, p);
         raiz->dir->pai = raiz;
     }
 
-    /* return the (unchanged) node pointer */
     return raiz;
 }
 //algoritmo de inserção
@@ -153,32 +140,30 @@ void ArvoreVp::insercaoBalanceado(Node *p)
             {
                 if (p == p->pai->esq)
                 {
-//
                     rightRotate(p);
 
                     leftRotate(p);
-                    if(p->pai)
+                    if (p->pai)
                     {
-                        p=p->pai;
+                        p = p->pai;
                         p->color = NEGRO;
-                        if(p->dir)
+                        if (p->dir)
                             p->dir->color = RUBRO;
-                        if(p->esq)
+                        if (p->esq)
                             p->esq->color = RUBRO;
                     }
                     else
                     {
-                        raiz=p;
+                        raiz = p;
                         break;
-                    }//
-//
+                    }
                 }
                 else
                 {
                     leftRotate(p->pai);
-                    p=p->pai;
+                    p = p->pai;
                     p->color = NEGRO;
-                    if(p->esq)
+                    if (p->esq)
                         p->esq->color = RUBRO;
                     p->dir->color = RUBRO;
                 }
@@ -201,36 +186,29 @@ void ArvoreVp::insercaoBalanceado(Node *p)
                 {
                     leftRotate(p);
 
-                    // cout<<"\n\n"<<p->nome<<"\n\n";
-
                     rightRotate(p);
-                    if(p->pai)
+                    if (p->pai)
                     {
-                        p=p->pai;
+                        p = p->pai;
                         p->color = NEGRO;
-                        if(p->esq)
+                        if (p->esq)
                             p->esq->color = RUBRO;
-                        if(p->dir)
+                        if (p->dir)
                             p->dir->color = RUBRO;
                     }
                     else
                     {
-                        raiz=p;
+                        raiz = p;
                         break;
-                    }//                    p=p->esq;
+                    }
                 }
-//                if(p->pai->pai==NULL)
-//                {
-//                    auxImprime(p, "", true);
-//                    p->pai->pai->color = RUBRO;
-//                }
                 else
                 {
                     rightRotate(p->pai);
-                    p=p->pai;
+                    p = p->pai;
                     p->color = NEGRO;
                     p->esq->color = RUBRO;
-                    if(p->dir)
+                    if (p->dir)
                         p->dir->color = RUBRO;
                 }
             }
@@ -243,8 +221,8 @@ void ArvoreVp::insercaoBalanceado(Node *p)
             break;
         }
     }
-    if(p->pai==NULL)
-        raiz=p;
+    if (p->pai == NULL)
+        raiz = p;
     raiz->color = NEGRO;
 }
 
@@ -256,25 +234,23 @@ void ArvoreVp::rightRotate(Node *pai)
     Node *avo = pai->pai;
     Node *aux = pai->dir;
 
-
     // aux=pai->dir;
-    pai->dir=avo;
-    if(avo)
+    pai->dir = avo;
+    if (avo)
     {
-        avo->esq=aux;
-        if(avo->pai)
+        avo->esq = aux;
+        if (avo->pai)
         {
-            if(avo->pai->dir==avo)
-                avo->pai->dir=pai;
+            if (avo->pai->dir == avo)
+                avo->pai->dir = pai;
             else
-                avo->pai->esq=pai;
-
+                avo->pai->esq = pai;
         }
-        pai->pai=avo->pai;
-        avo->pai=pai;
+        pai->pai = avo->pai;
+        avo->pai = pai;
     }
-    if(aux)
-        aux->pai=avo;
+    if (aux)
+        aux->pai = avo;
 }
 
 //rotação para esquerda
@@ -285,46 +261,55 @@ void ArvoreVp::leftRotate(Node *pai)
     Node *avo = pai->pai;
     Node *aux = pai->esq;
 
-//    aux=pai->esq;
-    pai->esq=avo;
-    if(avo)
+    //    aux=pai->esq;
+    pai->esq = avo;
+    if (avo)
     {
 
-        avo->dir=aux;
-        if(avo->pai)
+        avo->dir = aux;
+        if (avo->pai)
         {
-            if(avo->pai->dir==avo)
-                avo->pai->dir=pai;
+            if (avo->pai->dir == avo)
+                avo->pai->dir = pai;
             else
-                avo->pai->esq=pai;
-
+                avo->pai->esq = pai;
         }
-        pai->pai=avo->pai;
-        avo->pai=pai;
+        pai->pai = avo->pai;
+        avo->pai = pai;
     }
-    if(aux)
-        aux->pai=avo;
-
-
+    if (aux)
+        aux->pai = avo;
 }
 
 //busca
 
-bool ArvoreVp::busca(string val)
+int ArvoreVp::busca(string val)
 {
+    cout << "\n"
+         << val << endl;
+    // cont=0;
     return auxBusca(this->raiz, val);
 }
 
-bool ArvoreVp::auxBusca(Node *p, string val)
+int ArvoreVp::auxBusca(Node *p, string val)
 {
     if (p == NULL)
-        return false;
-    else if (p->nome == val)
-        return true;
-    else if (Compara(p->nome, val) < NEGRO)
+        return -1;
+    // cout << "\n"
+    //      << p->nome << "---" << val << endl;
+    if (p->nome == val)
+    { // cont++;
+        // imprime(p->posicao); ;;tbm imprimir comp e tempo
+        return p->posicao;
+    }
+    else if (Compara(val, p->nome) < 0)
+    { // cont+=2;
         return auxBusca(p->esq, val);
+    }
     else
+    { // cont+=3;
         return auxBusca(p->dir, val);
+    }
 }
 
 void ArvoreVp::imprime()
@@ -362,19 +347,19 @@ void ArvoreVp::auxImprime(Node *r, string str, bool verifica)
     }
 }
 
-int Compara(string strRUBRO, string str2)
+int Compara(string str1, string str2)
 {
     int aux;
-    if (strRUBRO.length() <= str2.length())
-        aux = strRUBRO.length();
+    if (str1.length() <= str2.length())
+        aux = str1.length();
     else
         aux = str2.length();
 
-    int resultado = strncmp(strRUBRO.c_str(), str2.c_str(), aux);
-    if (resultado > NEGRO)
-        return RUBRO;
-    else if (resultado == NEGRO)
-        return NEGRO;
+    int resultado = strncmp(str1.c_str(), str2.c_str(), aux);
+    if (resultado > 0)
+        return 1;
+    else if (resultado == 0)
+        return 0;
     else
         return -1;
 }
@@ -382,10 +367,10 @@ int ArvoreVp::qtdd(Node *no)
 {
     if (no == NULL)
     {
-        return NEGRO;
+        return 0;
     }
     else
     {
-        return RUBRO + qtdd(no->esq) + qtdd(no->dir);
+        return 1 + qtdd(no->esq) + qtdd(no->dir);
     }
 }
