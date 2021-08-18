@@ -1,4 +1,5 @@
 #include "Artists.h"
+#include "ArvoreB.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,26 +11,19 @@
 #include <math.h>
 #include <ctime>
 #include <algorithm>
-#include "ArvoreB.h"
 #include <utility>
 
 using namespace std;
 
 static int Comparacoes = 0;
+static int trocas=0;
 
-//construtor padrao
+int Compara(string str1, string str2);
 
 ArvoreB::ArvoreB()
 {
     raiz = NULL;
-}
-
-//Construtor de inserção
-
-ArvoreB::ArvoreB(int n)
-{
-    raiz = NULL;
-    this->O = 90;
+    this->t = 4;
 
     int tam = Artists::getTAM();
     vector<int> vet;
@@ -40,26 +34,30 @@ ArvoreB::ArvoreB(int n)
     }
     random_shuffle(vet.begin(), vet.end());
 
-    for (int i = 0; i < n; i++)
+    clock_t begin = clock();
+    for (int i = 0; i < 20; i++)
     {
         key *aux = new key();
         artists art = Artists::reg(vet[i]);
         aux->name = art.name;
-        aux->posicao = vet[n];
+        aux->posicao = vet[i];
         aux->id = art.id;
         insercao(aux);
     }
+    clock_t end = clock();
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
 }
 
 //função para inserir NÓ na arvore
 
 void ArvoreB::insercao(key *p)
 {
-
     if (raiz == NULL)
     {
-        raiz = new NodeArvB();
+        raiz = new Node();
         raiz->pai = NULL;
+        raiz->folha = true;
+        raiz->m = 1;
         raiz->chaves.push_back(p);
     }
     else
@@ -70,90 +68,197 @@ void ArvoreB::insercao(key *p)
 
 //função auxiliar para inserir NÓ na arvore
 
-void ArvoreB::auxInsert(NodeArvB *no, key *k)
+void ArvoreB::auxInsert(Node *no, key *k)
 {
-    int aux = no->getSizeKeys();
-    if (aux < O)
+    //caso base , de ser uma folha
+    if (no->folha)
     {
-        if (aux == 0)
-            no->chaves.push_back(k);
-        else
+        int tam = no->chaves.size();
+        for (int i = 0; i < tam; i++)
         {
-            int tam = no->chaves.size();
-            for (int i = 0; i < tam; i++)
+            if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
             {
-                if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
-                {
-                    no->chaves.insert(no->chaves.begin() + i, k);
-                    break;
-                }
-                else if (i != 0 && Compara(k->name, no->chaves[i - 1]->name) > 0 &&
-                         Compara(k->name, no->chaves[i]->name) < 0)
-                {
-                    no->chaves.insert(no->chaves.begin() + i, k);
-                    break;
-                }
+                no->chaves.insert(no->chaves.begin(), k);
+                if (no->chaves.size() == 2 * t)
+                    cisao(no);
+                return;
+            }
+            else if (Compara(k->name, no->chaves[i - 1]->name) > 0 && Compara(k->name, no->chaves[i]->name) < 0)
+            {
+                no->chaves.insert(no->chaves.begin() + i, k);
+                if (no->chaves.size() == 2 * t)
+                    cisao(no);
+                return;
+            }
+            else
+            {
+                no->chaves.insert(no->chaves.end(), k);
+                if (no->chaves.size() == 2 * t)
+                    cisao(no);
+                return;
             }
         }
+
         return;
     }
-    int i = 0;
-    while (no->chaves[i] != NULL)
+    else //caso de ser um no
     {
-        if (i = 0)
+        int tam = no->chaves.size();
+        for (int i = 0; i < tam; i++)
         {
-            auxInsert(no->folhas[i], k);
-            break;
+            if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
+            {
+                auxInsert(no->folhas[i], k);
+                return;
+            }
+            else if (i + 1 != NULL && Compara(k->name, no->chaves[i]->name) > 0 &&
+                     Compara(k->name, no->chaves[i + 1]->name) < 0)
+            {
+                auxInsert(no->folhas[i], k);
+                return;
+            }
+            else if (i == no->chaves.size() && Compara(k->name, no->chaves[i]->name) > 0)
+            {
+                auxInsert(no->folhas[i + 1], k);
+                return;
+            }
         }
-        else if (Compara(k->name, no->chaves[i]->name) > 0 &&
-                 Compara(k->name, no->chaves[i + 1]->name) < 0)
-        {
-            auxInsert(no->folhas[i], k);
-            break;
-        }
-        else if (i == no->getSizeKeys() && Compara(k->name, no->chaves[i]->name) > 0)
-        {
-            auxInsert(no->folhas[i], k);
-            break;
-        }
-        else
-            i++;
     }
+}
+void ArvoreB::busca()
+{
+
+    int tam = Artists::getTAM();
+    vector<int> vet;
+
+    for (int i = 0; i < tam; i++)
+    {
+        vet.push_back(i);
+    }
+    random_shuffle(vet.begin(), vet.end());
+
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    saida.close();
+
+    for (int i = 0; i < 100; i++)
+    {
+        Node *aux = new Node();
+        artists art = Artists::reg(vet[i]);
+        // begin = clock();
+        auxBusca(this->raiz, art.name);
+    }
+      imprime(0, true);
+}
+int ArvoreB::auxBusca(Node *no, string val)
+{
+    int tam = no->chaves.size();
+    for (int i = 0; i < tam; i++)
+    {
+        if (no->chaves[i]->name == val)
+            return no->chaves[i]->posicao;
+        else if (no->chaves[i - 1] && Compara(val, no->chaves[i - 1]->name) > 0 && Compara(val, no->chaves[i]->name) < 0)
+            return auxBusca(no->folhas[i], val);
+    }
+    return -1;
 }
 
 
-NodeArvB *ArvoreB::busca(NodeArvB *p, NodeArvB *node)
+
+void ArvoreB::imprime(int pos, bool b)
 {
-
-    NodeArvB *aux;
-    aux = busca(raiz, node);
-
-    if (aux == NULL)
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    if (b)
     {
-        return NULL;
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+        saida << "Tempo medio:\t" << tempoGlob / 100 << " segundos" << endl;
+        saida << "Media de comparaçoes:\t" << compGlob / 100 << endl;
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+
+        saida.close();
+        return;
+    }
+    compGlob += compI;
+    clock_t end = clock();
+    tempoGlob += ((end - begin) / ((float)CLOCKS_PER_SEC));
+    artists art = Artists::reg(pos);
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Artista:\t" << art.name << endl
+          << "Followers:\t" << art.followers << endl
+          << "Genres:\t" << art.genres << endl
+          << "Id:\t" << art.id << endl
+          << "Popularity:\t" << art.popularity << endl
+          << "\nTempo da busca:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl
+          << "Numero de comparacoes:\t" << compI << endl;
+    compI = 0;
+}
+
+
+void ArvoreB::cisao(Node *no) //overvlow apenas
+{
+    if (no->pai == NULL)
+    {
+        Comparacoes++;
+
+        Node *dad;
+        Node *bro;
+
+        key *k = divide(no, bro, t);
+
+        dad->chaves.push_back(k);
+
+        no->pai = dad;
+        bro->pai = dad;
+
+        dad->folhas.push_back(no);
+        dad->folhas.push_back(bro);
+        dad->folha = false;
+        raiz = dad;
+
+        trocas++;
     }
     else
     {
-        int i = 0;
-        while ((i < (aux->m)) && (aux->chaves[i]->id < p->chaves[i]->id))
+        Node *bro;
+
+        key *k = divide(no, bro, t);
+        bro->pai = no->pai;
+
+        int tam = no->pai->chaves.size();
+
+        for (int i = 0; i < tam; i++)
         {
-            Comparacoes++;
-            i++;
-            
-        }
-        if (aux->m > i)
-        {
-            if (aux->chaves[i]->id == p->chaves[i]->id)
+
+            if (no->chaves[i + 1] && Compara(k->name, no->pai->chaves[i]->name) > 0 && Compara(k->name, no->pai->chaves[i + 1]->name) < 0)
             {
+                no->pai->chaves.insert(no->pai->chaves.begin() + i, k);
+                no->pai->folhas.insert(no->pai->folhas.begin() + i, bro);
                 Comparacoes++;
-                return aux;
             }
         }
-        return NULL;
+        if (no->pai->chaves.size() == 2 * t)
+        {
+            cisao(no->pai);
+            trocas++;
+        }
     }
 }
 
-//função para comparar os valores das strings
+key *divide(Node *um, Node *dois, int t)
+{
+    key *k;
+    for (int i = t; i <= 2 * t; i++)
+    {
+        if (i == t + 1)
+            k = um->chaves[i];
+        else
+            dois->chaves.push_back(um->chaves[i]);
+    }
+    for (int i = 2 * t; i >= t; i--)
+    {
+        um->chaves.pop_back();
+    }
+    return k;
+}
 
 int Compara(string str1, string str2)
 {
@@ -172,37 +277,9 @@ int Compara(string str1, string str2)
         return -1;
 }
 
-
+/*
 void ArvoreB::imprime()
 {
-    if (raiz)
-    {
-        auxImprime(this->raiz, "", true);
-    }
-}
 
-void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
-{
-    if (p != NULL)
-    {
-        cout << str;
-        if (verifica)
-        {
-            cout << "R----";
-            str += "   ";
-        }
-        else
-        {
-            cout << "L----";
-            str += "|  ";
-        }
-
-        for(int i=0;i<p->m;i++)
-        {
-          cout << " " <<p->chaves[i]->id;
-        }
-        
-        auxImprime(p->esq, str, false);
-        auxImprime(p->dir, str, true);
-    }
 }
+*/
