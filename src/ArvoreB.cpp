@@ -1,4 +1,5 @@
 #include "Artists.h"
+#include "ArvoreB.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,7 +11,6 @@
 #include <math.h>
 #include <ctime>
 #include <algorithm>
-#include "ArvoreB.h"
 #include <utility>
 
 using namespace std;
@@ -71,11 +71,14 @@ void ArvoreB::insercao(key *p)
 
 void ArvoreB::auxInsert(NodeArvB *no, key *k)
 {
-    int aux = no->getSizeKeys();
-    if (aux < O)
+    //caso base , de ser uma folha
+    if (no->folha)
     {
-        if (aux == 0)
-            no->chaves.push_back(k);
+        if (no->chaves.size() == 0)
+        {
+            no->chaves.insert(no->chaves.begin(), k);
+            return;
+        }
         else
         {
             int tam = no->chaves.size();
@@ -83,43 +86,54 @@ void ArvoreB::auxInsert(NodeArvB *no, key *k)
             {
                 if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
                 {
-                    no->chaves.insert(no->chaves.begin() + i, k);
-                    break;
+                    no->chaves.insert(no->chaves.begin(), k);
+                    no->folhas.insert(no->folhas.begin(), new NodeArvB());
+                    no->folhas.insert(no->folhas.begin() + 1, new NodeArvB());
+                    //if cisao
+                    return;
                 }
-                else if (i != 0 && Compara(k->name, no->chaves[i - 1]->name) > 0 &&
-                         Compara(k->name, no->chaves[i]->name) < 0)
+                else if (Compara(k->name, no->chaves[i - 1]->name) > 0 && Compara(k->name, no->chaves[i]->name) < 0)
                 {
                     no->chaves.insert(no->chaves.begin() + i, k);
-                    break;
+                    no->folhas.insert(no->folhas.begin() + i + 1, new NodeArvB());
+                    //if cisao
+                    return;
+                }
+                else
+                {
+                    no->chaves.insert(no->chaves.end(), k);
+                    no->folhas.insert(no->folhas.end(), new NodeArvB());
+                    //if cisao
+                    return;
                 }
             }
         }
         return;
     }
-    int i = 0;
-    while (no->chaves[i] != NULL)
+    else //caso de ser um no
     {
-        if (i = 0)
+        int tam = no->chaves.size();
+        for (int i = 0; i < tam; i++)
         {
-            auxInsert(no->folhas[i], k);
-            break;
+            if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
+            {
+                auxInsert(no->folhas[i], k);
+                return;
+            }
+            else if (Compara(k->name, no->chaves[i]->name) > 0 &&
+                     Compara(k->name, no->chaves[i + 1]->name) < 0)
+            {
+                auxInsert(no->folhas[i], k);
+                return;
+            }
+            else if (i == no->chaves.size() && Compara(k->name, no->chaves[i]->name) > 0)
+            {
+                auxInsert(no->folhas[i + 1], k);
+                return;
+            }
         }
-        else if (Compara(k->name, no->chaves[i]->name) > 0 &&
-                 Compara(k->name, no->chaves[i + 1]->name) < 0)
-        {
-            auxInsert(no->folhas[i], k);
-            break;
-        }
-        else if (i == no->getSizeKeys() && Compara(k->name, no->chaves[i]->name) > 0)
-        {
-            auxInsert(no->folhas[i], k);
-            break;
-        }
-        else
-            i++;
     }
 }
-
 
 NodeArvB *ArvoreB::busca(NodeArvB *p, NodeArvB *node)
 {
@@ -137,9 +151,9 @@ NodeArvB *ArvoreB::busca(NodeArvB *p, NodeArvB *node)
         while ((i < (aux->m)) && (aux->chaves[i]->id < node->chaves[i]->id))
         {
             Comparacoes++;
-            i++;          
+            i++;
         }
-        if (aux->m>i)
+        if (aux->m > i)
         {
             if (aux->chaves[i]->id == p->chaves[i]->id)
             {
@@ -169,7 +183,6 @@ int Compara(string str1, string str2)
     else
         return -1;
 }
-
 
 /*
 void ArvoreB::imprime()
@@ -206,3 +219,4 @@ void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
     }
 }
 */
+

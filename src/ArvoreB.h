@@ -9,7 +9,6 @@
 #include <math.h>
 #include <ctime>
 #include <algorithm>
-#include <ArvoreVP.h>
 #include <utility>
 
 #ifndef ARVOREB_H_INCLUDED
@@ -22,11 +21,9 @@ struct NodeArvB
 {
     int m;                     //quantidade de chaves armazenadas no nó
     NodeArvB *pai;             //ptpara o nó pai
-    vector<key *> chaves;      //array de chaves
-    vector<NodeArvB *> folhas; //ponteiro para array de ponteiros p/ os filhos
+    vector<key *> chaves;      //array de chaves //TAM 2T
+    vector<NodeArvB *> folhas; //ponteiro para array de ponteiros p/ os filhos //TAM 2T+1
     bool folha;
-
-    int getSizeKeys() { return chaves.size(); }
 };
 
 struct key
@@ -47,16 +44,15 @@ private:
     //bool auxBusca(NodeArvB *p, string val);
     int Compara(string str1, string str2);
     void auxInsert(NodeArvB *no, key *val);
-    void auxImprime(Node *r, string str, bool verifica);
+    void auxImprime(NodeArvB *r, string str, bool verifica);
 
 public:
     ArvoreB();
     ArvoreB(int n);
 
     void insercao(key *aux);
-    NodeArvB* busca(NodeArvB *p,NodeArvB *node);
+    NodeArvB *busca(NodeArvB *p, NodeArvB *node);
     void imprime();
-    
 };
 
 #endif // ARVOREB_H_INCLUDED
