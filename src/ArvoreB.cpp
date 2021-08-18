@@ -55,7 +55,6 @@ ArvoreB::ArvoreB(int n)
 
 void ArvoreB::insercao(key *p)
 {
-
     if (raiz == NULL)
     {
         raiz = new NodeArvB();
@@ -135,13 +134,12 @@ NodeArvB *ArvoreB::busca(NodeArvB *p, NodeArvB *node)
     else
     {
         int i = 0;
-        while ((i < (aux->m)) && (aux->chaves[i]->id < p->chaves[i]->id))
+        while ((i < (aux->m)) && (aux->chaves[i]->id < node->chaves[i]->id))
         {
             Comparacoes++;
-            i++;
-            
+            i++;          
         }
-        if (aux->m > i)
+        if (aux->m>i)
         {
             if (aux->chaves[i]->id == p->chaves[i]->id)
             {
@@ -173,6 +171,7 @@ int Compara(string str1, string str2)
 }
 
 
+/*
 void ArvoreB::imprime()
 {
     if (raiz)
@@ -202,7 +201,8 @@ void ArvoreB::auxImprime(NodeArvB *p, string str, bool verifica)
           cout << " " <<p->chaves[i]->id;
         }
         
-        auxImprime(p->esq, str, false);
-        auxImprime(p->dir, str, true);
+        auxImprime(p->, str, false);
+        auxImprime(p->, str, true);
     }
 }
+*/
