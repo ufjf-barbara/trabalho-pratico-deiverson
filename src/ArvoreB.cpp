@@ -16,20 +16,14 @@
 using namespace std;
 
 static int Comparacoes = 0;
+static int trocas=0;
 
-//construtor padrao
+int Compara(string str1, string str2);
 
 ArvoreB::ArvoreB()
 {
     raiz = NULL;
-}
-
-//Construtor de inserção
-
-ArvoreB::ArvoreB(int t)
-{
-    raiz = NULL;
-    this->t = t;
+    this->t = 4;
 
     int tam = Artists::getTAM();
     vector<int> vet;
@@ -41,7 +35,7 @@ ArvoreB::ArvoreB(int t)
     random_shuffle(vet.begin(), vet.end());
 
     clock_t begin = clock();
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < 20; i++)
     {
         key *aux = new key();
         artists art = Artists::reg(vet[i]);
@@ -153,7 +147,7 @@ void ArvoreB::busca()
         // begin = clock();
         auxBusca(this->raiz, art.name);
     }
-    // imprime(0, true);
+      imprime(0, true);
 }
 int ArvoreB::auxBusca(Node *no, string val)
 {
@@ -168,48 +162,43 @@ int ArvoreB::auxBusca(Node *no, string val)
     return -1;
 }
 
-//função para comparar os valores das strings
 
-/*
-void ArvoreB::imprime()
+
+void ArvoreB::imprime(int pos, bool b)
 {
-    if (raiz)
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    if (b)
     {
-        auxImprime(this->raiz, "", true);
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+        saida << "Tempo medio:\t" << tempoGlob / 100 << " segundos" << endl;
+        saida << "Media de comparaçoes:\t" << compGlob / 100 << endl;
+        saida << "\n-------------------------------------------------------------------------------------------------------\n";
+
+        saida.close();
+        return;
     }
+    compGlob += compI;
+    clock_t end = clock();
+    tempoGlob += ((end - begin) / ((float)CLOCKS_PER_SEC));
+    artists art = Artists::reg(pos);
+    saida << "\n-------------------------------------------------------------------------------------------------------\n"
+          << "Artista:\t" << art.name << endl
+          << "Followers:\t" << art.followers << endl
+          << "Genres:\t" << art.genres << endl
+          << "Id:\t" << art.id << endl
+          << "Popularity:\t" << art.popularity << endl
+          << "\nTempo da busca:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl
+          << "Numero de comparacoes:\t" << compI << endl;
+    compI = 0;
 }
 
-void ArvoreB::auxImprime(Node *p, string str, bool verifica)
-{
-    if (p != NULL)
-    {
-        cout << str;
-        if (verifica)
-        {
-            cout << "R----";
-            str += "   ";
-        }
-        else
-        {
-            cout << "L----";
-            str += "|  ";
-        }
-
-        for(int i=0;i<p->m;i++)
-        {
-          cout << " " <<p->chaves[i]->id;
-        }
-        
-        auxImprime(p->, str, false);
-        auxImprime(p->, str, true);
-    }
-}
-*/
 
 void ArvoreB::cisao(Node *no) //overvlow apenas
 {
     if (no->pai == NULL)
     {
+        Comparacoes++;
+
         Node *dad;
         Node *bro;
 
@@ -224,6 +213,8 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
         dad->folhas.push_back(bro);
         dad->folha = false;
         raiz = dad;
+
+        trocas++;
     }
     else
     {
@@ -241,11 +232,13 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
             {
                 no->pai->chaves.insert(no->pai->chaves.begin() + i, k);
                 no->pai->folhas.insert(no->pai->folhas.begin() + i, bro);
+                Comparacoes++;
             }
         }
         if (no->pai->chaves.size() == 2 * t)
         {
             cisao(no->pai);
+            trocas++;
         }
     }
 }
@@ -283,3 +276,10 @@ int Compara(string str1, string str2)
     else
         return -1;
 }
+
+/*
+void ArvoreB::imprime()
+{
+
+}
+*/

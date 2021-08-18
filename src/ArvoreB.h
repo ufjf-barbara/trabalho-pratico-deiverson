@@ -19,13 +19,14 @@ using namespace std;
 
 struct Node
 {
-    int m;                     //quantidade de chaves armazenadas no nó
+    int m;                 //quantidade de chaves armazenadas no nó
     Node *pai;             //ptpara o nó pai
-    vector<key *> chaves;      //array de chaves //TAM 2T
+    vector<key *> chaves;  //array de chaves //TAM 2T
     vector<Node *> folhas; //ponteiro para array de ponteiros p/ os filhos //TAM 2T+1
-    bool folha;
+    bool folha;            //verifica se o no e folha
 };
 
+//estrutura da chave
 struct key
 {
     string id;
@@ -37,10 +38,15 @@ class ArvoreB
 {
 
 private:
+    clock_t begin;
+    clock_t end;
+    clock_t tempoGlob;
+    int compI;
+    int compGlob;
+
     Node *raiz;
     int t;
     void auxImprime(Node *r, string str, bool verifica);
-    //bool auxBusca(Node *p, string val);
     int Compara(string str1, string str2);
     void auxInsert(Node *no, key *val);
     void auxImprime(Node *r, string str, bool verifica);
@@ -49,10 +55,10 @@ private:
 
 public:
     ArvoreB();
-    ArvoreB(int n);
 
     void insercao(key *aux);
     void busca();
+    void imprime(int pos, bool b);
     void imprime();
 };
 
