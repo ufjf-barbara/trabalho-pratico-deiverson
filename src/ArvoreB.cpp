@@ -4,22 +4,20 @@
 #include <fstream>
 #include <sstream>
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include <vector>
-#include <list>
-#include <math.h>
 #include <ctime>
-#include <algorithm>
-#include <utility>
+
+
 
 using namespace std;
 
 static int Comparacoes = 0;
 static int trocas=0;
 
-int Compara(string str1, string str2);
+int Compara(string str1, string str2); //
 key *divide(Node *um, Node *dois, int t);
+
+//construtor
 
 ArvoreB::ArvoreB()
 {
@@ -29,7 +27,7 @@ ArvoreB::ArvoreB()
     int tam = Artists::getTAM();
     vector<int> vet;
 
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < tam; i++)//add tam valores
     {
         vet.push_back(i);
     }
@@ -43,10 +41,10 @@ ArvoreB::ArvoreB()
         aux->name = art.name;
         aux->posicao = vet[i];
         aux->id = art.id;
-        insercao(aux);
+        insercao(aux);//insere
     }
     clock_t end = clock();
-    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;//impressao tempo de inserção
 }
 
 //função para inserir NÓ na arvore
@@ -112,6 +110,8 @@ void ArvoreB::auxInsert(Node *no, key *k)
         auxInsert(no->folhas[aqui], k);
     }
 }
+
+//função de busca 
 void ArvoreB::busca()
 {
 
@@ -124,7 +124,7 @@ void ArvoreB::busca()
     }
     random_shuffle(vet.begin(), vet.end());
 
-    ofstream saida("saida.txt", ios::out | ios::trunc);
+    ofstream saida("saida.txt", ios::out | ios::trunc);//resultados inseridos em um documento saida.txt
     saida.close();
 
     for (int i = 0; i < 100; i++)
@@ -132,10 +132,11 @@ void ArvoreB::busca()
         Node *aux = new Node();
         artists art = Artists::reg(vet[i]);
         // begin = clock();
-        auxBusca(this->raiz, art.name);
-        imprime(i, true);
+        auxBusca(this->raiz, art.name);//chamada da função auxiliar
+        imprime(i, true);//chamada da impressão
     }
 }
+//função auxiliar de busca
 int ArvoreB::auxBusca(Node *no, string val)
 {
     for (int i = 0; no->chaves[i] != NULL ; i++)
@@ -147,6 +148,8 @@ int ArvoreB::auxBusca(Node *no, string val)
     }
     return -1;
 }
+
+//função de impressao na saida.txt
 
 void ArvoreB::imprime(int pos, bool b)
 {
@@ -176,10 +179,11 @@ void ArvoreB::imprime(int pos, bool b)
     compI = 0;
 }
 
+//função de cisão
 
 void ArvoreB::cisao(Node *no) //overvlow apenas
 {
-    if (no->pai == NULL)
+    if (no->pai == NULL)//caso seja a raiz
     {
         Comparacoes++;
 
@@ -209,7 +213,7 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
     {
         Node *bro=new Node();
 
-        key *k = divide(no, bro, t);
+        key *k = divide(no, bro, t);//chama da função de divisão da key
         bro->chaves.resize(2*t,NULL);
         int tam = no->pai->m;
 

@@ -1,6 +1,5 @@
 #include "ArvoreVP.h"
 #include "Artists.h"
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -14,6 +13,7 @@ using namespace std;
 
 int Compara(string str1, string str2);
 
+//construtor  padrão
 ArvoreVp::ArvoreVp()
 {
     raiz = NULL;
@@ -21,16 +21,16 @@ ArvoreVp::ArvoreVp()
     int tam = Artists::getTAM();
     vector<int> vet;
 
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < tam; i++)//adicionando artistas com tamanho tam
     {
         vet.push_back(i);
     }
     random_shuffle(vet.begin(), vet.end());
 
-    clock_t begin = clock();
+    clock_t begin = clock();//tempo inicial
     for (int i = 0; i < tam; i++)
     {
-        Node *aux = new Node();
+        Node *aux = new Node();//new no para inserção
         artists art = Artists::reg(vet[i]);
         aux->nome = art.name;
         aux->posicao = vet[i];
@@ -40,11 +40,13 @@ ArvoreVp::ArvoreVp()
         aux->dir = NULL;
         aux->pai = NULL;
 
-        insercao(aux);
+        insercao(aux);//chamada da inserção
     }
-    clock_t end = clock();
-    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
+    clock_t end = clock();// tempo final
+    cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;//valor do tempo de inserção
 }
+
+//construtor com n elementos
 
 ArvoreVp::ArvoreVp(int n)
 {
@@ -84,9 +86,9 @@ ArvoreVp::ArvoreVp(int n)
 void ArvoreVp::insercao(Node *no)
 {
 
-    no->color = RUBRO;
+    no->color = RUBRO;//inicia no com cor Rubro
 
-    Node *y = NULL;
+    Node *y = NULL;//no auxiliar
     Node *x = this->raiz;
 
     while (x != NULL)
@@ -127,7 +129,7 @@ void ArvoreVp::insercao(Node *no)
     {
         return;
     }
-    Balanceamento(no);
+    Balanceamento(no);//chamada da função de balanceamento
 }
 
 void ArvoreVp::Balanceamento(Node *p)
@@ -329,6 +331,8 @@ int ArvoreVp::buscaIn(Node *p, string str)
     }
 }
 
+//função de busca 
+
 void ArvoreVp::busca()
 {
 
@@ -341,7 +345,7 @@ void ArvoreVp::busca()
     }
     random_shuffle(vet.begin(), vet.end());
 
-    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);//escrevendo os artistas da arvore no documento saida.txt
     saida.close();
 
     for (int i = 0; i < 100; i++)
@@ -354,6 +358,8 @@ void ArvoreVp::busca()
     }
     imprime(0, true);
 }
+
+//função auxiliar de busca
 
 int ArvoreVp::auxBusca(Node *p, string val)
 {
