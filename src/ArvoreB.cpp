@@ -24,7 +24,7 @@ key *divide(Node *um, Node *dois, int t);
 ArvoreB::ArvoreB()
 {
     raiz = NULL;
-    this->t = 4;
+    this->t = 200;
 
     int tam = Artists::getTAM();
     vector<int> vet;
@@ -36,7 +36,7 @@ ArvoreB::ArvoreB()
     random_shuffle(vet.begin(), vet.end());
 
     clock_t begin = clock();
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 10400; i++)
     {
         key *aux = new key();
         artists art = Artists::reg(vet[i]);
@@ -59,7 +59,9 @@ void ArvoreB::insercao(key *p)
         raiz->pai = NULL;
         raiz->folha = true;
         raiz->m = 1;
+        raiz->folhas.resize(2*t+1,NULL);
         raiz->chaves.push_back(p);
+        raiz->chaves.resize(2*t-1, NULL);
     }
     else
     {
@@ -74,59 +76,40 @@ void ArvoreB::auxInsert(Node *no, key *k)
     //caso base , de ser uma folha
     if (no->folha)
     {
-        int tam = no->chaves.size();
-        for (int i = 0; i < tam; i++)
+        int aqui=0;
+        for (int i = 0; no->chaves[i] != NULL ; i++)
         {
-            if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
-            {
-                no->chaves.insert(no->chaves.begin(), k);
-                if (no->chaves.size() ==( 2 * this->t))
-                    cisao(no);
-                    imprime(no);
-                return;
-            }
-            else if (Compara(k->name, no->chaves[i - 1]->name) > 0 && Compara(k->name, no->chaves[i]->name) < 0)
+
+            if (Compara(k->name, no->chaves[i]->name) < 0)
             {
                 no->chaves.insert(no->chaves.begin() + i, k);
+                no->chaves.resize(2*t,NULL);
+                no->m++;
                 if (no->chaves.size() == 2 * t)
                     cisao(no);
-                    imprime(no);
                 return;
             }
-            else
-            {
-                no->chaves.insert(no->chaves.end(), k);
-                if (no->chaves.size() == 2 * t)
-                    cisao(no);
-                    imprime(no);
-                return;
-            }
+            aqui=i+1;
         }
-
-        return;
+        no->chaves.insert(no->chaves.begin()+aqui, k);
+        no->chaves.resize(2*t,NULL);
+        no->m++;
+        if (no->chaves.size() == 2 * t)
+            cisao(no);
     }
     else //caso de ser um no
     {
-        int tam = no->chaves.size();
-        for (int i = 0; i < tam; i++)
+        int aqui=0;
+        for (int i = 0; no->chaves[i] !=NULL ; i++)
         {
-            if (i == 0 && Compara(k->name, no->chaves[i]->name) < 0)
+            if (Compara(k->name, no->chaves[i]->name) < 0)
             {
                 auxInsert(no->folhas[i], k);
                 return;
             }
-            else if ( no->chaves[i + 1] != NULL && Compara(k->name, no->chaves[i]->name) > 0 &&
-                     Compara(k->name, no->chaves[i + 1]->name) < 0)
-            {
-                auxInsert(no->folhas[i], k);
-                return;
-            }
-            else if (i == no->chaves.size() && Compara(k->name, no->chaves[i]->name) > 0)
-            {
-                auxInsert(no->folhas[i + 1], k);
-                return;
-            }
+            aqui=i+1;
         }
+        auxInsert(no->folhas[aqui], k);
     }
 }
 void ArvoreB::busca()
@@ -141,7 +124,7 @@ void ArvoreB::busca()
     }
     random_shuffle(vet.begin(), vet.end());
 
-    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    ofstream saida("saida.txt", ios::out | ios::trunc);
     saida.close();
 
     for (int i = 0; i < 100; i++)
@@ -150,13 +133,12 @@ void ArvoreB::busca()
         artists art = Artists::reg(vet[i]);
         // begin = clock();
         auxBusca(this->raiz, art.name);
+        imprime(i, true);
     }
-      imprime(0, true);
 }
 int ArvoreB::auxBusca(Node *no, string val)
 {
-    int tam = no->chaves.size();
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; no->chaves[i] != NULL ; i++)
     {
         if (no->chaves[i]->name == val)
             return no->chaves[i]->posicao;
@@ -166,11 +148,9 @@ int ArvoreB::auxBusca(Node *no, string val)
     return -1;
 }
 
-
-
 void ArvoreB::imprime(int pos, bool b)
 {
-    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    ofstream saida("saida.txt", ios::out | ios::app);
     if (b)
     {
         saida << "\n-------------------------------------------------------------------------------------------------------\n";
@@ -203,8 +183,8 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
     {
         Comparacoes++;
 
-        Node *dad;
-        Node *bro;
+        Node *dad=new Node();
+        Node *bro=new Node();
 
         key *k = divide(no, bro, t);
 
@@ -212,9 +192,14 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
 
         no->pai = dad;
         bro->pai = dad;
+        bro->chaves.resize(2*t,NULL);
 
         dad->folhas.push_back(no);
         dad->folhas.push_back(bro);
+
+        dad->folhas.resize(2*t+1,NULL);
+        dad->chaves.resize(2*t,NULL);
+
         dad->folha = false;
         raiz = dad;
 
@@ -222,27 +207,38 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
     }
     else
     {
-        Node *bro;
+        Node *bro=new Node();
 
         key *k = divide(no, bro, t);
+        bro->chaves.resize(2*t,NULL);
+        int tam = no->pai->m;
+
         bro->pai = no->pai;
 
-        int tam = no->pai->chaves.size();
-
-        for (int i = 0; i < tam; i++)
+        for (int i = 0; no->pai->chaves[i]!=NULL ; i++)
         {
 
-            if (no->chaves[i + 1] && Compara(k->name, no->pai->chaves[i]->name) > 0 && Compara(k->name, no->pai->chaves[i + 1]->name) < 0)
+            Comparacoes++;
+            if (Compara(k->name, no->pai->chaves[i]->name) < 0)
             {
                 no->pai->chaves.insert(no->pai->chaves.begin() + i, k);
-                no->pai->folhas.insert(no->pai->folhas.begin() + i, bro);
-                Comparacoes++;
+                no->pai->folhas[i]= bro;
+                no->pai->chaves.resize(2*t,NULL);
+                break;
             }
+        }
+        Comparacoes++;
+        if(no->pai->chaves[tam] && Compara(k->name, no->pai->chaves[tam]->name) > 0)
+        {
+            no->pai->chaves.insert(no->pai->chaves.end(), k);
+            no->pai->folhas[no->pai->folhas.size()]= bro;
+
+            no->pai->chaves.erase(no->pai->chaves.end());
         }
         if (no->pai->chaves.size() == 2 * t)
         {
-            cisao(no->pai);
             trocas++;
+            cisao(no->pai);
         }
     }
 }
@@ -250,17 +246,38 @@ void ArvoreB::cisao(Node *no) //overvlow apenas
 key *divide(Node *um, Node *dois, int t)
 {
     key *k;
-    for (int i = t; i <= 2 * t; i++)
+    k = um->chaves[t];
+    int aqui;
+
+    for (int i = t+1; i < 2 * t; i++)
     {
-        if (i == t + 1)
-            k = um->chaves[i];
-        else
-            dois->chaves.push_back(um->chaves[i]);
+        dois->chaves.push_back(um->chaves[i]);
+        aqui=i+1;
     }
-    for (int i = 2 * t; i >= t; i--)
+    dois->folhas.push_back(um->folhas[aqui]);
+    if(!um->folha)
     {
-        um->chaves.pop_back();
+
+        for (int i = t+1; i < 2 * t; i++)
+        {
+            dois->folhas.push_back(um->folhas[2*t]);
+        }
+        for (int i = 0; i <=t; i++)
+        {
+
+            um->folhas.pop_back();
+        }
+
+        um->folhas.resize(2*t+1,NULL);
     }
+
+    for (int i = 0; i <t; i++)
+    {
+        um->chaves[i+t]=NULL;
+    }
+    um->m=t;
+    dois->m=t;
+
     return k;
 }
 
@@ -281,20 +298,9 @@ int Compara(string str1, string str2)
         return -1;
 }
 
-
-void ArvoreB::imprime(Node *p)
+/*
+void ArvoreB::imprime()
 {
-    if(p==NULL)
-    {
-        cout<<"invalido"<<endl;
-    }
-    else
-    {
-        cout<<"chaves: ";
-        for(int i=0;i<p->chaves.size();i++)
-        {
-            cout<<p->chaves[i]<<" ";
-        }
-        cout<<endl;
-    }
+
 }
+*/
