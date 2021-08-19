@@ -49,11 +49,13 @@ private:
     void leftRotate(Node *no);
     void imprime(int pos, bool b);
     // int Compara(string str1, string str2);
+    int buscaIn(Node* p,string str);
 
 public:
     ArvoreVp();
     ArvoreVp(int n);
     void busca();
+    void busca(string str);
     void imprime();
     int qtdd(Node *no);
 };

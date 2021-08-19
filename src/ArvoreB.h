@@ -16,6 +16,13 @@
 
 #define TAMMIN = 200;
 using namespace std;
+//estrutura da chave
+struct key
+{
+    string id;
+    string name;
+    int posicao;
+};
 
 struct Node
 {
@@ -26,13 +33,7 @@ struct Node
     bool folha;            //verifica se o no e folha
 };
 
-//estrutura da chave
-struct key
-{
-    string id;
-    string name;
-    int posicao;
-};
+
 
 class ArvoreB
 {
@@ -47,9 +48,8 @@ private:
     Node *raiz;
     int t;
     void auxImprime(Node *r, string str, bool verifica);
-    int Compara(string str1, string str2);
     void auxInsert(Node *no, key *val);
-    void auxImprime(Node *r, string str, bool verifica);
+
     void cisao(Node *r);
     int auxBusca(Node *no, string val);
 
