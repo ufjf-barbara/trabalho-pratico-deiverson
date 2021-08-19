@@ -4,6 +4,7 @@
 #include "Ordenacao.h"
 #include "tabelaHash.h"
 #include "ArvoreVP.h"
+#include "ArvoreB.h"
 
 #include <fstream>  //leitura e escrita de arquivos
 #include <iostream> //entrada pelo teclado e saida pela prompt
@@ -92,16 +93,19 @@ void parteTres()
         cin >> aux;
         cin.ignore();
         ArvoreVp *vp;
+        ArvoreB *b;
         switch (aux)
         {
         case 1:
             vp = new ArvoreVp();
             vp->busca();
             break;
-        // case 2:
-        //     break;
-        // case 3:
-        //     break;
+        /* case 2:
+              b=new ArvoreB();
+              vp->busca();
+            break;*/
+         case 3:
+             break;
         default:
             cout << "\nOpçao invalida" << endl;
         }
