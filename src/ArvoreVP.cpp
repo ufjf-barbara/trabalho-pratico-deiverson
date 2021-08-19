@@ -290,6 +290,45 @@ void ArvoreVp::leftRotate(Node *pai)
 
 //busca
 
+void ArvoreVp::busca(string str)
+{
+    int i = buscaIn(this->raiz, str);
+    if (i == -1)
+    {
+        cout << "Artista nao encontrado" << endl;
+        return;
+    }
+    Node *aux = new Node();
+    artists art = Artists::reg(i);
+    cout << "\nArtista:\t" << art.name << endl
+         << "Followers:\t" << art.followers << endl
+         << "Genres:\t" << art.genres << endl
+         << "Id:\t" << art.id << endl
+         << "Popularity:\t" << art.popularity << endl;
+}
+
+int ArvoreVp::buscaIn(Node *p, string str)
+{
+    if (p == NULL)
+        return -1;
+
+    if (p->nome == str)
+    {
+        compI++;
+        return p->posicao;
+    }
+    else if (Compara(str, p->nome) < 0)
+    {
+        compI += 2;
+        return buscaIn(p->esq, str);
+    }
+    else
+    {
+        compI += 3;
+        return buscaIn(p->dir, str);
+    }
+}
+
 void ArvoreVp::busca()
 {
 

@@ -26,7 +26,8 @@ Trabalho da disciplina de Estruturas de dados 2 turma E  professora BARBARA DE M
 ## Como compilar e Executar
 Estar dentro da pasta src e usar o comando:
 
-make run DIR=(endereço)
+make run DIR=(endereço dos arquivos csv)
+**Para executar no linux, é necessario uma barra (/) após o endereço.
 
 e passar o endereço do diretório onde se encontram os arquivos artistis.csv e tracks.csv (favor tê-los no mesmo diretório)
 

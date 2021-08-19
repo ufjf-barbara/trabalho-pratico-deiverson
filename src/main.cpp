@@ -13,6 +13,7 @@
 
 using namespace std;
 
+int display();
 void call(string path);
 void parteTres();
 void parteDois();
@@ -47,6 +48,7 @@ int main(int argc, char **argv)
 
     return 0;
 }
+
 void call(string path) // funçao para chamar as execuçoes do trabalho
 {
     int aux = 1;
@@ -80,9 +82,80 @@ void call(string path) // funçao para chamar as execuçoes do trabalho
         }
     }
 }
+
+void VP()
+{
+    string str;
+    ArvoreVp *vp;
+    switch (display())
+    {
+    case 1:
+        vp = new ArvoreVp();
+        vp->busca();
+        break;
+    case 2:
+        vp = new ArvoreVp();
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual artista pretende encontrar?\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        getline(cin, str);
+        vp->busca(str);
+        break;
+    case 3:
+        break;
+    default:;
+    }
+}
+
+void B()
+{
+    string str;
+    ArvoreB *b;
+    int t;
+    switch (display())
+    {
+    case 1:
+        b = new ArvoreB();
+        b->busca();
+        break;
+    case 2:
+        // b = new Arvoreb(t);
+        // cout << "\n-----------------------------------------------------------------------------------------------------\n"
+        //      << endl;
+        // cout << "Qual artista pretende encontrar?\n";
+        // cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        // cin >> str;
+        // b->busca(str);
+        break;
+    case 3:
+        break;
+    default:;
+    }
+}
+
+int display()
+{
+    int aux;
+    bool a = true;
+    while (a)
+    {
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual modo deseja acessar? (Digite o numero conrespondente a opcao desejada)\n";
+        cout << "[1]Analise\n[2]Teste\n[3]Sair\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        cin >> aux;
+        cin.ignore();
+        if (aux == 1 || aux == 2 || aux == 3)
+            a = false;
+    }
+    return aux;
+}
+
 void parteTres()
 {
-    int aux ;
+    int aux;
     while (aux != 3)
     {
         cout << "\n-----------------------------------------------------------------------------------------------------\n"
@@ -92,20 +165,16 @@ void parteTres()
         cout << "\n-----------------------------------------------------------------------------------------------------\n";
         cin >> aux;
         cin.ignore();
-        ArvoreVp *vp;
-        ArvoreB *b;
         switch (aux)
         {
         case 1:
-            vp = new ArvoreVp();
-            vp->busca();
+            VP();
             break;
-        /* case 2:
-              b=new ArvoreB();
-              vp->busca();
-            break;*/
-         case 3:
-             break;
+        // case 2:
+        //     B();
+        //     break;
+        // case 3:
+        //     break;
         default:
             cout << "\nOpçao invalida" << endl;
         }
