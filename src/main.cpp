@@ -1,10 +1,10 @@
-#include "Artists.h"
-#include "Tracks.h"
-#include "functeste.h"
-#include "Ordenacao.h"
-#include "tabelaHash.h"
-#include "ArvoreVP.h"
-#include "ArvoreB.h"
+#include "parte1/headers/Artists.h"
+#include "parte1/headers/Tracks.h"
+#include "parte1/headers/functeste.h"
+#include "parte2/headers/Ordenacao.h"
+#include "parte2/headers/tabelaHash.h"
+#include "parte3/headers/ArvoreVP.h"
+#include "parte3/headers/ArvoreB.h"
 
 #include <fstream>  //leitura e escrita de arquivos
 #include <iostream> //entrada pelo teclado e saida pela prompt

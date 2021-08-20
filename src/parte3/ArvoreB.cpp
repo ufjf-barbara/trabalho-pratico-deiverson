@@ -1,5 +1,5 @@
-#include "Artists.h"
-#include "ArvoreB.h"
+#include "../parte1/headers/Artists.h"
+#include "headers/ArvoreB.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -48,6 +48,7 @@ ArvoreB::ArvoreB()
     clock_t end = clock();
     cout << "\nINSERCAO CONCLUIDA COM SUCESSO" << endl;
     cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
+    busca();
 }
 
 ArvoreB::ArvoreB(int t)
@@ -211,7 +212,7 @@ void ArvoreB::busca()
     }
     random_shuffle(vet.begin(), vet.end());
 
-    ofstream saida("saida.txt", ios::out | ios::app);
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
 
     saida << "\n-------------------------------------------------------------------------------------------------------\n";
     saida << "ARVORE B " << endl;
@@ -275,7 +276,7 @@ int ArvoreB::auxBusca(NodeB *no, string val)
 
 void ArvoreB::imprime(int pos, bool b)
 {
-    ofstream saida("saida.txt", ios::out | ios::app);
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
     if (b)
     {
         saida << "\n-------------------------------------------------------------------------------------------------------\n";

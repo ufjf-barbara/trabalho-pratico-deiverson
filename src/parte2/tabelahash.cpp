@@ -3,9 +3,9 @@
 #include <fstream>
 #include <string>
 
-#include "tabelaHash.h"
-#include "Tracks.h"
-#include "Ordenacao.h"
+#include "headers/tabelaHash.h"
+#include "../parte1/headers/Tracks.h"
+#include "headers/Ordenacao.h"
 using namespace std;
 
 tabelaHash::tabelaHash(int n)

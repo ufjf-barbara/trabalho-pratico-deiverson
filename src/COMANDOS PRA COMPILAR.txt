@@ -1,3 +1,0 @@
-g++ main.cpp artists.cpp tracks.cpp functeste.cpp
-
-make run DIR=C:\Users\deive\Documents\GitHub\entrada

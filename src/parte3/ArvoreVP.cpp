@@ -1,5 +1,5 @@
-#include "ArvoreVP.h"
-#include "Artists.h"
+#include "headers/ArvoreVP.h"
+#include "../parte1/headers/Artists.h"
 
 #include <iostream>
 #include <fstream>

@@ -1,6 +1,6 @@
 make.exe run --dry-run --always-make --keep-going --print-directory
 make.exe: Entering directory `c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src'
-g++ main.cpp artists.cpp tracks.cpp functeste.cpp Ordenacao.cpp tabelahash.cpp ArvoreVP.cpp ArvoreB.cpp -o main
+g++ main.cpp parte1/artists.cpp parte1/tracks.cpp parte1/functeste.cpp parte2/Ordenacao.cpp parte2/tabelahash.cpp parte3/ArvoreVP.cpp parte3/ArvoreB.cpp -o main
 ./main ""
 make.exe: Leaving directory `c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/src'
  
