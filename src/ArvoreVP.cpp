@@ -314,17 +314,14 @@ int ArvoreVp::buscaIn(Node *p, string str)
 
     if (p->nome == str)
     {
-        compI++;
         return p->posicao;
     }
     else if (Compara(str, p->nome) < 0)
     {
-        compI += 2;
         return buscaIn(p->esq, str);
     }
     else
     {
-        compI += 3;
         return buscaIn(p->dir, str);
     }
 }
@@ -353,7 +350,7 @@ void ArvoreVp::busca()
         Node *aux = new Node();
         artists art = Artists::reg(vet[i]);
         begin = clock();
-        compI;
+        compI=0;
         auxBusca(this->raiz, art.name);
     }
     imprime(0, true);

@@ -125,9 +125,11 @@ void B()
     case 1:
         cout << "\nArvore B executando t=20";
         b = new ArvoreB(20);
-        b->busca();
+        // b->busca();
+        delete b;
         cout << "\nArvore B executando t=200";
         b1 = new ArvoreB(200);
+        // delete b1;
         b1->busca();
         break;
     case 2:
@@ -152,8 +154,6 @@ void B()
         break;
     default:;
     }
-    delete b;
-    delete b1;
 }
 
 int display()

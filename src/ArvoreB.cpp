@@ -77,6 +77,7 @@ ArvoreB::ArvoreB(int t)
     clock_t end = clock();
     cout << "\nINSERCAO CONCLUIDA COM SUCESSO" << endl;
     cout << "\ntempo insercao:\t" << (end - begin) / ((float)CLOCKS_PER_SEC) << endl;
+    busca();
 }
 
 //função para inserir NÓ na arvore
@@ -223,7 +224,8 @@ void ArvoreB::busca()
     {
         NodeB *aux = new NodeB();
         artists art = Artists::reg(vet[i]);
-        // begin = clock();
+        begin = clock();
+        compI = 0;
         auxBusca(this->raiz, art.name);
         imprime(i, true);
     }
@@ -239,6 +241,7 @@ int ArvoreB::auxBusca(NodeB *no, string val)
         for (int i = 0; no->chaves[i] != NULL; i++)
         {
             aux = Compara(val, no->chaves[i]->name);
+            compI++;
             if (aux == 0)
             {
                 return no->chaves[i]->posicao;
@@ -253,8 +256,10 @@ int ArvoreB::auxBusca(NodeB *no, string val)
         for (int i = 0; i < no->m; i++)
         {
             aux = Compara(val, no->chaves[i]->name);
+            compI++;
             if (aux <= 0)
             {
+                compI++;
                 if (aux == 0)
                 {
                     return no->chaves[i]->posicao;
@@ -262,7 +267,6 @@ int ArvoreB::auxBusca(NodeB *no, string val)
                 }
                 auxBusca(no->folhas[i], val);
             }
-            aqui = i + 1;
         }
         auxBusca(no->folhas[aqui], val);
     }
@@ -412,7 +416,6 @@ key *divide(NodeB *um, NodeB *dois, int t)
 
     return k;
 }
-
 
 /*
 void ArvoreB::imprime()
