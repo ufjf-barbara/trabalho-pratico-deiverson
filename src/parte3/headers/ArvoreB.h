@@ -64,7 +64,7 @@ public:
     void busca(string val);
     void busca();
     void imprime(int pos, bool b);
-    void imprime(Node *p);
+    void imprime();
 };
 
 #endif // ARVOREB_H_INCLUDED
