@@ -44,6 +44,9 @@ int main(int argc, char **argv)
     }
     trbin.close();
 
+    ofstream saida("saida.txt", ios::out | ios::trunc);
+    saida.close();
+
     call(path);
 
     return 0;
@@ -106,32 +109,51 @@ void VP()
         break;
     default:;
     }
+    delete vp;
 }
 
 void B()
 {
     string str;
     ArvoreB *b;
-    int t;
+    ArvoreB *b1;
+    ArvoreB *b2;
+    int t = -1;
+
     switch (display())
     {
     case 1:
-        b = new ArvoreB();
+        cout << "\nArvore B executando t=20";
+        b = new ArvoreB(20);
         b->busca();
+        cout << "\nArvore B executando t=200";
+        b1 = new ArvoreB(200);
+        b1->busca();
         break;
     case 2:
-        // b = new Arvoreb(t);
-        // cout << "\n-----------------------------------------------------------------------------------------------------\n"
-        //      << endl;
-        // cout << "Qual artista pretende encontrar?\n";
-        // cout << "\n-----------------------------------------------------------------------------------------------------\n";
-        // cin >> str;
-        // b->busca(str);
+        while (t < 0)
+        {
+            cout << "\n-----------------------------------------------------------------------------------------------------\n"
+                 << endl
+                 << "Digite a ordem minima desejada para teste da ArvoreB\n ";
+            cout << "\n-----------------------------------------------------------------------------------------------------\n";
+            cin >> t;
+            cin.ignore();
+        }
+        b = new ArvoreB(t);
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual artista pretende encontrar?\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        getline(cin, str);
+        b->busca(str);
         break;
     case 3:
         break;
     default:;
     }
+    delete b;
+    delete b1;
 }
 
 int display()
@@ -170,11 +192,11 @@ void parteTres()
         case 1:
             VP();
             break;
-        // case 2:
-        //     B();
-        //     break;
-        // case 3:
-        //     break;
+        case 2:
+            B();
+            break;
+        case 3:
+            break;
         default:
             cout << "\nOpçao invalida" << endl;
         }

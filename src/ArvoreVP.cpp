@@ -341,7 +341,11 @@ void ArvoreVp::busca()
     }
     random_shuffle(vet.begin(), vet.end());
 
-    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    saida << "\n-------------------------------------------------------------------------------------------------------\n";
+    saida << "ARVORE RUBRO/NEGRO" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n";
+
     saida.close();
 
     for (int i = 0; i < 100; i++)

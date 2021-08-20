@@ -17,6 +17,8 @@
 #define TAMMIN = 200;
 using namespace std;
 //estrutura da chave
+
+
 struct key
 {
     string id;
@@ -24,12 +26,12 @@ struct key
     int posicao;
 };
 
-struct Node
+struct NodeB
 {
     int m;                 //quantidade de chaves armazenadas no nó
-    Node *pai;             //ptpara o nó pai
+    NodeB *pai;             //ptpara o nó pai
     vector<key *> chaves;  //array de chaves //TAM 2T
-    vector<Node *> folhas; //ponteiro para array de ponteiros p/ os filhos //TAM 2T+1
+    vector<NodeB *> folhas; //ponteiro para array de ponteiros p/ os filhos //TAM 2T+1
     bool folha;            //verifica se o no e folha
 };
 
@@ -45,18 +47,21 @@ private:
     int compI;
     int compGlob;
 
-    Node *raiz;
+    NodeB *raiz;
     int t;
-    void auxImprime(Node *r, string str, bool verifica);
-    void auxInsert(Node *no, key *val);
+    void auxImprime(NodeB *r, string str, bool verifica);
+    void auxInsert(NodeB *no, key *val);
 
-    void cisao(Node *r);
-    int auxBusca(Node *no, string val);
+    void cisao(NodeB *r);
+    int auxBusca(NodeB *no, string val);
+    int BuscaIN(NodeB *no, string val);
 
 public:
+    ArvoreB(int t);
     ArvoreB();
 
     void insercao(key *aux);
+    void busca(string val);
     void busca();
     void imprime(int pos, bool b);
     void imprime();

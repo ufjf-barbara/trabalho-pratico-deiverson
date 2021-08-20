@@ -1,0 +1,996 @@
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Günter Dahmen
+Followers:	43
+Genres:	"['karneval', 'kolsche karneval']"
+Id:	4IdKXqgp7VWYPrJIWXOQZ4
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	82
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Elizabeth Pinard
+Followers:	4
+Genres:	[]
+Id:	6UmSNb2etywB3SSOzuNDsE
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	59
+
+-------------------------------------------------------------------------------------------------------
+Artista:	The Voices of Robert MacDonald
+Followers:	13
+Genres:	[]
+Id:	7p2zfuJqLS0ryMp3ZdiyOD
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	62
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Juan Varea
+Followers:	275
+Genres:	['cante flamenco']
+Id:	5tftQU7Vm0myXrVvYRGFvv
+Popularity:	5
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	67
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Davey Dynamite
+Followers:	623
+Genres:	[]
+Id:	3OEzgpluqhLqpaXdVEqzjS
+Popularity:	8
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	61
+
+-------------------------------------------------------------------------------------------------------
+Artista:	The Kooky Scientist
+Followers:	140
+Genres:	['boston electronic']
+Id:	5uNEnjSQbjdFaMJfYxbEnn
+Popularity:	1
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	75
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Psyko Konceptor
+Followers:	22
+Genres:	[]
+Id:	2ybj2LMInfmemGMoFVhfRR
+Popularity:	2
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	72
+
+-------------------------------------------------------------------------------------------------------
+Artista:	MILLY
+Followers:	2022
+Genres:	['lo-fi indie']
+Id:	6LihBQjVynXpEaT3Oe2oof
+Popularity:	25
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	130
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Keith Hudson Meets King Tubby
+Followers:	14
+Genres:	['dub']
+Id:	5YqPdcq5nDcxedItk3lUSf
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	102
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Red London
+Followers:	2094
+Genres:	['oi']
+Id:	54Ir6AIDoasN4z2OZZNFaM
+Popularity:	16
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	59
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Twilight Sleep
+Followers:	174
+Genres:	[]
+Id:	128bjZ6C8KJmjShhk5bXU5
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	139
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Invain
+Followers:	29
+Genres:	[]
+Id:	6zwHMjLhqaLMsHb7Lb53Y0
+Popularity:	0
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	59
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Jamie Bergeron & The Kickin' Cajuns
+Followers:	2606
+Genres:	"['swamp pop', 'zydeco']"
+Id:	4QLh4tPzUrgKErf04gCC5q
+Popularity:	28
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	61
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Miss the point
+Followers:	3
+Genres:	[]
+Id:	1FM1IYSTLUtBTDXUB719YR
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	78
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Christian Baron
+Followers:	1
+Genres:	[]
+Id:	6aVFn72DI0aqFoYTKe6Fut
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	66
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Charnell & Mic Wrecka
+Followers:	6
+Genres:	[]
+Id:	39mMPusTHPiTv4I4t3lHKV
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	138
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Jean Fabry
+Followers:	11
+Genres:	[]
+Id:	54tmDGEU6KRxmSjghYBBbF
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	103
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Bata Kouyaté
+Followers:	129
+Genres:	['wassoulou']
+Id:	59pJRfymIwbM0vHXgRGtT2
+Popularity:	1
+
+Tempo da busca:	0.003 segundos
+Numero de comparacoes:	58
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Flesh And The Devil
+Followers:	12
+Genres:	[]
+Id:	06xR2NdAuC8yNDmhlhcJOx
+Popularity:	0
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	84
+
+-------------------------------------------------------------------------------------------------------
+Artista:	The Crescent Choir
+Followers:	7
+Genres:	[]
+Id:	4UCDIrIQHPCKd1OeWuMNMe
+Popularity:	12
+
+Tempo da busca:	0.003 segundos
+Numero de comparacoes:	109
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Duck
+Followers:	412
+Genres:	[]
+Id:	6rWt1fnz82EqVSsLL2lwz1
+Popularity:	20
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	69
+
+-------------------------------------------------------------------------------------------------------
+Artista:	HEXED
+Followers:	892
+Genres:	['slayer']
+Id:	4iS1F1uWKnRIdQKpg7TJAX
+Popularity:	12
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	186
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Хайд
+Followers:	329
+Genres:	[]
+Id:	3YCIgxycyokLsZAZefhVTf
+Popularity:	8
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	40
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Jonah Sharp
+Followers:	362
+Genres:	['ambient fusion']
+Id:	0ICoZ4LHhDTtUQp1gknmcY
+Popularity:	5
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	67
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Groupe Still Waters
+Followers:	33
+Genres:	[]
+Id:	0mIYlS0Sru2zXUAJ4BGz02
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	95
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Mutilation Rites
+Followers:	3363
+Genres:	"['chaotic black metal', 'nyc metal', 'usbm', 'voidgrind']"
+Id:	60NhaZmTGP7euQlDDXjmmN
+Popularity:	8
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	122
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Kelly Gordon
+Followers:	21
+Genres:	[]
+Id:	4pFBHaF3lTcP7X7qD0Kuat
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	83
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Nandu Honup
+Followers:	14
+Genres:	[]
+Id:	5V34BPFoQa3Lb1qlujGWA9
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	85
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Butler & Bordenkircher
+Followers:	3
+Genres:	[]
+Id:	4phWz6ORKx53GIv47iFyUo
+Popularity:	0
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	77
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Spy Club
+Followers:	31
+Genres:	['euroska']
+Id:	7uKJidk1pYtFp7nqZMpTy9
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	100
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Curley Coldiron
+Followers:	7
+Genres:	[]
+Id:	5mcL25JlKAzP9UJAYeBMem
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	94
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Z Street
+Followers:	4
+Genres:	[]
+Id:	0mIpjU6t098zY2B2BqD1eY
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	85
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Boycott feat M.Slice
+Followers:	4
+Genres:	[]
+Id:	387Mz1xjJd93BO7bthgnBk
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	81
+
+-------------------------------------------------------------------------------------------------------
+Artista:	exhalants
+Followers:	1513
+Genres:	[]
+Id:	2WO8kbMQF4EF0meuF7qPoD
+Popularity:	16
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	54
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Narff
+Followers:	13
+Genres:	[]
+Id:	6WqgenXA7zX3NXFqDpfxQU
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	101
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Rebecca Elliott
+Followers:	4
+Genres:	[]
+Id:	3NVyNOOcY5Z6byFZG7tDN4
+Popularity:	0
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	61
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Paul Mauriat Plus
+Followers:	38
+Genres:	[]
+Id:	1bqy1tYcx7HUw1VOhpxvyY
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	112
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Nouveaux
+Followers:	1033
+Genres:	['deep christian rock']
+Id:	32jsk4dMSwkyY3sgR62yXt
+Popularity:	8
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	133
+
+-------------------------------------------------------------------------------------------------------
+Artista:	George Herbert
+Followers:	2399
+Genres:	[]
+Id:	6cn6We2Z7CFZVhQ9QTiiCU
+Popularity:	21
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	136
+
+-------------------------------------------------------------------------------------------------------
+Artista:	The Drippers
+Followers:	3
+Genres:	[]
+Id:	1EMRmpW35XqhBVpnMRSixJ
+Popularity:	0
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	90
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Arial Masenko
+Followers:	5
+Genres:	[]
+Id:	2CNnFb9a6QIGXu3d94eXcc
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	87
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Max Olding
+Followers:	22
+Genres:	[]
+Id:	4R9cqycA7cM6Ru0Z5oxvdD
+Popularity:	6
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	129
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Cheyennes
+Followers:	20
+Genres:	[]
+Id:	2hrKsri2J21QwY1SeItGOh
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	100
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Regression In Enthropia
+Followers:	63
+Genres:	[]
+Id:	7FfBAfbj6kfGbwXiyJqvlX
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	44
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Nekhen
+Followers:	26
+Genres:	[]
+Id:	0guRAzcfTx1TtvonvyhDIm
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	88
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Lengaïa Salsa Brava
+Followers:	501
+Genres:	['canadian latin']
+Id:	1JT1HtoxY0TGUe6BAo9VGC
+Popularity:	8
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	136
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Feable Weiner
+Followers:	278
+Genres:	[]
+Id:	46lpLMlP1eP7hFjbrj4wAs
+Popularity:	4
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	56
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Broken Science
+Followers:	9
+Genres:	[]
+Id:	12viKYoQEbXATsJTjU0BGA
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	109
+
+-------------------------------------------------------------------------------------------------------
+Artista:	prisønmind
+Followers:	12
+Genres:	[]
+Id:	1jm9bnrbZnXnZRL7SUoW9c
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	49
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Edward Brown III
+Followers:	13
+Genres:	[]
+Id:	20y8Tqs1pa079oxj53hlQa
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	77
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Paris FZ
+Followers:	207
+Genres:	[]
+Id:	0SLY0y6UI787uv2A7zme64
+Popularity:	2
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	72
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Winfield Parker
+Followers:	234
+Genres:	['rare groove']
+Id:	2j4FgbTuV5mE47Mn5gkhRb
+Popularity:	11
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	80
+
+-------------------------------------------------------------------------------------------------------
+Artista:	The Giving
+Followers:	141
+Genres:	['swiss punk']
+Id:	5LHqQMOMyGH7CPVNTs17aD
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	98
+
+-------------------------------------------------------------------------------------------------------
+Artista:	The Beat Of The Earth
+Followers:	299
+Genres:	['classic psychedelic rock']
+Id:	1u1PYa4ffLTMbjvKm5OU53
+Popularity:	1
+
+Tempo da busca:	0.003 segundos
+Numero de comparacoes:	87
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Joshua Luke Smith
+Followers:	5927
+Genres:	"['christian hip hop', 'christian trap', 'slam poetry']"
+Id:	29wlT5isBRIOp8YZYVAZ0A
+Popularity:	33
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	49
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Ural Mountains
+Followers:	194
+Genres:	[]
+Id:	2UfM6MW4B1ruqon7xmQwf3
+Popularity:	8
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	90
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Double OO
+Followers:	54
+Genres:	[]
+Id:	1mPJy21DBw22YuHX0MLPto
+Popularity:	15
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	62
+
+-------------------------------------------------------------------------------------------------------
+Artista:	B.E.R.I.D.O.X.
+Followers:	46
+Genres:	[]
+Id:	4IfxixaeGQotlFP4XASWlg
+Popularity:	23
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	45
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Electrocristo
+Followers:	222
+Genres:	['musica eletronica gospel']
+Id:	1oTdzvsxxTUsDcrab2eRbl
+Popularity:	5
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	90
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Burning Religiously (BR)
+Followers:	34
+Genres:	[]
+Id:	17Gx93erL71Jdys7USp9eg
+Popularity:	0
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	78
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Strapped Illa
+Followers:	12
+Genres:	[]
+Id:	2QOfkXv59ITXu8iKzyY3ux
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	70
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Fleshmeadow
+Followers:	1897
+Genres:	['technical black metal']
+Id:	316OT6STPtIWGsMm2jUIsg
+Popularity:	9
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	74
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Robert Majewski
+Followers:	80
+Genres:	[]
+Id:	5T3W8LIGrrKGAFIHdf3G3D
+Popularity:	6
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	70
+
+-------------------------------------------------------------------------------------------------------
+Artista:	System Sound Project
+Followers:	16
+Genres:	[]
+Id:	4KweoAXOLCuuWddCChj1BM
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	24
+
+-------------------------------------------------------------------------------------------------------
+Artista:	HappyLeptic
+Followers:	17
+Genres:	[]
+Id:	55T8ma2FD2FbOlDgATrXwn
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	59
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Joel Anderson
+Followers:	30
+Genres:	[]
+Id:	35Xip5QAGIdbzZLURNh9KP
+Popularity:	27
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	98
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Heart & Lung
+Followers:	237
+Genres:	['cleveland indie']
+Id:	2W983qcG1ZQjeIobNWxvTw
+Popularity:	4
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	42
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Lou Mecca Quartet
+Followers:	3
+Genres:	[]
+Id:	1rKbCGSVMeYAN1ZN6Wdyd2
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	120
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Exstus
+Followers:	195
+Genres:	['ambient fusion']
+Id:	16lMkjN0XoIahw0wI1SX6G
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	89
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Adam Boucher
+Followers:	10
+Genres:	[]
+Id:	0eLwKnEiNQ4yVyNB5xCe0L
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	95
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Esteban Riera
+Followers:	180
+Genres:	[]
+Id:	0NwVaE3BJEJQaABZiRflye
+Popularity:	4
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	60
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Luis Mateus Y David Rendon La Nueva Gene
+Followers:	86
+Genres:	['orquesta tropical']
+Id:	04gdHimCtKNhzUM6QObSPB
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	126
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Camerata Romana Orchestra
+Followers:	6
+Genres:	[]
+Id:	4rZMbwvNiE5tgUGK0r55tu
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	35
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Shardaysa
+Followers:	1267
+Genres:	[]
+Id:	50L3epHnbt9nEAvNV0gUcO
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	104
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Frank Jansen
+Followers:	33
+Genres:	[]
+Id:	4EqWS46QaLOdAq0OpI6hJh
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	95
+
+-------------------------------------------------------------------------------------------------------
+Artista:	"Herbert Fleischmann
+Followers:	4
+Genres:	[]
+Id:	0c0mS0kyqfh9RPnvohkjNf
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	37
+
+-------------------------------------------------------------------------------------------------------
+Artista:	TAWINGS
+Followers:	4671
+Genres:	"['j-indie', 'japanese post-punk']"
+Id:	1zhzZa8D4KAhh276rcE3Tb
+Popularity:	17
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	45
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Trt Ankara Radyosu Çocuk Korosu
+Followers:	9
+Genres:	[]
+Id:	5skWWccZlv5NAGcrsXaB8F
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	78
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Roy Torres
+Followers:	142
+Genres:	[]
+Id:	4nArGwj6wKi9MulqfcEVaX
+Popularity:	4
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	47
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Damanek
+Followers:	1103
+Genres:	['neo-trad prog']
+Id:	5fWbgM7LrHJ7t64h3Ljqoy
+Popularity:	7
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	106
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Seven Winds
+Followers:	18
+Genres:	[]
+Id:	1R5iHYduULxKXDAIH8WvgI
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	75
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Soner Soyer
+Followers:	670
+Genres:	[]
+Id:	22LQq7WuSKANYW00vVoEXe
+Popularity:	15
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	95
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Original Dick & Dünn
+Followers:	18
+Genres:	"['karneval', 'kolsche karneval']"
+Id:	0U3Wp6XO0lboIxjcCd8MeZ
+Popularity:	0
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	143
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Larry Vann
+Followers:	7
+Genres:	[]
+Id:	2yXCMx5dq1XDSSXE1FpO9h
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	157
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Joel Gillespie
+Followers:	1
+Genres:	[]
+Id:	6wVcI3erPwfnQ1jcw2o99i
+Popularity:	1
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	100
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Маха Горячева
+Followers:	13228
+Genres:	[]
+Id:	3NWgxw0Tb0s6a7kWzdROn7
+Popularity:	14
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	105
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Jordi Morato
+Followers:	44
+Genres:	[]
+Id:	2QKdIabGTodKmMGZiClVfM
+Popularity:	3
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	69
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Trombones INC
+Followers:	97
+Genres:	[]
+Id:	6gx3X3hTf7mmIFaQ5eEYZ6
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	58
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Roy And Milly
+Followers:	10
+Genres:	[]
+Id:	6ZtcFIu0LD0oFo5G2XtqWg
+Popularity:	0
+
+Tempo da busca:	0.002 segundos
+Numero de comparacoes:	78
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Kelly Mignon
+Followers:	117
+Genres:	[]
+Id:	596gKH5Qz9BjVLMOK4E9XW
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	110
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Organ Eyes
+Followers:	13
+Genres:	[]
+Id:	24nkcFLp4TD2s1zcXgykQu
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	145
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Anton Walgrave
+Followers:	441
+Genres:	['belgian rock']
+Id:	3LKSXUgaKhJaIDO6piFVi0
+Popularity:	12
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	84
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Silentsevir
+Followers:	158
+Genres:	[]
+Id:	7GhNUHxcw3N44aV3C7gjt8
+Popularity:	26
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	89
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Shadow Valley
+Followers:	9
+Genres:	[]
+Id:	3ZRMt30wEIR2Ba9XX3yr4n
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	91
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Nomera
+Followers:	24
+Genres:	[]
+Id:	6UyQ8dYxxxJQklagzBj1mT
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	182
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Z 80
+Followers:	10
+Genres:	[]
+Id:	6TItjQEZdybHqhxcXOUYqz
+Popularity:	0
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	63
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Albino!
+Followers:	467
+Genres:	"['afrobeat', 'bay area indie']"
+Id:	6rVeZq4Tdytg57rq4X1Ogo
+Popularity:	6
+
+Tempo da busca:	0 segundos
+Numero de comparacoes:	103
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Joe Hawley
+Followers:	4958
+Genres:	[]
+Id:	2gkoczXRNRDUmfEdvr7CWm
+Popularity:	37
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	65
+
+-------------------------------------------------------------------------------------------------------
+Artista:	Ken Field's Revolutionary Snake Ensemble
+Followers:	167
+Genres:	"['brass band', 'street band']"
+Id:	0Ce7VierT2MFRui2McDN1A
+Popularity:	1
+
+Tempo da busca:	0.001 segundos
+Numero de comparacoes:	81
+
+-------------------------------------------------------------------------------------------------------
+Tempo medio:	148171 segundos
+Media de comparaçoes:	85
+
+-------------------------------------------------------------------------------------------------------
