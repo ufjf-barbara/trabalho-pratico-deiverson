@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     }
     trbin.close();
 
-    ofstream saida("saida.txt", ios::out | ios::trunc);
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
     saida.close();
 
     call(path);
