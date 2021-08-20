@@ -1,5 +1,5 @@
-#include "ArvoreVP.h"
-#include "Artists.h"
+#include "headers/ArvoreVP.h"
+#include "../parte1/headers/Artists.h"
 
 #include <iostream>
 #include <fstream>
@@ -290,6 +290,42 @@ void ArvoreVp::leftRotate(Node *pai)
 
 //busca
 
+void ArvoreVp::busca(string str)
+{
+    int i = buscaIn(this->raiz, str);
+    if (i == -1)
+    {
+        cout << "Artista nao encontrado" << endl;
+        return;
+    }
+    Node *aux = new Node();
+    artists art = Artists::reg(i);
+    cout << "\nArtista:\t" << art.name << endl
+         << "Followers:\t" << art.followers << endl
+         << "Genres:\t" << art.genres << endl
+         << "Id:\t" << art.id << endl
+         << "Popularity:\t" << art.popularity << endl;
+}
+
+int ArvoreVp::buscaIn(Node *p, string str)
+{
+    if (p == NULL)
+        return -1;
+
+    if (p->nome == str)
+    {
+        return p->posicao;
+    }
+    else if (Compara(str, p->nome) < 0)
+    {
+        return buscaIn(p->esq, str);
+    }
+    else
+    {
+        return buscaIn(p->dir, str);
+    }
+}
+
 void ArvoreVp::busca()
 {
 
@@ -302,7 +338,11 @@ void ArvoreVp::busca()
     }
     random_shuffle(vet.begin(), vet.end());
 
-    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    ofstream saida("../print/saida.txt", ios::out | ios::app);
+    saida << "\n-------------------------------------------------------------------------------------------------------\n";
+    saida << "ARVORE RUBRO/NEGRO" << endl;
+    saida << "\n-------------------------------------------------------------------------------------------------------\n";
+
     saida.close();
 
     for (int i = 0; i < 100; i++)
@@ -310,7 +350,7 @@ void ArvoreVp::busca()
         Node *aux = new Node();
         artists art = Artists::reg(vet[i]);
         begin = clock();
-        compI;
+        compI=0;
         auxBusca(this->raiz, art.name);
     }
     imprime(0, true);

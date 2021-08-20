@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include"tracks.h"
+#include"../../parte1/headers/tracks.h"
 
 #ifndef TABELAHASH_H_INCLUDED
 #define TABELAHASH_H_INCLUDED

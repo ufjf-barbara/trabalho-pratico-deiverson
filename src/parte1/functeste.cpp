@@ -1,8 +1,8 @@
-#include "Artists.h"
-#include "Tracks.h"
-#include "functeste.h"
-#include "Ordenacao.h"
-#include "tabelaHash.h"
+#include "headers/Artists.h"
+#include "headers/Tracks.h"
+#include "headers/functeste.h"
+#include "../parte2/headers/Ordenacao.h"
+#include "../parte2/headers/tabelaHash.h"
 
 #include <iostream> //entrada pelo teclado e saida pela prompt
 #include <fstream>

@@ -1,9 +1,10 @@
-#include "Artists.h"
-#include "Tracks.h"
-#include "functeste.h"
-#include "Ordenacao.h"
-#include "tabelaHash.h"
-#include "ArvoreVP.h"
+#include "parte1/headers/Artists.h"
+#include "parte1/headers/Tracks.h"
+#include "parte1/headers/functeste.h"
+#include "parte2/headers/Ordenacao.h"
+#include "parte2/headers/tabelaHash.h"
+#include "parte3/headers/ArvoreVP.h"
+#include "parte3/headers/ArvoreB.h"
 
 #include <fstream>  //leitura e escrita de arquivos
 #include <iostream> //entrada pelo teclado e saida pela prompt
@@ -12,6 +13,7 @@
 
 using namespace std;
 
+int display();
 void call(string path);
 void parteTres();
 void parteDois();
@@ -42,10 +44,14 @@ int main(int argc, char **argv)
     }
     trbin.close();
 
+    ofstream saida("../print/saida.txt", ios::out | ios::trunc);
+    saida.close();
+
     call(path);
 
     return 0;
 }
+
 void call(string path) // funçao para chamar as execuçoes do trabalho
 {
     int aux = 1;
@@ -79,9 +85,99 @@ void call(string path) // funçao para chamar as execuçoes do trabalho
         }
     }
 }
+
+void VP()
+{
+    string str;
+    ArvoreVp *vp;
+    switch (display())
+    {
+    case 1:
+        vp = new ArvoreVp();
+        vp->busca();
+        break;
+    case 2:
+        vp = new ArvoreVp();
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual artista pretende encontrar?\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        getline(cin, str);
+        vp->busca(str);
+        break;
+    case 3:
+        break;
+    default:;
+    }
+    delete vp;
+}
+
+void B()
+{
+    string str;
+    ArvoreB *b;
+    ArvoreB *b1;
+    ArvoreB *b2;
+    int t = -1;
+
+    switch (display())
+    {
+    case 1:
+        cout << "\nArvore B executando t=20";
+        b = new ArvoreB(20);
+        // b->busca();
+        delete b;
+        cout << "\nArvore B executando t=200";
+        b1 = new ArvoreB(200);
+        // delete b1;
+        b1->busca();
+        break;
+    case 2:
+        while (t < 0)
+        {
+            cout << "\n-----------------------------------------------------------------------------------------------------\n"
+                 << endl
+                 << "Digite a ordem minima desejada para teste da ArvoreB\n ";
+            cout << "\n-----------------------------------------------------------------------------------------------------\n";
+            cin >> t;
+            cin.ignore();
+        }
+        b = new ArvoreB(t);
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual artista pretende encontrar?\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        getline(cin, str);
+        b->busca(str);
+        break;
+    case 3:
+        break;
+    default:;
+    }
+}
+
+int display()
+{
+    int aux;
+    bool a = true;
+    while (a)
+    {
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual modo deseja acessar? (Digite o numero conrespondente a opcao desejada)\n";
+        cout << "[1]Analise\n[2]Teste\n[3]Sair\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        cin >> aux;
+        cin.ignore();
+        if (aux == 1 || aux == 2 || aux == 3)
+            a = false;
+    }
+    return aux;
+}
+
 void parteTres()
 {
-    int aux ;
+    int aux;
     while (aux != 3)
     {
         cout << "\n-----------------------------------------------------------------------------------------------------\n"
@@ -91,17 +187,16 @@ void parteTres()
         cout << "\n-----------------------------------------------------------------------------------------------------\n";
         cin >> aux;
         cin.ignore();
-        ArvoreVp *vp;
         switch (aux)
         {
         case 1:
-            vp = new ArvoreVp();
-            vp->busca();
+            VP();
             break;
-        // case 2:
-        //     break;
-        // case 3:
-        //     break;
+        case 2:
+            B();
+            break;
+        case 3:
+            break;
         default:
             cout << "\nOpçao invalida" << endl;
         }

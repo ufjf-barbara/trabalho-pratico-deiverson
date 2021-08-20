@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include "Tracks.h"
+#include "../parte1/headers/Tracks.h"
+#include "headers/Ordenacao.h"
 #include <vector>
 #include <time.h>
-#include "Ordenacao.h"
 #include <utility>
 
 using namespace std;

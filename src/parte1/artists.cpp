@@ -1,4 +1,4 @@
-#include "Artists.h"
+#include "headers/Artists.h"
 
 #include <iostream>
 #include <fstream>
