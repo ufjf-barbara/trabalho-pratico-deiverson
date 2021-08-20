@@ -1,11 +1,14 @@
+
 #include "ArvoreB.h"
 
 using namespace std;
 
 int main()
 {
+    srand(time(NULL));
     ArvoreB *b = new ArvoreB();
-    b->busca();
+    //    b->imprime();
+    //b->busca();
 
     return 0;
 }
