@@ -65,15 +65,15 @@ int forcaBruta(string T, string P)
 
     int n = T.length(); //n recebe o tamanho do texto
     int m = P.length(); //m recebe o tamanho do padrão
-    int i = 1;
-    for (int s = 0; s < n - m; s++) //for de s a s<n-m
+    int j = 1;
+    for (int i = 0; i < n - m; i++) //for de i a i<n-m
     {
-        if (i < m && P[i] == T[s + i])
+        if (j < m && P[j] == T[i + j])
         {
-            i++;
-            return s++;
+            j++;
+            return i++;
         }
-        i++;
+        j++;
     }
     return -1;
 }
@@ -106,6 +106,7 @@ int main()
 
     clock_t begin = clock();
 
+    cout<<"Algoritmo de Knuth-Morris-Pratt (KMP)"<<endl;
     kmpMatch(T, P);
 
     clock_t end = clock();
@@ -117,8 +118,8 @@ int main()
     int ocorrecias = forcaBruta(T, P);
 
     end = clock();
-
-    cout << "Ocorrencias : " << ocorrecias << endl;
+    cout<<"Algoritmo de Forca Bruta "<<endl;
+    cout << ocorrecias <<" ocorrencias " << endl;
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
 
     padrao.close();
