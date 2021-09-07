@@ -66,9 +66,8 @@ int forcaBruta(string T, string P)
     int m = P.length();
     for (int s = 0; s < n - m; s++)
     {
-        if (P[s + 1] == T[s + 1])
+        if (s<m && P[s] == T[s+1])
         {
-            cout << "Padrao encontrado na posicao: " << s << endl;
             return s++;
         }
     }
@@ -89,22 +88,22 @@ int main()
     getline(padrao, aux);
     getline(padrao, aux);
 
-   /* while (getline(padrao, aux))
+    while (getline(padrao, aux))
     {
         P += aux;
     }
-*/
+
 
     while (getline(dna, aux))
     {
         T += aux;
     }
 
-    // cout << P << endl;
+    //cout << P << endl;
 
     clock_t begin = clock();
 
-    //kmpMatch(T, P);
+    kmpMatch(T, P);
 
     clock_t end = clock();
 
@@ -112,13 +111,15 @@ int main()
 
     begin = clock();
 
+    
     int ocorrecias = forcaBruta(T, P);
+
 
     end = clock();
 
+    cout<<"Ocorrencias : "<< ocorrecias<<endl;
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
 
-    cout << ocorrecias;
 
     padrao.close();
     dna.close();
