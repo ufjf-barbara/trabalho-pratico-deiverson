@@ -4,8 +4,12 @@
 #include <time.h>
 #include <iostream>
 #include <fstream>
+#include <time.h>
+#include <utility>
 
 using namespace std;
+
+//algoritmo KMP
 
 void prefix(string P, vector<int> &pi)
 {
@@ -54,6 +58,23 @@ void kmpMatch(string T, string P)
     cout << cont << " ocorrencias" << endl;
 }
 
+//algoritmo de força bruta
+
+int forcaBruta(string T, string P)
+{
+    int n = T.length();
+    int m = P.length();
+    for (int s = 0; s < n - m; s++)
+    {
+        if (P[s + 1] == T[s + 1])
+        {
+            cout << "Padrao encontrado na posicao: " << s << endl;
+            return s++;
+        }
+    }
+    return -1;
+}
+
 int main()
 {
     string x = "1";
@@ -68,10 +89,11 @@ int main()
     getline(padrao, aux);
     getline(padrao, aux);
 
-    while (getline(padrao, aux))
+   /* while (getline(padrao, aux))
     {
         P += aux;
     }
+*/
 
     while (getline(dna, aux))
     {
@@ -82,11 +104,21 @@ int main()
 
     clock_t begin = clock();
 
-    kmpMatch(T, P);
+    //kmpMatch(T, P);
 
     clock_t end = clock();
 
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+
+    begin = clock();
+
+    int ocorrecias = forcaBruta(T, P);
+
+    end = clock();
+
+    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+
+    cout << ocorrecias;
 
     padrao.close();
     dna.close();
