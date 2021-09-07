@@ -1,8 +1,6 @@
 #include <iostream>
 #include <map>
-#include <unordered_map>
 #include <stdio.h>
-//#include <string_view>
 #include <queue>
 #include <vector>
 #include <fstream>
@@ -39,7 +37,7 @@ void codificar(Node *raiz, string str, map<char, string> &dic)
     if (raiz == nullptr)
         return;
 
-    // found a leaf node
+    // Encontra folha
     if (!raiz->esq && !raiz->dir)
     {
         dic[raiz->c] = str;
@@ -145,6 +143,7 @@ void HuffmanCode(string T)
     //     cout << pair.first << " " << pair.second << endl;
     // }
     // //----------------------------------------------------------------
+
     string code;
     for (char c : T)
     {
@@ -192,5 +191,5 @@ int main(int argc, char **argv)
     HuffmanCode("ABACDAMDMSJFAJSFKASFKAFSFA");
 
     std::cout << "\n";
-    // cout << uai[' '] << endl;
+    return 0;
 }
