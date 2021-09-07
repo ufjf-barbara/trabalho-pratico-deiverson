@@ -62,15 +62,18 @@ void kmpMatch(string T, string P)
 
 int forcaBruta(string T, string P)
 {
-    int n = T.length();//n recebe o tamanho do texto
-    int m = P.length();//m recebe o tamanho do padrão
-    int i=1;
-    for (int s = 0; s < n - m; s++)//for de s a s<n-m
+
+    int n = T.length(); //n recebe o tamanho do texto
+    int m = P.length(); //m recebe o tamanho do padrão
+    int i = 1;
+    for (int s = 0; s < n - m; s++) //for de s a s<n-m
     {
-        if (i<m && P[i] == T[s+i])
+        if (i < m && P[i] == T[s + i])
         {
-            return s++;//
+            i++;
+            return s++;
         }
+        i++;
     }
     return -1;
 }
@@ -94,7 +97,6 @@ int main()
         P += aux;
     }
 
-
     while (getline(dna, aux))
     {
         T += aux;
@@ -112,15 +114,12 @@ int main()
 
     begin = clock();
 
-    
     int ocorrecias = forcaBruta(T, P);
-
 
     end = clock();
 
-    cout<<"Ocorrencias : "<< ocorrecias<<endl;
+    cout << "Ocorrencias : " << ocorrecias << endl;
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
-
 
     padrao.close();
     dna.close();
