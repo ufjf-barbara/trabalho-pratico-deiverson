@@ -2,7 +2,7 @@
 #include <map>
 #include <unordered_map>
 #include <stdio.h>
-#include <string_view>
+//#include <string_view>
 #include <queue>
 #include <vector>
 #include <fstream>
@@ -102,9 +102,35 @@ priority_queue<Node *, vector<Node *>, ordem> frequencia(string T)
     return q;
 }
 
+string decodificacao(Node *p, string code)
+{
+    string str;
+    Node *l=p;
+    for (int i = 0; i < code.length(); i++)
+    {
+        if (l == nullptr)
+        {
+            return;
+        }
+        else if (l->dir == nullptr && l->esq == nullptr)
+        {
+             str+=l->c;
+             l=p;
+        }
+        else if(code[i]=='0')
+        {
+           l=l->esq;
+        }
+        else
+        {
+            l=l->dir;
+        }
+    }
+    return str;
+}
+
 void HuffmanCode(string T)
 {
-
     Node *raiz = new Node();
 
     //retorna a fila dos caracteres ordenados do mais frequente pro menos no final da fila
@@ -129,7 +155,11 @@ void HuffmanCode(string T)
     }
     cout << "Frase normal:\t" << T
          << "\nCODIFICADA:\t" << code << endl
-         << sizeof(code) / sizeof(T) << endl;//tentativa de medir a compressao
+         << (float)sizeof(code) / sizeof(T) << endl; //tentativa de medir a compressao
+
+    cout << "Decodificacao : " << endl;
+    cout << decodificacao(raiz, code);
+    
 }
 
 int main(int argc, char **argv)
@@ -162,7 +192,7 @@ int main(int argc, char **argv)
         P += aux;
     }
 
-    HuffmanCode("P");
+    HuffmanCode("ABAC");
 
     std::cout << "\n";
     // cout << uai[' '] << endl;

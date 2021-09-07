@@ -62,7 +62,6 @@ void kmpMatch(string T, string P)
 
 int forcaBruta(string T, string P)
 {
-
     int n = T.length(); //n recebe o tamanho do texto
     int m = P.length(); //m recebe o tamanho do padrão
     int j = 1;
@@ -71,7 +70,7 @@ int forcaBruta(string T, string P)
         if (j < m && P[j] == T[i + j])
         {
             j++;
-            return i++;
+            return i;
         }
         j++;
     }
