@@ -102,26 +102,23 @@ priority_queue<Node *, vector<Node *>, ordem> frequencia(string T)
     return q;
 }
 
+//algoritmo de decodificação
 string decodificacao(Node *p, string code)
 {
-    string str;
-    Node *l=p;
-    for (int i = 0; i < code.length(); i++)
+    string str="";//string auxiliar
+    Node *l=p;//no auxiliar recebe a raiz
+    for (int i = 0; i <= code.length(); i++)//percorre ate 
     {
-        if (l == nullptr)
-        {
-            return;
-        }
-        else if (l->dir == nullptr && l->esq == nullptr)
+        if (l->dir == NULL && l->esq == NULL)//ve se e no folha
         {
              str+=l->c;
-             l=p;
+             l=p;//volta para a raiz
         }
-        else if(code[i]=='0')
+        if(code[i]=='0')//se for 0 vai para o no a esquerda
         {
            l=l->esq;
         }
-        else
+        else//se for 0 vai para o no a direita
         {
             l=l->dir;
         }
@@ -192,7 +189,7 @@ int main(int argc, char **argv)
         P += aux;
     }
 
-    HuffmanCode("ABAC");
+    HuffmanCode("ABACDAMDMSJFAJSFKASFKAFSFA");
 
     std::cout << "\n";
     // cout << uai[' '] << endl;
