@@ -15,7 +15,6 @@ struct Node
     Node *esq, *dir;
 };
 
-
 Node *setNode(char c, int freq, Node *esq, Node *dir)
 {
     Node *no = new Node();
@@ -129,7 +128,6 @@ string decodificacao(Node *p, string code)
     return str;
 }
 
-
 int binary_to_decimal(string &in)
 {
     int result = 0;
@@ -138,13 +136,12 @@ int binary_to_decimal(string &in)
     return result;
 }
 
-
 string Compressao(string &code)
 {
     stringstream ss;
     string str, aux;
     int bit;
-    cout << "here" << endl;
+
     for (int i = 0; i < code.length(); i++)
     {
         str += code[i];
@@ -160,46 +157,43 @@ string Compressao(string &code)
     return ss.str();
 }
 
-
-string decimal_to_binary(int in)
+string decimal_to_binary(string str)
 {
+    stringstream ss;
     string temp = "";
-    string result = "";
-    while (in)
+    int in;
+    ss << str;
+    ss >> in;
+    cout<<"in :"<< in<<endl;
+    while (in>0)
     {
         temp += ('0' + in % 2);
         in /= 2;
     }
-    result.append(8 - temp.size(), '0'); //append '0' ahead to let the result become fixed length of 8
-    for (int i = temp.size() - 1; i >= 0; i--)
-    {
-        result += temp[i];
-    }
-    return result;
+    cout << "here \t" <<temp<< endl;
+    return temp;
 }
-
 
 string Decompressao(string &code)
 {
-    stringstream ss;
-    string str, aux;
-    int bit;
-    cout << "here" << endl;
-    for (int i = 0; i < code.length(); i++)
+    string aux = "";
+    string str;
+    string decode = "";
+    int i = 0;
+    while (i < code.length())
     {
         str += code[i];
-
-        if ((i + 1) % 8 == 0 || ((code.length() - i) < 8 && i + 1 == code.length()))
+        i++;
+        aux = decimal_to_binary(str);
+        if (aux.length() == 8 || i + 1 == code.length())
         {
-            // ss<<str;ss>>bit;
-            ss << binary_to_decimal(str);
-            // cout << " " << ss.str() << endl;
+            decode += aux;
+            cout << "decode:" << decode << endl;
             str = "";
         }
     }
-    return ss.str();
+    return decode;
 }
-
 
 void HuffmanCode(string T)
 {
@@ -227,14 +221,19 @@ void HuffmanCode(string T)
         code += dic[c];
     }
     string result = Compressao(code);
-    cout // << "Frase normal:\t" << T
+    cout<<"result :"<<result<<endl;
+    /* cout // << "Frase normal:\t" << T
         // << "\nCODIFICADA:\t" << result << endl
         << "\nT\t" << T.length() << endl
         << "\nR\t" << result.length() << endl
         << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
-                                                                     //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
+      
+    //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
+    string aux = Decompressao(result);
+    cout << "aux\t" << aux << endl;
+    cout << "code\t" << code << endl;
+    */
 }
-
 
 int main(int argc, char **argv)
 {
@@ -266,9 +265,8 @@ int main(int argc, char **argv)
         P += aux;
     }
 
-    HuffmanCode("Ana ama banana, banana ama cama");
+    HuffmanCode("ABACATEABAFABAFO");
 
     cout << "\n";
     return 0;
 }
-
