@@ -151,6 +151,8 @@ string Compressao(string &code)
             // ss<<str;ss>>bit;
             ss << binary_to_decimal(str);
             // cout << " " << ss.str() << endl;
+            cout << "codificacao: \t" << str << endl;
+            cout << "compressao: \t" << binary_to_decimal(str) << endl;
             str = "";
         }
     }
@@ -161,17 +163,22 @@ string decimal_to_binary(string str)
 {
     stringstream ss;
     string temp = "";
+    string result = "";
     int in;
     ss << str;
     ss >> in;
-    cout<<"in :"<< in<<endl;
-    while (in>0)
+    // cout << "in :" << in << endl;
+    while (in > 0)
     {
         temp += ('0' + in % 2);
         in /= 2;
     }
-    cout << "here \t" <<temp<< endl;
-    return temp;
+    for (int i = temp.size() - 1; i >= 0; i--)
+    {
+        result += temp[i];
+    }
+    cout << "here \t" << result << endl;
+    return result;
 }
 
 string Decompressao(string &code)
@@ -221,18 +228,18 @@ void HuffmanCode(string T)
         code += dic[c];
     }
     string result = Compressao(code);
-    cout<<"result :"<<result<<endl;
-    /* cout // << "Frase normal:\t" << T
-        // << "\nCODIFICADA:\t" << result << endl
-        << "\nT\t" << T.length() << endl
-        << "\nR\t" << result.length() << endl
-        << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
-      
+    cout << "\nresult :" << result << endl
+         << endl;
+    //  cout // << "Frase normal:\t" << T
+    //     // << "\nCODIFICADA:\t" << result << endl
+    //     << "\nT\t" << T.length() << endl
+    //     << "\nR\t" << result.length() << endl
+    //     << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
+
     //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
     string aux = Decompressao(result);
-    cout << "aux\t" << aux << endl;
+    cout << "\n\naux\t" << aux << endl;
     cout << "code\t" << code << endl;
-    */
 }
 
 int main(int argc, char **argv)

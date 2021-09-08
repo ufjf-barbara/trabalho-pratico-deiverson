@@ -19,7 +19,7 @@ void prefix(string P, vector<int> &pi)
 
     for (int i = 1; i < m; i++) //varrendo o padrao
     {
-        while (k > 0 && P[k] != P[i]) // k recebe o prefixo da pod
+        while (k > 0 && P[k] != P[i]) 
             k = pi[k];
         if (P[k] == P[i])
             k++;
