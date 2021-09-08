@@ -19,7 +19,7 @@ void prefix(string P, vector<int> &pi)
 
     for (int i = 1; i < m; i++) //varrendo o padrao
     {
-        while (k > 0 && P[k] != P[i]) 
+        while (k > 0 && P[k] != P[i])
             k = pi[k];
         if (P[k] == P[i])
             k++;
@@ -64,25 +64,35 @@ int forcaBruta(string T, string P)
 {
     int n = T.length(); //n recebe o tamanho do texto
     int m = P.length(); //m recebe o tamanho do padrão
-    int j = 1;
+    int j = 0;
+    int cont = 0, num = 0;
+
     for (int i = 0; i < n - m; i++) //for de i a i<n-m
     {
-        if (j < m && P[j] == T[i + j])
+        if (j < m && P[j] == T[i + j])//verifica se o j e menor que m e os caracteres sao iguais
         {
             j++;
-            return i;
+            cont++;
         }
-        j++;
+        if (cont == m - 1)
+        {
+            cout << "Posicao : " << i+1 << endl;
+            // i+=m-1;
+            cont = 0;
+            num++;
+            j = 0;
+        }
     }
-    return -1;
+    return num;
 }
+
 
 
 int main()
 {
     string x = "1";
     ifstream padrao("padrao" + x + ".txt");
-    ifstream dna("dna1.txt");
+    ifstream dna("dna2.txt");
 
     string T;
     string P;
@@ -113,14 +123,14 @@ int main()
 
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
 
-    begin = clock();
 
-    int ocorrecias = forcaBruta(T, P);
-
-    end = clock();
     cout << "Algoritmo de Forca Bruta " << endl;
-    cout << ocorrecias << " ocorrencias " << endl;
+    begin = clock();
+    int ocorrencias = forcaBruta(T, P);
+    end = clock();
+    cout << ocorrencias << " ocorrencias" << endl;
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+
 
     padrao.close();
     dna.close();
