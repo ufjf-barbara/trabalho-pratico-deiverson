@@ -4,6 +4,7 @@
 #include <queue>
 #include <vector>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -32,6 +33,7 @@ struct ordem
     }
 };
 
+//Codifica i texto pra string de bits
 void codificar(Node *raiz, string str, map<char, string> &dic)
 {
     if (raiz == nullptr)
@@ -69,6 +71,7 @@ Node *Arvore(priority_queue<Node *, vector<Node *>, ordem> q)
     return Arvore(q);
 }
 
+//função pra computar a frequencia
 priority_queue<Node *, vector<Node *>, ordem> frequencia(string T)
 {
     //map para contar frequencia
@@ -103,25 +106,71 @@ priority_queue<Node *, vector<Node *>, ordem> frequencia(string T)
 //algoritmo de decodificação
 string decodificacao(Node *p, string code)
 {
-    string str="";//string auxiliar
-    Node *l=p;//no auxiliar recebe a raiz
-    for (int i = 0; i <= code.length(); i++)//percorre ate 
+    string str = "";                         //string auxiliar
+    Node *l = p;                             //no auxiliar recebe a raiz
+    for (int i = 0; i <= code.length(); i++) //percorre ate
     {
-        if (l->dir == NULL && l->esq == NULL)//ve se e no folha
+        if (l->dir == NULL && l->esq == NULL) //ve se e no folha
         {
-             str+=l->c;
-             l=p;//volta para a raiz
+            str += l->c;
+            l = p; //volta para a raiz
         }
-        if(code[i]=='0')//se for 0 vai para o no a esquerda
+        if (code[i] == '0') //se for 0 vai para o no a esquerda
         {
-           l=l->esq;
+            l = l->esq;
         }
-        else//se for 0 vai para o no a direita
+        else //se for 0 vai para o no a direita
         {
-            l=l->dir;
+            l = l->dir;
         }
     }
     return str;
+}
+
+int binary_to_decimal(string &in)
+{
+    int result = 0;
+    for (int i = 0; i < in.size(); i++)
+        result = result * 2 + in[i] - '0';
+    return result;
+}
+
+string decimal_to_binary(int in)
+{
+    string temp = "";
+    string result = "";
+    while (in)
+    {
+        temp += ('0' + in % 2);
+        in /= 2;
+    }
+    result.append(8 - temp.size(), '0'); //append '0' ahead to let the result become fixed length of 8
+    for (int i = temp.size() - 1; i >= 0; i--)
+    {
+        result += temp[i];
+    }
+    return result;
+}
+
+string CalcCompre(string &code)
+{
+    stringstream ss;
+    string str, aux;
+    int bit;
+    cout << "here" << endl;
+    for (int i = 0; i < code.length(); i++)
+    {
+        str += code[i];
+
+        if ((i + 1) % 8 == 0 || i - code.length() < 8)
+        {
+            // ss<<str;ss>>bit;
+            ss << binary_to_decimal(str);
+            // cout << " " << ss.str() << endl;
+            str = "";
+        }
+    }
+    return ss.str();
 }
 
 void HuffmanCode(string T)
@@ -149,11 +198,13 @@ void HuffmanCode(string T)
     {
         code += dic[c];
     }
-    cout << "Frase normal:\t" << T
-         << "\nCODIFICADA:\t" << code << endl
-         << (float)sizeof(code) / sizeof(T) << endl //tentativa de medir a compressao
-         << "DECODIFICADA:\t"<<decodificacao(raiz, code)<<endl;//decodificação 
-    
+    string result = CalcCompre(code);
+    cout // << "Frase normal:\t" << T
+        // << "\nCODIFICADA:\t" << result << endl
+        << "\nT\t" <<T.length() << endl
+        << "\nR\t" <<result.length() << endl
+        << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
+                                                                       //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
 }
 
 int main(int argc, char **argv)
@@ -186,7 +237,7 @@ int main(int argc, char **argv)
         P += aux;
     }
 
-    HuffmanCode("ABACDAMDMSJFAJSFKASFKAFSFA");
+    HuffmanCode(P);
 
     std::cout << "\n";
     return 0;
