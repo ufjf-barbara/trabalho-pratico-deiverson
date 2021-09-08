@@ -162,7 +162,7 @@ string CalcCompre(string &code)
     {
         str += code[i];
 
-        if ((i + 1) % 8 == 0 || i - code.length() < 8)
+        if ((i + 1) % 8 == 0 || ((code.length() - i) < 8 && i + 1 == code.length()))
         {
             // ss<<str;ss>>bit;
             ss << binary_to_decimal(str);
@@ -201,8 +201,8 @@ void HuffmanCode(string T)
     string result = CalcCompre(code);
     cout // << "Frase normal:\t" << T
         // << "\nCODIFICADA:\t" << result << endl
-        << "\nT\t" <<T.length() << endl
-        << "\nR\t" <<result.length() << endl
+        << "\nT\t" << T.length() << endl
+        << "\nR\t" << result.length() << endl
         << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
                                                                        //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
 }

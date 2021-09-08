@@ -9,6 +9,7 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "algorithm": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "sstream": "cpp"
     }
 }
