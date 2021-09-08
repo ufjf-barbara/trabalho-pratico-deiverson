@@ -15,6 +15,7 @@ struct Node
     Node *esq, *dir;
 };
 
+
 Node *setNode(char c, int freq, Node *esq, Node *dir)
 {
     Node *no = new Node();
@@ -24,6 +25,7 @@ Node *setNode(char c, int freq, Node *esq, Node *dir)
     no->dir = dir;
     return no;
 }
+
 struct ordem
 {
     bool operator()(Node *esq, Node *dir)
@@ -127,6 +129,7 @@ string decodificacao(Node *p, string code)
     return str;
 }
 
+
 int binary_to_decimal(string &in)
 {
     int result = 0;
@@ -135,24 +138,8 @@ int binary_to_decimal(string &in)
     return result;
 }
 
-string decimal_to_binary(int in)
-{
-    string temp = "";
-    string result = "";
-    while (in)
-    {
-        temp += ('0' + in % 2);
-        in /= 2;
-    }
-    result.append(8 - temp.size(), '0'); //append '0' ahead to let the result become fixed length of 8
-    for (int i = temp.size() - 1; i >= 0; i--)
-    {
-        result += temp[i];
-    }
-    return result;
-}
 
-string CalcCompre(string &code)
+string Compressao(string &code)
 {
     stringstream ss;
     string str, aux;
@@ -172,6 +159,47 @@ string CalcCompre(string &code)
     }
     return ss.str();
 }
+
+
+string decimal_to_binary(int in)
+{
+    string temp = "";
+    string result = "";
+    while (in)
+    {
+        temp += ('0' + in % 2);
+        in /= 2;
+    }
+    result.append(8 - temp.size(), '0'); //append '0' ahead to let the result become fixed length of 8
+    for (int i = temp.size() - 1; i >= 0; i--)
+    {
+        result += temp[i];
+    }
+    return result;
+}
+
+
+string Decompressao(string &code)
+{
+    stringstream ss;
+    string str, aux;
+    int bit;
+    cout << "here" << endl;
+    for (int i = 0; i < code.length(); i++)
+    {
+        str += code[i];
+
+        if ((i + 1) % 8 == 0 || ((code.length() - i) < 8 && i + 1 == code.length()))
+        {
+            // ss<<str;ss>>bit;
+            ss << binary_to_decimal(str);
+            // cout << " " << ss.str() << endl;
+            str = "";
+        }
+    }
+    return ss.str();
+}
+
 
 void HuffmanCode(string T)
 {
@@ -198,14 +226,15 @@ void HuffmanCode(string T)
     {
         code += dic[c];
     }
-    string result = CalcCompre(code);
+    string result = Compressao(code);
     cout // << "Frase normal:\t" << T
         // << "\nCODIFICADA:\t" << result << endl
         << "\nT\t" << T.length() << endl
         << "\nR\t" << result.length() << endl
         << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
-                                                                       //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
+                                                                     //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
 }
+
 
 int main(int argc, char **argv)
 {
@@ -237,8 +266,9 @@ int main(int argc, char **argv)
         P += aux;
     }
 
-    HuffmanCode(P);
+    HuffmanCode("Ana ama banana, banana ama cama");
 
-    std::cout << "\n";
+    cout << "\n";
     return 0;
 }
+
