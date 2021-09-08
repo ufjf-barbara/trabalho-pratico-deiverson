@@ -152,10 +152,8 @@ void HuffmanCode(string T)
     }
     cout << "Frase normal:\t" << T
          << "\nCODIFICADA:\t" << code << endl
-         << (float)sizeof(code) / sizeof(T) << endl; //tentativa de medir a compressao
-
-    cout << "Decodificacao : " << endl;
-    cout << decodificacao(raiz, code);
+         << (float)sizeof(code) / sizeof(T) << endl //tentativa de medir a compressao
+         << "DECODIFICADA:\t"<<decodificacao(raiz, code)<<endl;//decodificação 
     
 }
 

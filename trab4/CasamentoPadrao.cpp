@@ -77,6 +77,7 @@ int forcaBruta(string T, string P)
     return -1;
 }
 
+
 int main()
 {
     string x = "1";
@@ -105,7 +106,7 @@ int main()
 
     clock_t begin = clock();
 
-    cout<<"Algoritmo de Knuth-Morris-Pratt (KMP)"<<endl;
+    cout << "Algoritmo de Knuth-Morris-Pratt (KMP)" << endl;
     kmpMatch(T, P);
 
     clock_t end = clock();
@@ -117,8 +118,8 @@ int main()
     int ocorrecias = forcaBruta(T, P);
 
     end = clock();
-    cout<<"Algoritmo de Forca Bruta "<<endl;
-    cout << ocorrecias <<" ocorrencias " << endl;
+    cout << "Algoritmo de Forca Bruta " << endl;
+    cout << ocorrecias << " ocorrencias " << endl;
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
 
     padrao.close();
