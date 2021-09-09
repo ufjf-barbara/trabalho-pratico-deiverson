@@ -5,15 +5,9 @@
 #include <vector>
 #include <fstream>
 #include <time.h>
+#include "huffman.h"
 
 using namespace std;
-
-struct Node
-{
-    char c;
-    unsigned int count;
-    Node *esq, *dir;
-};
 
 Node *setNode(char c, int freq, Node *esq, Node *dir)
 {
@@ -25,17 +19,8 @@ Node *setNode(char c, int freq, Node *esq, Node *dir)
     return no;
 }
 
-struct ordem
-{
-    bool operator()(Node *esq, Node *dir)
-    {
-        // Menos frequente fica no final
-        return esq->count > dir->count;
-    }
-};
-
 //Codifica i texto pra string de bits
-void codificar(Node *raiz, string str, map<char, string> &dic)
+void huffman::codificar(Node *raiz, string str, map<char, string> &dic)
 {
     if (raiz == nullptr)
         return;
@@ -51,7 +36,7 @@ void codificar(Node *raiz, string str, map<char, string> &dic)
 }
 
 //criacao recursiva da arvore de huffman
-Node *Arvore(priority_queue<Node *, vector<Node *>, ordem> q)
+Node *huffman::Arvore(priority_queue<Node *, vector<Node *>, ordem> q)
 {
     //caso base
     if (q.size() == 1)
@@ -73,7 +58,7 @@ Node *Arvore(priority_queue<Node *, vector<Node *>, ordem> q)
 }
 
 //função pra computar a frequencia
-priority_queue<Node *, vector<Node *>, ordem> frequencia(string T)
+priority_queue<Node *, vector<Node *>, ordem> huffman::frequencia(string T)
 {
     //map para contar frequencia
     map<char, unsigned int> freq;
@@ -99,7 +84,7 @@ priority_queue<Node *, vector<Node *>, ordem> frequencia(string T)
 }
 
 //algoritmo de decodificação
-string decodificacao(Node *p, string code)
+string huffman::decodificacao(Node *p, string code)
 {
     string str = "";                         //string auxiliar
     Node *l = p;                             //no auxiliar recebe a raiz
@@ -122,7 +107,7 @@ string decodificacao(Node *p, string code)
     return str;
 }
 
-unsigned int binario_decimal(string &in)
+unsigned int huffman::binario_decimal(string &in)
 {
     int result = 0;
     for (int i = 0; i < in.size(); i++)
@@ -130,9 +115,8 @@ unsigned int binario_decimal(string &in)
     return result;
 }
 
-void HuffmanCode(string T)
+void huffman ::HuffmanCode(string T)
 {
-
     Node *raiz = new Node();
 
     map<char, string> dic;
