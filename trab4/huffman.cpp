@@ -139,13 +139,17 @@ void HuffmanCode(string T)
 
     //chamando codificacao
 
-    clock_t begin = clock();
-
     //retorna a fila dos caracteres ordenados do mais frequente pro menos no final da fila
     //e cria a arvore de huffman
     raiz = Arvore(frequencia(T));
 
+    clock_t begin = clock();
     codificar(raiz, "", dic);
+    string code;
+    for (char c : T) //criando a string codificada
+    {
+        code += dic[c];
+    }
     clock_t end = clock();
 
     cout << "-----------------------------------------------------" << endl;
@@ -153,12 +157,6 @@ void HuffmanCode(string T)
     cout << "Custo computational da compressao de "
          << (end - begin) / ((float)CLOCKS_PER_SEC)
          << " segundos" << endl;
-
-    string code;
-    for (char c : T) //criando a string codificada
-    {
-        code += dic[c];
-    }
 
     int code_len = code.length();
     int compri = code_len / 8; //recebe numero de inteiros em de code
