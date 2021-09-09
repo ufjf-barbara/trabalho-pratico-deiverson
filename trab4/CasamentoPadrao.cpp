@@ -38,21 +38,26 @@ void kmpMatch(string T, string P)
     prefix(P, pi); //chama funcao que computa os prefixos do padrao
 
     int k = 0; //contador de caracteres correspondentes
-
-    for (int i = 0; i < n; i++) //varriçao do texto
+    int i = 0;
+    while (i < n) //varriçao do texto
     {
         if (P[k] == T[i]) //verifica correspondencia de caracter
+        {
             k++;
+            i++;
+        }
         if (k == m) //se ja fora verificado todo o Padrao
         {
-            //   cout << "Padrao encontrado na posicao: " << (i + 1 - k) << endl;
+            cout << "Padrao encontrado na posicao: " << (i - k) << endl;
             cont++;
             k = pi[k - 1];
         }
-        if (i < m && P[k] != T[i]) // se verdadeiro, reinicia a busca por correspondencia
+        if (i < n && P[k] != T[i]) // se verdadeiro, reinicia a busca por correspondencia
         {
             if (k > 0)
                 k = pi[k - 1];
+            else
+                i++;
         }
     }
     cout << cont << " ocorrencias" << endl;
@@ -122,6 +127,8 @@ int main()
     clock_t end = clock();
 
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+
+    vector<int> vet(P.size());
 
     cout << "Algoritmo de Forca Bruta " << endl;
     begin = clock();
