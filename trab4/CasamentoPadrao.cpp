@@ -6,6 +6,8 @@
 #include <fstream>
 #include <time.h>
 #include <utility>
+#include <string>
+#include <string.h>
 
 using namespace std;
 
@@ -95,6 +97,82 @@ int forcaBruta(string T, string P)
     return num; //retorna o numero de ocorrencias
 }
 
+//algoritmo BMH
+
+
+ void prefixBMH(string P, int *pi){
+     int m = P.size();
+     for (int i=0; i < m; i++)
+     {
+      
+       pi[P[i]] = m - i - 1;
+          if (i + 1 == m)              //criar tabela de prefixBMHos tamanho 128
+            pi[P[i]] = m;
+          
+         
+     }
+  
+ 
+ }
+void BMH(string T, string P)
+{
+    
+    int pi[128]; //vetor de prefixBMHos
+    memset(pi,0,sizeof(int)*128);
+    
+    int n = T.length(), m = P.size();
+
+    int cont = 0; //contador de ocorrencias
+
+    prefixBMH(P, pi); //chama funcao que computa os prefixos do padrao
+  
+  //for(int i=0;i<P.length();i++){
+     
+    // cout << P[i] << " " << pi[P[i]] <<endl;
+ // }
+  //  cout << T.size() << endl;
+  // cout << n << endl;
+  //  cin.get();
+    for (int i = m - 1; i < n; i++) //varredura do texto
+    {
+        //cout << i <<endl;
+      
+        for (int j = 0; j < m; j++)  // j= m-1 , j>=0
+        {
+         
+            if (P[m - 1 - j] != T[i - j]) //verifica se o caractere do texto esta no padrao
+            {
+                
+                if (pi[T[i - j]]) // se tiver, o pulo e feito com o valor do calculo do prefixo 
+                {
+                     //cout << P[m - 1 - j] << " " << T[i - j] << endl;
+                    
+                    i += pi[T[i - j]] - 1;
+                    break;
+                }
+                else   // senao pula o padrao inteiro
+                {
+                   
+                    i += m - 1;
+                    break;
+                }
+            }
+            else if (j + 1 == m)
+            {
+              
+                cout << "Padrao encontrado na posicao: " << (i + 1 - m) << endl;
+                cont++;
+            }
+        
+        }
+    }
+    cout << cont << " ocorrencias" << endl;
+}
+
+
+
+
+
 int main()
 {
     string x = "1";
@@ -120,7 +198,10 @@ int main()
     }
 
     clock_t begin = clock();
-
+    
+    cout << "Algoritmo de Boyer-Moore-Hoorspool" << endl;
+    BMH(T,"gatactgttc");
+   
     cout << "Algoritmo de Knuth-Morris-Pratt (KMP)" << endl;
     kmpMatch(T, "gatactgttc");
 
