@@ -132,34 +132,27 @@ unsigned int binario_decimal(string &in)
 
 void HuffmanCode(string T)
 {
-    cout << "-----------------------------------------------------" << endl;
-    cout << "DNA com " << T.length() << " padroes" << endl;
 
     Node *raiz = new Node();
-
-    //retorna a fila dos caracteres ordenados do mais frequente pro menos no final da fila
-    //e cria a arvore de huffman
 
     map<char, string> dic;
 
     //chamando codificacao
 
+    clock_t begin = clock();
+
+    //retorna a fila dos caracteres ordenados do mais frequente pro menos no final da fila
+    //e cria a arvore de huffman
     raiz = Arvore(frequencia(T));
 
-    clock_t begin = clock();
     codificar(raiz, "", dic);
     clock_t end = clock();
 
+    cout << "-----------------------------------------------------" << endl;
+    cout << "DNA com " << T.length() << " padroes" << endl;
     cout << "Custo computational da compressao de "
          << (end - begin) / ((float)CLOCKS_PER_SEC)
          << " segundos" << endl;
-
-    // //----------------------------------------------------------------
-    // for (auto pair : dic)
-    // {
-    //     cout << pair.first << " " << pair.second << endl;
-    // }
-    // //----------------------------------------------------------------
 
     string code;
     for (char c : T) //criando a string codificada
