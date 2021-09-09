@@ -45,7 +45,7 @@ void kmpMatch(string T, string P)
             k++;
         if (k == m) //se ja fora verificado todo o Padrao
         {
-            cout << "Padrao encontrado na posicao: " << (i + 1 - k) << endl;
+            //   cout << "Padrao encontrado na posicao: " << (i + 1 - k) << endl;
             cont++;
             k = pi[k - 1];
         }
@@ -62,31 +62,33 @@ void kmpMatch(string T, string P)
 
 int forcaBruta(string T, string P)
 {
-    int n = T.length(); //n recebe o tamanho do texto
-    int m = P.length(); //m recebe o tamanho do padrão
-    int j = 0;
-    int cont = 0, num = 0;
-
-    for (int i = 0; i < n - m; i++) //for de i a i<n-m
+    int n = T.size(); //n recebe o tamanho do texto
+    int m = P.size(); //m recebe o tamanho do padrão
+    int num = 0;
+    bool eh = false;
+    for (int i = 0; i < n - m + 1; i++) //for de i a i<n-m
     {
-        if (j < m && P[j] == T[i + j])//verifica se o j e menor que m e os caracteres sao iguais
+        eh = true;
+        for (int k = 0; k < m; k++)
         {
-            j++;
-            cont++;
+            if (P[k] != T[i + k])
+            {
+                eh = false;
+                break;
+            }
         }
-        if (cont == m - 1)//se o contador for igual o tamanho 
+        if (eh)
         {
-             cout << "Padrao encontrado na posicao: "<< i+1 << endl;//imprime a posição da ocorrencia
-            // i+=m-1;
-            cont = 0;
+            for (int k = 0; k < m; k++)
+            {
+                cout << T[i + k];
+            }
+            cout << "Padrao encontrado na posicao: " << i << endl; //imprime a posição da ocorrencia
             num++;
-            j = 0;
         }
     }
-    return num;//retorna o numero de ocorrencias
+    return num; //retorna o numero de ocorrencias
 }
-
-
 
 int main()
 {
@@ -115,20 +117,18 @@ int main()
     clock_t begin = clock();
 
     cout << "Algoritmo de Knuth-Morris-Pratt (KMP)" << endl;
-    kmpMatch(T, P);
+    kmpMatch(T, "gatactgttc");
 
     clock_t end = clock();
 
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
 
-
     cout << "Algoritmo de Forca Bruta " << endl;
     begin = clock();
-    int ocorrencias = forcaBruta(T, P);
+    int ocorrencias = forcaBruta(T, "gatactgttc");
     end = clock();
     cout << ocorrencias << " ocorrencias" << endl;
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
-
 
     padrao.close();
     dna.close();
