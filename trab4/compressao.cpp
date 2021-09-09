@@ -167,17 +167,23 @@ string decimal_to_binary(string str)
     int in;
     ss << str;
     ss >> in;
-    // cout << "in :" << in << endl;
     while (in > 0)
     {
         temp += ('0' + in % 2);
         in /= 2;
     }
+
+    cout << "\nin :\t" << temp << endl;
+
+    if (temp.size() <= 8)
+        result.append(8 - temp.size(), '0');
+
     for (int i = temp.size() - 1; i >= 0; i--)
     {
         result += temp[i];
     }
     cout << "here \t" << result << endl;
+
     return result;
 }
 
@@ -186,18 +192,55 @@ string Decompressao(string &code)
     string aux = "";
     string str;
     string decode = "";
+    size_t len;
     int i = 0;
+    char buffer[20];
+
     while (i < code.length())
     {
-        str += code[i];
-        i++;
-        aux = decimal_to_binary(str);
-        if (aux.length() == 8 || i + 1 == code.length())
+        if (code[i + 2])
         {
-            decode += aux;
-            cout << "decode:" << decode << endl;
-            str = "";
+            len = code.copy(buffer, 3, i);
+            buffer[len] = '\0';
+            str = buffer;
+            cout << "\ndecomp\t" << buffer << endl;
+
+            aux = decimal_to_binary(str);
+            i += 2;
+            if (aux.length() > 8)
+            {
+                i--;
+                len = code.copy(buffer, 2, i - 1);
+                buffer[len] = '\0';
+                str = buffer;
+                cout << "\ndecomp\t" << str << endl;
+                aux = decimal_to_binary(str);
+            }
         }
+        else if (code[i + 1])
+        {
+            len = code.copy(buffer, 2, i);
+            buffer[len] = '\0';
+            str = buffer;
+            cout << "\ndecomp\t" << str << endl;
+            aux = decimal_to_binary(str);
+        }
+        else
+        {
+            str = code[i];
+            cout << "\ndecomp\t" << str << endl;
+            aux = decimal_to_binary(str);
+        }
+        // if (aux.length() == 8 || i + 1 == code.length())
+        // {
+        //     decode += aux;
+
+        //     // cout << "decimal: " << str << endl;
+        //     // cout << "decode: " << decode << endl;
+        //     str = "";
+        // }
+        decode += aux;
+        i++;
     }
     return decode;
 }
@@ -223,13 +266,14 @@ void HuffmanCode(string T)
     // //----------------------------------------------------------------
 
     string code;
-    for (char c : T)
+    for (char c : T) //criando a string codificada
     {
         code += dic[c];
     }
-    string result = Compressao(code);
+    string result = Compressao(code); //comprimindo
     cout << "\nresult :" << result << endl
          << endl;
+
     //  cout // << "Frase normal:\t" << T
     //     // << "\nCODIFICADA:\t" << result << endl
     //     << "\nT\t" << T.length() << endl
@@ -237,6 +281,7 @@ void HuffmanCode(string T)
     //     << (float)(T.length() - result.length()) / T.length() << endl; //tentativa de medir a compressao
 
     //  << "DECODIFICADA:\t" << decodificacao(raiz, code) << endl; //decodificação
+    
     string aux = Decompressao(result);
     cout << "\n\naux\t" << aux << endl;
     cout << "code\t" << code << endl;
@@ -262,8 +307,8 @@ int main(int argc, char **argv)
     //     // std::cout << pair.first << " " << pair.second <<endl;
     // }
 
-    string x = "1";
-    ifstream padrao("padrao" + x + ".txt");
+    string x = "3";
+    ifstream padrao("dna" + x + ".txt");
 
     string P, aux;
 
@@ -274,6 +319,7 @@ int main(int argc, char **argv)
 
     HuffmanCode("ABACATEABAFABAFO");
 
-    cout << "\n";
+    cout << "\n"
+         << P.length() << endl;
     return 0;
 }
