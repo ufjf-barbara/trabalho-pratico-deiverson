@@ -16,12 +16,10 @@ private:
     void kmpMatch(string T, string P);
     int forcaBruta(string T, string P);
     void prefix(string P, vector<int> &pi);
+    void BMH(string T, string P);
+    void prefixBMH(string P, int *pi);
 
-   public:
-
-
-
-
+public:
 };
 
 #endif // CASAMENTOPADRAO_H_INCLUDED
