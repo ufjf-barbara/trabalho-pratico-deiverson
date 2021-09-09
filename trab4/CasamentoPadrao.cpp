@@ -3,17 +3,17 @@
 #include <vector>
 #include <time.h>
 #include <iostream>
-#include <fstream>
 #include <time.h>
 #include <utility>
 #include <string>
 #include <string.h>
+#include "CasamentoPadrao.h"
 
 using namespace std;
 
 //algoritmo KMP
 
-void prefix(string P, vector<int> &pi)
+void CasamentoPadrao::prefix(string P, vector<int> &pi)
 {
     int m = P.length(); // tamanho do padrao
     pi[0] = 0;
@@ -29,7 +29,7 @@ void prefix(string P, vector<int> &pi)
     }
 }
 
-void kmpMatch(string T, string P)
+void CasamentoPadrao::kmpMatch(string T, string P)
 {
     vector<int> pi(P.length()); //vector de prefixos
 
@@ -67,18 +67,18 @@ void kmpMatch(string T, string P)
 
 //algoritmo de força bruta
 
-int forcaBruta(string T, string P)
+int CasamentoPadrao::forcaBruta(string T, string P)
 {
     int n = T.size(); //n recebe o tamanho do texto
     int m = P.size(); //m recebe o tamanho do padrão
-    int num = 0;
+    int num = 0;//contador de padrões encontrados
     bool eh = false;
     for (int i = 0; i < n - m + 1; i++) //for de i a i<n-m
     {
         eh = true;
         for (int k = 0; k < m; k++)
         {
-            if (P[k] != T[i + k])
+            if (P[k] != T[i + k])//compara as posições do padrao e do texto
             {
                 eh = false;
                 break;
@@ -86,7 +86,7 @@ int forcaBruta(string T, string P)
         }
         if (eh)
         {
-            for (int k = 0; k < m; k++)
+            for (int k = 0; k < m; k++)//percorre todo o padrao
             {
                 cout << T[i + k];
             }
@@ -99,127 +99,59 @@ int forcaBruta(string T, string P)
 
 //algoritmo BMH
 
-
- void prefixBMH(string P, int *pi){
-     int m = P.size();
-     for (int i=0; i < m; i++)
-     {
-      
-       pi[P[i]] = m - i - 1;
-          if (i + 1 == m)              //criar tabela de prefixBMHos tamanho 128
-            pi[P[i]] = m;
-          
-         
-     }
-  
- 
- }
-void BMH(string T, string P)
+void CasamentoPadrao::prefixBMH(string P, int *pi)
 {
-    
+    int m = P.size();
+    for (int i = 0; i < m; i++)
+    {
+
+        pi[P[i]] = m - i - 1;
+        if (i + 1 == m) //criar tabela de prefixBMHos tamanho 128
+            pi[P[i]] = m;
+    }
+}
+void CasamentoPadrao::BMH(string T, string P)
+{
+
     int pi[128]; //vetor de prefixBMHos
-    memset(pi,0,sizeof(int)*128);
-    
+    memset(pi, 0, sizeof(int) * 128);
+
     int n = T.length(), m = P.size();
 
     int cont = 0; //contador de ocorrencias
 
     prefixBMH(P, pi); //chama funcao que computa os prefixos do padrao
-  
-  //for(int i=0;i<P.length();i++){
-     
-    // cout << P[i] << " " << pi[P[i]] <<endl;
- // }
-  //  cout << T.size() << endl;
-  // cout << n << endl;
-  //  cin.get();
+
     for (int i = m - 1; i < n; i++) //varredura do texto
     {
-        //cout << i <<endl;
-      
-        for (int j = 0; j < m; j++)  // j= m-1 , j>=0
+
+        for (int j = 0; j < m; j++) // j= m-1 , j>=0
         {
-         
+
             if (P[m - 1 - j] != T[i - j]) //verifica se o caractere do texto esta no padrao
             {
-                
-                if (pi[T[i - j]]) // se tiver, o pulo e feito com o valor do calculo do prefixo 
+
+                if (pi[T[i - j]]) // se tiver, o pulo e feito com o valor do calculo do prefixo
                 {
-                     //cout << P[m - 1 - j] << " " << T[i - j] << endl;
-                    
+                    //cout << P[m - 1 - j] << " " << T[i - j] << endl;
+
                     i += pi[T[i - j]] - 1;
                     break;
                 }
-                else   // senao pula o padrao inteiro
+                else // senao pula o padrao inteiro
                 {
-                   
+
                     i += m - 1;
                     break;
                 }
             }
             else if (j + 1 == m)
             {
-              
+
                 cout << "Padrao encontrado na posicao: " << (i + 1 - m) << endl;
                 cont++;
             }
-        
         }
     }
     cout << cont << " ocorrencias" << endl;
-}
-
-
-
-
-
-int main()
-{
-    string x = "1";
-    ifstream padrao("padrao" + x + ".txt");
-    ifstream dna("dna1.txt");
-
-    string T;
-    string P;
-
-    string aux;
-
-    getline(padrao, aux);
-    getline(padrao, aux);
-
-    while (getline(padrao, aux))
-    {
-        P += aux;
-    }
-
-    while (getline(dna, aux))
-    {
-        T += aux;
-    }
-
-    clock_t begin = clock();
-    
-    cout << "Algoritmo de Boyer-Moore-Hoorspool" << endl;
-    BMH(T,"gatactgttc");
-   
-    cout << "Algoritmo de Knuth-Morris-Pratt (KMP)" << endl;
-    kmpMatch(T, "gatactgttc");
-
-    clock_t end = clock();
-
-    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
-
-    vector<int> vet(P.size());
-
-    cout << "Algoritmo de Forca Bruta " << endl;
-    begin = clock();
-    int ocorrencias = forcaBruta(T, "gatactgttc");
-    end = clock();
-    cout << ocorrencias << " ocorrencias" << endl;
-    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
-
-    padrao.close();
-    dna.close();
-
-    return 0;
 }
