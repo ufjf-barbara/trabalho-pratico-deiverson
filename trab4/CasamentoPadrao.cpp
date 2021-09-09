@@ -74,16 +74,16 @@ int forcaBruta(string T, string P)
             j++;
             cont++;
         }
-        if (cont == m - 1)
+        if (cont == m - 1)//se o contador for igual o tamanho 
         {
-            cout << "Posicao : " << i+1 << endl;
+             cout << "Padrao encontrado na posicao: "<< i+1 << endl;//imprime a posição da ocorrencia
             // i+=m-1;
             cont = 0;
             num++;
             j = 0;
         }
     }
-    return num;
+    return num;//retorna o numero de ocorrencias
 }
 
 
@@ -92,7 +92,7 @@ int main()
 {
     string x = "1";
     ifstream padrao("padrao" + x + ".txt");
-    ifstream dna("dna2.txt");
+    ifstream dna("dna1.txt");
 
     string T;
     string P;
@@ -111,8 +111,6 @@ int main()
     {
         T += aux;
     }
-
-    //cout << P << endl;
 
     clock_t begin = clock();
 
