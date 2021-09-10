@@ -110,6 +110,7 @@ void CasamentoPadrao::prefixBMH(string P, int *pi)
             pi[P[i]] = m;
     }
 }
+
 void CasamentoPadrao::BMH(string T, string P)
 {
 
