@@ -152,7 +152,6 @@ void CasamentoPadrao::BMH(string T, string P)
             }
             else if (j + 1 == m)
             {
-
                 cout << (i + 1 - m) << " ";
                 cont++;
             }

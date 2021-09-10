@@ -66,19 +66,25 @@ void casamento(string path)
                 cout << "Executando forca Bruta Para : " << endl;
                 while (cont <= 5)
                 {
-                    Padrao.open(path + "./Padrao" + to_string(cont) + ".txt");
+                    Padrao.open(path + "./padrao" + to_string(cont) + ".txt");
                     getline(Padrao, str);
                     getline(Padrao, str);
 
                     while (getline(Padrao, str))
                     {
-                        P += aux;
+                        P += str;
                     }
                     cout << P.length() << " Padroes" << endl;
+                    cout << T.length() << " DNA" << endl;
+
                     begin = clock();
                     CasamentoPadrao::forcaBruta(T, P);
                     end = clock();
+
                     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                    cont++;
+                    P = "";
+                    Padrao.close();
                 }
                 break;
             case 2:
@@ -86,39 +92,44 @@ void casamento(string path)
                 cout << "Executando KMP Para : " << endl;
                 while (cont <= 5)
                 {
-                    Padrao.open(path + "./Padrao" + to_string(cont) + ".txt");
+                    Padrao.open(path + "./padrao" + to_string(cont) + ".txt");
                     getline(Padrao, str);
                     getline(Padrao, str);
 
                     while (getline(Padrao, str))
                     {
-                        P += aux;
+                        P += str;
                     }
                     cout << P.length() << " Padroes" << endl;
                     begin = clock();
                     CasamentoPadrao::kmpMatch(T, P);
                     end = clock();
                     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                    cont++;
+                    Padrao.close();
+                    P = "";
                 }
                 break;
             case 3:
-
                 cout << "Executando BMH Para : " << endl;
                 while (cont <= 5)
                 {
-                    Padrao.open(path + "./Padrao" + to_string(cont) + ".txt");
+                    Padrao.open(path + "./padrao" + to_string(cont) + ".txt");
                     getline(Padrao, str);
                     getline(Padrao, str);
 
                     while (getline(Padrao, str))
                     {
-                        P += aux;
+                        P += str;
                     }
                     cout << P.length() << " Padroes" << endl;
                     begin = clock();
                     CasamentoPadrao::BMH(T, P);
                     end = clock();
                     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                    cont++;
+                    P = "";
+                    Padrao.close();
                 }
                 break;
             default:
@@ -126,6 +137,7 @@ void casamento(string path)
             }
         }
     }
+    dna.close();
 }
 
 void display(string path) // funçao para chamar as execuçoes do trabalho
@@ -178,8 +190,9 @@ void display(string path) // funçao para chamar as execuçoes do trabalho
                     x++;
                     dna.close();
                     dna.open(path + "./dna" + to_string(x) + ".txt");
+                    T = "";
                 }
-
+                dna.close();
                 break;
             default:
                 cout << "\nOpcao invalida\n";

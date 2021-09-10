@@ -160,4 +160,5 @@ void huffman ::HuffmanCode(string T)
          << (end - begin) / ((float)CLOCKS_PER_SEC)
          << " segundos" << endl;
     cout << "-----------------------------------------------------" << endl;
+    
 }
