@@ -31,6 +31,7 @@ void CasamentoPadrao::prefix(string P, vector<int> &pi)
 
 void CasamentoPadrao::kmpMatch(string T, string P)
 {
+    cout << "Padroes encontrados nas posicoes : ";
     vector<int> pi(P.length()); //vector de prefixos
 
     int n = T.size(), m = P.size();
@@ -50,7 +51,7 @@ void CasamentoPadrao::kmpMatch(string T, string P)
         }
         if (k == m) //se ja fora verificado todo o Padrao
         {
-            cout << "Padrao encontrado na posicao: " << (i - k) << endl;
+            cout << (i - k) << " ";
             cont++;
             k = pi[k - 1];
         }
@@ -62,23 +63,25 @@ void CasamentoPadrao::kmpMatch(string T, string P)
                 i++;
         }
     }
-    cout << cont << " ocorrencias" << endl;
+    cout << "\n"
+         << cont << " ocorrencias" << endl;
 }
 
 //algoritmo de força bruta
 
-int CasamentoPadrao::forcaBruta(string T, string P)
+void CasamentoPadrao::forcaBruta(string T, string P)
 {
+    cout << "Padroes encontrados nas posicoes : ";
     int n = T.size(); //n recebe o tamanho do texto
     int m = P.size(); //m recebe o tamanho do padrão
-    int num = 0;//contador de padrões encontrados
     bool eh = false;
+    int num = 0;
     for (int i = 0; i < n - m + 1; i++) //for de i a i<n-m
     {
         eh = true;
         for (int k = 0; k < m; k++)
         {
-            if (P[k] != T[i + k])//compara as posições do padrao e do texto
+            if (P[k] != T[i + k]) //compara as posições do padrao e do texto
             {
                 eh = false;
                 break;
@@ -86,15 +89,16 @@ int CasamentoPadrao::forcaBruta(string T, string P)
         }
         if (eh)
         {
-            for (int k = 0; k < m; k++)//percorre todo o padrao
+            for (int k = 0; k < m; k++) //percorre todo o padrao
             {
                 cout << T[i + k];
             }
-            cout << "Padrao encontrado na posicao: " << i << endl; //imprime a posição da ocorrencia
+            cout << i << " "; //imprime a posição da ocorrencia
             num++;
         }
     }
-    return num; //retorna o numero de ocorrencias
+    cout << "\n"
+         << num << " ocorrencias" << endl;
 }
 
 //algoritmo BMH
@@ -113,7 +117,7 @@ void CasamentoPadrao::prefixBMH(string P, int *pi)
 
 void CasamentoPadrao::BMH(string T, string P)
 {
-
+    cout << "Padroes encontrados nas posicoes : ";
     int pi[128]; //vetor de prefixBMHos
     memset(pi, 0, sizeof(int) * 128);
 
@@ -149,10 +153,11 @@ void CasamentoPadrao::BMH(string T, string P)
             else if (j + 1 == m)
             {
 
-                cout << "Padrao encontrado na posicao: " << (i + 1 - m) << endl;
+                cout << (i + 1 - m) << " ";
                 cont++;
             }
         }
     }
-    cout << cont << " ocorrencias" << endl;
+    cout << "\n"
+         << cont << " ocorrencias" << endl;
 }

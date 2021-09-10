@@ -13,13 +13,13 @@ using namespace std;
 class CasamentoPadrao
 {
 private:
-    void prefix(string P, vector<int> &pi);
-    void prefixBMH(string P, int *pi);
+    static void prefix(string P, vector<int> &pi);
+    static void prefixBMH(string P, int *pi);
 
 public:
-    void kmpMatch(string T, string P);
-    int forcaBruta(string T, string P);
-    void BMH(string T, string P);
+    static void kmpMatch(string T, string P);
+    static void forcaBruta(string T, string P);
+    static void BMH(string T, string P);
 };
 
 #endif // CASAMENTOPADRAO_H_INCLUDED

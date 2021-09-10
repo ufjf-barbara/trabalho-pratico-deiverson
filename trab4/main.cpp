@@ -9,6 +9,7 @@
 #include <utility>
 #include <string>
 #include "huffman.h"
+#include "CasamentoPadrao.h"
 
 using namespace std;
 
@@ -25,10 +26,10 @@ int main(int argc, char **argv)
 void casamento(string path)
 {
     int x = 1;
-    
+
     ifstream dna;
     ifstream Padrao;
-
+    int cont = 1;
     clock_t begin;
     clock_t end;
 
@@ -36,6 +37,14 @@ void casamento(string path)
     string P;
     string str;
     stringstream ss;
+
+    dna.open(path + "./dna1.txt");
+    getline(dna, str);
+    getline(dna, str);
+    while (getline(dna, str))
+    {
+        T += str;
+    }
 
     int aux = 1;
     while (aux != 0)
@@ -54,28 +63,63 @@ void casamento(string path)
             case 0:
                 break;
             case 1:
-                casamento(path);
+                cout << "Executando forca Bruta Para : " << endl;
+                while (cont <= 5)
+                {
+                    Padrao.open(path + "./Padrao" + to_string(cont) + ".txt");
+                    getline(Padrao, str);
+                    getline(Padrao, str);
+
+                    while (getline(Padrao, str))
+                    {
+                        P += aux;
+                    }
+                    cout << P.length() << " Padroes" << endl;
+                    begin = clock();
+                    CasamentoPadrao::forcaBruta(T, P);
+                    end = clock();
+                    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                }
                 break;
             case 2:
-                dna.open("dna" + to_string(x) + ".txt");
 
-                while (dna)
+                cout << "Executando KMP Para : " << endl;
+                while (cont <= 5)
                 {
+                    Padrao.open(path + "./Padrao" + to_string(cont) + ".txt");
+                    getline(Padrao, str);
+                    getline(Padrao, str);
 
-                    getline(dna, str);
-                    getline(dna, str);
-
-                    while (getline(dna, str))
+                    while (getline(Padrao, str))
                     {
-                        T += str;
+                        P += aux;
                     }
-
-                    huffman::HuffmanCode(T);
-                    x++;
-                    dna.close();
-                    dna.open(path + "./dna" + to_string(x) + ".txt");
+                    cout << P.length() << " Padroes" << endl;
+                    begin = clock();
+                    CasamentoPadrao::kmpMatch(T, P);
+                    end = clock();
+                    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
                 }
+                break;
+            case 3:
 
+                cout << "Executando BMH Para : " << endl;
+                while (cont <= 5)
+                {
+                    Padrao.open(path + "./Padrao" + to_string(cont) + ".txt");
+                    getline(Padrao, str);
+                    getline(Padrao, str);
+
+                    while (getline(Padrao, str))
+                    {
+                        P += aux;
+                    }
+                    cout << P.length() << " Padroes" << endl;
+                    begin = clock();
+                    CasamentoPadrao::BMH(T, P);
+                    end = clock();
+                    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                }
                 break;
             default:
                 cout << "\nOpcao invalida\n";
@@ -117,7 +161,7 @@ void display(string path) // funçao para chamar as execuçoes do trabalho
                 casamento(path);
                 break;
             case 2:
-                dna.open("dna" + to_string(x) + ".txt");
+                dna.open(path + "./dna" + to_string(x) + ".txt");
 
                 while (dna)
                 {
