@@ -23,13 +23,13 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void casamento(string path)
+/*void casamento(string path)
 {
-    int x = 1;
-
     ifstream dna;
     ifstream Padrao;
+
     int cont = 1;
+
     clock_t begin;
     clock_t end;
 
@@ -74,11 +74,9 @@ void casamento(string path)
                     {
                         P += str;
                     }
-                    cout << P.length() << " Padroes" << endl;
-                    cout << T.length() << " DNA" << endl;
 
                     begin = clock();
-                    CasamentoPadrao::forcaBruta(T, P);
+                  CasamentoPadrao::  forcaBruta(T, P);
                     end = clock();
 
                     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
@@ -86,10 +84,9 @@ void casamento(string path)
                     P = "";
                     Padrao.close();
                 }
+                cont = 1;
                 break;
             case 2:
-
-                cout << "Executando KMP Para : " << endl;
                 while (cont <= 5)
                 {
                     Padrao.open(path + "./padrao" + to_string(cont) + ".txt");
@@ -102,13 +99,14 @@ void casamento(string path)
                     }
                     cout << P.length() << " Padroes" << endl;
                     begin = clock();
-                    CasamentoPadrao::kmpMatch(T, P);
+                 CasamentoPadrao::   kmpMatch(T, P);
                     end = clock();
                     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
                     cont++;
-                    Padrao.close();
                     P = "";
+                    Padrao.close();
                 }
+                cont = 1;
                 break;
             case 3:
                 cout << "Executando BMH Para : " << endl;
@@ -124,13 +122,14 @@ void casamento(string path)
                     }
                     cout << P.length() << " Padroes" << endl;
                     begin = clock();
-                    CasamentoPadrao::BMH(T, P);
+               CasamentoPadrao::     BMH(T, P);
                     end = clock();
                     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
                     cont++;
                     P = "";
                     Padrao.close();
                 }
+                cont = 1;
                 break;
             default:
                 cout << "\nOpcao invalida\n";
@@ -139,6 +138,7 @@ void casamento(string path)
     }
     dna.close();
 }
+*/
 
 void display(string path) // funçao para chamar as execuçoes do trabalho
 {
@@ -170,12 +170,13 @@ void display(string path) // funçao para chamar as execuçoes do trabalho
             case 0:
                 break;
             case 1:
-                casamento(path);
+                CasamentoPadrao::casamento(path);
                 break;
             case 2:
-                dna.open(path + "./dna" + to_string(x) + ".txt");
+                dna.open("dna" + to_string(x) + ".txt");
 
-                while (dna)
+                cout << "Qualquer coisa " << x << endl;
+                while (!dna.eof())
                 {
 
                     getline(dna, str);
@@ -183,15 +184,20 @@ void display(string path) // funçao para chamar as execuçoes do trabalho
 
                     while (getline(dna, str))
                     {
-                        T += str;
+                        for (char c : str)
+                        {
+                            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                                T += c;
+                        }
                     }
-
+                    T.shrink_to_fit();
                     huffman::HuffmanCode(T);
                     x++;
                     dna.close();
-                    dna.open(path + "./dna" + to_string(x) + ".txt");
+                    dna.open("dna" + to_string(x) + ".txt");
                     T = "";
                 }
+                x = 1;
                 dna.close();
                 break;
             default:

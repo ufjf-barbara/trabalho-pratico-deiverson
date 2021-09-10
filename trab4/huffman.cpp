@@ -130,6 +130,7 @@ void huffman ::HuffmanCode(string T)
     clock_t begin = clock();
     codificar(raiz, "", dic);
     string code;
+    
     for (char c : T) //criando a string codificada
     {
         code += dic[c];
@@ -137,7 +138,7 @@ void huffman ::HuffmanCode(string T)
     clock_t end = clock();
 
     cout << "-----------------------------------------------------" << endl;
-    cout << "DNA com " << T.length() << " padroes" << endl;
+    cout << "DNA com " << T.size() << " padroes" << endl;
     cout << "Custo computational da compressao de "
          << (end - begin) / ((float)CLOCKS_PER_SEC)
          << " segundos" << endl;

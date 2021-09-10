@@ -20,6 +20,8 @@ public:
     static void kmpMatch(string T, string P);
     static void forcaBruta(string T, string P);
     static void BMH(string T, string P);
+    
+    static void casamento(string path);
 };
 
 #endif // CASAMENTOPADRAO_H_INCLUDED

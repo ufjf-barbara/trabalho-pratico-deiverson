@@ -7,6 +7,7 @@
 #include <utility>
 #include <string>
 #include <string.h>
+#include <sstream>
 #include "CasamentoPadrao.h"
 
 using namespace std;
@@ -16,56 +17,89 @@ using namespace std;
 void CasamentoPadrao::prefix(string P, vector<int> &pi)
 {
     int m = P.length(); // tamanho do padrao
-    pi[0] = 0;
     int k = 0;
+    pi[1] = 0;
 
-    for (int i = 1; i < m; i++) //varrendo o padrao
+    for (int q = 2; q <= m; q++) //varrendo o padrao
     {
-        while (k > 0 && P[k] != P[i])
+        while (k > 0 && P[k + 1] != P[q])
             k = pi[k];
-        if (P[k] == P[i])
+        if (P[k] == P[q])
             k++;
-        pi[i] = k;
+        pi[q] = k;
     }
+    // for (int i = 0; i < P.size(); i++)
+    // {
+    //     cout << pi[i] << " caracter " << P[i] << endl;
+    // }
 }
 
 void CasamentoPadrao::kmpMatch(string T, string P)
 {
-    cout << "Padroes encontrados nas posicoes : ";
-    vector<int> pi(P.length()); //vector de prefixos
+    cout << "\nPadroes encontrados nas posicoes : " << endl;
+    int n = T.size(), m = P.size(), q = 0;
+    vector<int> pi(P.size() + 1); //vector de prefixos
 
-    int n = T.size(), m = P.size();
+    prefix(P, pi);
+    T = " " + T;
 
-    int cont = 0; //contador de ocorrencias
+    int cont = 0;
 
-    prefix(P, pi); //chama funcao que computa os prefixos do padrao
-
-    int k = 0; //contador de caracteres correspondentes
-    int i = 0;
-    while (i < n) //varriçao do texto
+    for (int i = 1; i <= n; i++)
     {
-        if (P[k] == T[i]) //verifica correspondencia de caracter
+        while (q > 0 && P[q + 1] != T[i])
+            q = pi[q];
+        if (P[q + 1] = T[i])
+            q = q + 1; //
+        if (q == m)
         {
-            k++;
-            i++;
-        }
-        if (k == m) //se ja fora verificado todo o Padrao
-        {
-            cout << (i - k) << " ";
+            cout << i - m << " ";
+            q = pi[q];
             cont++;
-            k = pi[k - 1];
-        }
-        if (i < n && P[k] != T[i]) // se verdadeiro, reinicia a busca por correspondencia
-        {
-            if (k > 0)
-                k = pi[k - 1];
-            else
-                i++;
         }
     }
-    cout << "\n"
-         << cont << " ocorrencias" << endl;
+    cout << cont << " ocorrencias" << endl;
 }
+// {
+//     cout << "Padroes encontrados nas posicoes : " << endl;
+//     vector<int> pi(P.size()); //vector de prefixos
+
+//     int n = T.size(), m = P.size();
+
+//     int cont = 0; //contador de ocorrencias
+
+//     prefix(P, pi); //chama funcao que computa os prefixos do padrao
+
+//     int k = 0; //contador de caracteres correspondentes
+//     int i = 0;
+
+//     while (i < n) //varriçao do texto
+//     {
+//         // cout << " " << i << "    " << n << endl;
+//         if (P[k] == T[i]) //verifica correspondencia de caracter
+//         {
+//             k++;
+//             i++;
+//         }
+//         if (k == m) //se ja fora verificado todo o Padrao
+//         {
+//             cout << i - k << " ";
+//             cont++;
+//             k = pi[k - 1];
+//         }
+//         if (i < n && P[k] != T[i]) // se verdadeiro, reinicia a busca por correspondencia
+//         {
+//             // cout << "aqui" << endl;
+//             if (k > 0)
+//                 k = pi[k - 1];
+//             else
+//                 i++;
+//         }
+//     }
+
+//     cout << "\n"
+//          << cont << " ocorrencias" << endl;
+// }
 
 //algoritmo de força bruta
 
@@ -89,10 +123,6 @@ void CasamentoPadrao::forcaBruta(string T, string P)
         }
         if (eh)
         {
-            for (int k = 0; k < m; k++) //percorre todo o padrao
-            {
-                cout << T[i + k];
-            }
             cout << i << " "; //imprime a posição da ocorrencia
             num++;
         }
@@ -121,7 +151,7 @@ void CasamentoPadrao::BMH(string T, string P)
     int pi[128]; //vetor de prefixBMHos
     memset(pi, 0, sizeof(int) * 128);
 
-    int n = T.length(), m = P.size();
+    int n = T.size(), m = P.size();
 
     int cont = 0; //contador de ocorrencias
 
@@ -159,4 +189,140 @@ void CasamentoPadrao::BMH(string T, string P)
     }
     cout << "\n"
          << cont << " ocorrencias" << endl;
+}
+
+void CasamentoPadrao::casamento(string path)
+{
+    ifstream dna;
+    ifstream Padrao;
+
+    int cont = 1;
+
+    clock_t begin;
+    clock_t end;
+
+    string T;
+    string P;
+    string str;
+    stringstream ss;
+
+    dna.open("dna1.txt");
+    getline(dna, str);
+    getline(dna, str);
+    while (getline(dna, str))
+    {
+        for (char c : str)
+        {
+            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                T += c;
+        }
+    }
+
+    int aux = 1;
+    while (aux != 0)
+    {
+        cout << "\n-----------------------------------------------------------------------------------------------------\n"
+             << endl;
+        cout << "Qual deseja executar? (Digite o numero conrespondente a opcao desejada)\n";
+        cout << "[1]Forca bruta\n[2]Knuth-Morris-Pratt (KMP) \n[3]Boyer-Moore-Horspool (BMH)\n[0]Finalizar\n";
+        cout << "\n-----------------------------------------------------------------------------------------------------\n";
+        cin >> aux;
+        cin.ignore();
+        if (aux >= 0 && aux <= 3)
+        {
+            switch (aux)
+            {
+            case 0:
+                break;
+            case 1:
+                cout << "Executando forca Bruta Para : " << endl;
+                while (cont <= 5)
+                {
+                    Padrao.open("padrao" + to_string(cont) + ".txt");
+                    getline(Padrao, str);
+                    getline(Padrao, str);
+
+                    while (getline(Padrao, str))
+                    {
+                        for (char c : str)
+                        {
+                            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                                P += c;
+                        }
+                    }
+                    cout << P.length() << " Padroes" << endl;
+                    begin = clock();
+                    forcaBruta(T, P);
+                    end = clock();
+
+                    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                    cont++;
+                    P = "";
+                    Padrao.close();
+                }
+                cont = 1;
+                break;
+            case 2:
+                cout << "Executando forca Bruta Para : " << endl;
+                while (cont <= 5)
+                {
+                    Padrao.open("padrao" + to_string(cont) + ".txt");
+                    getline(Padrao, str);
+                    getline(Padrao, str);
+
+                    while (getline(Padrao, str))
+                    {
+                        for (char c : str)
+                        {
+                            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                                P += c;
+                        }
+                    }
+                    cout << P.length() << " Padroes" << endl;
+
+                    begin = clock();
+                    kmpMatch(T, P);
+                    end = clock();
+
+                    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                    P = "";
+                    Padrao.close();
+
+                    cont++;
+                }
+                cont = 1;
+                break;
+            case 3:
+                cout << "Executando BMH Para : " << endl;
+                while (cont <= 5)
+                {
+                    Padrao.open("padrao" + to_string(cont) + ".txt");
+                    getline(Padrao, str);
+                    getline(Padrao, str);
+
+                    while (getline(Padrao, str))
+                    {
+                        for (char c : str)
+                        {
+                            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                                P += c;
+                        }
+                    }
+                    cout << P.length() << " Padroes" << endl;
+                    begin = clock();
+                    BMH(T, P);
+                    end = clock();
+                    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+                    cont++;
+                    P = "";
+                    Padrao.close();
+                }
+                cont = 1;
+                break;
+            default:
+                cout << "\nOpcao invalida\n";
+            }
+        }
+    }
+    dna.close();
 }

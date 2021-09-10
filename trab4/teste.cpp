@@ -17,7 +17,6 @@ int main()
 
     ifstream dna;
     ifstream Padrao;
-    int cont = 1;
     clock_t begin;
     clock_t end;
 
@@ -26,29 +25,60 @@ int main()
     string str;
     stringstream ss;
 
+    int cont = 2;
     dna.open("./dna1.txt");
+    Padrao.open("./padrao" + to_string(cont) + ".txt");
+
     getline(dna, str);
     getline(dna, str);
     while (getline(dna, str))
     {
-        T += str;
+
+        for (char c : str)
+        {
+            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                T += c;
+        }
     }
-    Padrao.open("./padrao" + to_string(cont) + ".txt");
     getline(Padrao, str);
     getline(Padrao, str);
+    str = "";
 
     while (getline(Padrao, str))
     {
-        P += str;
+
+        for (char c : str)
+        {
+            if (c == 'a' || c == 'c' || c == 't' || c == 'g')
+                P += c;
+        }
     }
+
+    std::size_t found = T.find(P);
+
+    if (found != std::string::npos)
+        cout << "funcao : " << found << endl;
+
+    cout << T.length() << " dna" << endl;
     cout << P.length() << " Padroes" << endl;
 
+    // T = "ABACATEABAFABAFO";
+    // P = "ABA";
+
     begin = clock();
-    CasamentoPadrao::forcaBruta(T, P);
+
+    CasamentoPadrao::kmpMatch(T, P);
+
     end = clock();
 
     cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
     cont++;
+
+    begin = clock();
+    CasamentoPadrao::forcaBruta(T, P);
+    end = clock();
+    cout << "Custo computational de " << (end - begin) / ((float)CLOCKS_PER_SEC) << " segundos" << endl;
+
     P = "";
     return 0;
 }
