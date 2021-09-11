@@ -28,30 +28,27 @@ void CasamentoPadrao::prefix(string P, vector<int> &pi)
             k++;
         pi[q] = k;
     }
-    // for (int i = 0; i < P.size(); i++)
-    // {
-    //     cout << pi[i] << " caracter " << P[i] << endl;
-    // }
 }
 
 void CasamentoPadrao::kmpMatch(string T, string P)
 {
     cout << "\nPadroes encontrados nas posicoes : " << endl;
-    int n = T.size(), m = P.size(), q = 0;
+    int n = T.size(), m = P.size();
+    int q = 0;                    //contador de caracteres correspondentes
     vector<int> pi(P.size() + 1); //vector de prefixos
 
-    prefix(P, pi);
+    prefix(P, pi); //chama funcao que computa os prefixos do padrao
     T = " " + T;
 
-    int cont = 0;
+    int cont = 0; //contador de ocorrencias
 
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= n; i++) //varriçao do texto
     {
-        while (q > 0 && P[q + 1] != T[i])
+        while (q > 0 && P[q + 1] != T[i]) // se verdadeiro, reinicia a busca por correspondencia
             q = pi[q];
-        if (P[q + 1] = T[i])
-            q = q + 1; //
-        if (q == m)
+        if (P[q + 1] = T[i]) //verifica correspondencia de caracter
+            q = q + 1;
+        if (q == m) //se ja fora verificado todo o Padrao
         {
             cout << i - m << " ";
             q = pi[q];
@@ -60,46 +57,6 @@ void CasamentoPadrao::kmpMatch(string T, string P)
     }
     cout << cont << " ocorrencias" << endl;
 }
-// {
-//     cout << "Padroes encontrados nas posicoes : " << endl;
-//     vector<int> pi(P.size()); //vector de prefixos
-
-//     int n = T.size(), m = P.size();
-
-//     int cont = 0; //contador de ocorrencias
-
-//     prefix(P, pi); //chama funcao que computa os prefixos do padrao
-
-//     int k = 0; //contador de caracteres correspondentes
-//     int i = 0;
-
-//     while (i < n) //varriçao do texto
-//     {
-//         // cout << " " << i << "    " << n << endl;
-//         if (P[k] == T[i]) //verifica correspondencia de caracter
-//         {
-//             k++;
-//             i++;
-//         }
-//         if (k == m) //se ja fora verificado todo o Padrao
-//         {
-//             cout << i - k << " ";
-//             cont++;
-//             k = pi[k - 1];
-//         }
-//         if (i < n && P[k] != T[i]) // se verdadeiro, reinicia a busca por correspondencia
-//         {
-//             // cout << "aqui" << endl;
-//             if (k > 0)
-//                 k = pi[k - 1];
-//             else
-//                 i++;
-//         }
-//     }
-
-//     cout << "\n"
-//          << cont << " ocorrencias" << endl;
-// }
 
 //algoritmo de força bruta
 
