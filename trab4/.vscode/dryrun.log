@@ -1,5 +1,0 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make.exe: Entering directory `c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/trab4'
-g++ main.cpp huffman.cpp CasamentoPadrao.cpp -o main
-make.exe: Leaving directory `c:/Users/deive/Documents/GitHub/trabalho-pratico-deiverson/trab4'
- 

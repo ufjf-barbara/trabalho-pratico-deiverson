@@ -1,6 +1,0 @@
-Random DNA Sequence results
->random sequence 1 consisting of 200 bases.
-ataggcagaacgcaagtcaaaaggtatccaaaattttcaatcctgatgtcagatgtgccg
-cttgtagggtcctcttactttgtaccagtcggattcgggtcgatagagttatatcgctag
-aatagcaggcgcacagggtgctttagtgctccccatgttaagcctacgaaaattgccaag
-ctggagcctaagacagtgaa

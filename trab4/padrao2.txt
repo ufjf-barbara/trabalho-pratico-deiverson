@@ -1,3 +1,0 @@
-Random DNA Sequence results
->random sequence 1 consisting of 20 bases.
-agatggcaatatgggcggcc
