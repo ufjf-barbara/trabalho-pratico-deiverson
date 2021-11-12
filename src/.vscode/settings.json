@@ -1,0 +1,30 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "fstream": "cpp",
+        "new": "cpp",
+        "iosfwd": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "system_error": "cpp",
+        "array": "cpp",
+        "ostream": "cpp",
+        "unordered_map": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp",
+        "unordered_set": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "c:\\Users\\deive\\Documents\\GitHub\\trabalho-pratico-deiverson\\src",
+            "binaryPath": "c:\\Users\\deive\\Documents\\GitHub\\trabalho-pratico-deiverson\\src\\main.exe",
+            "binaryArgs": []
+        }
+    ]
+}
